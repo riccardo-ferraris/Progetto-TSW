@@ -1,20 +1,22 @@
 package Model;
 
 public class GraficheBean extends Articolo{
-	private String titolo;
 	private String categoria;
 	
 	public GraficheBean() {
 		
 	}
 	
-	public GraficheBean(long seriale, String titolo, double prezzo, int quantità, String descrizione,
+	public GraficheBean(String nome, long seriale, String titolo, double prezzo, int quantità, String descrizione,
 			 String categoria) {
-		super(seriale, prezzo, quantità, descrizione);
-		this.titolo = titolo;
+		super(nome, seriale, prezzo, quantità, descrizione);
 		this.categoria = categoria;
 	}
 
+	public GraficheBean(Articolo art) {
+		this();
+	}
+	
 	public long getSeriale() {
 		return seriale;
 	}
@@ -24,11 +26,11 @@ public class GraficheBean extends Articolo{
 	}
 
 	public String getTitolo() {
-		return titolo;
+		return nome;
 	}
 
 	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+		this.nome = titolo;
 	}
 
 	public double getPrezzo() {

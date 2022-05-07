@@ -10,6 +10,7 @@
     <%@page import="Model.GraficheModel" %>
     <%@page import="Model.ModelliniBean" %>
     <%@page import="Model.ModelliniModel" %>
+    <%@page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html>
 <meta charset="ISO-8859-1">
@@ -61,6 +62,7 @@
 	<h3>Manga</h3>
 	
 	<%
+	
 	FumettiModel fmodel = new FumettiModel();
 	//String path = .getContextRoot();
 	//out.println(path);
@@ -78,7 +80,7 @@
 			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%=fumetto.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>
@@ -100,7 +102,7 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:200px>
 			<br>
 			<%=fumetto.getTitolo()%><br>
-			Prezzo: <%=fumetto.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>
@@ -126,7 +128,7 @@
 			<br>
 			<%=grafica.getTitolo()%>
 			<br>
-			Prezzo: <%=grafica.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>
@@ -147,7 +149,7 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:200px>
 			<br>
 			<%=grafica.getTitolo()%><br>
-			Prezzo: <%=grafica.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>
@@ -174,7 +176,7 @@
 			<br>
 			<%=modellino.getNome()%>
 			<br>
-			Prezzo: <%=modellino.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>
@@ -195,7 +197,7 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:200px>
 			<br>
 			<%=modellino.getNome()%><br>
-			Prezzo: <%=modellino.getPrezzo()%>&euro;<br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br></li>
 			</div></a>
 			<% } %>
 		</ul>

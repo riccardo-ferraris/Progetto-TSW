@@ -1,0 +1,253 @@
+body {
+    margin: 0%;
+    font-family: 'Rubik', sans-serif;
+}
+
+form {
+    width: 500px;
+    background-color: white;
+    padding: 0 20px 20px 20px;
+    border: 5px solid black;
+    margin: 100px auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+    font-family: 'Rubik', sans-serif;
+}
+
+#accedi {
+    padding: 35px 35px 0 35px;
+    font-weight: 300;
+}
+
+.content {
+    padding: 35px;
+    text-align: center;
+}
+
+.input-field {
+    padding: 12px 5px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.input-field input {
+    font-size: 16px;
+    display: block;
+    font-family: 'Rubik', sans-serif;
+    width: 100%;
+    padding: 10px 1px;
+    border: 0;
+    border-bottom: 1px solid #747474;
+    outline: none;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.input-field input::-webkit-input-placeholder {
+    text-transform: uppercase;
+}
+
+.input-field input::-moz-placeholder {
+    text-transform: uppercase;
+}
+
+.input-field input:-ms-input-placeholder {
+    text-transform: uppercase;
+}
+
+.input-field input::-ms-input-placeholder {
+    text-transform: uppercase;
+}
+
+.input-field input::placeholder {
+    text-transform: uppercase;
+}
+
+.input-field input:focus {
+    border-color: #222;
+}
+
+a.link {
+    text-decoration: none;
+    color: #747474;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.action {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+}
+
+.action button {
+    width: 100%;
+    border: none;
+    padding: 18px;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #e8e9ec;
+    color: #777;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    letter-spacing: 0.2px;
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.action button:hover {
+    background: #d8d8d8;
+}
+
+.action button:nth-child(2) {
+    background: #2d3b55;
+    color: #fff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 4px;
+}
+
+.action button:nth-child(2):hover {
+    background: #3c4d6d;
+}
+
+#logo {
+    width: 20%;
+    height: 20%;
+    display: block;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+header {
+    background-color: #def7ff;
+}
+
+#menuList, #menuList2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Helvetica;
+    font-weight: bold;
+    background-color: white;
+}
+
+#menuList li, #menuList2 li {
+    float: left;
+}
+
+#menuList li a, #menuList2 li a {
+    display: inline-block;
+    position: relative;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    margin: 2px;
+    text-decoration: none;
+}
+
+#menuList li a:hover, #menuList2 li a:hover {
+    background-color: #2d3b55;
+    color: white;
+    transition: background-color 0.5s;
+    border-radius: 5px;
+}
+
+#search {
+    float: right;
+    padding: 6px;
+    border-width: 2px;
+    margin-top: 8px;
+    margin-right: 16px;
+    margin-left: 16px;
+    font-size: 17px;
+    font-family: Helvetica;
+}
+
+#mainNav {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    position: sticky; 
+    top: 0px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+#subMenu, #subMenu2, #subMenu3, #subMenu4 {
+    list-style-type: none;
+}
+
+#subMenu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    border: 1px solid black;
+    border-bottom: none;
+}
+
+.mainProduct li {
+    display: inline;
+    margin: 0 6%;
+}
+
+.mainProduct {
+    border-bottom: #222 1px solid;
+    border-top: #222 1px solid;
+}
+
+.categoria {
+    padding: 0 10%;
+    position: relative;
+    margin: 5%;
+}
+
+.topProduct{
+    justify-content: center;
+    z-index: 1;
+}
+
+#footer {
+    width: auto;
+    height: auto;
+    background-color: #2d3b55;
+    color: #d8d8d8;
+    padding: 1%;
+}
+
+.listProd {
+    width: 100%;
+    vertical-align: top;
+}
+
+.prodotto {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 2% 2%;
+    margin: 0 5px;
+    width: 18%;
+}
+
+.prodotto:hover {
+    background-color: #f6f3f3;
+    transition: 0.5s;
+}
+
+h1 {
+    margin: 25px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}

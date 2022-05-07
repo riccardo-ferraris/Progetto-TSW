@@ -2,7 +2,6 @@ package Model;
 
 public class FumettiBean extends Articolo{
 	
-	private String titolo;
 	private String scrittore;
 	private int numPagine;
 	private String disegnatore;
@@ -12,10 +11,9 @@ public class FumettiBean extends Articolo{
 		
 	}
 
-	public FumettiBean(String titolo, String scrittore, int numPagine, String disegnatore, String categoria,
+	public FumettiBean(String nome, String scrittore, int numPagine, String disegnatore, String categoria,
 			long seriale, double prezzo, int quantità, String descrizione) {
-		super(seriale, prezzo, quantità, descrizione);
-		this.titolo = titolo;
+		super(nome, seriale, prezzo, quantità, descrizione);	
 		this.scrittore = scrittore;
 		this.numPagine = numPagine;
 		this.disegnatore = disegnatore;
@@ -31,11 +29,11 @@ public class FumettiBean extends Articolo{
 	}
 
 	public String getTitolo() {
-		return titolo;
+		return nome;
 	}
 
 	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+		this.nome = titolo;
 	}
 
 	public double getPrezzo() {

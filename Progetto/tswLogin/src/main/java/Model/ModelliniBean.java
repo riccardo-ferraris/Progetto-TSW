@@ -1,7 +1,6 @@
 package Model;
 
 public class ModelliniBean extends Articolo{
-	private String nome;
 	private String categoria;
 	private String franchise;
 	private double dimensioni;	
@@ -13,7 +12,7 @@ public class ModelliniBean extends Articolo{
 
 	public ModelliniBean(long seriale, String nome, double prezzo, int quantità, String descrizione,
 			 String categoria, String franchise, double dimensioni) {
-		super(seriale, prezzo, quantità, descrizione);
+		super(nome, seriale, prezzo, quantità, descrizione);
 		this.nome = nome;
 		this.categoria = categoria;
 		this.franchise = franchise;

@@ -1,6 +1,7 @@
 package Model;
 
 public class Articolo {
+	protected String nome;
 	protected long seriale;
 	protected double prezzo;
 	protected int quantità;
@@ -9,7 +10,7 @@ public class Articolo {
 	public Articolo() {
 	}
 	
-	public Articolo(long seriale, double prezzo, int quantità, String descrizione) {
+	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione) {
 		super();
 		this.seriale = seriale;
 		this.prezzo = prezzo;
@@ -20,9 +21,19 @@ public class Articolo {
 	public long getSeriale() {
 		return seriale;
 	}
+	
 	public void setSeriale(long seriale) {
 		this.seriale = seriale;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public double getPrezzo() {
 		return prezzo;
 	}

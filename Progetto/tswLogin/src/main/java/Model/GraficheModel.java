@@ -99,7 +99,7 @@ public class GraficheModel extends ArticoloModel{
 
 		Collection<GraficheBean> products = new LinkedList<GraficheBean>();
 
-		String selectSQL = "SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE categoria = 'moderna'";
+		String selectSQL = "SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE categoria = 'Moderna'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -140,7 +140,7 @@ public class GraficheModel extends ArticoloModel{
 
 		Collection<GraficheBean> products = new LinkedList<GraficheBean>();
 
-		String selectSQL = "SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE categoria = 'opera'";
+		String selectSQL = "SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE categoria = 'Opera'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

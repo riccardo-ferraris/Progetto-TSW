@@ -2,17 +2,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.ArrayList" %>
-     <%@page import="javax.servlet.*" %>
-     <%@page import="javax.servlet.http.*" %>
+    <%@page import="javax.servlet.*" %>
+    <%@page import="javax.servlet.http.*" %>
     <%@page import="Model.FumettiBean" %>
     <%@page import="Model.FumettiModel" %> 
-     <%@page import="Model.GraficheBean" %>
+    <%@page import="Model.GraficheBean" %>
     <%@page import="Model.GraficheModel" %>
     <%@page import="Model.ModelliniBean" %>
     <%@page import="Model.ModelliniModel" %>
     <%@page import="java.text.DecimalFormat" %>
+    <%@page import="Model.UserBean" %>
 <!DOCTYPE html>
 <html>
+<%
+	UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+%>
 <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,12 +61,114 @@
         </ul>
     </nav>
 
-	<h1>CATALOGO NEGOZIO</h1>
+	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
 	<h2>Fumetti</h2>
 	<h3>Manga</h3>
-	
+	<%if(utente.getCategoria().equals("admin")){%> 
+	<button style="float:right" class="open-button" onclick="openForm()"
+		title='Pop Up'>Aggiungi un nuovo fumetto</button>
+		
+		<div class="form-popup" id="myForm">
+  			<form action="/action_page.php" class="form-container">
+    			<h1>Inserisci nuovo prodotto</h1>
+				
+				<div style="display:flex;" class="selectCategorie">
+					<div style="margin-right:10%">
+						<label for="categoria"><b>Categoria</b></label><br>
+						<select name="categoria" id="categorie" onchange="mostraSottoCategorie()">
+							<option value="default">--Seleziona--</option>
+    						<option value="fumetti">Fumetti</option>
+   							<option value="grafica">Grafiche</option>
+   				   			<option value="modellino">Modellino</option></select>
+  					</div>
+  					
+  					<div id="divSottocategoriaFumetti" >
+  						<div>
+  							<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
+							<select name="sottoCategoria" id="sottoCategorie"></select>
+  						</div>
+  					
+  						<div style="margin-left:10%;">
+  							<label for="numPagine"><b>Pagine</b></label><br>
+							<input type="number" name="numPagine" id="numPagine"></input>
+  						</div>
+  					</div>
+  				</div>			
+    			
+  				<script>
+  				function mostraSottoCategorie(){
+  					let cat1 = null, cat2 = null;
+  					if(document.getElementById("categorie").value === "fumetti"){
+  						cat1 = "Manga";
+  						cat2 = "Manhwa";
+  					}else if(document.getElementById("categorie").value === "grafica"){
+  						cat1 = "Moderna";
+  						cat2 = "Opera";
+  					}else if(document.getElementById("categorie").value === "modellino"){
+  						cat1 = "Funko Pop!";
+  						cat2 = "Action Figure";
+  					}
+  			
+  					var select = document.getElementById('sottoCategorie');
+  					document.getElementById("sottoCategorie").innerHTML = "";
+  					select.options.add(new Option(cat1));
+  					select.options.add(new Option(cat2));
+  					//showInput();
+  					
+  					if(document.getElementById("categorie").value === "default"){
+  						document.getElementById("sottoCategorie").innerHTML = "";
+  					}
+  					
+				}
+  				
+  				function showInput() {
+                    document.getElementById("divSottocategoriaFumetti").style.visibility = "visible";
+                  }
+                  
+                  function hideInput() {
+                    document.getElementById("divSottocategoriaFumetti").style.display = "none";
+                  }
+  				</script>
+  				
+				
+    			<label for="nome"><b>Nome Prodotto</b></label>
+   			 	<input type="text" placeholder="Nome Prodotto" name="nome" required>
+
+    			<label for="seriale"><b>Seriale</b></label>
+    			<input type="text" placeholder="Seriale Prodotto" name="seriale" required>
+    			
+    			<div class="prezzoQuantità" style="display:flex">
+    				
+    				<div class="divPrezzo" style="margin-right:15%">
+    					<label for="prezzo"><b>Prezzo</b></label>
+						<input type="text" placeholder="Prezzo" name="prezzo" required>
+    				</div>
+    			
+    				<div class="divQuantità">
+    					<label for="quantità"><b>Quantità</b></label>
+    					<input type="number" placeholder="Quantità" name="quantità" required>
+    				</div>
+    			</div>
+				
+				<label for="descrizione"><b>Descrizione</b></label>
+				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
+				
+    			<button type="submit" class="btn">Inserisci</button>
+    			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>
+  			</form>
+		</div>
+		
+		<script>
+			function openForm() {
+ 				document.getElementById("myForm").style.display = "block";
+			}
+
+			function closeForm() {
+				document.getElementById("myForm").style.display = "none";
+			}
+		</script>
+	<% } %>
 	<%
-	
 	FumettiModel fmodel = new FumettiModel();
 	//String path = .getContextRoot();
 	//out.println(path);
@@ -107,7 +213,6 @@
 			<% } %>
 		</ul>
 		</div>
-		
 		<h2>Grafiche</h2>
 	<h3>D'Opera</h3>
 	

@@ -105,7 +105,7 @@ public class FumettiModel extends ArticoloModel{
 
 		Collection<FumettiBean> products = new LinkedList<FumettiBean>();
 
-		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE categoria = 'manga'";
+		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE categoria = 'Manga'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -149,7 +149,7 @@ public class FumettiModel extends ArticoloModel{
 
 		Collection<FumettiBean> products = new LinkedList<FumettiBean>();
 
-		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE categoria = 'manhua'";
+		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE categoria = 'Manhwa'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

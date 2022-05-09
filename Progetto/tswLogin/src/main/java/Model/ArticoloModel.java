@@ -14,4 +14,9 @@ public class ArticoloModel {
 		Collection<? extends Articolo> coll = new LinkedList<Articolo>();
 		return coll;
 	}
+	
+	public int databaseInsert() throws SQLException{
+		int result = 0;
+		return result;
+	}
 }

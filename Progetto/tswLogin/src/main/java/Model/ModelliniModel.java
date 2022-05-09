@@ -54,6 +54,7 @@ public class ModelliniModel extends ArticoloModel{
 		}
 	}
 	
+	@Override
 	public synchronized Collection<ModelliniBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -181,5 +182,11 @@ public class ModelliniModel extends ArticoloModel{
 			}
 		}
 		return products;
+	}
+	
+	@Override
+	public int databaseInsert() throws SQLException{
+		int result = 0;
+		return result;
 	}
 }

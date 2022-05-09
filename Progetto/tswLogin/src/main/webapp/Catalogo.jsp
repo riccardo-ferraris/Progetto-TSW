@@ -12,6 +12,7 @@
     <%@page import="Model.ModelliniModel" %>
     <%@page import="java.text.DecimalFormat" %>
     <%@page import="Model.UserBean" %>
+    <%@page import="tsw.Control.nuovoProdottoServlet" %>
 <!DOCTYPE html>
 <html>
 <%
@@ -39,6 +40,7 @@
 
 <title>Catalogo</title>
 </head>
+
 <body>
 
 	<header>
@@ -69,7 +71,7 @@
 		title='Pop Up'>Aggiungi un nuovo fumetto</button>
 		
 		<div class="form-popup" id="myForm">
-  			<form action="/action_page.php" class="form-container">
+  			<form action="nuovoProdottoServlet" class="form-container" method="post">
     			<h1>Inserisci nuovo prodotto</h1>
 				
 				<div style="display:flex;" class="selectCategorie">
@@ -82,15 +84,31 @@
    				   			<option value="modellino">Modellino</option></select>
   					</div>
   					
-  					<div id="divSottocategoriaFumetti" >
-  						<div>
+  					<div >
+  						<div id="divSottocategoriaFumetti" style="visibility:hidden">
   							<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
 							<select name="sottoCategoria" id="sottoCategorie"></select>
   						</div>
   					
-  						<div style="margin-left:10%;">
+  						<div id="divFumetti" style="margin-left:10%; display:none; ">
   							<label for="numPagine"><b>Pagine</b></label><br>
 							<input type="number" name="numPagine" id="numPagine"></input>
+							
+							<label for="disegnatore"><b>Disegnatore</b></label><br>
+							<input type="text" name="disegnatore" id="disegnatore"></input>
+							
+							<label for="scrittore"><b>Scrittore</b></label><br>
+							<input type="text" name="scrittore" id="scrittore"></input>
+  						</div>
+  						
+  						<div id="divModellino" style="margin-left:10%; display:none; ">
+  							<label for="franchise"><b>Franchise</b></label><br>
+							<input type="text" name="franchise" id="franchise"></input>
+							
+							<label for="dimensioni"><b>Altezza (cm)</b></label><br>
+							<input type="number" name="dimensioni" id="dimensioni"></input>
+							
+
   						</div>
   					</div>
   				</div>			
@@ -101,19 +119,25 @@
   					if(document.getElementById("categorie").value === "fumetti"){
   						cat1 = "Manga";
   						cat2 = "Manhwa";
+  						document.getElementById("divFumetti").style.display = "flex";
+  						document.getElementById("divModellino").style.display = "none";
   					}else if(document.getElementById("categorie").value === "grafica"){
   						cat1 = "Moderna";
   						cat2 = "Opera";
+  						document.getElementById("divFumetti").style.display = "none";
+  						document.getElementById("divModellino").style.display = "none";
   					}else if(document.getElementById("categorie").value === "modellino"){
   						cat1 = "Funko Pop!";
   						cat2 = "Action Figure";
+  						document.getElementById("divFumetti").style.display = "none";
+  						document.getElementById("divModellino").style.display = "flex";
   					}
   			
   					var select = document.getElementById('sottoCategorie');
   					document.getElementById("sottoCategorie").innerHTML = "";
   					select.options.add(new Option(cat1));
   					select.options.add(new Option(cat2));
-  					//showInput();
+  					showInput();
   					
   					if(document.getElementById("categorie").value === "default"){
   						document.getElementById("sottoCategorie").innerHTML = "";
@@ -152,6 +176,7 @@
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
+				<input type="file" id="myFile" class="btn" name="filename">
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

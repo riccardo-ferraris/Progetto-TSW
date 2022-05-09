@@ -23,52 +23,59 @@ char firstChar = seriale.charAt(0);
 int firstDigit = Integer.parseInt("" + firstChar);
 ArticoloModel articoloModel = null;
 Articolo articolo = null;
-
+String nomeImmagine = new String();
 switch(firstDigit){
 	case 1: articoloModel = new FumettiModel();
 	articolo = new FumettiBean();
-	articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
-	
-	
-		%>
+	articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
+		
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
-		<%String nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 		<img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" width="300" height="400">
 		<p><%out.println(((FumettiBean)articolo).getCategoria());%><br>
 			<%out.println(articolo.getNome());%><br>
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
-		
-			
 		</p>
-		
 		</body>	
-		<%break;
+		<%
+		break;
 	
 	case 2: articoloModel = new GraficheModel();
-	articolo = new GraficheBean();
-		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
+		articolo = new GraficheBean();
+		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
 		
-		
-		
-		%>
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
-
+		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+		<img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" width="300" height="400">
+		<p><%out.println(((GraficheBean)articolo).getCategoria());%><br>
+			<%out.println(articolo.getNome());%><br>
+			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
+			<%out.println(articolo.getDescrizione());%><br>
+		</p>
 		</body>	
 		<%
 		break;
 	
 	case 3: articoloModel = new ModelliniModel();
+		articolo = new ModelliniBean();
 		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
 		%>
+		
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
-
+		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+		<img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" width="300" height="400">
+		<p><%out.println(((ModelliniBean)articolo).getCategoria());%><br>
+			<%out.println(articolo.getNome());%><br>
+			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
+			<%out.println(articolo.getDescrizione());%><br>
+		</p>
 		</body>	
 		<%
 		break;

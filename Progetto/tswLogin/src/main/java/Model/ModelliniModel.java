@@ -103,7 +103,7 @@ public class ModelliniModel extends ArticoloModel{
 
 		Collection<ModelliniBean> products = new LinkedList<ModelliniBean>();
 
-		String selectSQL = "SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE categoria = 'action_figure'";
+		String selectSQL = "SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE categoria = 'Action Figure'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -146,7 +146,7 @@ public class ModelliniModel extends ArticoloModel{
 
 		Collection<ModelliniBean> products = new LinkedList<ModelliniBean>();
 
-		String selectSQL = "SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE categoria = 'funko_pop'";
+		String selectSQL = "SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE categoria = 'Funko Pop!'";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

@@ -29,7 +29,7 @@ package Util;
 			
 			newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useSSL=false",username,password);
 
-			newConnection.setAutoCommit(false);
+			newConnection.setAutoCommit(true);
 			return newConnection;
 		}
 

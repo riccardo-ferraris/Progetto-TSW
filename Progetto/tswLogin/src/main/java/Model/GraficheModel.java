@@ -175,9 +175,42 @@ public class GraficheModel extends ArticoloModel{
 		return products;
 	}
 	
-	public int databaseInsert() throws SQLException{
+	public int databaseInsert(GraficheBean grafica) throws SQLException{
 		int result = 0;
-		return result;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into " + GraficheModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
+					+ ", descrizione, categoria)"
+					+ " values(?, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setLong(1, grafica.getSeriale());
+			preparedStatement.setString(2, grafica.getNome());
+			preparedStatement.setDouble(3, grafica.getPrezzo());
+			preparedStatement.setInt(4, grafica.getQuantità());
+			preparedStatement.setString(5, grafica.getDescrizione());
+			preparedStatement.setString(6, grafica.getCategoria());
+			
+			result = preparedStatement.executeUpdate();
+			//System.out.println(fumetto.getCategoria());
+			//connection.commit();	
+				return result;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
 	}
 	
 }

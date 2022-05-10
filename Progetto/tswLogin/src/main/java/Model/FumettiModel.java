@@ -196,7 +196,9 @@ public class FumettiModel extends ArticoloModel{
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into perspectiveart.fumetti values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "insert into " + FumettiModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
+					+ ", descrizione, scrittore, numPagine, disegnatore, categoria)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, fumetto.getSeriale());
@@ -208,9 +210,11 @@ public class FumettiModel extends ArticoloModel{
 			preparedStatement.setInt(7, fumetto.getNumPagine());
 			preparedStatement.setString(8, fumetto.getDisegnatore());
 			preparedStatement.setString(9, fumetto.getCategoria());
-			//System.out.println(fumetto.getCategoria());
+			
 			result = preparedStatement.executeUpdate();
-				
+			//System.out.println(fumetto.getCategoria());
+			//connection.commit();	
+			
 				return result;
 			
 		} finally {

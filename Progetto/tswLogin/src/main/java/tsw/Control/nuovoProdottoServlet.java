@@ -1,7 +1,10 @@
 package tsw.Control;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -9,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import Model.Articolo;
 import Model.ArticoloModel;
@@ -24,6 +28,7 @@ import Model.ModelliniModel;
  */
 @WebServlet("/nuovoProdottoServlet")
 public class nuovoProdottoServlet extends HttpServlet {
+	private static final String SAVE_DIR = "webapp\\gallery\\";
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -49,6 +54,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		Articolo articolo = null;
 		ArticoloModel model = null;
+		String folder = new String();
+		//String fileName = new String();
 		PrintWriter out = response.getWriter();
 		
 		switch(categoria) {
@@ -62,36 +69,66 @@ public class nuovoProdottoServlet extends HttpServlet {
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
 				
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//inserire query di inserimento db
-			
-			out.println("<p>" + articolo.toString() + "</p>");
-			
+			response.sendRedirect("Catalogo.jsp");
+			folder = "Fumetti";
 			break;
 			
 		case "grafica": //articoloModel = new GraficheModel();
+			model = new GraficheModel();
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
-					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-					request.getParameter("descrizione"), request.getParameter("categoria"));
+				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
+				request.getParameter("descrizione"), request.getParameter("sottoCategoria"));
+			try {
+				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				response.sendRedirect("Catalogo.jsp");
+				folder = "Grafiche";
 			
-			out.println("<p>" + articolo.toString() + "</p>");
 		break;
 		
 		case "modellino": 
+			model = new ModelliniModel();
 			articolo = new ModelliniBean(Long.parseLong(request.getParameter("seriale")), request.getParameter("nome"),
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-					request.getParameter("descrizione"), request.getParameter("categoria"), request.getParameter("franchise"),
+					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
 					Double.parseDouble(request.getParameter("dimensioni")));
-			
-			out.println("<p>" + articolo.toString() + "</p>");
+				response.sendRedirect("Catalogo.jsp");
+				folder = "Fumetti";
+				try {
+					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		break;
+	     
 		
 		default: System.out.println("Errore!");
 		break;
 		}
-	}
+		
+		// gets absolute path of the web application
+        String appPath = request.getServletContext().getRealPath("");
+        // constructs path of the directory to save uploaded file
+        String savePath = appPath + File.separator + SAVE_DIR + folder;
 
+        // creates the save directory if it does not exists
+        File fileSaveDir = new File(savePath);
+        //fileName = articolo.getNome();
+        Part filePart = request.getPart("imgProdotto"); // Retrieves <input type="file" name="file">
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+        InputStream fileContent = filePart.getInputStream();
+        //write(fileSaveDir);
+
+        System.out.println(savePath);
+
+	}
 }

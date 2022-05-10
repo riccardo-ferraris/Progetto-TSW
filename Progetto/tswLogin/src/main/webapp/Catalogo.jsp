@@ -154,8 +154,6 @@
                   }
   				</script>
   				
-				
-			
     			<label for="nome"><b>Nome Prodotto</b></label>
    			 	<input type="text" placeholder="Nome Prodotto" name="nome" required>
 
@@ -177,7 +175,7 @@
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
-				<input type="file" id="myFile" class="btn" name="filename">
+				<input type="file" id="myFile" class="btn" name="imgProdotto">
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

@@ -91,6 +91,14 @@ public class FumettiBean extends Articolo{
 	public String getCategoria() {
 		return categoria;
 	}
+
+	@Override
+	public String toString() {
+		return "FumettiBean [scrittore=" + scrittore + ", numPagine=" + numPagine + ", disegnatore=" + disegnatore
+				+ ", categoria=" + categoria + ", nome=" + nome + ", seriale=" + seriale + ", prezzo=" + prezzo
+				+ ", quantità=" + quantità + ", descrizione=" + descrizione + "]";
+	}
+	
 	
 	
 }

@@ -187,9 +187,41 @@ public class FumettiModel extends ArticoloModel{
 		return products;
 	}
 	
-	@Override
-	public int databaseInsert() throws SQLException{
+	public int databaseInsert(FumettiBean fumetto) throws SQLException{
 		int result = 0;
-		return result;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into perspectiveart.fumetti values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setLong(1, fumetto.getSeriale());
+			preparedStatement.setString(2, fumetto.getNome());
+			preparedStatement.setDouble(3, fumetto.getPrezzo());
+			preparedStatement.setInt(4, fumetto.getQuantità());
+			preparedStatement.setString(5, fumetto.getDescrizione());
+			preparedStatement.setString(6, fumetto.getScrittore());
+			preparedStatement.setInt(7, fumetto.getNumPagine());
+			preparedStatement.setString(8, fumetto.getDisegnatore());
+			preparedStatement.setString(9, fumetto.getCategoria());
+			//System.out.println(fumetto.getCategoria());
+			result = preparedStatement.executeUpdate();
+				
+				return result;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
 	}
 }

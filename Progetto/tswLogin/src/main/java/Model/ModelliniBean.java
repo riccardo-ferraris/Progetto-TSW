@@ -13,7 +13,6 @@ public class ModelliniBean extends Articolo{
 	public ModelliniBean(long seriale, String nome, double prezzo, int quantità, String descrizione,
 			 String categoria, String franchise, double dimensioni) {
 		super(nome, seriale, prezzo, quantità, descrizione);
-		this.nome = nome;
 		this.categoria = categoria;
 		this.franchise = franchise;
 		this.dimensioni = dimensioni;
@@ -81,6 +80,14 @@ public class ModelliniBean extends Articolo{
 
 	public double getDimensioni() {
 		return dimensioni;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ModelliniBean [categoria=" + categoria + ", franchise=" + franchise + ", dimensioni=" + dimensioni
+				+ ", nome=" + nome + ", seriale=" + seriale + ", prezzo=" + prezzo + ", quantità=" + quantità
+				+ ", descrizione=" + descrizione + "]";
 	}
 	
 	

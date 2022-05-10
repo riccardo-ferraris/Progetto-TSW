@@ -184,7 +184,6 @@ public class ModelliniModel extends ArticoloModel{
 		return products;
 	}
 	
-	@Override
 	public int databaseInsert() throws SQLException{
 		int result = 0;
 		return result;

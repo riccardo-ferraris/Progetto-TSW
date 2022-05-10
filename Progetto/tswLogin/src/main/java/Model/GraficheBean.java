@@ -64,6 +64,13 @@ public class GraficheBean extends Articolo{
 	public String getCategoria() {
 		return categoria;
 	}
+
+	@Override
+	public String toString() {
+		return "GraficheBean [categoria=" + categoria + ", nome=" + nome + ", seriale=" + seriale + ", prezzo=" + prezzo
+				+ ", quantità=" + quantità + ", descrizione=" + descrizione + "]";
+	}
+	
 	
 	
 }

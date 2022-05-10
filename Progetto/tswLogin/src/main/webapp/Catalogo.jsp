@@ -155,6 +155,7 @@
   				</script>
   				
 				
+			
     			<label for="nome"><b>Nome Prodotto</b></label>
    			 	<input type="text" placeholder="Nome Prodotto" name="nome" required>
 

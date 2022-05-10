@@ -11,7 +11,7 @@ public class Articolo {
 	}
 	
 	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione) {
-		super();
+		this.nome = nome;
 		this.seriale = seriale;
 		this.prezzo = prezzo;
 		this.quantità = quantità;

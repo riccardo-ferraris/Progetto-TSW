@@ -2,6 +2,7 @@ package tsw.Control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,21 +47,28 @@ public class nuovoProdottoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String categoria = request.getParameter("categoria");
-		//ArticoloModel articoloModel = null;
 		Articolo articolo = null;
+		ArticoloModel model = null;
 		PrintWriter out = response.getWriter();
 		
 		switch(categoria) {
 		case "fumetti":
+			model = new FumettiModel();
 			articolo = new FumettiBean(request.getParameter("nome"), request.getParameter("scrittore"),
 					Integer.parseInt(request.getParameter("numPagine")), 
-					request.getParameter("disegnatore"), request.getParameter("categoria"),
+					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
 					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"));
-			
+			try {
+				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//inserire query di inserimento db
-			out.println("<p>" + articolo.getNome() + " " + articolo.getDescrizione() + " " + //il nome risulta null
-					((FumettiBean)articolo).getDisegnatore() + "</p>");
+			
+			out.println("<p>" + articolo.toString() + "</p>");
 			
 			break;
 			

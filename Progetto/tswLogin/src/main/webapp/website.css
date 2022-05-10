@@ -314,7 +314,7 @@ header {
   background: #f1f1f1;
 }
 
-.form-container input[type=text], .form-container input[type=password], .form-container .prezzoQuantità input[type=number]{
+.form-container input[type=text], .form-container input[type=password], .form-container .prezzoQuantità input[type=number], #dimensioni{
   width: 100%;
   padding: 2%;
   margin: 3% 0 3% 0;

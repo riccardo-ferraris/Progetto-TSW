@@ -106,8 +106,8 @@
 									<input type="text" name="disegnatore" id="disegnatore"></input>
 								</div>
 							
-								<div style="width:20%">	
-									<label for="numPagine"><b>Pagine</b></label><br>
+								<div style="width:auto">	
+									<label for="numPagine" style="padding-bottom:2%"><b>Pagine</b></label><br>
 									<input type="number" name="numPagine" id="numPagine"></input>
   								</div>
   							</div>

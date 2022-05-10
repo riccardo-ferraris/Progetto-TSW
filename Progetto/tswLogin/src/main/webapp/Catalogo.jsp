@@ -74,41 +74,56 @@
   			<form action="nuovoProdottoServlet" class="form-container" method="post">
     			<h1>Inserisci nuovo prodotto</h1>
 				
-				<div style="display:flex;" class="selectCategorie">
-					<div style="margin-right:10%">
-						<label for="categoria"><b>Categoria</b></label><br>
-						<select name="categoria" id="categorie" onchange="mostraSottoCategorie()">
-							<option value="default">--Seleziona--</option>
-    						<option value="fumetti">Fumetti</option>
-   							<option value="grafica">Grafiche</option>
-   				   			<option value="modellino">Modellino</option></select>
-  					</div>
+				<div class="selectCategorie">
+					<div>
+						<div style="display:flex">
+							<div style="margin-right:10%; width:45%">
+								<label for="categoria"><b>Categoria</b></label><br>
+								<select name="categoria" id="categorie" onchange="mostraSottoCategorie()">
+									<option value="default">--Seleziona--</option>
+    								<option value="fumetti">Fumetti</option>
+   									<option value="grafica">Grafiche</option>
+   				   					<option value="modellino">Modellino</option></select>
+  							</div>
   					
-  					<div >
-  						<div id="divSottocategoriaFumetti" style="visibility:hidden">
-  							<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
-							<select name="sottoCategoria" id="sottoCategorie"></select>
+  							<!-- <div>  -->
+  							<div id="divSottocategoriaFumetti" style="visibility:hidden; width:45%">
+  								<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
+								<select name="sottoCategoria" id="sottoCategorie"></select>
+  							</div>
   						</div>
+  						<!-- </div>  -->
   					
-  						<div id="divFumetti" style="margin-left:10%; display:none; ">
-  							<label for="numPagine"><b>Pagine</b></label><br>
-							<input type="number" name="numPagine" id="numPagine"></input>
+  						<div id="divFumetti" style="display:none; width:100%">
+  							<div style="display:flex">
+  								<div style="width:30%; margin-right:10%">
+  									<label for="scrittore"><b>Scrittore</b></label><br>
+									<input type="text" name="scrittore" id="scrittore"></input>
+								</div>
 							
-							<label for="disegnatore"><b>Disegnatore</b></label><br>
-							<input type="text" name="disegnatore" id="disegnatore"></input>
+								<div style="width:30%; margin-right:10%">
+									<label for="disegnatore"><b>Disegnatore</b></label><br>
+									<input type="text" name="disegnatore" id="disegnatore"></input>
+								</div>
 							
-							<label for="scrittore"><b>Scrittore</b></label><br>
-							<input type="text" name="scrittore" id="scrittore"></input>
+								<div style="width:20%">	
+									<label for="numPagine"><b>Pagine</b></label><br>
+									<input type="number" name="numPagine" id="numPagine"></input>
+  								</div>
+  							</div>
   						</div>
   						
-  						<div id="divModellino" style="margin-left:10%; display:none; ">
-  							<label for="franchise"><b>Franchise</b></label><br>
-							<input type="text" name="franchise" id="franchise"></input>
-							
-							<label for="dimensioni"><b>Altezza (cm)</b></label><br>
-							<input type="number" name="dimensioni" id="dimensioni"></input>
-							
-
+  						<div id="divModellino" style="display:none">
+  							<div style="display:flex">
+  								<div style="width:45%; margin-right:10%">
+  							 		<label for="franchise"><b>Franchise</b></label><br>
+									<input type="text" name="franchise" id="franchise"></input>
+								</div>
+								<div style="width:45%">
+									<label for="dimensioni"><b>Altezza (cm)</b></label><br>
+									<input type="number" name="dimensioni" id="dimensioni"></input>
+  								</div>
+  							</div>
   						</div>
   					</div>
   				</div>			
@@ -155,21 +170,24 @@
   				</script>
   				
 				
-			
-    			<label for="nome"><b>Nome Prodotto</b></label>
-   			 	<input type="text" placeholder="Nome Prodotto" name="nome" required>
-
-    			<label for="seriale"><b>Seriale</b></label>
-    			<input type="text" placeholder="Seriale Prodotto" name="seriale" required>
+				<div style="display:flex">
+					<div style="margin-right:10%; width:45%">
+    					<label for="nome"><b>Nome Prodotto</b></label>
+   			 			<input type="text" placeholder="Nome Prodotto" name="nome" required maxlength="45">
+					</div>
+					<div style="width:45%">
+    					<label for="seriale"><b>Seriale</b></label>
+    					<input type="text" placeholder="Seriale Prodotto" name="seriale" required maxlength="15">
+    				</div>
+    			</div>
     			
-    			<div class="prezzoQuantità" style="display:flex">
-    				
-    				<div class="divPrezzo" style="margin-right:15%">
+    			<div class="prezzoQuantità" style="display:flex">	
+    				<div class="divPrezzo" style="margin-right:10%; width:45%">
     					<label for="prezzo"><b>Prezzo</b></label>
 						<input type="text" placeholder="Prezzo" name="prezzo" required>
     				</div>
     			
-    				<div class="divQuantità">
+    				<div class="divQuantità" style="width:45%">
     					<label for="quantità"><b>Quantità</b></label>
     					<input type="number" placeholder="Quantità" name="quantità" required>
     				</div>
@@ -177,7 +195,7 @@
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
-				<input type="file" id="myFile" class="btn" name="filename">
+				<input type="file" id="myFile" class="btn" name="filename" maxlength="2000">
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

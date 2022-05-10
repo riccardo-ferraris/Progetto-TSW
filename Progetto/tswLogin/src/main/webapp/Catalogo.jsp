@@ -71,7 +71,7 @@
 		title='Pop Up'>Aggiungi un nuovo fumetto</button>
 		
 		<div class="form-popup" id="myForm">
-  			<form action="nuovoProdottoServlet" class="form-container" method="post">
+  			<form action="nuovoProdottoServlet" class="form-container" method="post" enctype='multipart/form-data'>
     			<h1>Inserisci nuovo prodotto</h1>
 				
 				<div style="display:flex;" class="selectCategorie">

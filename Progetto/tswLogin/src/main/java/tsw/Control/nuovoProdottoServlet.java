@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,7 @@ import Model.ModelliniModel;
  * Servlet implementation class nuovoProdottoServlet
  */
 @WebServlet("/nuovoProdottoServlet")
+@MultipartConfig
 public class nuovoProdottoServlet extends HttpServlet {
 	private static final String SAVE_DIR = "webapp\\gallery\\";
 	private static final long serialVersionUID = 1L;
@@ -120,13 +123,15 @@ public class nuovoProdottoServlet extends HttpServlet {
         // constructs path of the directory to save uploaded file
         String savePath = appPath + File.separator + SAVE_DIR + folder;
 
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        //fileName = articolo.getNome();
         Part filePart = request.getPart("imgProdotto"); // Retrieves <input type="file" name="file">
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
         InputStream fileContent = filePart.getInputStream();
-        //write(fileSaveDir);
+        
+        File uploads = new File(savePath);
+        File file = new File(uploads, "prova.jpg");
+        try (InputStream input = filePart.getInputStream()) {
+        	Files.copy(fileContent, file.toPath());
+        }
 
         System.out.println(savePath);
 

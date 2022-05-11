@@ -1,12 +1,18 @@
 package tsw.Control;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +21,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import Model.Articolo;
 import Model.ArticoloModel;
@@ -31,8 +42,9 @@ import Model.ModelliniModel;
 @WebServlet("/nuovoProdottoServlet")
 @MultipartConfig
 public class nuovoProdottoServlet extends HttpServlet {
-	private static final String SAVE_DIR = "webapp\\gallery\\";
+	private static final String SAVE_DIR = "gallery/";
 	private static final long serialVersionUID = 1L;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -69,16 +81,17 @@ public class nuovoProdottoServlet extends HttpServlet {
 					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
 					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"));
+					folder = "Fumetti";
+			
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
 				
 				
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.sendRedirect("Catalogo.jsp");
-			folder = "Fumetti";
+			
 			break;
 			
 		case "grafica": //articoloModel = new GraficheModel();
@@ -86,14 +99,13 @@ public class nuovoProdottoServlet extends HttpServlet {
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
 				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 				request.getParameter("descrizione"), request.getParameter("sottoCategoria"));
+			folder = "Grafiche";
 			try {
 				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-				response.sendRedirect("Catalogo.jsp");
-				folder = "Grafiche";
+			}	
 			
 		break;
 		
@@ -104,7 +116,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
 					Double.parseDouble(request.getParameter("dimensioni")));
 				response.sendRedirect("Catalogo.jsp");
-				folder = "Fumetti";
+				folder = "Modellini";
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
 				} catch (SQLException e) {
@@ -118,22 +130,63 @@ public class nuovoProdottoServlet extends HttpServlet {
 		break;
 		}
 		
-		// gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR + folder;
-
-        Part filePart = request.getPart("imgProdotto"); // Retrieves <input type="file" name="file">
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-        InputStream fileContent = filePart.getInputStream();
-        
-        File uploads = new File(savePath);
-        File file = new File(uploads, "prova.jpg");
-        try (InputStream input = filePart.getInputStream()) {
-        	Files.copy(fileContent, file.toPath());
-        }
-
-        System.out.println(savePath);
+		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), folder, articolo.getNome());
+		response.sendRedirect("Catalogo.jsp");
+       
 
 	}
+	
+	
+	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException
+	{
+		//final String path = ; //capire come mettere il path
+	    final String fileName = titolo + ".jpg";
+
+		String savePath = appPath + SAVE_DIR + folder;
+		//System.out.println(savePath);
+	    OutputStream out = null;
+	    InputStream filecontent = null;
+
+	    try 
+	    {
+	        out = new FileOutputStream(new File(savePath + File.separator + fileName));
+	        filecontent = filePart.getInputStream();
+
+	        int read = 0;
+	        final byte[] bytes = new byte[1024];
+
+	        while ((read = filecontent.read(bytes)) != -1) 
+	        {
+	            out.write(bytes, 0, read);
+	        }	      
+	    } 
+	    catch (Exception e) 
+	    {
+	    	System.out.println("Error:" + e.getMessage());
+	    } 
+	    finally 
+	    {
+	        if (out != null)
+	        {
+	            out.close();
+	        }
+	        if (filecontent != null) 
+	        {
+	            filecontent.close();
+	        }
+	    }
+	}
+	
+	/*private String GetFileName(String nomeProdotto)
+	{	    
+	    /*for (String content : part.getHeader("content-disposition").split(";")) {
+	        if (content.trim().startsWith("filename")) {
+	            return content.substring(
+	                    content.indexOf('=') + 1).trim().replace("\"", "");
+	        }
+	    }
+		return nomeProdotto;*/
+		
+		//return null;
+	//}
 }

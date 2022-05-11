@@ -107,6 +107,7 @@
 									<input type="text" name="scrittore" id="scrittore"></input>
 								</div>
 							
+
 								<div style="width:35%; margin-right:10%">
 									<label for="disegnatore"><b>Disegnatore</b></label><br>
 									<input type="text" name="disegnatore" id="disegnatore"></input>
@@ -130,6 +131,7 @@
 									<input type="number" name="dimensioni" id="dimensioni"></input>
   								</div>
   							</div>
+
   						</div>
   					</div>
   				</div>			
@@ -200,11 +202,10 @@
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
+
 				<input type="file" id="myFile" class="btn" name="filename" maxlength="2000">
 
 				<input type="file" id="myFile" class="btn" name="imgProdotto">
-
-
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

@@ -84,6 +84,6 @@ switch(firstDigit){
 		break;	
 }
 %>
-<button type="button" >Aggiungi al carrello</button>
+<button type="submit" name="aggiungiProdotto" >Aggiungi al carrello</button>
 </body>
 </html>

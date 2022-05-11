@@ -188,22 +188,20 @@
     				</div>
     			</div>
 			
-    			<div class="prezzoQuantitï¿½" style="display:flex">	
+    			<div class="prezzoQuantita" style="display:flex">	
     				<div class="divPrezzo" style="margin-right:10%; width:45%">
     					<label for="prezzo"><b>Prezzo</b></label>
 						<input type="text" placeholder="Prezzo" name="prezzo" required>
     				</div>
     			
-    				<div class="divQuantitï¿½" style="width:45%">
-    					<label for="quantitï¿½"><b>Quantitï¿½</b></label>
-    					<input type="number" placeholder="Quantitï¿½" name="quantitï¿½" required>
+    				<div class="divQuantita" style="width:45%">
+    					<label for="quantità"><b>Quantità</b></label>
+    					<input type="number" placeholder="Quantita" name="quantita" required>
     				</div>
     			</div>
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
-
-				<input type="file" id="myFile" class="btn" name="filename" maxlength="2000">
 
 				<input type="file" id="myFile" class="btn" name="imgProdotto">
 				

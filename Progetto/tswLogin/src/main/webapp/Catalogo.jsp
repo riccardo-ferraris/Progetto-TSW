@@ -195,7 +195,7 @@
     				</div>
     			
     				<div class="divQuantita" style="width:45%">
-    					<label for="quantità"><b>Quantità</b></label>
+    					<label for="quantita"><b>Quantitï¿½</b></label>
     					<input type="number" placeholder="Quantita" name="quantita" required>
     				</div>
     			</div>
@@ -203,7 +203,7 @@
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
 
-				<input type="file" id="myFile" class="btn" name="imgProdotto">
+				<input type="file" id="imgProdotto" class="btn" name="imgProdotto">
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

@@ -115,7 +115,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
 					Double.parseDouble(request.getParameter("dimensioni")));
-				response.sendRedirect("Catalogo.jsp");
 				folder = "Modellini";
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
@@ -177,16 +176,5 @@ public class nuovoProdottoServlet extends HttpServlet {
 	    }
 	}
 	
-	/*private String GetFileName(String nomeProdotto)
-	{	    
-	    /*for (String content : part.getHeader("content-disposition").split(";")) {
-	        if (content.trim().startsWith("filename")) {
-	            return content.substring(
-	                    content.indexOf('=') + 1).trim().replace("\"", "");
-	        }
-	    }
-		return nomeProdotto;*/
-		
-		//return null;
-	//}
+	
 }

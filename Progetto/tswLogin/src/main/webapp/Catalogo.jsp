@@ -1,6 +1,6 @@
 <%@page import="javax.swing.text.StyledEditorKit.ForegroundAction"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
     <%@page import="javax.servlet.*" %>
     <%@page import="javax.servlet.http.*" %>
@@ -18,7 +18,7 @@
 <%
 	UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 %>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="website.css">
@@ -195,8 +195,8 @@
     				</div>
     			
     				<div class="divQuantita" style="width:45%">
-    					<label for="quantita"><b>Quantit�</b></label>
-    					<input type="number" placeholder="Quantita" name="quantita" required>
+    					<label for="quantita"><b>Quantità</b></label>
+    					<input type="number" placeholder="Quantità" name="quantità" required>
     				</div>
     			</div>
 				

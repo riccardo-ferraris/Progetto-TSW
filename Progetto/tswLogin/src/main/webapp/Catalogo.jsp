@@ -95,15 +95,15 @@
 							<input type="number" name="numPagine" id="numPagine"></input>
 							
 							<label for="disegnatore"><b>Disegnatore</b></label><br>
-							<input type="text" name="disegnatore" id="disegnatore"></input>
+							<input type="text" name="disegnatore" id="disegnatore" maxlenght="45"></input>
 							
 							<label for="scrittore"><b>Scrittore</b></label><br>
-							<input type="text" name="scrittore" id="scrittore"></input>
+							<input type="text" name="scrittore" id="scrittore" maxlenght="45"></input>
   						</div>
   						
   						<div id="divModellino" style="margin-left:10%; display:none; ">
   							<label for="franchise"><b>Franchise</b></label><br>
-							<input type="text" name="franchise" id="franchise"></input>
+							<input type="text" name="franchise" id="franchise" maxlenght="45"></input>
 							
 							<label for="dimensioni"><b>Altezza (cm)</b></label><br>
 							<input type="number" name="dimensioni" id="dimensioni"></input>
@@ -155,10 +155,10 @@
   				</script>
   				
     			<label for="nome"><b>Nome Prodotto</b></label>
-   			 	<input type="text" placeholder="Nome Prodotto" name="nome" required>
+   			 	<input type="text" placeholder="Nome Prodotto" name="nome" required maxlenght="100">
 
     			<label for="seriale"><b>Seriale</b></label>
-    			<input type="text" placeholder="Seriale Prodotto" name="seriale" required>
+    			<input type="text" placeholder="Seriale Prodotto" name="seriale" required maxlenght="15">
     			
     			<div class="prezzoQuantità" style="display:flex">
     				
@@ -175,7 +175,7 @@
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
-				<input type="file" id="imgProdotto" class="btn" name="imgProdotto">
+				<input type="file" id="imgProdotto" class="btn" name="imgProdotto" maxlenght="2000">
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>

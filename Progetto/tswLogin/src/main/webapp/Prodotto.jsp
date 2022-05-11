@@ -39,7 +39,7 @@ switch(firstDigit){
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
 		</p>
-		</body>	
+			
 		<%
 		break;
 	
@@ -57,7 +57,7 @@ switch(firstDigit){
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
 		</p>
-		</body>	
+			
 		<%
 		break;
 	
@@ -76,7 +76,7 @@ switch(firstDigit){
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
 		</p>
-		</body>	
+		
 		<%
 		break;
 		
@@ -84,4 +84,6 @@ switch(firstDigit){
 		break;	
 }
 %>
+<button type="button" >Aggiungi al carrello</button>
+</body>
 </html>

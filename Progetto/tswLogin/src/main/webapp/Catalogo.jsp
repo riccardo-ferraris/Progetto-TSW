@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="website.css">
     <link rel="shortcut icon" type="image/png" href="beep beep.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <head>
 
 <style>
@@ -64,14 +65,21 @@
     </nav>
 
 	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
-	<h2>Fumetti</h2>
-	<h3>Manga</h3>
-	<%if(utente.getCategoria().equals("admin")){%> 
-	<button style="float:right" class="open-button" onclick="openForm()"
-		title='Pop Up'>Aggiungi un nuovo fumetto</button>
+	
+	<div style="display:flex; width:100%">
+		<div style="width:20%">
+			<h2 class="intestazione" style="margin:15% 0 10% 10%">Fumetti</h2>
+			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
+		</div>
+		<div style="margin-left:60%; width:20%">
+			<%if(utente.getCategoria().equals("admin")){%> 
+			<button class="open-button" onclick="openForm()"
+			title='Pop Up'>Aggiungi un nuovo articolo</button>
+		</div>
+	</div>
 		
 		<div class="form-popup" id="myForm">
-  			<form action="nuovoProdottoServlet" class="form-container" method="post">
+  			<form action="nuovoProdottoServlet" class="form-container" method="post" enctype='multipart/form-data'>
     			<h1>Inserisci nuovo prodotto</h1>
 				
 				<div class="selectCategorie">
@@ -86,35 +94,33 @@
    				   					<option value="modellino">Modellino</option></select>
   							</div>
   					
-  							<!-- <div>  -->
   							<div id="divSottocategoriaFumetti" style="visibility:hidden; width:45%">
   								<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
 								<select name="sottoCategoria" id="sottoCategorie"></select>
   							</div>
   						</div>
-  						<!-- </div>  -->
   					
-  						<div id="divFumetti" style="display:none; width:100%">
-  							<div style="display:flex">
-  								<div style="width:30%; margin-right:10%">
+  						<div id="divFumetti" style="display:none">
+  							<div style="display:flex; width:100%">
+  								<div style="width:35%; margin-right:10%">
   									<label for="scrittore"><b>Scrittore</b></label><br>
 									<input type="text" name="scrittore" id="scrittore"></input>
 								</div>
 							
-								<div style="width:30%; margin-right:10%">
+								<div style="width:35%; margin-right:10%">
 									<label for="disegnatore"><b>Disegnatore</b></label><br>
 									<input type="text" name="disegnatore" id="disegnatore"></input>
 								</div>
 							
-								<div style="width:auto">	
-									<label for="numPagine" style="padding-bottom:2%"><b>Pagine</b></label><br>
+								<div style="width:10%">	
+									<label for="numPagine"><b>Pagine</b></label><br>
 									<input type="number" name="numPagine" id="numPagine"></input>
   								</div>
   							</div>
   						</div>
   						
   						<div id="divModellino" style="display:none">
-  							<div style="display:flex">
+  							<div style="display:flex; width:100%">
   								<div style="width:45%; margin-right:10%">
   							 		<label for="franchise"><b>Franchise</b></label><br>
 									<input type="text" name="franchise" id="franchise"></input>
@@ -168,7 +174,6 @@
                     document.getElementById("divSottocategoriaFumetti").style.display = "none";
                   }
   				</script>
-  				
 				
 				<div style="display:flex">
 					<div style="margin-right:10%; width:45%">
@@ -180,22 +185,26 @@
     					<input type="text" placeholder="Seriale Prodotto" name="seriale" required maxlength="15">
     				</div>
     			</div>
-    			
-    			<div class="prezzoQuantità" style="display:flex">	
+			
+    			<div class="prezzoQuantitï¿½" style="display:flex">	
     				<div class="divPrezzo" style="margin-right:10%; width:45%">
     					<label for="prezzo"><b>Prezzo</b></label>
 						<input type="text" placeholder="Prezzo" name="prezzo" required>
     				</div>
     			
-    				<div class="divQuantità" style="width:45%">
-    					<label for="quantità"><b>Quantità</b></label>
-    					<input type="number" placeholder="Quantità" name="quantità" required>
+    				<div class="divQuantitï¿½" style="width:45%">
+    					<label for="quantitï¿½"><b>Quantitï¿½</b></label>
+    					<input type="number" placeholder="Quantitï¿½" name="quantitï¿½" required>
     				</div>
     			</div>
 				
 				<label for="descrizione"><b>Descrizione</b></label>
 				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
 				<input type="file" id="myFile" class="btn" name="filename" maxlength="2000">
+
+				<input type="file" id="myFile" class="btn" name="imgProdotto">
+
+
 				
     			<button type="submit" class="btn">Inserisci</button>
     			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>
@@ -226,7 +235,7 @@
 			String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", "");
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
@@ -236,7 +245,7 @@
 		</ul>
 	</div>
 	
-	<h3>Manhua</h3>
+	<h3 class="sottointestazione">Manhua</h3>
 	<%
 	ArrayList<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(fmodel.doRetrieveAllManhua(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
@@ -249,7 +258,7 @@
 			 String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", ""); 
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=fumetto.getTitolo()%><br>
 			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
@@ -257,8 +266,8 @@
 			<% } %>
 		</ul>
 		</div>
-		<h2>Grafiche</h2>
-	<h3>D'Opera</h3>
+		<h2 class="intestazione">Grafiche</h2>
+	<h3 class="sottointestazione">D'Opera</h3>
 	
 	<%
 	GraficheModel gmodel = new GraficheModel();
@@ -273,7 +282,7 @@
 			String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=grafica.getTitolo()%>
 			<br>
@@ -283,7 +292,7 @@
 		</ul>
 	</div>
 	
-	<h3>Moderne</h3>
+	<h3 class="sottointestazione">Moderne</h3>
 	<%
 	ArrayList<GraficheBean> arrayModerne = new ArrayList<GraficheBean>(gmodel.doRetrieveAllModerna(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
@@ -295,7 +304,7 @@
 			 String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=grafica.getTitolo()%><br>
 			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br></li>
@@ -304,8 +313,8 @@
 		</ul>
 		</div>
 		
-		<h2>Modellini</h2>
-	<h3>Funko POP!</h3>
+		<h2 class="intestazione">Modellini</h2>
+	<h3 class="sottointestazione">Funko POP!</h3>
 	
 	<%
 	ModelliniModel mmodel = new ModelliniModel();
@@ -321,7 +330,7 @@
 			String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=modellino.getNome()%>
 			<br>
@@ -331,7 +340,7 @@
 		</ul>
 	</div>
 	
-	<h3>Action Figures</h3>
+	<h3 class="sottointestazione">Action Figures</h3>
 	<%
 	ArrayList<ModelliniBean> arrayFigures = new ArrayList<ModelliniBean>(mmodel.doRetrieveAllFigures(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
@@ -343,7 +352,7 @@
 			 String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:200px>
+			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=modellino.getNome()%><br>
 			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br></li>
@@ -352,34 +361,38 @@
 		</ul>
 		</div>
 		
-		<footer id="footer">
-        <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui eligendi cumque culpa dignissimos eius
-            facilis, ab doloremque distinctio voluptatibus, aspernatur necessitatibus quibusdam esse, harum laborum
-            architecto. Architecto quis harum suscipit.
-            Quo placeat minima qui dolorem expedita nihil ipsam vitae esse necessitatibus porro? Suscipit omnis nihil
-            unde sequi error soluta mollitia, laboriosam consequatur quae aliquam tenetur praesentium nulla corporis
-            ratione id!
-            Voluptates unde deserunt soluta iure deleniti, modi omnis dolorum ex eius, cum amet? Odio modi fugiat dolor
-            repellat dolores voluptatibus maiores quis, veritatis nesciunt. Impedit velit sed praesentium alias vitae.
-            Magni in doloribus, quidem fuga totam corrupti vel aliquid nobis? Unde ut nobis autem reiciendis est quos
-            consectetur excepturi dignissimos impedit nesciunt, ratione atque eveniet mollitia iusto, dolor minima
-            ullam!
-            Inventore deleniti optio aliquam iusto officia pariatur ad minus! Similique sapiente facere dolor ea nemo
-            quasi eos. Vero, consectetur. Laboriosam, tenetur. Dicta dolore eveniet sit explicabo exercitationem
-            molestiae harum veritatis!
-            Voluptas quisquam earum eaque, ducimus eum placeat ipsum at nobis deserunt quasi incidunt nemo quas
-            veritatis est totam doloremque a, necessitatibus quos libero iure, perferendis temporibus quis! Ad, corrupti
-            nobis?
-            Architecto natus quo perspiciatis nobis rerum id! Porro inventore ullam voluptatum non a nisi, optio
-            repellat distinctio facilis cumque vero repellendus veritatis modi veniam eaque. Eligendi, cupiditate.
-            Ipsam, quidem deserunt?
-            Impedit adipisci autem quos sed alias officiis vero nemo necessitatibus cum animi voluptatem repellendus quo
-            sequi voluptas corrupti asperiores nulla, velit possimus eos et ullam facilis mollitia harum. Dolorum,
-            minus.
-            
-        </p>
-    </footer>
+		<div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Perspective Art</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Perspective Art</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 	
 </body>
 </html>

@@ -184,8 +184,43 @@ public class ModelliniModel extends ArticoloModel{
 		return products;
 	}
 	
-	public int databaseInsert() throws SQLException{
+	public int databaseInsert(ModelliniBean modellino) throws SQLException{
 		int result = 0;
-		return result;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into " + ModelliniModel.TABLE_NAME + " (seriale, nome, prezzo, franchise,"
+					+ "descrizione, dimensioni, quantità, categoria)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setLong(1, modellino.getSeriale());
+			preparedStatement.setString(2, modellino.getNome());
+			preparedStatement.setDouble(3, modellino.getPrezzo());
+			preparedStatement.setString(4, modellino.getFranchise());
+			preparedStatement.setString(5, modellino.getDescrizione());
+			preparedStatement.setDouble(6, modellino.getDimensioni());
+			preparedStatement.setInt(7, modellino.getQuantità());
+			preparedStatement.setString(8, modellino.getCategoria());
+			System.out.println(modellino.getCategoria());
+			result = preparedStatement.executeUpdate();
+			//System.out.println(fumetto.getCategoria());
+			//connection.commit();	
+				return result;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
 	}
 }

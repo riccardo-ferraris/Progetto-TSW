@@ -32,6 +32,7 @@ switch(firstDigit){
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
+		
 		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 		<img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" width="300" height="400">
 		<p><%out.println(((FumettiBean)articolo).getCategoria());%><br>
@@ -83,7 +84,17 @@ switch(firstDigit){
 	default: out.println("404 Error");
 		break;	
 }
-%>
-<button type="submit" name="aggiungiProdotto" >Aggiungi al carrello</button>
+
+					if(articolo.getQuantità()>0)
+                     {
+                     %>
+                  <label>Quantità: </label>
+                  <form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&action=aggiungi" method="post">
+                     <input type="text" value="1" name="quantita"/>
+                     <button type="submit" class="btn btn-primary">
+                     Aggiungi al carrello
+                     </button>
+                  </form>
+                  <% } %>
 </body>
 </html>

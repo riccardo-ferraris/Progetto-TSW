@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
-    if(session.getAttribute("categoria") == null)
+    if(session.getAttribute("ruolo") == null)
     {
     	response.sendRedirect("login.html");	
     	return;

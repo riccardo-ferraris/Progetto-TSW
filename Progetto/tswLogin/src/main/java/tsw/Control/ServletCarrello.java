@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import Model.Articolo;
 import Model.ArticoloModel;
 import Util.Carrello;
@@ -35,23 +34,30 @@ public class ServletCarrello extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
-	    Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+		
+		Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+        if (carrello == null) {
+            carrello = new Carrello();
+            request.getSession().setAttribute("carrello", carrello);
+        }
+		
+	    
 	    String codProd = request.getParameter("seriale");
 	    
-	    if ((action == null) || (carrello == null) || (codProd == null)) {
+	   /* if ((action == null) || (carrello == null) || (codProd == null)) {
 	      //lo rimando alla pagina carrello
 	      response.sendRedirect("checkout.jsp");
 	      return;
-	    }
+	    }*/
 	    
-	    int codice = Integer.parseInt(codProd);
+	    long codice = Long.parseLong(codProd);
 	    
 	    try {
 	      ArticoloModel model = new ArticoloModel();
 	      Articolo prodotto = model.doRetrieveByKey(codice);
 	      
 	      if (prodotto == null) {
-	        response.sendRedirect("checkout.jsp");
+	        //response.sendRedirect("checkout.jsp");
 	        return;
 	      }
 	      
@@ -61,10 +67,11 @@ public class ServletCarrello extends HttpServlet {
 	        
 	        //salvo il carrello
 	        request.getSession().setAttribute("carrello", carrello);
-	        
-	        //ritorno alla pagina prodotti
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
-	        dispatcher.forward(request, response);
+	        System.out.println(codice);
+	        response.sendRedirect("Prodotto.jsp?id="+codice);
+	        //System.out.println("Aggiunto al carrello");
+	        //RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
+	        //dispatcher.forward(request, response);
 	        return;
 	      }
 	      else if (action.trim().equals("rimuovi")) {
@@ -72,20 +79,20 @@ public class ServletCarrello extends HttpServlet {
 	        
 	        //salvo il carrello
 	        request.getSession().setAttribute("carrello", carrello);
-	        
+	        System.out.println("Rimosso dal carrello");
 	        //ritorno alla pagina carrello
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
-	        dispatcher.forward(request, response);
+	       // RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
+	        //dispatcher.forward(request, response);
 	        return;
 	      }
 	      else {
 	        //errore
-	        response.sendRedirect("checkout.jsp");
+	        response.sendRedirect("Prodotto.jsp");
 	        return;
 	      }
 	    }
 	    catch (SQLException | ClassNotFoundException e) {
-	      response.sendRedirect("checkout.jsp");
+	      response.sendRedirect("Prodotto.jsp");
 	      return;
 	    }
 	}

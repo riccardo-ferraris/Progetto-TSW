@@ -64,5 +64,10 @@ public class Carrello {
 	    return prodotti;
 	  }
 
+	@Override
+	public String toString() {
+		return "Carrello [prodotti=" + prodotti + "]";
+	}
+	  
 	}
 

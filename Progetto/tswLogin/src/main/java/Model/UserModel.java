@@ -30,7 +30,7 @@ public class UserModel {
 				bean.setPassword(rs.getString("password"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
-				bean.setCategoria(rs.getString("categoria"));
+				bean.setRuolo(rs.getString("ruolo"));
 				return bean;
 			} else
 				return null;

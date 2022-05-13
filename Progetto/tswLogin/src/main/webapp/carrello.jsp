@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <% %>
+    <%@page import="Util.Carrello"%>
+   <%
+   	Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+    out.println(carrello);
+   %>
 <!DOCTYPE html>
 <html>
 <head>

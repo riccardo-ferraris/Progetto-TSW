@@ -16,6 +16,11 @@ public class ProdottoInCarrello {
 	public void setQuantità(int quantità) {
 		this.quantità = quantità;
 	}
+	@Override
+	public String toString() {
+		return "ProdottoInCarrello [prodotto=" + prodotto + ", quantità=" + quantità + "]";
+	}
+	
 	
 	
 }

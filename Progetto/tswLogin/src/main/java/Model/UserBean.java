@@ -5,7 +5,7 @@ public class UserBean {
 	private String password;
 	private String nome;
 	private String cognome;
-	private String categoria;
+	private String ruolo;
 	
 	public String getUsername() {
 		return username;
@@ -39,12 +39,12 @@ public class UserBean {
 		this.cognome = cognome;
 	}
 	
-	public String getCategoria() {
-		return categoria;
+	public String getRuolo() {
+		return ruolo;
 	}
 	
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
 	}
 	@Override
 	public String toString() {

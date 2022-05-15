@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.Articolo;
 import Model.ArticoloModel;
+import Model.FumettiModel;
+import Model.GraficheModel;
+import Model.ModelliniModel;
+import Model.ProdottoInCarrello;
 import Util.Carrello;
 
 /**
@@ -44,58 +48,80 @@ public class ServletCarrello extends HttpServlet {
 	    
 	    String codProd = request.getParameter("seriale");
 	    
-	   /* if ((action == null) || (carrello == null) || (codProd == null)) {
-	      //lo rimando alla pagina carrello
-	      response.sendRedirect("checkout.jsp");
-	      return;
-	    }*/
+	    if(action.trim().equals("modificaQuantitativo")){
+	    	  int q =  Integer.valueOf(request.getParameter("quantità"));
+	    	  for (ProdottoInCarrello x : carrello.getProdotti()) {
+	    	      if (x.getProdotto().getSeriale() == Long.parseLong(request.getParameter("seriale"))) {
+	    	        x.setQuantità(q);
+	    	        response.sendRedirect("carrello.jsp");
+	    	        return;
+	    	      }
+	    	    }
+	      }else {
+	    	  String macroCategoriaProdotto = request.getParameter("macroCategoria");
 	    
-	    long codice = Long.parseLong(codProd);
+	    	  /* if ((action == null) || (carrello == null) || (codProd == null)) {
+	      	//lo rimando alla pagina carrello
+	      	response.sendRedirect("checkout.jsp");
+	      	return;
+	    	}*/
 	    
-	    try {
-	      ArticoloModel model = new ArticoloModel();
-	      Articolo prodotto = model.doRetrieveByKey(codice);
+	    	  long codice = Long.parseLong(codProd);
+	    	  ArticoloModel model = null;
+	    	  Articolo prodotto = null;
+	    	  try {
+	    		  switch(macroCategoriaProdotto) {
+	    		  case "Fumetti": model = new FumettiModel();
+	      			prodotto = model.doRetrieveByKey(codice);
+	      			break;
+	    	  
+	    		  case "Grafiche": model = new GraficheModel();
+      	  			prodotto = model.doRetrieveByKey(codice);
+      	  			break;
 	      
-	      if (prodotto == null) {
-	        //response.sendRedirect("checkout.jsp");
-	        return;
-	      }
+	    		  case "Modellini": model = new ModelliniModel();
+      	  			prodotto = model.doRetrieveByKey(codice);
+      	  			break;
+	    		  }
+	      
+	    		  if (prodotto == null) {
+	    			  //response.sendRedirect("checkout.jsp");
+	    			  return;
+	    		  }
 	      
 	      
-	      if (action.trim().equals("aggiungi")) {
-	        carrello.aggiungi(prodotto);
+	    		  if (action.trim().equals("aggiungi")) {
+	    			  carrello.aggiungi(prodotto);
 	        
-	        //salvo il carrello
-	        request.getSession().setAttribute("carrello", carrello);
-	        System.out.println(codice);
-	        response.sendRedirect("Prodotto.jsp?id="+codice);
-	        //System.out.println("Aggiunto al carrello");
-	        //RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
-	        //dispatcher.forward(request, response);
-	        return;
-	      }
-	      else if (action.trim().equals("rimuovi")) {
-	        carrello.rimuovi(prodotto);
+	    			  //salvo il carrello
+	    			  request.getSession().setAttribute("carrello", carrello);
+	    			  response.sendRedirect("Prodotto.jsp?id="+codice);
+	    			  //System.out.println("Aggiunto al carrello");
+	    			  return;
+	    		  }
+	    		  else if (action.trim().equals("rimuovi")) {
+	    			  carrello.rimuovi(prodotto);
 	        
-	        //salvo il carrello
-	        request.getSession().setAttribute("carrello", carrello);
-	        System.out.println("Rimosso dal carrello");
-	        //ritorno alla pagina carrello
-	       // RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
-	        //dispatcher.forward(request, response);
-	        return;
+	    			  //salvo il carrello
+	    			  request.getSession().setAttribute("carrello", carrello);
+	    			  //System.out.println("Rimosso dal carrello");
+	    			  //ritorno alla pagina carrello
+
+	    			  return;
+	    		  }
+	    		  else {
+	    			  //errore
+	    			  response.sendRedirect("Prodotto.jsp");
+	    			  return;
+	    		  }
+	    	  }
+	      
+	    	  catch (SQLException | ClassNotFoundException e) {
+	    		  response.sendRedirect("Prodotto.jsp");
+	    		  return;
+	    	}
 	      }
-	      else {
-	        //errore
-	        response.sendRedirect("Prodotto.jsp");
-	        return;
-	      }
-	    }
-	    catch (SQLException | ClassNotFoundException e) {
-	      response.sendRedirect("Prodotto.jsp");
-	      return;
-	    }
-	}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

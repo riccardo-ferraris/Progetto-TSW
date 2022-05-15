@@ -4,18 +4,19 @@ public class GraficheBean extends Articolo{
 	private String categoria;
 	
 	public GraficheBean() {
-		
+		this.macroCategoria = "Grafiche";
 	}
 	
 	public GraficheBean(String nome, long seriale, double prezzo, int quantità, String descrizione,
-			 String categoria) {
-		super(nome, seriale, prezzo, quantità, descrizione);
+			 String categoria, String macroCategoria) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria);
 		this.categoria = categoria;
+		this.macroCategoria = "Grafiche";
 	}
 
-	public GraficheBean(Articolo art) {
+	/*public GraficheBean(Articolo art) {
 		this();
-	}
+	}*/
 	
 	public long getSeriale() {
 		return seriale;
@@ -63,6 +64,10 @@ public class GraficheBean extends Articolo{
 
 	public String getCategoria() {
 		return categoria;
+	}
+	
+	public String getMacroCategoria() {
+		return macroCategoria;
 	}
 
 	@Override

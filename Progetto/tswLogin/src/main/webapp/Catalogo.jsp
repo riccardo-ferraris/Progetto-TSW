@@ -115,7 +115,7 @@
 							
 								<div style="width:10%">	
 									<label for="numPagine"><b>Pagine</b></label><br>
-									<input type="number" name="numPagine" id="numPagine"></input>
+									<input type="number" name="numPagine" id="numPagine" min="1"></input>
   								</div>
   							</div>
   						</div>
@@ -128,7 +128,7 @@
 								</div>
 								<div style="width:45%">
 									<label for="dimensioni"><b>Altezza (cm)</b></label><br>
-									<input type="number" name="dimensioni" id="dimensioni"></input>
+									<input type="number" name="dimensioni" id="dimensioni" min="1"></input>
   								</div>
   							</div>
 
@@ -196,7 +196,7 @@
     			
     				<div class="divQuantita" style="width:45%">
     					<label for="quantita"><b>Quantità</b></label>
-    					<input type="number" placeholder="Quantità" name="quantità" required>
+    					<input type="number" placeholder="Quantità" name="quantità" min="1" required>
     				</div>
     			</div>
 				

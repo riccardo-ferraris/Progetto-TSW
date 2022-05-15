@@ -1,19 +1,12 @@
 package tsw.Control;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
 import Model.Articolo;
 import Model.ArticoloModel;
 import Model.FumettiBean;
@@ -69,9 +56,9 @@ public class nuovoProdottoServlet extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		Articolo articolo = null;
 		ArticoloModel model = null;
-		String folder = new String();
+		//String folder = new String();
 		//String fileName = new String();
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		
 		switch(categoria) {
 		case "fumetti":
@@ -80,8 +67,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 					Integer.parseInt(request.getParameter("numPagine")), 
 					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
-					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"));
-					folder = "Fumetti";
+					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti");
+					//folder = "Fumetti";
 			
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
@@ -98,8 +85,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 			model = new GraficheModel();
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
 				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-				request.getParameter("descrizione"), request.getParameter("sottoCategoria"));
-			folder = "Grafiche";
+				request.getParameter("descrizione"), request.getParameter("sottoCategoria"), "Grafiche");
+			//folder = "Grafiche";
 			try {
 				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
 			} catch (SQLException e) {
@@ -114,8 +101,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 			articolo = new ModelliniBean(Long.parseLong(request.getParameter("seriale")), request.getParameter("nome"),
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
-					Double.parseDouble(request.getParameter("dimensioni")));
-				folder = "Modellini";
+					Double.parseDouble(request.getParameter("dimensioni")), "Modellini");
+				//folder = "Modellini";
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
 				} catch (SQLException e) {
@@ -128,8 +115,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 		default: System.out.println("Errore!");
 		break;
 		}
-		
-		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), folder, articolo.getNome());
+		//System.out.println(articolo.getMacroCategoria());
+		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), articolo.getMacroCategoria(), articolo.getNome());
 		response.sendRedirect("Catalogo.jsp");
        
 

@@ -453,3 +453,52 @@ header {
   font-size:13px;
   margin-bottom:0;
 }
+
+.prodottoCarrello {
+    text-align: center;
+    vertical-align: top;
+    padding: 2% 2%;
+    margin: 0 5px;
+    width: 18%;
+    
+}
+
+.prodottoCarrello > div {
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+.prodottoCarrello > li
+{
+    display: flex;
+  flex-wrap: nowrap;  
+}
+
+.prodottoCarrello input[type=number]
+{
+	
+	padding: 5%;
+  	
+    width: 35%; 
+}
+
+.prodottoCarrello:hover {
+    background-color: #f6f3f3;
+    transition: 0.5s;
+}
+
+.listProdCarrello {
+	 width: 50%;
+     vertical-align: top;
+     float: left;
+}
+
+.controlliCarrello {
+	float: right;
+	width: 50%;
+	vertical-align: top;
+}
+

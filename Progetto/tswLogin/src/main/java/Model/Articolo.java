@@ -6,16 +6,18 @@ public class Articolo {
 	protected double prezzo;
 	protected int quantità;
 	protected String descrizione;
+	protected String macroCategoria;
 	
 	public Articolo() {
 	}
-	
-	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione) {
+
+	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria) {
 		this.nome = nome;
 		this.seriale = seriale;
 		this.prezzo = prezzo;
 		this.quantità = quantità;
 		this.descrizione = descrizione;
+		this.macroCategoria = macroCategoria;
 	}
 
 	public long getSeriale() {
@@ -51,5 +53,15 @@ public class Articolo {
 	}
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+	
+	public String getMacroCategoria() {
+		return macroCategoria;
+	}
+	
+	@Override
+	public String toString() {
+		return "Articolo [nome=" + nome + ", seriale=" + seriale + ", prezzo=" + prezzo + ", quantità=" + quantità
+				+ ", descrizione=" + descrizione + ", macroCategoria=" + macroCategoria + "]";
 	}
 }

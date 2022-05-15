@@ -6,13 +6,13 @@ public class ModelliniBean extends Articolo{
 	private double dimensioni;	
 	
 	public ModelliniBean() {
-		
+		this.macroCategoria = "Modellini";
 	}
 	
 
 	public ModelliniBean(long seriale, String nome, double prezzo, int quantità, String descrizione,
-			 String categoria, String franchise, double dimensioni) {
-		super(nome, seriale, prezzo, quantità, descrizione);
+			 String categoria, String franchise, double dimensioni, String macroCategoria) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria);
 		this.categoria = categoria;
 		this.franchise = franchise;
 		this.dimensioni = dimensioni;
@@ -80,6 +80,10 @@ public class ModelliniBean extends Articolo{
 
 	public double getDimensioni() {
 		return dimensioni;
+	}
+	
+	public String getMacroCategoria() {
+		return macroCategoria;
 	}
 
 

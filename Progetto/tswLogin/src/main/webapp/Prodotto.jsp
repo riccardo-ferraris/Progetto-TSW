@@ -16,7 +16,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <%
-//out.println(((FumettiBean)articolo).getCategoria());
 
 String seriale = request.getParameter("id");
 char firstChar = seriale.charAt(0);
@@ -24,6 +23,7 @@ int firstDigit = Integer.parseInt("" + firstChar);
 ArticoloModel articoloModel = null;
 Articolo articolo = null;
 String nomeImmagine = new String();
+
 switch(firstDigit){
 	case 1: articoloModel = new FumettiModel();
 	articolo = new FumettiBean();
@@ -39,8 +39,7 @@ switch(firstDigit){
 			<%out.println(articolo.getNome());%><br>
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
-		</p>
-			
+		</p>	
 		<%
 		break;
 	
@@ -58,7 +57,6 @@ switch(firstDigit){
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
 		</p>
-			
 		<%
 		break;
 	
@@ -77,7 +75,6 @@ switch(firstDigit){
 			<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br>
 			<%out.println(articolo.getDescrizione());%><br>
 		</p>
-		
 		<%
 		break;
 		
@@ -89,8 +86,8 @@ switch(firstDigit){
                      {
                      %>
                   <label>Quantità: </label>
-                  <form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&action=aggiungi" method="post">
-                     <input type="text" value="1" name="quantita"/>
+                  <form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
+                     <input type="number" value="1" min="1" name="quantita"/>
                      <button type="submit" class="btn btn-primary">
                      Aggiungi al carrello
                      </button>

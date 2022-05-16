@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="website.css">
     <link rel="shortcut icon" type="image/png" href="beep beep.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <title>Login</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -17,9 +18,7 @@
 
     <nav id="mainNav">
         <ul id="menuList">
-            <li><a href="/fumetti">FUMETTI</a></li>
-            <li><a href="/grafiche">GRAFICHE</a></li>
-            <li><a href="/modellini">MODELLINI</a></li>
+            <li><a href="./Catalogo.jsp">CATALOGO</a></li>
         </ul>
         <ul id="menuList2">
             <li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -27,31 +26,12 @@
               </svg></a></li>
             <li><input type="text" placeholder="Cerca" id="search" style="border-radius: 20px;"></li>
             <li><a href="/partnership">PARTNERSHIP</a></li>
-            <li><a href="login.jsp">LOGIN</a></li>
-            <li><a href="register.jsp">REGISTRATI</a></li>
+            <li><a href="./login.jsp">LOGIN</a></li>
+            <li><a href="./register.jsp">REGISTRATI</a></li>
         </ul>
     </nav>
 
-    <form action="./LoginServlet" method="post" class="loginForm">
-        <h1 id="accedi">Accedi</h1>
-        <div class="content">
-            <div class="input-field">
-                <input type="text" placeholder="Username" id="username" name="username">
-            </div>
-            <div class="input-field">
-                <input type="password" placeholder="Password" id="password" name="password">
-            </div>
-        </div>
-        <a href="" class="link">Hai dimenticato la password?</a>
-        <br><br>
-        <div class="action">
-            <button>Registrati</button>
-            <button>Login</button>
-        </div>
-    </form>
-
     <jsp:include page="footer.jsp"/>
-
 </body>
 
 </html>

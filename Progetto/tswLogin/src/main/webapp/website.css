@@ -479,9 +479,7 @@ header {
 
 .prodottoCarrello input[type=number]
 {
-	
-	padding: 5%;
-  	
+	padding: 5%;	
     width: 35%; 
 }
 
@@ -502,3 +500,22 @@ header {
 	vertical-align: top;
 }
 
+.imgProdotto {
+	 width:30%; 
+}
+
+.caratteristicheProd {
+	display:block;
+	width:70%;
+	margin:5%;
+}
+
+.caratteristicheProd div {
+	margin:1%;
+}
+
+.aggiungiCarrello {
+	width:40%;
+	margin:0 30% 5% 30%;
+	padding:0 5%;
+}

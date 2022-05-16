@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header>
-        <a href="home.html"><img src="Logo con beep beep.png" alt="Logo" id="logo"></a>
+        <a href="./home.jsp"><img src="Logo con beep beep.png" alt="Logo" id="logo"></a>
     </header>
 </body>
 </html>

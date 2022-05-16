@@ -32,7 +32,7 @@
         </ul>
     </nav>
 
-    <form action="LoginServlet" method="post" class="loginForm">
+    <form action="./LoginServlet" method="post" class="loginForm">
         <h1 id="accedi">Accedi</h1>
         <div class="content">
             <div class="input-field">

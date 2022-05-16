@@ -48,9 +48,9 @@
 
     <nav id="mainNav">
         <ul id="menuList">
-            <li><a href="/fumetti">FUMETTI</a></li>
-            <li><a href="/grafiche">GRAFICHE</a></li>
-            <li><a href="/modellini">MODELLINI</a></li>
+            <li><a href="#fumetti">FUMETTI</a></li>
+            <li><a href="#grafiche">GRAFICHE</a></li>
+            <li><a href="#modellini">MODELLINI</a></li>
         </ul>
         <ul id="menuList2">
             <li><a href="carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -66,7 +66,7 @@
 	
 	<div style="display:flex; width:100%">
 		<div style="width:20%">
-			<h2 class="intestazione" style="margin:15% 0 10% 10%">Fumetti</h2>
+			<h2 id="fumetti" class="intestazione" style="margin:15% 0 10% 10%">Fumetti</h2>
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
 		<div style="margin-left:60%; width:20%">
@@ -263,7 +263,7 @@
 			<% } %>
 		</ul>
 		</div>
-		<h2 class="intestazione">Grafiche</h2>
+		<h2 class="intestazione" id="grafiche" >Grafiche</h2>
 	<h3 class="sottointestazione">D'Opera</h3>
 	
 	<%
@@ -310,7 +310,7 @@
 		</ul>
 		</div>
 		
-		<h2 class="intestazione">Modellini</h2>
+		<h2 class="intestazione" id="modellini">Modellini</h2>
 	<h3 class="sottointestazione">Funko POP!</h3>
 	
 	<%

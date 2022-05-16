@@ -9,7 +9,8 @@
     <link rel="shortcut icon" type="image/png" href="beep beep.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <title>Login</title>
+    
+    <title>Register</title>
 </head>
 
 <body>
@@ -32,25 +33,26 @@
         </ul>
     </nav>
 
-    <form action="LoginServlet" method="post" class="loginForm">
-        <h1 id="accedi">Accedi</h1>
+    <form action="asd" method="post" class="loginForm">
+        <h1 id="accedi">Registrati</h1>
         <div class="content">
             <div class="input-field">
-                <input type="text" placeholder="Username" id="username" name="username">
+                <input type="email" placeholder="Email" id="email" name="email">
             </div>
             <div class="input-field">
-                <input type="password" placeholder="Password" id="password" name="password">
+                <input type="password" placeholder="Password" id="pw">
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Ripeti Password" id="pw">
             </div>
         </div>
-        <a href="" class="link">Hai dimenticato la password?</a>
         <br><br>
         <div class="action">
             <button>Registrati</button>
-            <button>Login</button>
         </div>
     </form>
 
-    <jsp:include page="footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
 
 </body>
 

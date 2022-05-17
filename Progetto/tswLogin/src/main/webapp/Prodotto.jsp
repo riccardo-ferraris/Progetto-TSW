@@ -60,10 +60,10 @@ switch(firstDigit){
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
-					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
+					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
 				<div style="font-size:1.5em">
-					<p> <%out.println(articolo.getNome());%> </p>
+					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
@@ -107,10 +107,10 @@ switch(firstDigit){
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
-					<p> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>
+					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
 				<div style="font-size:1.5em">
-					<p> <%out.println(articolo.getNome());%> </p>
+					<p> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
@@ -154,10 +154,10 @@ switch(firstDigit){
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
-					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>
+					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
 				<div style="font-size:1.5em">
-					<p> <%out.println(articolo.getNome());%> </p>
+					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>

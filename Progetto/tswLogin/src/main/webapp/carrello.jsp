@@ -56,13 +56,13 @@
 					
 					<div class="prodottoCarrello">
 						<div>
-							<li><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a><br>
+							<li><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
 						</div>
 						<div>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><%=prodottoCarrello.getNome()%></a><br>
+							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none"><%=prodottoCarrello.getNome()%></a>
 						</div>
 						<div>
-							Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%><br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%>
 						</div>
 						<div>	
 							<label for="quantità">Quantità:</label>
@@ -77,7 +77,7 @@
 				</ul>
 			</div>
 			<div class = "controlliCarrello">
-				Totale: <%out.println(String.format("%.2f&euro;", totale));%><br>
+				Totale: <%out.println(String.format("%.2f&euro;", totale));%>
 		 		<form action="./checkout.jsp<%%>" method="post">
             		<button type="submit" class="btn btn-primary">Procedi all'acquisto</button>
             	</form>

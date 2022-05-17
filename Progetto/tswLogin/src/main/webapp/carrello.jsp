@@ -25,7 +25,7 @@
 	<title>Carrello</title>
 </head>
 <body>
-		<div id="carrello">	
+
 		    <jsp:include page="header.jsp"/>
 		    
 		    <nav id="mainNav">
@@ -42,10 +42,12 @@
             		<li><a href="register.jsp">REGISTRATI</a></li>
         		</ul>
     		</nav>
-		
+    		
+ 		<div id="carrello" style="display:flex; width:100%">			
 			<div class = "listProdCarrello">
+			<p class="titoloCarrello">CARRELLO</p>
 				<ul style="list-style-type:none;">
-			<% 
+				<% 
 				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantità, il valore del prodotto venga aggiornato
 				for(ProdottoInCarrello prodotto : arrayArticoli){
 					Articolo prodottoCarrello = prodotto.getProdotto();
@@ -53,29 +55,34 @@
 					long seriale = prodottoCarrello.getSeriale();%>
 					
 					<div class="prodottoCarrello">
-						<li><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" ></a>
-						<br>
-						<div><a href="Prodotto.jsp?id=<%=seriale%>"><%=prodottoCarrello.getNome()%></a>
-							<br>
+						<div>
+							<li><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a><br>
+						</div>
+						<div>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><%=prodottoCarrello.getNome()%></a><br>
+						</div>
+						<div>
 							Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%><br>
+						</div>
+						<div>	
 							<label for="quantità">Quantità:</label>
 							<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
-								<input type="number" name="quantità" min="1" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
+								<input type="number" name="quantità" id="quantità" min="1" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
 							</form>
 							
 							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantità(); %>
 						</div></li>
-				</div>
-			<% } %>
-		</ul>
-	</div>
-		<div class = "controlliCarrello">
-			Totale: <%out.println(String.format("%.2f&euro;", totale));%><br>
-		 	<form action="./checkout.jsp<%%>" method="post">
-            	<button type="submit" class="btn btn-primary">Procedi all'acquisto</button>
-            </form>
-		</div>
-	</div>	
+					</div>
+				<% } %>
+				</ul>
+			</div>
+			<div class = "controlliCarrello">
+				Totale: <%out.println(String.format("%.2f&euro;", totale));%><br>
+		 		<form action="./checkout.jsp<%%>" method="post">
+            		<button type="submit" class="btn btn-primary">Procedi all'acquisto</button>
+            	</form>
+			</div>
+		</div>	
 			
 	<jsp:include page="footer.jsp"/>
 </body>

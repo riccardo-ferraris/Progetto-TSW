@@ -454,34 +454,25 @@ header {
   margin-bottom:0;
 }
 
-/*
 .prodottoCarrello {
+	display:flex;
     text-align: center;
     vertical-align: top;
     padding: 2% 2%;
-    margin: 0 5px;
-    width: 18%;
-    
+    margin: 0 2%;
+    border-bottom: 1px solid black;
 }
 
 .prodottoCarrello > div {
-  width: 100px;
-  margin: 10px;
+  margin: 3%;
   text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-}
-
-.prodottoCarrello > li
-{
-    display: flex;
-  flex-wrap: nowrap;  
+  font-size: 1em;
 }
 
 .prodottoCarrello input[type=number]
 {
 	padding: 5%;	
-    width: 35%; 
+    width: 40%; 
 }
 
 .prodottoCarrello:hover {
@@ -490,17 +481,18 @@ header {
 }
 
 .listProdCarrello {
-	 width: 50%;
+	 width: 60%;
      vertical-align: top;
      float: left;
+     margin:2% 5%;
 }
 
 .controlliCarrello {
 	float: right;
-	width: 50%;
+	width: 20%;
 	vertical-align: top;
+	margin:2% 5%;
 }
-*/
 
 .imgProdotto {
 	 width:35%; 
@@ -543,4 +535,11 @@ header {
 
 #quantita:focus {
 	background-color:#ddd;
+}
+
+.titoloCarrello {
+	border-bottom:1px solid black;
+	font-weight:bold;
+	font-size:2em;
+	text-align:center;
 }

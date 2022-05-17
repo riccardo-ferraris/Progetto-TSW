@@ -53,10 +53,10 @@ switch(firstDigit){
         	</ul>
     	</nav>
 		
-		<div style="display:flex; width:100%">
+		<div style="display:flex; width:100%; align-items:center">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				<img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
@@ -179,10 +179,10 @@ switch(firstDigit){
                      {
                      %>
                     <div class="aggiungiCarrello">
-                  		<label>Quantità: </label>
+                  		<label for="quantita"> Quantità: </label>
                   		<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
-                     		<input type="number" value="1" min="1" name="quantita"/>
-                     		<button type="submit" class="btn btn-primary">
+                     		<input type="number" value="1" min="1" name="quantita" id="quantita"/>
+                     		<button type="submit" class="cartButton">
                      			Aggiungi al carrello
                      		</button>
                   		</form>

@@ -17,9 +17,7 @@
 
     <nav id="mainNav">
         <ul id="menuList">
-            <li><a href="/fumetti">FUMETTI</a></li>
-            <li><a href="/grafiche">GRAFICHE</a></li>
-            <li><a href="/modellini">MODELLINI</a></li>
+            <li><a href="./Catalogo.jsp">CATALOGO</a></li>
         </ul>
         <ul id="menuList2">
             <li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">

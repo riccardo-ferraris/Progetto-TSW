@@ -459,7 +459,7 @@ header {
     vertical-align: top;
     padding: 2% 2%;
     margin: 0 5px;
-    width: 60%;
+    width: 18%;
     
 }
 
@@ -486,6 +486,18 @@ header {
 .prodottoCarrello:hover {
     background-color: #f6f3f3;
     transition: 0.5s;
+}
+
+.listProdCarrello {
+	 width: 50%;
+     vertical-align: top;
+     float: left;
+}
+
+.controlliCarrello {
+	float: right;
+	width: 50%;
+	vertical-align: top;
 }
 
 .imgProdotto {
@@ -529,8 +541,4 @@ header {
 
 #quantita:focus {
 	background-color:#ddd;
-}
-
-.checkoutProd {
-	display:flex;
 }

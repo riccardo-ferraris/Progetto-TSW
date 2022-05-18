@@ -457,10 +457,10 @@ header {
 .prodottoCarrello {
 	display:flex;
     text-align: center;
-    vertical-align: top;
     padding: 2% 2%;
     margin: 0 2%;
     border-bottom: 1px solid black;
+    align-items:center;
 }
 
 .prodottoCarrello > div {

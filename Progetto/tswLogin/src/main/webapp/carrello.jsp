@@ -82,10 +82,10 @@
 				</ul>
 			</div>
 			<div class = "controlliCarrello" style="position:sticky; top: 10%;">
-				<p style="font-size:1.5em; font-weight:bold; text-decoration: underline;">CHECKOUT</p>
-				Totale: <%out.println(String.format("%.2f&euro;", totale));%>
+				<p style="font-size:1.7em; font-weight:bold; text-decoration: underline; text-align:center">CHECKOUT</p>
+				<p style="font-size:1.3em; text-align:center">Totale: <%out.println(String.format("%.2f&euro;", totale));%> </p>
 		 		<form action="./checkout.jsp<%%>" method="post">
-            		<button type="submit" class="btn btn-primary">Procedi all'acquisto</button>
+            		<button type="submit" class="btnCheckout">Procedi all'acquisto</button>
             	</form>
 			</div>
 		</div>	

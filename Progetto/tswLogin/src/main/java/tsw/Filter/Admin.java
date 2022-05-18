@@ -3,10 +3,13 @@ package tsw.Filter;
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
 
+import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Admin
  */
-@WebServlet("/Admin")
+@WebFilter("/Admin")
 public class Admin implements Filter {
 	FilterConfig filterConfig;
        
@@ -31,7 +34,7 @@ public class Admin implements Filter {
     	
     }
     
-    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain) {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
     	String ruolo=(String) ((HttpServletRequest) request).getSession().getAttribute("ruolo");
     	
     	if(ruolo==null) {
@@ -40,7 +43,7 @@ public class Admin implements Filter {
     	}
     	
     	if(!ruolo.trim().equals("admin")) {
-    		RequestDispatcher dispatcher = request.getServletContest().getRequestDispatcher("/index.jsp");
+    		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
     		request.setAttribute("nonAutorizzato", true);
     		dispatcher.forward(request, response);
     		return;

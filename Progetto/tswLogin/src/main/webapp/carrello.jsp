@@ -59,7 +59,7 @@
 							<a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
 						</div>
 						<div>
-							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none"><%=prodottoCarrello.getNome()%></a>
+							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none; color:black"><%=prodottoCarrello.getNome()%></a>
 						</div>
 						<div>
 							Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%>
@@ -81,7 +81,8 @@
 				<% } %>
 				</ul>
 			</div>
-			<div class = "controlliCarrello">
+			<div class = "controlliCarrello" style="position:sticky; top: 10%;">
+				<p style="font-size:1.5em; font-weight:bold; text-decoration: underline;">CHECKOUT</p>
 				Totale: <%out.println(String.format("%.2f&euro;", totale));%>
 		 		<form action="./checkout.jsp<%%>" method="post">
             		<button type="submit" class="btn btn-primary">Procedi all'acquisto</button>

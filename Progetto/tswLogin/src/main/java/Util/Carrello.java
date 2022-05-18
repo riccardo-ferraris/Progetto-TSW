@@ -11,12 +11,12 @@ public class Carrello {
 	    prodotti = new ArrayList<ProdottoInCarrello>();
 	  }
 
-	  public void aggiungi(Articolo prodotto) {
+	  public void aggiungi(Articolo prodotto, int quantità) {
 	    for (ProdottoInCarrello x : prodotti) {
 	      if (x.getProdotto().getSeriale() == prodotto.getSeriale()) {
 	        // ce l'ho già
 	        // aggiorno la quantità
-	        x.setQuantità(x.getQuantità() + 1);
+	        x.setQuantità(x.getQuantità() + quantità);
 	        return;
 	      }
 	    }
@@ -25,7 +25,7 @@ public class Carrello {
 	    // e inserisco nell'array
 	    ProdottoInCarrello prod = new ProdottoInCarrello();
 	    prod.setProdotto(prodotto);
-	    prod.setQuantità(1);
+	    prod.setQuantità(quantità);
 	    prodotti.add(prod);
 	  }
 

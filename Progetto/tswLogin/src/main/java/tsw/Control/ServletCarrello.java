@@ -91,10 +91,12 @@ public class ServletCarrello extends HttpServlet {
 	      
 	      
 	    		  if (action.trim().equals("aggiungi")) {
-	    			  carrello.aggiungi(prodotto);
+	    			  int quant = Integer.valueOf(request.getParameter("quantita"));
+	    			  carrello.aggiungi(prodotto, quant);
 	        
 	    			  //salvo il carrello
 	    			  request.getSession().setAttribute("carrello", carrello);
+	    			  
 	    			  response.sendRedirect("Prodotto.jsp?id="+codice);
 	    			  //System.out.println("Aggiunto al carrello");
 	    			  return;

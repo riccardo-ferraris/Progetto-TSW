@@ -31,7 +31,7 @@ public class Admin implements Filter {
     	
     }
     
-    public void doFilter(ServletRequest, ServletResponse, FilterChain) {
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain) {
     	String ruolo=(String) ((HttpServletRequest) request).getSession().getAttribute("ruolo");
     	
     	if(ruolo==null) {

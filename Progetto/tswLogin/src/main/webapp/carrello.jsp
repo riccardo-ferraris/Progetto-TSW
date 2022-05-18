@@ -46,8 +46,8 @@
  		<div id="carrello" style="display:flex; width:100%">			
 			<div class = "listProdCarrello">
 			<p class="titoloCarrello">CARRELLO</p>
-				<ul style="list-style-type:none;">
-				<% 
+				<!-- <ul style="list-style-type:none;">  -->
+				<%
 				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantità, il valore del prodotto venga aggiornato
 				for(ProdottoInCarrello prodotto : arrayArticoli){
 					Articolo prodottoCarrello = prodotto.getProdotto();
@@ -56,7 +56,7 @@
 					
 					<div class="prodottoCarrello">
 						<div>
-							<li><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
+							<!-- <li>  --><a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
 						</div>
 						<div>
 							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none"><%=prodottoCarrello.getNome()%></a>
@@ -71,7 +71,7 @@
 							</form>
 							
 							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantità(); %>
-						</div></li>
+						</div> <!-- </li> -->
 					</div>
 				<% } %>
 				</ul>

@@ -29,24 +29,7 @@ public class Carrello {
 	    prodotti.add(prod);
 	  }
 
-	  public void rimuovi(Articolo prodotto) {
-	    for (ProdottoInCarrello x : prodotti) {
-	      if (x.getProdotto().getSeriale() == prodotto.getSeriale()) {
-	        // ho trovato quel prodotto
-	        int quantita = x.getQuantità();
-	        if (quantita > 1) {
-	          quantita--;
-	          x.setQuantità(quantita);
-	          return;
-	        } else {
-	          prodotti.remove(x);
-	          return;
-	        }
-	      }
-	    }
-	  }
-
-	  public void rimuoviPerBene(Articolo prodotto) {
+	  public void rimuoviProdotto(Articolo prodotto) {
 	    for (ProdottoInCarrello x : prodotti) {
 	      if (x.getProdotto().getSeriale() == prodotto.getSeriale()) {
 	        // ho trovato quel prodotto
@@ -55,6 +38,16 @@ public class Carrello {
 	      }
 	    }
 	  }
+	  
+	  public void rimuoviProdotto(long seriale) {
+		    for (ProdottoInCarrello x : prodotti) {
+		      if (x.getProdotto().getSeriale() == seriale) {
+		        // ho trovato quel prodotto
+		        prodotti.remove(x);
+		        return;
+		      }
+		    }
+		  }
 	  
 	  public void clearAll() {
 	    prodotti.clear();

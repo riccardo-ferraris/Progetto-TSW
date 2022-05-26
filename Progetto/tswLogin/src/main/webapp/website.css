@@ -242,6 +242,8 @@ header {
     text-align: center;
     border-bottom: 1px solid black;
     font-weight: bold;
+    font-size: 150%;
+    background-color: lightblue;
 }
 
 .form-popup {

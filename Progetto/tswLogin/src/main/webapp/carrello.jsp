@@ -11,6 +11,9 @@
      
    <%
    	Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+   if(carrello == null){
+	   carrello = new Carrello();
+   }
    ArrayList<ProdottoInCarrello> arrayArticoli = carrello.getProdotti();
    %>
 <!DOCTYPE html>
@@ -85,9 +88,15 @@
 			<div class = "controlliCarrello" style="position:sticky; top: 10%;">
 				<p style="font-size:1.7em; font-weight:bold; text-decoration: underline; text-align:center">CHECKOUT</p>
 				<p style="font-size:1.3em; text-align:center">Totale: <%out.println(String.format("%.2f&euro;", totale));%> </p>
-		 		<form action="./checkout.jsp<%%>" method="post">
+		 		<%
+		 		if(!carrello.getProdotti().isEmpty()){ 
+		 		%>
+		 			<form action="./checkout.jsp<%%>" method="post">
             		<button type="submit" class="btnCheckout">Procedi all'acquisto</button>
-            	</form>
+            		</form>
+		 	<% } %>
+		 		
+		 		
 			</div>
 		</div>	
 			

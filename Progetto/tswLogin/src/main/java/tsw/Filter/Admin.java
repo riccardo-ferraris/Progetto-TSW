@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Admin
  */
-@WebFilter("/Admin")
+@WebServlet("/Admin")
 public class Admin implements Filter {
 	FilterConfig filterConfig;
        

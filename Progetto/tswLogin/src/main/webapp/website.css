@@ -545,8 +545,9 @@ header {
 
 .titoloCarrello {
 	border-bottom:1px solid black;
+	border-top: 1px solid black;
 	font-weight:bold;
-	font-size:2em;
+	font-size:150%;
 	text-align:center;
 }
 

@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `perspectiveart` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `perspectiveart`;
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: perspectiveart
+-- Host: localhost    Database: perspectiveart
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -115,12 +115,12 @@ DROP TABLE IF EXISTS `ordine`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordine` (
   `codice` varchar(10) NOT NULL,
-  `cliente` varchar(15) NOT NULL,
+  `utente` varchar(15) NOT NULL,
   `totale` double NOT NULL,
   `data` datetime NOT NULL,
   PRIMARY KEY (`codice`),
-  KEY `usernameCliente_idx` (`cliente`),
-  CONSTRAINT `usernameCliente` FOREIGN KEY (`cliente`) REFERENCES `utente` (`username`)
+  KEY `usernameUtente_idx` (`utente`),
+  CONSTRAINT `usernameUtente` FOREIGN KEY (`utente`) REFERENCES `utente` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -130,7 +130,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-12 00:00:00');
+INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26 00:00:00');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,19 +142,20 @@ DROP TABLE IF EXISTS `prodottiordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodottiordine` (
-  `codiceOrdine` varchar(10) NOT NULL,
-  `serialeFumetto` varchar(15) DEFAULT NULL,
-  `serialeGrafica` varchar(15) DEFAULT NULL,
-  `serialeModellino` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`codiceOrdine`),
-  KEY `serialeFumetto_idx` (`serialeFumetto`),
-  KEY `serialeGrafica_idx` (`serialeGrafica`),
-  KEY `serialeModellino_idx` (`serialeModellino`),
-  CONSTRAINT `codiceOrdine` FOREIGN KEY (`codiceOrdine`) REFERENCES `ordine` (`codice`),
-  CONSTRAINT `serialeFumetto` FOREIGN KEY (`serialeFumetto`) REFERENCES `fumetti` (`seriale`),
-  CONSTRAINT `serialeGrafica` FOREIGN KEY (`serialeGrafica`) REFERENCES `grafica` (`seriale`),
-  CONSTRAINT `serialeModellino` FOREIGN KEY (`serialeModellino`) REFERENCES `modellino` (`seriale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `codiceordine` varchar(10) NOT NULL,
+  `serialefumetto` varchar(15) DEFAULT NULL,
+  `serialegrafica` varchar(15) DEFAULT NULL,
+  `serialemodellino` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`,`codiceordine`),
+  KEY `serialefumetto_idx` (`serialefumetto`),
+  KEY `serialegrafica_idx` (`serialegrafica`),
+  KEY `serialemodellino_idx` (`serialemodellino`),
+  CONSTRAINT `serialefumetto` FOREIGN KEY (`serialefumetto`) REFERENCES `fumetti` (`seriale`),
+  CONSTRAINT `serialegrafica` FOREIGN KEY (`serialegrafica`) REFERENCES `grafica` (`seriale`),
+  CONSTRAINT `serialemodellino` FOREIGN KEY (`serialemodellino`) REFERENCES `modellino` (`seriale`),
+  CONSTRAINT `prodottiordine_chk_1` CHECK (((((case when (`serialefumetto` is null) then 0 else 1 end) + (case when (`serialegrafica` is null) then 0 else 1 end)) + (case when (`serialemodellino` is null) then 0 else 1 end)) = 1))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +164,7 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES ('AA00000000','100000000000001',NULL,NULL);
+INSERT INTO `prodottiordine` VALUES (1,'AA00000000','100000000000000',NULL,NULL),(2,'AA00000000',NULL,'200000000000003',NULL);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +181,8 @@ CREATE TABLE `utente` (
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
   `ruolo` enum('admin','user') DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY (`username`,`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -190,7 +192,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('francesco1','fra123','Francesco','Rossi','user'),('lenny97','pass321','Leonardo','Schiavo','user'),('marisuzc','marisa23','Marisa','La Sorda','user'),('mr234','mario234','Mario','Verdi','user'),('nicola1','nicola123','Nicola','Frugieri','admin'),('rickyfer2','rickyfer123','Riccardo','Ferraris','admin');
+INSERT INTO `utente` VALUES ('francesco1','fra123','Francesco','Rossi','user','francescorossi@gmail.com'),('lenny97','pass321','Leonardo','Schiavo','user','lennyschiavo@gmail.com'),('marisuzc','marisa23','Marisa','La Sorda','user','marisalasorda@gmail.com'),('mr234','mario234','Mario','Verdi','user','marioverdi@gmail.com'),('nicola1','nicola123','Nicola','Frugieri','admin','nicolafrugieri@gmail.com'),('rickyfer2','rickyfer123','Riccardo','Ferraris','admin','rickyferraris@gmail.com');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 11:40:29
+-- Dump completed on 2022-05-27 19:43:22

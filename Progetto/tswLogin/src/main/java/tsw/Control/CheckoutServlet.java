@@ -90,7 +90,7 @@ public class CheckoutServlet extends HttpServlet {
 		LocalDateTime dataTemp = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Date dataFinal = Date.valueOf(dataTemp.format(formatter)); 
-		System.out.println(dataFinal);
+		//System.out.println(dataFinal);
 		
 		@SuppressWarnings("unchecked")	
 		ArrayList<ProdottoInCarrello> prodOrdine = (ArrayList<ProdottoInCarrello>) request.getSession().getAttribute("prodCarrello");

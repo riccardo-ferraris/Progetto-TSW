@@ -93,7 +93,7 @@ private static final String TABLE_NAME = "ordine";
 		return products;
 	}
 	
-	public int databaseInsert(Ordine ordine) throws SQLException{ //sistemare l'insert, l'ordine viene passato come parametro da CheckoutServlet che chiama questo metodo
+	public int databaseInsert(Ordine ordine, String categoria) throws SQLException{ //sistemare l'insert, l'ordine viene passato come parametro da CheckoutServlet che chiama questo metodo
 		int result = 0;
 		
 		Connection connection = null;
@@ -102,23 +102,24 @@ private static final String TABLE_NAME = "ordine";
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into " + ModelliniModel.TABLE_NAME + " (seriale, nome, prezzo, franchise,"
-					+ "descrizione, dimensioni, quantità, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "insert into ordine (codice, utente, totale, data,"
+					+ " values(?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setLong(1, modellino.getSeriale());
-			preparedStatement.setString(2, modellino.getNome());
-			preparedStatement.setDouble(3, modellino.getPrezzo());
-			preparedStatement.setString(4, modellino.getFranchise());
-			preparedStatement.setString(5, modellino.getDescrizione());
-			preparedStatement.setDouble(6, modellino.getDimensioni());
-			preparedStatement.setInt(7, modellino.getQuantità());
-			preparedStatement.setString(8, modellino.getCategoria());
-			System.out.println(modellino.getCategoria());
+			preparedStatement.setString(1, ordine.getCodice());
+			preparedStatement.setString(2, ordine.getUtente());
+			preparedStatement.setDouble(3, ordine.getTotale());
+			preparedStatement.setDate(4, ordine.getData());
 			result = preparedStatement.executeUpdate();
-			//System.out.println(fumetto.getCategoria());
-			//connection.commit();	
+			
+			sql = "insert into prodottiordine (codiceordine, utente) values(?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, ordine.getCodice());
+			preparedStatement.setString(2, ordine.getUtente());
+			
+			result = preparedStatement.executeUpdate();
+			
 				return result;
 			
 		} finally {
@@ -131,5 +132,9 @@ private static final String TABLE_NAME = "ordine";
 				
 			}	
 		}
+	}
+	
+	private String generateCode() {
+		
 	}
 }

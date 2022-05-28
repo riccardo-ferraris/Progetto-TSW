@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -55,7 +56,7 @@ private static final String TABLE_NAME = "ordine";
 
 		Collection<FumettiBean> products = new LinkedList<FumettiBean>();
 
-		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME;
+		String selectSQL = "SELECT * FROM ordine";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -93,7 +94,7 @@ private static final String TABLE_NAME = "ordine";
 		return products;
 	}
 	
-	public int databaseInsert(Ordine ordine, String categoria) throws SQLException{ //sistemare l'insert, l'ordine viene passato come parametro da CheckoutServlet che chiama questo metodo
+	public int databaseInsert(Ordine ordine) throws SQLException{
 		int result = 0;
 		
 		Connection connection = null;
@@ -102,9 +103,11 @@ private static final String TABLE_NAME = "ordine";
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into ordine (codice, utente, totale, data,"
+			String sql = "insert into ordine (codice, utente, totale, data)"
 					+ " values(?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
+			String codice = this.generateCode();
+			ordine.setCodice(codice);
 			
 			preparedStatement.setString(1, ordine.getCodice());
 			preparedStatement.setString(2, ordine.getUtente());
@@ -112,13 +115,21 @@ private static final String TABLE_NAME = "ordine";
 			preparedStatement.setDate(4, ordine.getData());
 			result = preparedStatement.executeUpdate();
 			
-			sql = "insert into prodottiordine (codiceordine, utente) values(?, ?);";
-			preparedStatement = connection.prepareStatement(sql);
+			ArrayList<ProdottoInCarrello> prodottiOrdine = ordine.getArticoliOrdine();
+			String catProd = new String();
+			for (ProdottoInCarrello prod : prodottiOrdine) {
+				catProd = prod.getProdotto().getMacroCategoria();
+				sql = "insert into prodottiordine (codiceordine, seriale" + catProd + ") values(?, ?);";
+				preparedStatement = connection.prepareStatement(sql);
+				
+				preparedStatement.setString(1, codice);
+				System.out.println(codice);
+				preparedStatement.setLong(2, prod.getProdotto().getSeriale());
+				
+				result = preparedStatement.executeUpdate();
+			}
 			
-			preparedStatement.setString(1, ordine.getCodice());
-			preparedStatement.setString(2, ordine.getUtente());
 			
-			result = preparedStatement.executeUpdate();
 			
 				return result;
 			
@@ -135,6 +146,59 @@ private static final String TABLE_NAME = "ordine";
 	}
 	
 	private String generateCode() {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		String codice = new String();
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "select max(codice) codice from ordine;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				codice = increment(rs.getString("codice"));
+				System.out.println(codice);
+			} else
+				codice = "AA00000000";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
+		return codice;
+	}
+	
+	public static String increment(String number) {
+	    char[] string = number.toUpperCase().toCharArray();
+	    for (int i = string.length - 1; i >= 0; i--) {
+	        if (string[i] == 'Z') {
+	        	string[i] = 'A';
+	        } else if (string[i] == '9') {
+	        	string[i] = '0';
+	        } else {
+	        	string[i]++;
+	            break;
+	        }
+	    }
+	    return String.valueOf(string);
 	}
 }

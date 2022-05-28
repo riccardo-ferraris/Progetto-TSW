@@ -91,8 +91,12 @@
 		 		<%
 		 		if(!carrello.getProdotti().isEmpty()){ 
 		 		%>
-		 			<form action="./checkout.jsp<%%>" method="post">
-            		<button type="submit" class="btnCheckout">Procedi all'acquisto</button>
+		 		  <%
+		 		  request.getSession().setAttribute("carrello", carrello); 
+		 		  request.getSession().setAttribute("totale", totale);	 			
+		 		  %>
+		 			<form action="./CheckoutServlet" method="post">
+            		<button type="submit" class="btnCheckout" name="prodCarrello">Procedi all'acquisto</button>
             		</form>
 		 	<% } %>
 		 		

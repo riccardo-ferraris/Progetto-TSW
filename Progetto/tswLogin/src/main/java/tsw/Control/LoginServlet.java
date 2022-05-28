@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 			UserBean utente = model.doRetrieveByKey(username);
 			request.getSession().setAttribute("ruolo", utente.getRuolo());
 			if (utente == null || !utente.getPassword().trim().equals(password) ) {
-				request.getSession().setAttribute("username", "Account non trovato");
+				request.getSession().setAttribute("utente", "Account non trovato");
 				response.setContentType("text/html");
 				response.sendRedirect("InvalidLogin.jsp");
 				

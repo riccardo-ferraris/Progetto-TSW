@@ -48,8 +48,11 @@ public class CheckoutServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	/**
+	 * Crea il bean dell'ordine che verrà salvato nel database con databaseInsert()
+	 * il codice dell'ordine è qui passato come vuoto, verrà poi generato nel model
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//prendo dal database il codice massimo da incrementare per assegnare il codice all'ordine attuale - se non ci sono ordini viene assegnato il primo codice AA00000000
 		
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		double totale = (double) request.getSession().getAttribute("totale");
@@ -62,13 +65,19 @@ public class CheckoutServlet extends HttpServlet {
 		Carrello prodOrdine = (Carrello) request.getSession().getAttribute("carrello");
 		System.out.println(prodOrdine.toString());
 		Ordine ordine = new Ordine("", utente.getUsername(), totale, dataFinal, prodOrdine.getProdotti());
-		try {
+		
+		/**Il pulsante Procedi all'acquisto non deve inserire l'ordine nel database, altrimenti se l'utente annulla l'operazione l'ordine sarà comunque inserito.
+		 * Qui deve reindirizzare alla checkout.jsp, mostrando il riepilogo e le opzioni di pagamento e spedizione.
+		 * Dopodiché un pulsante finalizzerà l'acquisto e inserirà l'ordine nel database  
+		 */
+		request.getSession().setAttribute("checkoutOrdine", ordine);
+		response.sendRedirect("checkout.jsp");
+		
+		/*try {
 			model.databaseInsert(ordine);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		//qui bisogna chiamare ordine.databaseInsert che va sistemato, prendi esempio da nuovoProdottoServlet righe 90-95
+		}*/ 
 	}
-
 }

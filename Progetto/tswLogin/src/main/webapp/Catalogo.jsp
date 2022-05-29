@@ -218,8 +218,7 @@
 	<% } %>
 	<%
 	FumettiModel fmodel = new FumettiModel();
-	//String path = .getContextRoot();
-	//out.println(path);
+	
 	ArrayList<FumettiBean> arrayManga = new ArrayList<FumettiBean>(fmodel.doRetrieveAllManga(null));
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>

@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import Util.DriverManagerConnectionPool;
 
 public class OrdineModel {
-private static final String TABLE_NAME = "ordine";
 	
 	public synchronized Ordine doRetrieveByKey(String codice) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
@@ -94,6 +93,13 @@ private static final String TABLE_NAME = "ordine";
 		return products;
 	}
 	
+	/**
+	 * Inserisce un ordine passato come parametro nel database, genera un codice, incrementando il massimo già presente nel db tramite generateCode(), ed inserisce le informazioni generali.
+	 * La seconda query inserisce i prodotti dell'ordine in prodottiordine, legando ogni row del database al codice del rispettivo ordine.
+	 * @param ordine
+	 * @return
+	 * @throws SQLException
+	 */
 	public int databaseInsert(Ordine ordine) throws SQLException{
 		int result = 0;
 		
@@ -145,6 +151,10 @@ private static final String TABLE_NAME = "ordine";
 		}
 	}
 	
+	/**
+	 * Gestisce la connessione al database per generare un codice da assegnare ad un nuovo ordine, il range utilizzato è AA00000000-ZZ99999999. L'incremento è gestito da increment();
+	 * @return
+	 */
 	private String generateCode() {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -187,6 +197,11 @@ private static final String TABLE_NAME = "ordine";
 		return codice;
 	}
 	
+	/**
+	 *  Incrementa il codice massimo che riceve come parametro. Quando la sequenza delle ultime 8 cifre raggiunge 99999999, incrementa le lettere. Restituisce il codice incrementato 
+	 * @param number
+	 * @return
+	 */
 	public static String increment(String number) {
 	    char[] string = number.toUpperCase().toCharArray();
 	    for (int i = string.length - 1; i >= 0; i--) {

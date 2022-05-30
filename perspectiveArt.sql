@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `perspectiveart` /*!40100 DEFAULT CHARACTER SET u
 USE `perspectiveart`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: perspectiveart
+-- Host: localhost    Database: perspectiveart
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -72,7 +72,7 @@ CREATE TABLE `grafica` (
 
 LOCK TABLES `grafica` WRITE;
 /*!40000 ALTER TABLE `grafica` DISABLE KEYS */;
-INSERT INTO `grafica` VALUES ('200000000000000','YU-GI-OH! Limited Edition Fan-Cel',47.69,4,'L\'omaggio di Fanattik all\'era dell\'animazione classica. Questo Fan-cel è concesso in licenza ufficiale, limitato a soli 995 in tutto il mondo e prodotto nello studio Fanattik in Inghilterra. Misura 35,56 x 27,95 cm e viene fornito con un certificato di autenticità numerato individualmente e una custodia protettiva. L\'opera d\'arte è stampata su acetato, che viene poi posizionato a mano su uno sfondo stampato e poi in una custodia protettiva. Cornice non inclusa.','Moderna'),('200000000000001','YU-GI-OH! Limited Edition Art Print',14.3,9,'Questa stampa è limitata a soli 5.000 esemplari in tutto il mondo, è prodotta su carta d\'arte 300gsm, è imbustata con cartone di supporto e viene fornita con un certificato di autenticità. Questo oggetto da collezione con licenza ufficiale misura 35,56 x 27,94 cm ed è prodotto nel Regno Unito.','Moderna'),('200000000000002','Dr. STONE - Boxed Poster Set',14.99,9,'Da Abysse America. Attraverso un\'attenta manipolazione della sua struttura molecolare e dei protocolli di incollaggio dei poster migliorati, i geni della cultura geek di ABYstyle hanno ancora una volta sfruttato il fantastico potere della scienza per creare il set di poster perfetto per i fan del Dr. Stone ovunque. Con due poster con Senku, Chrome, Kohaku e altri, è il modo perfetto per riportare il tuo arredamento all\'età della pietra.','Moderna'),('200000000000003','GOBLIN SLAYER - Boxed Poster Set',14.99,9,'Gli avventurieri a caccia di goblin e di argento raramente hanno il tempo di concentrarsi sul loro lato artistico. Ringraziamo gli dei e ABYstyle per aver evocato questo poster 20 x 15 pollici 2-pack. E tutto senza l\'uso di alcuna magia nera!','Moderna'),('200000000000004','Dragon Ball Z - Heroes Poster Set',7.5,25,'I Guerrieri Z si sono materializzati su due poster. Riusciranno le vostre pareti a sopportare le onde d\'urto? Misurano 20 x 15 pollici, arrivano arrotolati in una scatola di cartone. Buona fortuna a spiegare i fulmini scoppiettanti ai tuoi vicini.','Moderna'),('200000000000005','Harry Potter Art Print - Gryffindor Crest',9.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000006','Harry Potter Art Print - Ravenclaw Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000007','Harry Potter Art Print - Hufflepuff Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000008','Harry Potter Art Print - Slytherin Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm','Opera'),('200000000000009','Funimation Con Print - Spot UV Treatment',14.99,3,'Paesaggio urbano appositamente commissionato per il FunimationCon 2020 dal talentuoso illustratore giapponese Rokuban, questa stampa esclusiva misura 11\" x 17\" e ha un trattamento Spot UV!','Opera'),('200000000000010','SNK 40th Anniversary Poster Set',25.5,2,'Aggiungi un po\' di nostalgia alle tue pareti mentre celebri i 40 anni di SNK con questo set di poster dell\'anniversario! Sono inclusi cinque poster a colori in formato B2 con i personaggi preferiti dai fan di classici come Samurai Shodown, Metal Slug, Fatal Fury e altri. Originariamente venduto al Tokyo Game Show 2018, è ora disponibile per i fan d\'oltreoceano! Non perdetevelo!','Opera');
+INSERT INTO `grafica` VALUES ('100000000000053','DD',34,3,'DDD','Moderna'),('200000000000000','YU-GI-OH! Limited Edition Fan-Cel',47.69,4,'L\'omaggio di Fanattik all\'era dell\'animazione classica. Questo Fan-cel è concesso in licenza ufficiale, limitato a soli 995 in tutto il mondo e prodotto nello studio Fanattik in Inghilterra. Misura 35,56 x 27,95 cm e viene fornito con un certificato di autenticità numerato individualmente e una custodia protettiva. L\'opera d\'arte è stampata su acetato, che viene poi posizionato a mano su uno sfondo stampato e poi in una custodia protettiva. Cornice non inclusa.','Moderna'),('200000000000001','YU-GI-OH! Limited Edition Art Print',14.3,9,'Questa stampa è limitata a soli 5.000 esemplari in tutto il mondo, è prodotta su carta d\'arte 300gsm, è imbustata con cartone di supporto e viene fornita con un certificato di autenticità. Questo oggetto da collezione con licenza ufficiale misura 35,56 x 27,94 cm ed è prodotto nel Regno Unito.','Moderna'),('200000000000002','Dr. STONE - Boxed Poster Set',14.99,9,'Da Abysse America. Attraverso un\'attenta manipolazione della sua struttura molecolare e dei protocolli di incollaggio dei poster migliorati, i geni della cultura geek di ABYstyle hanno ancora una volta sfruttato il fantastico potere della scienza per creare il set di poster perfetto per i fan del Dr. Stone ovunque. Con due poster con Senku, Chrome, Kohaku e altri, è il modo perfetto per riportare il tuo arredamento all\'età della pietra.','Moderna'),('200000000000003','GOBLIN SLAYER - Boxed Poster Set',14.99,9,'Gli avventurieri a caccia di goblin e di argento raramente hanno il tempo di concentrarsi sul loro lato artistico. Ringraziamo gli dei e ABYstyle per aver evocato questo poster 20 x 15 pollici 2-pack. E tutto senza l\'uso di alcuna magia nera!','Moderna'),('200000000000004','Dragon Ball Z - Heroes Poster Set',7.5,25,'I Guerrieri Z si sono materializzati su due poster. Riusciranno le vostre pareti a sopportare le onde d\'urto? Misurano 20 x 15 pollici, arrivano arrotolati in una scatola di cartone. Buona fortuna a spiegare i fulmini scoppiettanti ai tuoi vicini.','Moderna'),('200000000000005','Harry Potter Art Print - Gryffindor Crest',9.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000006','Harry Potter Art Print - Ravenclaw Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000007','Harry Potter Art Print - Hufflepuff Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm.','Opera'),('200000000000008','Harry Potter Art Print - Slytherin Crest',8.99,15,'Una stampa d\'arte ufficiale di Harry Potter, prodotta nel Regno Unito su carta d\'arte 300gsm, imbustata con cartone di supporto, misura 35,56 x 27,94cm','Opera'),('200000000000009','Funimation Con Print - Spot UV Treatment',14.99,3,'Paesaggio urbano appositamente commissionato per il FunimationCon 2020 dal talentuoso illustratore giapponese Rokuban, questa stampa esclusiva misura 11\" x 17\" e ha un trattamento Spot UV!','Opera'),('200000000000010','SNK 40th Anniversary Poster Set',25.5,2,'Aggiungi un po\' di nostalgia alle tue pareti mentre celebri i 40 anni di SNK con questo set di poster dell\'anniversario! Sono inclusi cinque poster a colori in formato B2 con i personaggi preferiti dai fan di classici come Samurai Shodown, Metal Slug, Fatal Fury e altri. Originariamente venduto al Tokyo Game Show 2018, è ora disponibile per i fan d\'oltreoceano! Non perdetevelo!','Opera');
 /*!40000 ALTER TABLE `grafica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','lenny97',23,'2022-05-12'),('AB00000000','mr234',25,'2022-06-10');
+INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','nicola1',38.2,'2022-05-28');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,18 +144,15 @@ DROP TABLE IF EXISTS `prodottiordine`;
 CREATE TABLE `prodottiordine` (
   `id` int NOT NULL AUTO_INCREMENT,
   `codiceordine` varchar(10) NOT NULL,
-  `serialefumetto` varchar(15) DEFAULT NULL,
-  `serialegrafica` varchar(15) DEFAULT NULL,
-  `serialemodellino` varchar(15) DEFAULT NULL,
+  `serialeFumetti` varchar(15) DEFAULT NULL,
+  `serialeGrafiche` varchar(15) DEFAULT NULL,
+  `serialeModellini` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`,`codiceordine`),
-  KEY `serialefumetto_idx` (`serialefumetto`),
-  KEY `serialegrafica_idx` (`serialegrafica`),
-  KEY `serialemodellino_idx` (`serialemodellino`),
-  CONSTRAINT `serialefumetto` FOREIGN KEY (`serialefumetto`) REFERENCES `fumetti` (`seriale`),
-  CONSTRAINT `serialegrafica` FOREIGN KEY (`serialegrafica`) REFERENCES `grafica` (`seriale`),
-  CONSTRAINT `serialemodellino` FOREIGN KEY (`serialemodellino`) REFERENCES `modellino` (`seriale`),
-  CONSTRAINT `prodottiordine_chk_1` CHECK (((((case when (`serialefumetto` is null) then 0 else 1 end) + (case when (`serialegrafica` is null) then 0 else 1 end)) + (case when (`serialemodellino` is null) then 0 else 1 end)) = 1))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `serialeFumetti_idx` (`serialeFumetti`),
+  KEY `serialeGrafiche_idx` (`serialeGrafiche`),
+  KEY `serialeModellini_idx` (`serialeModellini`),
+  CONSTRAINT `prodottiordine_chk_1` CHECK (((((case when (`serialeFumetti` is null) then 0 else 1 end) + (case when (`serialeGrafiche` is null) then 0 else 1 end)) + (case when (`serialeModellini` is null) then 0 else 1 end)) = 1))
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +161,7 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES (1,'AA00000000','100000000000000',NULL,NULL),(2,'AA00000000',NULL,'200000000000003',NULL);
+INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL),(8,'AA00000001','100000000000016',NULL,NULL),(9,'AA00000001','100000000000018',NULL,NULL);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-28  9:20:21
+-- Dump completed on 2022-05-30 21:16:30

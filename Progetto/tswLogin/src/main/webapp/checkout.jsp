@@ -4,7 +4,7 @@
     <%
     if(session.getAttribute("ruolo") == null)
     {
-    	response.sendRedirect("login.html");	
+    	response.sendRedirect("login.jsp");	
     	return;
     }
     
@@ -19,6 +19,8 @@
 <title>Checkout</title>
 </head>
 <body>
-
+	<%
+		
+	%>
 </body>
 </html>

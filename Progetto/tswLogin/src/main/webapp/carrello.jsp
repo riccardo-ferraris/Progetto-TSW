@@ -33,7 +33,7 @@
 		    
 		    <nav id="mainNav">
         		<ul id="menuList">
-        	    	<li><a href="./Catalogo.jsp">CATALOGO</a></li>
+        	    	<li><a href="./RedirectServlet?page=catalogo">CATALOGO</a></li>
         		</ul>
         		<ul id="menuList2">
             		<li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -90,8 +90,12 @@
 		 		<%
 		 		if(!carrello.getProdotti().isEmpty()){ 
 		 		%>
-		 			<form action="./checkout.jsp<%%>" method="post">
-            		<button type="submit" class="btnCheckout">Procedi all'acquisto</button>
+		 		  <%
+		 		  request.getSession().setAttribute("carrello", carrello); 
+		 		  request.getSession().setAttribute("totale", totale);	 			
+		 		  %>
+		 			<form action="./CheckoutServlet" method="post">
+            		<button type="submit" class="btnCheckout" name="prodCarrello">Procedi all'acquisto</button>
             		</form>
 		 	<% } %>
 		 		

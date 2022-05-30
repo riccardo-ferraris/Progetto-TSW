@@ -17,7 +17,7 @@
 <html>
 <%
 	UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-	if(session.getAttribute("ruolo") != "admin")
+	if(!utente.getRuolo().equals("admin"))
 	{
 		response.sendRedirect("Catalogo.jsp");	
 		return;

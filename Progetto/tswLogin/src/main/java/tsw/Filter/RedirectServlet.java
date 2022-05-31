@@ -32,7 +32,7 @@ public class RedirectServlet extends HttpServlet {
 		//System.out.println(ruoloUtente);
 		if(page.trim().equals("catalogo")){
 			if(ruoloUtente.equals("admin")){
-				//System.out.println("flag"); //il redirect rimanda anche l'admin al catalogo utente, risolvere
+				//System.out.println("flag"); 
 				response.sendRedirect("CatalogoAdmin.jsp");
 			}else {
 				//System.out.println("err");

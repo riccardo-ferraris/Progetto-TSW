@@ -4,6 +4,14 @@ public class ProdottoInCarrello {
 	private Articolo prodotto;
 	private int quantità;
 	
+	public ProdottoInCarrello(Articolo prodotto, int quantità) {
+		super();
+		this.prodotto = prodotto;
+		this.quantità = quantità;
+	}
+	
+	public ProdottoInCarrello() {
+	}
 	public Articolo getProdotto() {
 		return prodotto;
 	}

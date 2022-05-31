@@ -9,6 +9,9 @@ public class ProdottoInCarrello {
 		this.prodotto = prodotto;
 		this.quantità = quantità;
 	}
+	
+	public ProdottoInCarrello() {
+	}
 	public Articolo getProdotto() {
 		return prodotto;
 	}

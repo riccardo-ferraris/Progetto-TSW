@@ -72,10 +72,16 @@
 			<h2 id="fumetti" class="intestazione" style="margin:15% 0 10% 10%">Fumetti</h2>
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
+		
 		<div style="margin-left:60%; width:20%">
 			<button class="open-button" onclick="openForm()"
 			title='Pop Up'>Aggiungi un nuovo articolo</button>
+			
+			<a href="./catalogo.jsp">
+			<button class="open-button">Vai al catalogo utenti</button>
+			</a>
 		</div>
+		
 	</div>
 		
 		<div class="form-popup" id="myForm">

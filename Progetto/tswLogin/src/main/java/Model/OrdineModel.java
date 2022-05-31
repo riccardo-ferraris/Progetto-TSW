@@ -3,6 +3,7 @@ package Model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,13 +20,9 @@ public class OrdineModel {
 
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from ordine where codice = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setString(1, codice);
-
 			rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
@@ -35,10 +32,46 @@ public class OrdineModel {
 				bean.setTotale(rs.getDouble("totale"));
 				bean.setData(rs.getDate("data"));
 				//bisogna aggiungere i prodotti nel carrello all'array dell'ordine passandoli come parametri
+				sql = "select * from prodottiordine where codice = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, codice);
+				rs = preparedStatement.executeQuery();
 				
+				ResultSetMetaData rsmd = rs.getMetaData();
+				String nomeColonna = new String();
+				String cat = new String();
+				
+				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+				ArticoloModel model;
+				Articolo articolo;
+				
+				if (rs.next()) {
+					for(int i = 3; i <= 5; i++) {
+						if(rs.getString(i) != null) {
+							
+							cat = rsmd.getColumnName(i).replace("seriale", "");
+							switch (cat) {
+							case "Fumetti": 
+								model = new FumettiModel();
+								articolo = new FumettiBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+								ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"));
+								arrayProdotti.add(prodCarrello);
+								break;
+							
+							default:
+								throw new IllegalArgumentException("Unexpected value: " );
+							}
+						}
+					}
+					
+				}else {
+					bean = null;
+				}
 				return bean;
-			} else
+			}else
 				return null;
+			
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -134,8 +167,6 @@ public class OrdineModel {
 				
 				result = preparedStatement.executeUpdate();
 			}
-			
-			
 			
 				return result;
 			

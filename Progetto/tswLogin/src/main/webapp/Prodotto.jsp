@@ -175,19 +175,19 @@ switch(firstDigit){
 		break;	
 }
 
-					if(articolo.getQuantità()>0)
-                     {
-                     %>
-                    <div class="aggiungiCarrello">
-                  		<label for="quantita"> Quantità: </label>
-                  		<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
-                     		<input type="number" value="1" min="1" name="quantita" id="quantita"/>
-                     		<button type="submit" class="cartButton">
-                     			Aggiungi al carrello
-                     		</button>
-                  		</form>
-                  	</div>
-                  <% } %>
+		if(articolo.getQuantità()>0)
+        {
+         %>
+         <div class="aggiungiCarrello">
+         	<label for="quantita"> Quantità: </label>
+         	<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
+         		<input type="number" value="1" min="1" name="quantita" id="quantita"/>
+         		<button type="submit" class="cartButton">
+                	Aggiungi al carrello
+                </button>
+            </form>
+         </div>
+       <% } %>
         <jsp:include page="footer.jsp"/>
 </body>
 </html>

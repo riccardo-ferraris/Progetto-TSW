@@ -31,8 +31,8 @@ public class OrdineModel {
 				bean.setUtente(rs.getString("utente"));
 				bean.setTotale(rs.getDouble("totale"));
 				bean.setData(rs.getDate("data"));
-				//bisogna aggiungere i prodotti nel carrello all'array dell'ordine passandoli come parametri
-				sql = "select * from prodottiordine where codice = ?;";
+				
+				sql = "select * from prodottiordine where codiceordine = ?;";
 				preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, codice);
 				rs = preparedStatement.executeQuery();
@@ -55,15 +55,28 @@ public class OrdineModel {
 								model = new FumettiModel();
 								articolo = new FumettiBean();
 								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-								ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"));
-								arrayProdotti.add(prodCarrello);
 								break;
-							
+							case "Grafiche":
+								model = new GraficheModel();
+								articolo = new GraficheBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+								break;
+							case "Modellini":
+								model = new ModelliniModel();
+								articolo = new ModelliniBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+								break;
+								
 							default:
 								throw new IllegalArgumentException("Unexpected value: " );
 							}
+							
+							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"));
+							arrayProdotti.add(prodCarrello);
 						}
 					}
+					
+					bean.setArticoliOrdine(arrayProdotti);
 					
 				}else {
 					bean = null;

@@ -60,4 +60,12 @@ public class Ordine {
 	public void setArticoliOrdine(ArrayList<ProdottoInCarrello> articoliOrdine) {
 		this.articoliOrdine = articoliOrdine;
 	}
+
+	@Override
+	public String toString() {
+		return "Ordine [codice=" + codice + ", utente=" + utente + ", totale=" + totale + ", data=" + data
+				+ ", articoliOrdine=" + articoliOrdine + "]";
+	}
+	
+	
 }

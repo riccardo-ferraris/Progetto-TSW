@@ -44,4 +44,39 @@ public class UserModel {
 			}
 		}
 	}
+	
+	public int databaseInsert(UserBean user) throws SQLException{
+		int result = 0;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into utente (username, password, nome, cognome, ruolo, email) values(?, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.setString(3, user.getNome());
+			preparedStatement.setString(4, user.getCognome());
+			preparedStatement.setString(5, user.getRuolo());
+			preparedStatement.setString(6, user.getEmail());
+			
+			result = preparedStatement.executeUpdate();
+			
+			return result;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
+	}
 }

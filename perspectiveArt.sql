@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `perspectiveart` /*!40100 DEFAULT CHARACTER SET u
 USE `perspectiveart`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: perspectiveart
+-- Host: 127.0.0.1    Database: perspectiveart
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -147,6 +147,7 @@ CREATE TABLE `prodottiordine` (
   `serialeFumetti` varchar(15) DEFAULT NULL,
   `serialeGrafiche` varchar(15) DEFAULT NULL,
   `serialeModellini` varchar(15) DEFAULT NULL,
+  `quantità` int NOT NULL,
   PRIMARY KEY (`id`,`codiceordine`),
   KEY `serialeFumetti_idx` (`serialeFumetti`),
   KEY `serialeGrafiche_idx` (`serialeGrafiche`),
@@ -161,7 +162,7 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL),(8,'AA00000001','100000000000016',NULL,NULL),(9,'AA00000001','100000000000018',NULL,NULL);
+INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1),(8,'AA00000001','100000000000016',NULL,NULL,1),(9,'AA00000001','100000000000018',NULL,NULL,1);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +190,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('francesco1','fra123','Francesco','Rossi','user','francescorossi@gmail.com'),('lenny97','pass321','Leonardo','Schiavo','user','lennyschiavo@gmail.com'),('marisuzc','marisa23','Marisa','La Sorda','user','marisalasorda@gmail.com'),('mr234','mario234','Mario','Verdi','user','marioverdi@gmail.com'),('nicola1','nicola123','Nicola','Frugieri','admin','nicolafrugieri@gmail.com'),('rickyfer2','rickyfer123','Riccardo','Ferraris','admin','rickyferraris@gmail.com');
+INSERT INTO `utente` VALUES ('CarFul','carmine123','Carmine','Fulgieri','user','carminefulgieri@gmail.com'),('dddddd','dddddddd','dd','ddd','user','ddddd@hhh.iy'),('francesco1','fra123','Francesco','Rossi','user','francescorossi@gmail.com'),('lenny97','pass321','Leonardo','Schiavo','user','lennyschiavo@gmail.com'),('marisuzc','marisa23','Marisa','La Sorda','user','marisalasorda@gmail.com'),('mr234','mario234','Mario','Verdi','user','marioverdi@gmail.com'),('nicola1','nicola123','Nicola','Frugieri','admin','nicolafrugieri@gmail.com'),('rickyfer2','rickyfer123','Riccardo','Ferraris','admin','rickyferraris@gmail.com');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -202,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-30 21:16:30
+-- Dump completed on 2022-06-04 17:45:12

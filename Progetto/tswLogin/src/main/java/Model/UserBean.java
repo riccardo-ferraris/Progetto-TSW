@@ -8,6 +8,19 @@ public class UserBean {
 	private String ruolo;
 	private String email;
 	
+	public UserBean() {
+	}
+
+	public UserBean(String username, String password, String nome, String cognome, String ruolo, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.ruolo = ruolo;
+		this.email = email;
+	}
+
 	public String getUsername() {
 		return username;
 	}

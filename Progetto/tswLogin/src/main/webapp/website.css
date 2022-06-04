@@ -239,9 +239,8 @@ header {
 
 .titoloCatalogo {
     margin: 25px;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid black;
-    border-top: 1px solid black;
     font-weight: bold;
     font-size: 150%;
 }
@@ -361,10 +360,12 @@ header {
 	font-weight: bold;
 	margin: 5% 0 2% 2%;
 	text-transform: uppercase;
+	font-size: 150%;
 }
 
 .sottointestazione {
 	margin: 0 0 0 5%;
+	font-size: 140%;
 }
 
 .footer-dark {
@@ -545,10 +546,9 @@ header {
 
 .titoloCarrello {
 	border-bottom:1px solid black;
-	border-top: 1px solid black;
 	font-weight:bold;
 	font-size:150%;
-	text-align:center;
+	text-align:left;
 }
 
 .btnCheckout {

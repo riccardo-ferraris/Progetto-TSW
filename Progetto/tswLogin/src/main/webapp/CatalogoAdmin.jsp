@@ -77,7 +77,7 @@
 			<button class="open-button" onclick="openForm()"
 			title='Pop Up'>Aggiungi un nuovo articolo</button>
 			
-			<a href="./catalogo.jsp">
+			<a href="./Catalogo.jsp">
 			<button class="open-button">Vai al catalogo utenti</button>
 			</a>
 		</div>
@@ -130,11 +130,11 @@
   							<div style="display:flex; width:100%">
   								<div style="width:45%; margin-right:10%">
   							 		<label for="franchise"><b>Franchise</b></label><br>
-									<input type="text" name="franchise" id="franchise"></input>
+									<input type="text" name="franchise" id="franchise" maxlength="30"></input>
 								</div>
 								<div style="width:45%">
 									<label for="dimensioni"><b>Altezza (cm)</b></label><br>
-									<input type="number" name="dimensioni" id="dimensioni" min="1"></input>
+									<input type="number" name="dimensioni" id="dimensioni" min="1" step=".1"></input>
   								</div>
   							</div>
 
@@ -186,7 +186,7 @@
 				<div style="display:flex">
 					<div style="margin-right:10%; width:45%">
     					<label for="nome"><b>Nome Prodotto</b></label>
-   			 			<input type="text" placeholder="Nome Prodotto" name="nome" required maxlength="45">
+   			 			<input type="text" placeholder="Nome Prodotto" name="nome" required maxlength="100">
 					</div>
 					<div style="width:45%">
     					<label for="seriale"><b>Seriale</b></label>

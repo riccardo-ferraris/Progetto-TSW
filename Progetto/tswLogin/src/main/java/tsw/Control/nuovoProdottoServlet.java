@@ -56,9 +56,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		Articolo articolo = null;
 		ArticoloModel model = null;
-		//String folder = new String();
-		//String fileName = new String();
-		//PrintWriter out = response.getWriter();
 		
 		switch(categoria) {
 		case "fumetti":
@@ -67,8 +64,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 					Integer.parseInt(request.getParameter("numPagine")), 
 					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
-					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti");
-					//folder = "Fumetti";
+					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti");	
 			
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
@@ -81,12 +77,11 @@ public class nuovoProdottoServlet extends HttpServlet {
 			
 			break;
 			
-		case "grafica": //articoloModel = new GraficheModel();
+		case "grafica":
 			model = new GraficheModel();
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
 				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 				request.getParameter("descrizione"), request.getParameter("sottoCategoria"), "Grafiche");
-			//folder = "Grafiche";
 			try {
 				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
 			} catch (SQLException e) {
@@ -102,7 +97,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
 					Double.parseDouble(request.getParameter("dimensioni")), "Modellini");
-				//folder = "Modellini";
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
 				} catch (SQLException e) {
@@ -117,7 +111,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 		}
 		//System.out.println(articolo.getMacroCategoria());
 		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), articolo.getMacroCategoria(), articolo.getNome());
-		response.sendRedirect("Catalogo.jsp");
+		response.sendRedirect("CatalogoAdmin.jsp");
        
 
 	}
@@ -125,11 +119,10 @@ public class nuovoProdottoServlet extends HttpServlet {
 	
 	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException
 	{
-		//final String path = ; //capire come mettere il path
 	    final String fileName = titolo + ".jpg";
 
 		String savePath = appPath + SAVE_DIR + folder;
-		//System.out.println(savePath);
+		System.out.println(savePath);
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 

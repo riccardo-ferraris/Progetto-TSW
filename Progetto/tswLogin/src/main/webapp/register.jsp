@@ -9,14 +9,13 @@
     <link rel="shortcut icon" type="image/png" href="beep beep.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Register</title>
 </head>
 
 <body>
 	
     <jsp:include page="header.jsp"/>
-
     <nav id="mainNav">
         <ul id="menuList">
             <li><a href="/fumetti">FUMETTI</a></li>

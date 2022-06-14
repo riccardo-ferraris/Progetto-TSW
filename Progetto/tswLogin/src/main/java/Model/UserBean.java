@@ -6,7 +6,21 @@ public class UserBean {
 	private String nome;
 	private String cognome;
 	private String ruolo;
+	private String email;
 	
+	public UserBean() {
+	}
+
+	public UserBean(String username, String password, String nome, String cognome, String ruolo, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.ruolo = ruolo;
+		this.email = email;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -46,6 +60,15 @@ public class UserBean {
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Utente: Nome=" + nome + "\nCognome=" + cognome;

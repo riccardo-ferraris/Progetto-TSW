@@ -60,12 +60,6 @@ public class ServletCarrello extends HttpServlet {
 	      }else {
 	    	  String macroCategoriaProdotto = request.getParameter("macroCategoria");
 	    
-	    	  /* if ((action == null) || (carrello == null) || (codProd == null)) {
-	      	//lo rimando alla pagina carrello
-	      	response.sendRedirect("checkout.jsp");
-	      	return;
-	    	}*/
-	    
 	    	  long codice = Long.parseLong(codProd);
 	    	  ArticoloModel model = null;
 	    	  Articolo prodotto = null;
@@ -91,19 +85,23 @@ public class ServletCarrello extends HttpServlet {
 	      
 	      
 	    		  if (action.trim().equals("aggiungi")) {
-	    			  carrello.aggiungi(prodotto);
+	    			  int quant = Integer.valueOf(request.getParameter("quantita"));
+	    			  carrello.aggiungi(prodotto, quant);
 	        
 	    			  //salvo il carrello
 	    			  request.getSession().setAttribute("carrello", carrello);
+	    			  
 	    			  response.sendRedirect("Prodotto.jsp?id="+codice);
+	    			  
 	    			  //System.out.println("Aggiunto al carrello");
 	    			  return;
 	    		  }
-	    		  else if (action.trim().equals("rimuovi")) {
-	    			  carrello.rimuovi(prodotto);
+	    		  else if (action.trim().equals("rimuoviBySeriale")) {
+	    			  carrello.rimuoviProdotto(codice);
 	        
 	    			  //salvo il carrello
 	    			  request.getSession().setAttribute("carrello", carrello);
+	    			  response.sendRedirect("carrello.jsp");
 	    			  //System.out.println("Rimosso dal carrello");
 	    			  //ritorno alla pagina carrello
 

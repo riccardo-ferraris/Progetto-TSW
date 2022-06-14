@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header>
-        <a href="./home.jsp"><img src="Logo con beep beep.png" alt="Logo" id="logo"></a>
-    </header>
+
 </body>
 </html>

@@ -17,22 +17,20 @@
 
     <nav id="mainNav">
         <ul id="menuList">
-            <li><a href="/fumetti">FUMETTI</a></li>
-            <li><a href="/grafiche">GRAFICHE</a></li>
-            <li><a href="/modellini">MODELLINI</a></li>
+            <li><a href="./Catalogo.jsp">CATALOGO</a></li>
         </ul>
         <ul id="menuList2">
-            <li><a href="/carrello"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+            <li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg></a></li>
             <li><input type="text" placeholder="Cerca" id="search" style="border-radius: 20px;"></li>
             <li><a href="/partnership">PARTNERSHIP</a></li>
-            <li><a href="login.html">LOGIN</a></li>
-            <li><a href="register.html">REGISTRATI</a></li>
+            <li><a href="login.jsp">LOGIN</a></li>
+            <li><a href="register.jsp">REGISTRATI</a></li>
         </ul>
     </nav>
 
-    <form action="LoginServlet" method="post" class="loginForm">
+    <form action="./LoginServlet" method="post" class="loginForm">
         <h1 id="accedi">Accedi</h1>
         <div class="content">
             <div class="input-field">

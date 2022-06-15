@@ -200,6 +200,7 @@
 		*/
 		function validateEmail(email){
 	        var re = /\S+@\S+\.\S+/; //Il formato della stringa deve essere stringa@stringa.stringa
+	        //alert(re.test(email));
 	        return re.test(email); //Testa la stringa con il formato re
 	    }
 	</script>

@@ -239,7 +239,7 @@ header {
 
 .titoloCatalogo {
     margin: 25px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid black;
     font-weight: bold;
     font-size: 150%;

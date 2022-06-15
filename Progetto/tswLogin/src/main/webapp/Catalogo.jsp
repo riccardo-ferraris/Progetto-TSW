@@ -60,155 +60,20 @@
 
 	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
 	
-	<div style="display:flex; width:100%">
+		<div style="display:flex; width:100%">
 		<div style="width:20%">
 			<h2 id="fumetti" class="intestazione" style="margin:15% 0 10% 10%">Fumetti</h2>
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
 		
-	</div>
-		
-		<div class="form-popup" id="myForm">
-  			<form action="nuovoProdottoServlet" class="form-container" method="post" enctype='multipart/form-data'>
-    			<h1>Inserisci nuovo prodotto</h1>
-				
-				<div class="selectCategorie">
-					<div>
-						<div style="display:flex">
-							<div style="margin-right:10%; width:45%">
-								<label for="categoria"><b>Categoria</b></label><br>
-								<select name="categoria" id="categorie" onchange="mostraSottoCategorie()">
-									<option value="default">--Seleziona--</option>
-    								<option value="fumetti">Fumetti</option>
-   									<option value="grafica">Grafiche</option>
-   				   					<option value="modellino">Modellino</option></select>
-  							</div>
-  					
-  							<div id="divSottocategoriaFumetti" style="visibility:hidden; width:45%">
-  								<label for="sottoCategoria"><b>Sottocategoria</b></label><br>
-								<select name="sottoCategoria" id="sottoCategorie"></select>
-  							</div>
-  						</div>
-  					
-  						<div id="divFumetti" style="display:none">
-  							<div style="display:flex; width:100%">
-  								<div style="width:35%; margin-right:10%">
-  									<label for="scrittore"><b>Scrittore</b></label><br>
-									<input type="text" name="scrittore" id="scrittore"></input>
-								</div>
-							
-
-								<div style="width:35%; margin-right:10%">
-									<label for="disegnatore"><b>Disegnatore</b></label><br>
-									<input type="text" name="disegnatore" id="disegnatore"></input>
-								</div>
-							
-								<div style="width:10%">	
-									<label for="numPagine"><b>Pagine</b></label><br>
-									<input type="number" name="numPagine" id="numPagine" min="1"></input>
-  								</div>
-  							</div>
-  						</div>
-  						
-  						<div id="divModellino" style="display:none">
-  							<div style="display:flex; width:100%">
-  								<div style="width:45%; margin-right:10%">
-  							 		<label for="franchise"><b>Franchise</b></label><br>
-									<input type="text" name="franchise" id="franchise"></input>
-								</div>
-								<div style="width:45%">
-									<label for="dimensioni"><b>Altezza (cm)</b></label><br>
-									<input type="number" name="dimensioni" id="dimensioni" min="1"></input>
-  								</div>
-  							</div>
-
-  						</div>
-  					</div>
-  				</div>			
-    			
-  				<script>
-  				function mostraSottoCategorie(){
-  					let cat1 = null, cat2 = null;
-  					if(document.getElementById("categorie").value === "fumetti"){
-  						cat1 = "Manga";
-  						cat2 = "Manhwa";
-  						document.getElementById("divFumetti").style.display = "flex";
-  						document.getElementById("divModellino").style.display = "none";
-  					}else if(document.getElementById("categorie").value === "grafica"){
-  						cat1 = "Moderna";
-  						cat2 = "Opera";
-  						document.getElementById("divFumetti").style.display = "none";
-  						document.getElementById("divModellino").style.display = "none";
-  					}else if(document.getElementById("categorie").value === "modellino"){
-  						cat1 = "Funko Pop!";
-  						cat2 = "Action Figure";
-  						document.getElementById("divFumetti").style.display = "none";
-  						document.getElementById("divModellino").style.display = "flex";
-  					}
-  			
-  					var select = document.getElementById('sottoCategorie');
-  					document.getElementById("sottoCategorie").innerHTML = "";
-  					select.options.add(new Option(cat1));
-  					select.options.add(new Option(cat2));
-  					showInput();
-  					
-  					if(document.getElementById("categorie").value === "default"){
-  						document.getElementById("sottoCategorie").innerHTML = "";
-  					}
-  					
-				}
-  				
-  				function showInput() {
-                    document.getElementById("divSottocategoriaFumetti").style.visibility = "visible";
-                  }
-                  
-                  function hideInput() {
-                    document.getElementById("divSottocategoriaFumetti").style.display = "none";
-                  }
-  				</script>
-				
-				<div style="display:flex">
-					<div style="margin-right:10%; width:45%">
-    					<label for="nome"><b>Nome Prodotto</b></label>
-   			 			<input type="text" placeholder="Nome Prodotto" name="nome" required maxlength="45">
-					</div>
-					<div style="width:45%">
-    					<label for="seriale"><b>Seriale</b></label>
-    					<input type="text" placeholder="Seriale Prodotto" name="seriale" required maxlength="15">
-    				</div>
-    			</div>
-			
-    			<div class="prezzoQuantita" style="display:flex">	
-    				<div class="divPrezzo" style="margin-right:10%; width:45%">
-    					<label for="prezzo"><b>Prezzo</b></label>
-						<input type="text" placeholder="Prezzo" name="prezzo" required>
-    				</div>
-    			
-    				<div class="divQuantita" style="width:45%">
-    					<label for="quantita"><b>Quantità</b></label>
-    					<input type="number" placeholder="Quantità" name="quantità" min="1" required>
-    				</div>
-    			</div>
-				
-				<label for="descrizione"><b>Descrizione</b></label>
-				<textarea class="formTextArea" name="descrizione" placeholder="Descrizione prodotto"></textarea>
-
-				<input type="file" id="imgProdotto" class="btn" name="imgProdotto">
-				
-    			<button type="submit" class="btn">Inserisci</button>
-    			<button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>
-  			</form>
+		<div style="margin-left:60%; width:20%; max-width:300px">
+			<a href="./CatalogoAdmin.jsp">
+			<button class="open-button">Vai al catalogo admin</button>
+			</a>
 		</div>
 		
-		<script>
-			function openForm() {
- 				document.getElementById("myForm").style.display = "block";
-			}
-
-			function closeForm() {
-				document.getElementById("myForm").style.display = "none";
-			}
-		</script>
+	</div>
+		
 	<%
 	FumettiModel fmodel = new FumettiModel();
 	

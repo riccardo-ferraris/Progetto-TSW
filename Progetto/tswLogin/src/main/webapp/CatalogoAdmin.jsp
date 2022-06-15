@@ -242,7 +242,12 @@
 			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+			</li>
 			</div></a>
 			<% } %>
 		</ul>

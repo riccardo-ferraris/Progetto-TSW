@@ -547,8 +547,7 @@ header {
 .titoloCarrello {
 	border-bottom:1px solid black;
 	font-weight:bold;
-	font-size:150%;
-	text-align:left;
+	font-size:1.5em;
 }
 
 .btnCheckout {
@@ -564,4 +563,48 @@ header {
 .btnCheckout:hover {
 	background-color: #2d3b88;
 	transition:0.3s;
+}
+
+.svuotaCarrello {
+	text-decoration: none;
+	border: 1px solid #2d3b55;
+	border-radius: 2em;
+	padding:1%;
+	font-size: 0.7em;
+	margin:1%;
+	color:white;
+	background-color: #2d3b55;
+	font-weight: normal;
+	text-align:center;
+}
+
+.svuotaCarrello:hover {
+	color:white;
+	background-color:#2d3b88;
+	transition:0.3s;
+	cursor: pointer;
+}
+
+/*.aggiungiCarrelloProd {
+	display:none;
+}*/
+
+.inputNum {
+	width:30%;
+	border-radius:1em;
+}
+
+.piu {
+	border: 1px solid #2d3b55;
+	background-color: #2d3b55;
+	color: white;
+	font-weight: bold;
+	width:10%;
+	padding:1% 3%;
+}
+
+.piu:hover {
+	background-color: #2d3b88;
+	transition:0.3s;
+	cursor:pointer;
 }

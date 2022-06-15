@@ -86,12 +86,20 @@
 		<% for(FumettiBean fumetto : arrayManga){ 
 			String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", "");
 			long seriale = fumetto.getSeriale();%>
-			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+			<a href="Prodotto.jsp?id=<%=seriale%>">
+			<div class="prodotto">
 			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
+			<br>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+			<br>
+			</li>
 			</div></a>
 			<% } %>
 		</ul>

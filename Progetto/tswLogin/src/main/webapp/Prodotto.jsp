@@ -76,7 +76,7 @@ switch(firstDigit){
 			
 		<%
 		break;
-
+		
 	case 2: articoloModel = new GraficheModel();
 		articolo = new GraficheBean();
 		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>

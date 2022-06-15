@@ -76,7 +76,12 @@ switch(firstDigit){
 			
 		<%
 		break;
+<<<<<<< HEAD
+		</body>
+		<head>
+=======
 		
+>>>>>>> 88a63801296d456b93bcc81194cdbdb74f7b87e2
 	case 2: articoloModel = new GraficheModel();
 		articolo = new GraficheBean();
 		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>

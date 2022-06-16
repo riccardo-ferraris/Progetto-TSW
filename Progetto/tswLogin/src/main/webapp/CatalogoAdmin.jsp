@@ -191,6 +191,7 @@
 					<div style="width:45%">
     					<label for="seriale"><b>Seriale</b></label>
     					<input type="text" placeholder="Seriale Prodotto" name="seriale" required maxlength="15">
+    					<%//Inserire ajax func che genera un seriale senza ricaricare la pagina %>
     				</div>
     			</div>
 			

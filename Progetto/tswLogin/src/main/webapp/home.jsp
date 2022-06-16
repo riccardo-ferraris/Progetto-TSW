@@ -321,7 +321,7 @@
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
-							 articolo = model.doRetrieveByKey(200000000000009L);
+							 articolo = model.doRetrieveByKey(200000000000018L);
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
@@ -335,9 +335,41 @@
 						</div>
                     </li>
                     
-                    <li>Prodotto4</li>
+                    <li>
+                    	<div class = "listProd">
+							<ul style="list-style-type:none;">
+							<% 
+							 articolo = model.doRetrieveByKey(200000000000016L);
+							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+							 seriale = articolo.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=articolo.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+							</div></a>
+							</ul>
+						</div>
+                    </li>
                     
-                    <li>Prodotto5</li>
+                    <li>
+                    	<div class = "listProd">
+							<ul style="list-style-type:none;">
+							<% 
+							 articolo = model.doRetrieveByKey(200000000000015L);
+							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+							 seriale = articolo.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=articolo.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+							</div></a>
+							</ul>
+						</div>
+                    </li>
                     
                 </ul>
             </div>

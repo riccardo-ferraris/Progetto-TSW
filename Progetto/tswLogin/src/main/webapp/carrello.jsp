@@ -48,8 +48,10 @@
     		
  		<div id="carrello" style="display:flex; width:100%">			
 			<div class = "listProdCarrello">
-			<p class="titoloCarrello">CARRELLO</p>
-				<!-- <ul style="list-style-type:none;">  -->
+				<div  class="titoloCarrello" style="display:flex">
+					<p style="width:20%; margin-right:60%">CARRELLO</p>
+					<a class="svuotaCarrello">Svuota carrello</a>
+				</div>
 				<%
 				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantità, il valore del prodotto venga aggiornato
 				for(ProdottoInCarrello prodotto : arrayArticoli){

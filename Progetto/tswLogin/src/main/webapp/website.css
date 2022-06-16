@@ -592,6 +592,7 @@ header {
 .inputNum {
 	width:30%;
 	border-radius:1em;
+	text-align:center;
 }
 
 .piu {
@@ -608,3 +609,4 @@ header {
 	transition:0.3s;
 	cursor:pointer;
 }
+

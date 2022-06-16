@@ -237,18 +237,23 @@
 		<% for(FumettiBean fumetto : arrayManga){ 
 			String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", "");
 			long seriale = fumetto.getSeriale();%>
-			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+			<a href="Prodotto.jsp?id=<%=seriale%>">
+			<div class="prodotto">
 			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%> <br>
+			<br>
+			</li>
+			</a>
+		<form>
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number"></input>
+				<input class="inputNum" type="number" min="0"></input>
 				<a class="piu" style="color:white">+</a>
 			</div>
-			</li>
-			</div></a>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 	</div>
@@ -269,8 +274,17 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=fumetto.getTitolo()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br></li>
-			</div></a>
+			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
+			<br>
+			</li>
+			</a>
+		<form>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number" min="0"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 		</div>
@@ -294,8 +308,18 @@
 			<br>
 			<%=grafica.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br></li>
-			</div></a>
+			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
+			
+			<br>
+			</li>
+			</a>
+		<form>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number" min="0"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 	</div>
@@ -315,8 +339,18 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=grafica.getTitolo()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br></li>
-			</div></a>
+			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
+
+			<br>
+			</li>
+			</a>
+		<form>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number" min="0"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 		</div>
@@ -342,8 +376,17 @@
 			<br>
 			<%=modellino.getNome()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br></li>
-			</div></a>
+			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>	
+			<br>
+			</li>
+			</a>
+		<form>
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number" min="0"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 	</div>
@@ -363,8 +406,17 @@
 			<li><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<%=modellino.getNome()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br></li>
-			</div></a>
+			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
+			<br>
+			</li>
+			</a>
+		<form>	
+			<div class="aggiungiCarrelloProd">
+				<input class="inputNum" type="number" min="0"></input>
+				<a class="piu" style="color:white">+</a>
+			</div>
+		</form>
+			</div>
 			<% } %>
 		</ul>
 		</div>

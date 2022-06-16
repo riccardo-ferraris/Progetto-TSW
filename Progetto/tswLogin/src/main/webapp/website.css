@@ -130,7 +130,7 @@ a.link {
 }
 
 header {
-    background-color: #def7ff;
+    background-color: #2d3b55;
 }
 
 #menuList, #menuList2 {
@@ -140,7 +140,8 @@ header {
     overflow: hidden;
     font-family: Helvetica;
     font-weight: bold;
-    background-color: white;
+    /*background-color: white;*/
+    background-color:rgba(45,59,85,0.5);
 }
 
 #menuList li, #menuList2 li {
@@ -176,13 +177,14 @@ header {
 }
 
 #mainNav {
-    background-color: white;
+    /*background-color: white;*/
     display: flex;
     justify-content: space-between;
     position: sticky; 
     top: 0px;
     border-radius: 5px;
     z-index: 2;
+    background-color:rgba(45,59,85,0.9);
 }
 
 #subMenu, #subMenu2, #subMenu3, #subMenu4 {

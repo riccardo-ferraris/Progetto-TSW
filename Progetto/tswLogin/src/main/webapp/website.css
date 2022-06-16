@@ -597,6 +597,7 @@ header {
 
 .piu {
 	border: 1px solid #2d3b55;
+	border-radius:0.5em;
 	background-color: #2d3b55;
 	color: white;
 	font-weight: bold;

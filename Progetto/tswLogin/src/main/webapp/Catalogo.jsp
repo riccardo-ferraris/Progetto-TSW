@@ -66,12 +66,21 @@
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
 		
+		<% 
+		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+		if(utente == null){
+			request.getSession().setAttribute("ruolo", "guest");
+		}
+		if(request.getSession().getAttribute("ruolo").equals("admin"))
+		{
+			
+		%>
 		<div style="margin-left:60%; width:20%; max-width:300px; float:right">
 			<a href="./CatalogoAdmin.jsp">
 			<button class="open-button">Vai al catalogo admin</button>
 			</a>
 		</div>
-		
+		<% } %>
 	</div>
 		
 	<%

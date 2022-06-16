@@ -1,3 +1,13 @@
+<%@page import="java.util.ArrayList" %>
+    <%@page import="javax.servlet.*" %>
+    <%@page import="javax.servlet.http.*" %>
+    <%@page import="Model.FumettiBean" %>
+    <%@page import="Model.FumettiModel" %> 
+    <%@page import="Model.GraficheBean" %>
+    <%@page import="Model.GraficheModel" %>
+    <%@page import="Model.ModelliniBean" %>
+    <%@page import="Model.ModelliniModel" %>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -33,26 +43,150 @@
 
     <div class="topProduct">
         <div class="categoria">
-            <h3>Grafiche</h3>
-            <div class="mainProduct">
+            <h3>Funko Pop! più venduti</h3>
+            <div class="mainProduct" >
+            	<%
+            		ModelliniModel fmodel = new ModelliniModel();
+            		ModelliniBean pop =	new ModelliniBean();
+                	String folder = "Modellini";
+                	String nomeImmagine = new String();
+                	long seriale;
+                %>
                 <ul>
-                    <li>Prodotto1</li>
-                    <li>Prodotto2</li>
-                    <li>Prodotto3</li>
-                    <li>Prodotto4</li>
-                    <li>Prodotto5</li>
+                    <li>
+						<div class = "listProd">
+	
+							<ul style="list-style-type:none;">
+							<% 
+							pop = fmodel.doRetrieveByKey(300000000000013L);
+							nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+                    </li>
+                    <li>
+                    	<div class = "listProd">
+	
+							<ul style="list-style-type:none;">
+							<% 
+							 pop = fmodel.doRetrieveByKey(300000000000011L);
+							 nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							 seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+					</li>
+						
+                    <li>
+                    	<div class = "listProd">
+	
+							<ul style="list-style-type:none;">
+							<% 
+							 pop = fmodel.doRetrieveByKey(300000000000014L);
+							 nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							 seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+                    </li>
+                    
+                    <li>
+                    	<div class = "listProd">
+	
+							<ul style="list-style-type:none;">
+							<% 
+							 pop = fmodel.doRetrieveByKey(300000000000012L);
+							 nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							 seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+                    </li>
+                    
+                    <li>
+                    	<div class = "listProd">
+							<ul style="list-style-type:none;">
+							<% 
+							 pop = fmodel.doRetrieveByKey(300000000000017L);
+							 nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							 seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+                    </li>
+                    
+                    <li>
+                    
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="categoria">
-            <h3>Modellini</h3>
+            <h3>Manga più venduti</h3>
             <div class="mainProduct">
                 <ul>
-                    <li>Prodotto1</li>
+                    <li>
+                    	<div class = "listProd">
+							<ul style="list-style-type:none;">
+							<% 
+							 pop = fmodel.doRetrieveByKey(300000000000017L);
+							 nomeImmagine = pop.getNome().replace(":", "").replace("/", "");
+							 seriale = pop.getSeriale();%>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<br>
+							<%=pop.getNome()%>
+							<br>
+							Prezzo: <%out.println(String.format("%.2f&euro;", pop.getPrezzo()));%><br></li>
+							</div></a>
+							
+							</ul>
+						</div>
+                    </li>
+                    
                     <li>Prodotto2</li>
+                    
                     <li>Prodotto3</li>
+                    
                     <li>Prodotto4</li>
+                    
                     <li>Prodotto5</li>
                 </ul>
             </div>

@@ -100,6 +100,7 @@
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
                 </li>
             </ul>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55">Vai al checkout</button>
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Indirizzo di fatturazione</h4>
@@ -210,9 +211,7 @@
                         <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
                         <div class="invalid-feedback"> CVV obbligatorio</div>
                     </div>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55">Vai al checkout</button>
+                </div>                
             </form>
         </div>
     </div>

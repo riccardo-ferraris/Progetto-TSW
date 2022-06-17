@@ -82,11 +82,11 @@
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Subtotale (EUR)</span>
-                    <strong>€</strong>
+                    <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale())); %></strong>
                 </li>
                 <li class="list-group-item d-flex justify-content-between" style="background-color:#e3f7fa">
                     <span>Totale (EUR)</span>
-                    <strong>€</strong>
+                    <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
                 </li>
             </ul>
         </div>
@@ -235,10 +235,6 @@
 				Prezzo: <%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%><br></li>
 				</div>
 		<%}%>
-		<div>
-			<p>Subtotale: <%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale())); %></p>
-			<p>Totale: <%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></p>
-		</div>
 		</ul>
 	</div>
 	<!-- Qua va inserito un tasto per finalizzare l'acquisto e inviare il form -->

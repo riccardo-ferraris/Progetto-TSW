@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import="Model.Ordine"%>
     <%@page import="Model.UserBean" %>
+    <%@page import="Model.FumettiBean" %>
+    <%@page import="Model.GraficheBean" %>
+    <%@page import="Model.ModelliniBean" %>
     <%@page import="Model.ProdottoInCarrello" %>
     <%@page import="java.util.ArrayList"%>
     <%
@@ -59,27 +62,35 @@
                 <span class="badge badge-secondary badge-pill">3</span>
             </h4>
             <ul class="list-group mb-3 sticky-top" style="position:sticky; top:10%">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <%
+			for(ProdottoInCarrello prod : array){ //scorriamo il carrello passato al checkout
+			
+				 String nomeImmagine = prod.getProdotto().getNome().replace(":", "").replace("/", ""); //questa funzione elimina i caratteri proibiti per il salvataggio di un file
+				
+				 long seriale = prod.getProdotto().getSeriale();
+				
+				 String catProd = new String();
+				 switch(prod.getProdotto().getMacroCategoria()){ //con uno switch controlliamo la macrocategoria dell'articolo corrente
+				 case "Fumetti": catProd = ((FumettiBean) prod.getProdotto()).getCategoria(); //se il prodotto appartiene alla macrocategoria Fumetti, ne prendiamo la sottocategoria e la inseriamo in catProd
+					 break;
+					
+				 case "Grafiche": catProd = ((GraficheBean) prod.getProdotto()).getCategoria(); //se il prodotto appartiene alla macrocategoria Fumetti, ne prendiamo la sottocategoria e la inseriamo in catProd
+				 break;
+				
+				 case "Modellini": catProd = ((ModelliniBean) prod.getProdotto()).getCategoria(); //se il prodotto appartiene alla macrocategoria Fumetti, ne prendiamo la sottocategoria e la inseriamo in catProd
+				 break;
+				 }
+				%>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Nome prodotto 1</h6>
-                        <small class="text-muted">Categoria</small>
+                    	<img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
+                        <h6 class="my-0"><%=prod.getProdotto().getNome()%></h6>
+                        <small class="text-muted"><%=catProd%></small>
                     </div>
-                    <span class="text-muted">€</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Nome prodotto 2</h6>
-                        <small class="text-muted">Categoria</small>
-                    </div>
-                    <span class="text-muted">€</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Nome prodotto 3</h6>
-                        <small class="text-muted">Categoria</small>
-                    </div>
-                    <span class="text-muted">€</span>
-                </li>
+                    <span class="text-muted"><%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%></span>
+                </li>			
+			<%}%>
+    
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Subtotale (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale())); %></strong>
@@ -136,7 +147,7 @@
                         <div class="invalid-feedback"> Seleziona uno stato valido.</div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="state">Città</label>
+                        <label for="state">Città </label>
                         <select class="custom-select d-block w-100" id="state" required="">
                             <option value="">Scegli...</option>
                             <option>Roma</option>
@@ -146,7 +157,7 @@
                             <option>Torino</option>
                             <option>Bologna</option>
                         </select>
-                        <div class="invalid-feedback">Seleziona una città valida</div>
+                        <div class="invalid-feedback">Seleziona una città  valida</div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="zip">CAP</label>
@@ -228,41 +239,8 @@
 	  }, false)
 	}())
 </script>
-
-
-
-
-	<div>
-		<h1>Informazioni utente</h1>
-		<p><%=utente.getNome() + " " + utente.getCognome() + " (" + utente.getEmail() + ")"%></p>
-	</div>
-	
-	<div>
-		<form>
-		<!-- Qua bisogna inserire un form tipo quello del checkout di funko. CANCELLA QUESTO COMMENTO DOPO -->
-		</form>
-	</div>
-	
-	<div style="width:30%">
-		<ul style="list-style-type:none;">
-		<%
-			for(ProdottoInCarrello prod : array){
-			
-				 String nomeImmagine = prod.getProdotto().getNome().replace(":", "").replace("/", "");
-				long seriale = prod.getProdotto().getSeriale();%>
-				<div>
-				<li><img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
-				<br>
-				<%=prod.getProdotto().getNome()%><br>
-				Prezzo: <%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%><br></li>
-				</div>
-		<%}%>
-		</ul>
-	</div>
-	<!-- Qua va inserito un tasto per finalizzare l'acquisto e inviare il form -->
 	
     <jsp:include page="footer.jsp"/>
-	
 	
 </body>
 </html>

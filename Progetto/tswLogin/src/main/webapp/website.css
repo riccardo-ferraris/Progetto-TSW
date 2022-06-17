@@ -183,7 +183,7 @@ header {
     position: sticky; 
     top: 0px;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 1021;
     background-color:rgba(45,59,85,0.9);
 }
 

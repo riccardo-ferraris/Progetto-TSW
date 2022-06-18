@@ -84,7 +84,7 @@
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                     	<img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
-                        <h6 class="my-0"><%=prod.getProdotto().getNome()%></h6>
+                        <h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>
                         <small class="text-muted"><%=catProd%></small>
                     </div>
                     <span class="text-muted"><%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%></span>
@@ -94,6 +94,10 @@
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Subtotale (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale())); %></strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Spedizione (EUR)</span>
+                    <strong><%out.println("5&euro;"); %></strong>
                 </li>
                 <li class="list-group-item d-flex justify-content-between" style="background-color:#e3f7fa">
                     <span>Totale (EUR)</span>

@@ -10,7 +10,7 @@
     <%
     UserBean utente = (UserBean) request.getSession().getAttribute("utente");
     
-    if(utente.getRuolo() == null)
+    if(utente == null || utente.getRuolo() == null)
     {
     	response.sendRedirect("login.jsp");	
     	return;

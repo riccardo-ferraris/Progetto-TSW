@@ -179,9 +179,9 @@ switch(firstDigit){
         {
          %>
          <div class="aggiungiCarrello">
-         	<label for="quantita"> Quantità: </label>
-         	<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
-         		<input type="number" value="1" min="1" name="quantita" id="quantita"/>
+         	<label for="quantità"> Quantità: </label>
+         	<form action="./ServletCarrello?page=/Prodotto.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
+         		<input type="number" value="1" min="1" name="numAggiungi" id="quantità"/>
          		<button type="submit" class="cartButton">
                 	Aggiungi al carrello
                 </button>

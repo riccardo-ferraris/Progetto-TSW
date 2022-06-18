@@ -83,9 +83,13 @@
 				%>
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                    	<img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
-                        <h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>
-                        <small class="text-muted"><%=catProd%></small>
+                    	<div>
+                    		<img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
+                        </div>
+                        <div>	
+                        	<h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>
+                        	<small class="text-muted"><%=catProd%></small>
+                    	</div>
                     </div>
                     <span class="text-muted"><%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%></span>
                 </li>			
@@ -103,8 +107,8 @@
                     <span>Totale (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
                 </li>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55; width:40%; margin-top:5%">Acquista ora</button>
             </ul>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55">Acquista ora</button>
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Indirizzo di fatturazione</h4>

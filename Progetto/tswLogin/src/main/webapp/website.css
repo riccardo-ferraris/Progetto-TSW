@@ -140,8 +140,7 @@ header {
     overflow: hidden;
     font-family: Helvetica;
     font-weight: bold;
-    /*background-color: white;*/
-    background-color:rgba(45,59,85,0.5);
+    background-color:rgba(45,59,85);
 }
 
 #menuList li, #menuList2 li {
@@ -151,7 +150,7 @@ header {
 #menuList li a, #menuList2 li a {
     display: inline-block;
     position: relative;
-    color: black;
+    color: white;
     text-align: center;
     padding: 16px;
     margin: 2px;
@@ -159,8 +158,8 @@ header {
 }
 
 #menuList li a:hover, #menuList2 li a:hover {
-    background-color: #2d3b55;
-    color: white;
+    background-color: white;
+    color: rgba(45,59,85);
     transition: background-color 0.5s;
     border-radius: 5px;
 }
@@ -184,7 +183,7 @@ header {
     top: 0px;
     border-radius: 5px;
     z-index: 1021;
-    background-color:rgba(45,59,85,0.9);
+    background-color:rgba(45,59,85);
 }
 
 #subMenu, #subMenu2, #subMenu3, #subMenu4 {

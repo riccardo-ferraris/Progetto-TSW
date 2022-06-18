@@ -52,7 +52,9 @@
 			<div class = "listProdCarrello">
 				<div  class="titoloCarrello" style="display:flex">
 					<p style="width:20%; margin-right:60%">CARRELLO</p>
-					<a href="./ServletCarrello?page=carrello.jsp&action=svuotaCarrello" class="svuotaCarrello">Svuota carrello</a>
+					<form action="./ServletCarrello?page=carrello.jsp&action=svuotaCarrello" method="POST">
+						<button class="svuotaCarrello">Svuota carrello</button>
+					</form>
 				</div>
 				<%
 				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantità, il valore del prodotto venga aggiornato

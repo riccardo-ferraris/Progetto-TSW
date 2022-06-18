@@ -50,7 +50,7 @@
 			<div class = "listProdCarrello">
 				<div  class="titoloCarrello" style="display:flex">
 					<p style="width:20%; margin-right:60%">CARRELLO</p>
-					<a class="svuotaCarrello">Svuota carrello</a>
+					<a href="./ServletCarrello?page=carrello.jsp&action=svuotaCarrello" class="svuotaCarrello">Svuota carrello</a>
 				</div>
 				<%
 				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantità, il valore del prodotto venga aggiornato
@@ -71,14 +71,14 @@
 						</div>
 						<div>	
 							<label for="quantità">Quantità:</label>
-							<form action="./ServletCarrello?page=/carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
-								<input type="number" name="quantità" id="quantità" min="1" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
+							<form action="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
+								<input type="number" name="numModifica" id="quantità" min="1" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
 							</form>
 							
 							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantità(); %>
 						</div> 
 						<div>
-							<a href="./ServletCarrello?page=/carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=rimuoviBySeriale&macroCategoria=<%=prodottoCarrello.getMacroCategoria()%>" method="post">
+							<a href="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=rimuoviBySeriale&macroCategoria=<%=prodottoCarrello.getMacroCategoria()%>" method="post"> 
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-trash-fill" viewBox="0 0 16 16">
   							<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
 							</svg></a>

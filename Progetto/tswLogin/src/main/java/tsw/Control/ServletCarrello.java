@@ -99,7 +99,8 @@ public class ServletCarrello extends HttpServlet {
 
     			return;
     			  
-	    	case "rimuoviBySeriale": carrello.rimuoviProdotto(codice); //Rimuove il prodotto specificato dal seriale
+	    	case "rimuoviBySeriale":
+	    		carrello.rimuoviProdotto(codice); //Rimuove il prodotto specificato dal seriale
     			request.getSession().setAttribute("carrello", carrello); //Salva il carrello
     			response.sendRedirect("carrello.jsp"); //Torna al carrello
     			return;

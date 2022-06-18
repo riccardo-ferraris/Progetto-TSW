@@ -100,7 +100,7 @@
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
                 </li>
             </ul>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55">Vai al checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55">Acquista ora</button>
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Indirizzo di fatturazione</h4>

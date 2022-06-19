@@ -36,9 +36,8 @@ public class OrdineModel {
 				preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(1, codice);
 				rs = preparedStatement.executeQuery();
-				
+					
 				ResultSetMetaData rsmd = rs.getMetaData();
-				String nomeColonna = new String();
 				String cat = new String();
 				
 				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
@@ -77,6 +76,38 @@ public class OrdineModel {
 					}
 					
 					bean.setArticoliOrdine(arrayProdotti);
+					
+					sql = "select * from indirizzospedizione where ordine = ?;";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setString(1, codice);
+					rs = preparedStatement.executeQuery();
+
+					if (rs.next()) {
+						bean.setIndirizzoS(rs.getString("indirizzo"));
+						bean.setStatoS(rs.getString("stato"));
+						bean.setCityS(rs.getString("città"));
+						bean.setCapS(rs.getLong("CAP"));
+						bean.setNomeS(rs.getString("nome"));
+						bean.setCognomeS(rs.getString("cognome"));
+						
+						rs = preparedStatement.executeQuery();	
+					}
+					
+					sql = "select * from indirizzofatturazione where ordine = ?;";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setString(1, codice);
+					rs = preparedStatement.executeQuery();
+
+					if (rs.next()) {
+						bean.setIndirizzoF(rs.getString("indirizzo"));
+						bean.setStatoF(rs.getString("stato"));
+						bean.setCityF(rs.getString("città"));
+						bean.setCapF(rs.getLong("CAP"));
+						bean.setNomeF(rs.getString("nome"));
+						bean.setCognomeF(rs.getString("cognome"));
+						
+						rs = preparedStatement.executeQuery();	
+					}
 					
 				}else {
 					bean = null;
@@ -178,6 +209,36 @@ public class OrdineModel {
 				System.out.println(codice);
 				preparedStatement.setLong(2, prod.getProdotto().getSeriale());
 				
+				result = preparedStatement.executeUpdate();
+				
+				sql = "insert into indirizzospedizione (codice, utente, indirizzo, stato, città, CAP, nome, cognome)"
+						+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+				
+				preparedStatement = connection.prepareStatement(sql);
+				
+				preparedStatement.setString(1, ordine.getCodice());
+				preparedStatement.setString(2, ordine.getUtente());
+				preparedStatement.setString(3, ordine.getIndirizzoS());
+				preparedStatement.setString(4, ordine.getStatoS());
+				preparedStatement.setString(5, ordine.getCityS());
+				preparedStatement.setLong(6, ordine.getCapS());
+				preparedStatement.setString(7, ordine.getNomeS());
+				preparedStatement.setString(8, ordine.getCognomeS());
+				result = preparedStatement.executeUpdate();
+				
+				sql = "insert into indirizzofatturazione (codice, utente, indirizzo, stato, città, CAP, nome, cognome)"
+						+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+				
+				preparedStatement = connection.prepareStatement(sql);
+				
+				preparedStatement.setString(1, ordine.getCodice());
+				preparedStatement.setString(2, ordine.getUtente());
+				preparedStatement.setString(3, ordine.getIndirizzoF());
+				preparedStatement.setString(4, ordine.getStatoF());
+				preparedStatement.setString(5, ordine.getCityF());
+				preparedStatement.setLong(6, ordine.getCapF());
+				preparedStatement.setString(7, ordine.getNomeF());
+				preparedStatement.setString(8, ordine.getCognomeF());
 				result = preparedStatement.executeUpdate();
 			}
 			

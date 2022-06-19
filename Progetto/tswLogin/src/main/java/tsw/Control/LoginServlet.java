@@ -55,9 +55,13 @@ public class LoginServlet extends HttpServlet {
 			else if (utente.getPassword().trim().equals(password)) {
 				request.getSession().setAttribute("utente", utente);
 				response.setContentType("text/html");
-				
+				String page = request.getParameter("pageLogin");
+				System.out.println(page);
+				if(page.trim().equals("carrello.jsp")){
+					response.sendRedirect("./" + page);
+				}else {
 					response.sendRedirect("./RedirectServlet?page=catalogo");
-				
+				}
 				
 				return;
 			}

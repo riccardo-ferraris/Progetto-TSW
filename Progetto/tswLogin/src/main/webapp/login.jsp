@@ -29,8 +29,8 @@
             <li><a href="register.jsp">REGISTRATI</a></li>
         </ul>
     </nav>
-
-    <form action="./LoginServlet" method="post" class="loginForm">
+	<%String pageRedirect = request.getParameter("pageLogin");%>
+    <form action="./LoginServlet?pageLogin=<%=pageRedirect%>" method="post" class="loginForm">
         <h1 id="accedi">Accedi</h1>
         <div class="content">
             <div class="input-field">

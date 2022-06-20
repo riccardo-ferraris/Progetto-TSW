@@ -248,10 +248,9 @@
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -279,10 +278,9 @@
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -314,10 +312,9 @@
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -345,10 +342,9 @@
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -381,10 +377,9 @@
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -411,10 +406,9 @@
 			<br>
 			</li>
 			</a>
-		<form>	
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>

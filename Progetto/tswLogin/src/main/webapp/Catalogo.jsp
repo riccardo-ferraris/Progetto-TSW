@@ -99,18 +99,18 @@
 			<div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
+			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
 			<br>
 			
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -133,16 +133,16 @@
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=fumetto.getTitolo()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
+			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
 			
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -167,16 +167,16 @@
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=grafica.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
+			<%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -198,16 +198,16 @@
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=grafica.getTitolo()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
+			<%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 			
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -234,16 +234,16 @@
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=modellino.getNome()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
+			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>
@@ -265,15 +265,15 @@
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=modellino.getNome()%><br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
+			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
 			<br>
 			</li>
 			</a>
-		<form>
+		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 			<div class="aggiungiCarrelloProd">
-				<input class="inputNum" type="number" min="0"></input>
-				<a class="piu" style="color:white">+</a>
+				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
 		</form>
 			</div>

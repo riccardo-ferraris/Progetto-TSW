@@ -94,9 +94,12 @@ public class ServletCarrello extends HttpServlet {
 	    		int quant = Integer.valueOf(request.getParameter("numAggiungi")); //La variabile quant prende il valore del parametro numAggiungi, che contiene la quantità del prodotto che l'utente ha inserito nel carrello
     			carrello.aggiungi(prodotto, quant); //Il prodotto viene aggiunto il carrello con la quantità specificata, tramite il metodo aggiungi()
     			  
-    			request.getSession().setAttribute("carrello", carrello); //Salva il carrello  
-    			response.sendRedirect("Prodotto.jsp?id="+codice); //Torna alla pagina del prodotto
-
+    			request.getSession().setAttribute("carrello", carrello); //Salva il carrello 
+    			if(page.equals("Catalogo.jsp")) {
+    				response.sendRedirect(page);
+    			}else {
+    				response.sendRedirect("Prodotto.jsp?id="+codice); //Torna alla pagina del prodotto
+    			}
     			return;
     			  
 	    	case "rimuoviBySeriale":

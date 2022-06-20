@@ -60,8 +60,8 @@
                 	String nomeImmagine = new String();
                 	long seriale;
                 %>
-                <ul>
-                    <li>
+                
+                    
                     
 						<div class = "listProd">
 	
@@ -81,8 +81,8 @@
 							
 							</ul>
 						</div>
-                    </li>
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 	
 							<ul style="list-style-type:none;">
@@ -100,9 +100,9 @@
 							
 							</ul>
 						</div>
-					</li>
+					
 						
-                    <li>
+                    
                     	<div class = "listProd">
 	
 							<ul style="list-style-type:none;">
@@ -120,9 +120,9 @@
 							
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 	
 							<ul style="list-style-type:none;">
@@ -140,9 +140,9 @@
 							
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                   
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -159,12 +159,12 @@
 							
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
                     
-                    </li>
-                </ul>
+                    
+                    
+                    
+                
             </div>
         </div>
 
@@ -177,8 +177,8 @@
                 	folder = "Fumetti";
                 	nomeImmagine = new String();               	
                 %>
-                <ul>
-                    <li>
+                
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -195,9 +195,9 @@
 							
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -213,9 +213,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -231,9 +231,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -249,9 +249,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -267,8 +267,8 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
-                </ul>
+                    
+                
             </div>
         </div>
 
@@ -282,8 +282,8 @@
                 	folder = "Grafiche";
                 	nomeImmagine = new String();
                 %>
-                <ul>
-                    <li>
+                
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -299,9 +299,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -317,9 +317,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -335,9 +335,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -353,9 +353,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                    <li>
+                    
+                    
                     	<div class = "listProd">
 							<ul style="list-style-type:none;">
 							<% 
@@ -371,9 +371,9 @@
 							</div></a>
 							</ul>
 						</div>
-                    </li>
                     
-                </ul>
+                    
+                
             </div>
         </div>
     </div>

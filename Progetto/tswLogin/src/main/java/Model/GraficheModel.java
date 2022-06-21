@@ -52,6 +52,7 @@ public class GraficheModel extends ArticoloModel{
 		}
 	}
 	
+	@Override
 	public synchronized Collection<GraficheBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -211,6 +212,56 @@ public class GraficheModel extends ArticoloModel{
 				
 			}	
 		}
+	}
+	
+	@Override
+	public synchronized Collection<GraficheBean> doRetrieveAllByKeyWord(String order, String keyWord) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<GraficheBean> products = new LinkedList<GraficheBean>();
+		ResultSet rs = null;
+		
+		String selectSQL = "SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE titolo LIKE ? UNION"
+				+ " SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE descrizione LIKE ? UNION"
+				+ " SELECT * FROM " + GraficheModel.TABLE_NAME + " WHERE categoria LIKE ?;";
+		
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			preparedStatement.setString(1, "%" + keyWord + "%");
+			preparedStatement.setString(2, "%" + keyWord + "%");
+			preparedStatement.setString(3, "%" + keyWord + "%");
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				GraficheBean bean = new GraficheBean();
+
+				bean.setSeriale(rs.getLong("seriale"));
+				bean.setTitolo(rs.getString("titolo"));
+				bean.setPrezzo(rs.getDouble("prezzo"));
+				bean.setQuantità(rs.getInt("quantità"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setCategoria(rs.getString("categoria"));
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return products;
 	}
 	
 }

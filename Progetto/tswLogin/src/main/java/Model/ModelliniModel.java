@@ -223,4 +223,58 @@ public class ModelliniModel extends ArticoloModel{
 			}	
 		}
 	}
+
+	@Override
+	public synchronized Collection<ModelliniBean> doRetrieveAllByKeyWord(String order, String keyWord) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<ModelliniBean> products = new LinkedList<ModelliniBean>();
+		ResultSet rs = null;
+		
+		String selectSQL = "SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE nome LIKE ? UNION"
+				+ " SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE descrizione LIKE ? UNION"
+				+ " SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE categoria LIKE ? UNION"
+				+ " SELECT * FROM " + ModelliniModel.TABLE_NAME + " WHERE franchise LIKE ?;";
+		
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			preparedStatement.setString(1, "%" + keyWord + "%");
+			preparedStatement.setString(2, "%" + keyWord + "%");
+			preparedStatement.setString(3, "%" + keyWord + "%");
+			preparedStatement.setString(4, "%" + keyWord + "%");
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ModelliniBean bean = new ModelliniBean();
+
+				bean.setSeriale(rs.getLong("seriale"));
+				bean.setNome(rs.getString("nome"));
+				bean.setPrezzo(rs.getDouble("prezzo"));
+				bean.setQuantità(rs.getInt("quantità"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setCategoria(rs.getString("categoria"));
+				bean.setFranchise(rs.getString("franchise"));
+				bean.setDimensioni(rs.getDouble("dimensioni"));
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return products;
+	}
 }

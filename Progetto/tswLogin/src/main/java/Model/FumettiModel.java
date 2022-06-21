@@ -55,6 +55,7 @@ public class FumettiModel extends ArticoloModel{
 		}
 	}
 	
+	@Override
 	public synchronized Collection<FumettiBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -228,4 +229,69 @@ public class FumettiModel extends ArticoloModel{
 			}	
 		}
 	}
+	
+	
+	/**
+	 *  idea:  la jsp della mainNav chiama la servlet passando il form con la parola chiave, la servlet passa la stringa a questo metodo, una query userà la stringa
+	 *  per cercare i prodotti che rientrano nella ricerca tramite un metodo che cerca una substring
+	 */
+	@Override
+	public synchronized Collection<FumettiBean> doRetrieveAllByKeyWord(String order, String keyWord) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<FumettiBean> products = new LinkedList<FumettiBean>();
+		ResultSet rs = null;
+		
+		String selectSQL = "SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE titolo LIKE ? UNION"
+				+ " SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE descrizione LIKE ? UNION"
+				+ " SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE scrittore LIKE ? UNION"
+				+ " SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE disegnatore LIKE ? UNION"
+				+ " SELECT * FROM " + FumettiModel.TABLE_NAME + " WHERE categoria LIKE ?;";
+		
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			preparedStatement.setString(1, "%" + keyWord + "%");
+			preparedStatement.setString(2, "%" + keyWord + "%");
+			preparedStatement.setString(3, "%" + keyWord + "%");
+			preparedStatement.setString(4, "%" + keyWord + "%");
+			preparedStatement.setString(5, "%" + keyWord + "%");
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				FumettiBean bean = new FumettiBean();
+
+				bean.setSeriale(rs.getLong("seriale"));
+				bean.setTitolo(rs.getString("titolo"));
+				bean.setPrezzo(rs.getDouble("prezzo"));
+				bean.setQuantità(rs.getInt("quantità"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setScrittore(rs.getString("scrittore"));
+				bean.setNumPagine(rs.getInt("numPagine"));
+				bean.setDisegnatore(rs.getString("disegnatore"));
+				bean.setCategoria(rs.getString("categoria"));
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return products;
+	}
+
 }
+
+

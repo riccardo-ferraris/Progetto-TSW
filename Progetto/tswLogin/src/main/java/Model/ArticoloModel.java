@@ -14,4 +14,9 @@ public class ArticoloModel {
 		Collection<? extends Articolo> coll = new LinkedList<Articolo>();
 		return coll;
 	}
+	
+	public Collection<? extends Articolo> doRetrieveAllByKeyWord(String order, String keyWord) throws SQLException{
+		Collection<? extends Articolo> coll = new LinkedList<Articolo>();
+		return coll;
+	}
 }

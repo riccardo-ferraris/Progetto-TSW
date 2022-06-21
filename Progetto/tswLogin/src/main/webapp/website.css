@@ -275,12 +275,26 @@ header {
     padding: 2% 2%;
     margin: 0 5px;
     width: 18%;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    vertical-align: top;
+    
+    
 }
 
+.prodotto a{
+	color: #2d3b55;
+	text-decoration: none;
+}
 .prodotto:hover {
     background-color: #f6f3f3;
     transition: 0.5s;
     text-decoration:none;	
+    
+}
+
+.prodotto a:hover {
+    color: #2d3b55;;
 }
 
 .prodottoHome {

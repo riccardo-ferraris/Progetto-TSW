@@ -242,9 +242,12 @@
 			<div class="prodotto">
 			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
+			<br>
 			<%=fumetto.getTitolo()%>
 			<br>
-			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%> <br>
+			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
+			<br>
+			
 			<br>
 			</li>
 			</a>

@@ -30,7 +30,7 @@
 
 .listProd li{
  word-break: break-word;
- display:block;
+ display:inline-block;
  float:right;
 }
 </style>

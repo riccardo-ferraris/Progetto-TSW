@@ -244,24 +244,24 @@ header {
     z-index: 1;
 }
 
-.listProd {
+.listProdHome {
     width: 18%;
     vertical-align: top;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
-    margin:4% 0;
+    margin:4% 2%;
 }
 
-.listProd ul {
+.listProdHome ul {
 	margin:0;
 	padding:0;
 }
 
-.listProd a {
+.listProdHome a {
 	color: #2d3b55;
 }
 
-.listProd a:hover{
+.listProdHome a:hover{
     text-decoration:none;
     color: #2d3b55;
 }
@@ -274,10 +274,25 @@ header {
     vertical-align: top;
     padding: 2% 2%;
     margin: 0 5px;
-    width: 100%;
+    width: 18%;
 }
 
 .prodotto:hover {
+    background-color: #f6f3f3;
+    transition: 0.5s;
+    text-decoration:none;	
+}
+
+.prodottoHome {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 2% 2%;
+    margin: 0 5px;
+    width: 100%;
+}
+
+.prodottoHome:hover {
     background-color: #f6f3f3;
     transition: 0.5s;
 }

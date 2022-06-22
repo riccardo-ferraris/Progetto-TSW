@@ -60,9 +60,6 @@
                 	String nomeImmagine = new String();
                 	long seriale;
                 %>
-                
-                    
-                    
 						<div class = "listProdHome">
 	
 							<ul style="list-style-type:none;">
@@ -82,8 +79,7 @@
 							
 							</ul>
 						</div>
-                    
-                    
+               
                     	<div class = "listProdHome">
 	
 							<ul style="list-style-type:none;">
@@ -101,9 +97,7 @@
 							
 							</ul>
 						</div>
-					
-						
-                    
+					     
                     	<div class = "listProdHome">
 	
 							<ul style="list-style-type:none;">
@@ -122,8 +116,6 @@
 							</ul>
 						</div>
                     
-                    
-                    
                     	<div class = "listProdHome">
 	
 							<ul style="list-style-type:none;">
@@ -141,9 +133,7 @@
 							
 							</ul>
 						</div>
-                    
-                    
-                   
+                       
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -159,13 +149,7 @@
 							</div></a>
 							
 							</ul>
-						</div>
-                    
-                    
-                    
-                    
-                    
-                
+						</div>        
             </div>
         </div>
 
@@ -196,9 +180,7 @@
 							
 							</ul>
 						</div>
-                    
-                    
-                    
+                       
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -214,9 +196,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+                              
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -232,9 +212,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+             
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -251,9 +229,7 @@
 							</ul>
 						</div>
                     
-                    
-                    
-                    	<div class = "listProdHome">
+      					<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
 							 articolo = model.doRetrieveByKey(100000000000001L);
@@ -268,8 +244,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                
+       
             </div>
         </div>
 
@@ -283,8 +258,7 @@
                 	folder = "Grafiche";
                 	nomeImmagine = new String();
                 %>
-                
-                    
+
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -300,9 +274,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+                       
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -318,9 +290,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+                       
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -336,9 +306,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+  
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 
@@ -354,9 +322,7 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                    
+
                     	<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							<% 

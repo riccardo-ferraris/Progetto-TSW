@@ -56,7 +56,7 @@ switch(firstDigit){
 		<div style="display:flex; width:100%; align-items:center">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
+				<img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
@@ -103,7 +103,7 @@ switch(firstDigit){
 		<div style="display:flex">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				<img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
@@ -150,7 +150,7 @@ switch(firstDigit){
     	<div style="display:flex">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				<img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">

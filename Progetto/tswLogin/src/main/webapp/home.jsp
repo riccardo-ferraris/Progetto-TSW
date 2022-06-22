@@ -73,7 +73,7 @@
 							%>
 							<a href="Prodotto.jsp?id=<%=seriale%>">
 							<div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -92,7 +92,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -112,7 +112,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -132,7 +132,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -151,7 +151,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -187,7 +187,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -206,7 +206,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -224,7 +224,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -242,7 +242,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -260,7 +260,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -292,7 +292,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -310,7 +310,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -328,7 +328,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -346,7 +346,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -364,7 +364,7 @@
 							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 							 seriale = articolo.getSeriale();%>
 							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="${pageContext.request.contextPath}/gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 							<br>
 							<%=articolo.getNome()%>
 							<br>
@@ -372,9 +372,6 @@
 							</div></a>
 							</ul>
 						</div>
-                    
-                    
-                
             </div>
         </div>
     </div>

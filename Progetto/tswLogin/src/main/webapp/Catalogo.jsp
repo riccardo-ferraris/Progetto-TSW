@@ -101,7 +101,7 @@
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>">
 			<div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=fumetto.getTitolo()%>
@@ -135,7 +135,7 @@
 			 String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", ""); 
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=fumetto.getTitolo()%><br>
@@ -169,7 +169,7 @@
 			String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=grafica.getTitolo()%>
@@ -200,7 +200,7 @@
 			 String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=grafica.getTitolo()%><br>
@@ -236,7 +236,7 @@
 			String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=modellino.getNome()%>
@@ -267,7 +267,7 @@
 			 String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="${pageContext.request.contextPath}/gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
+			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
 			<%=modellino.getNome()%><br>

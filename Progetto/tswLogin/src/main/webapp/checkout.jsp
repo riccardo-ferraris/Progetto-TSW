@@ -69,7 +69,7 @@
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                     	<div>
-                    		<img src="${pageContext.request.contextPath}/gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
+                    		<img src="./gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
                         </div>
                         <div>	
                         	<h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>

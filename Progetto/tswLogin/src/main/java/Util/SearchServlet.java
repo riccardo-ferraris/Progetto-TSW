@@ -43,7 +43,7 @@ public class SearchServlet extends HttpServlet {
 		GraficheModel gModel = new GraficheModel();
 		ModelliniModel mModel = new ModelliniModel();
 		String keyWord = request.getParameter("keyWord");
-		
+		request.getSession().setAttribute("keyWord", keyWord);
 		ArrayList<Articolo> ricercaProdotti = new ArrayList<Articolo>();
 		
 		ArrayList<FumettiBean> ricercaFumetti = new ArrayList<FumettiBean>();

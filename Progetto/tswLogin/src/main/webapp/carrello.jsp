@@ -65,7 +65,7 @@
 					
 					<div class="prodottoCarrello">
 						<div>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><img src="${pageContext.request.contextPath}/gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><img src="./gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
 						</div>
 						<div>
 							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none; color:black"><%=prodottoCarrello.getNome()%></a>

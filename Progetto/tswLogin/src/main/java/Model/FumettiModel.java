@@ -41,6 +41,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setNumPagine(rs.getInt("numPagine"));
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				
 				return bean;
 			} else
@@ -86,6 +87,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setNumPagine(rs.getInt("numPagine"));
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -130,6 +132,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setNumPagine(rs.getInt("numPagine"));
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -174,6 +177,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setNumPagine(rs.getInt("numPagine"));
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -278,6 +282,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setNumPagine(rs.getInt("numPagine"));
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 

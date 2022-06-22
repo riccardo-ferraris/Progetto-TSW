@@ -1,3 +1,5 @@
+<%@page import="Util.venditeComparator"%>
+<%@page import="java.util.Comparator"%>
 <%@page import="java.util.ArrayList" %>
     <%@page import="javax.servlet.*" %>
     <%@page import="javax.servlet.http.*" %>
@@ -9,6 +11,7 @@
     <%@page import="Model.ModelliniModel" %>
     <%@page import="Model.ArticoloModel" %>
     <%@page import="Model.Articolo" %>
+    <%@page import="java.util.Collections" %>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -50,106 +53,42 @@
             <h3>Funko Pop! più venduti</h3>
             <div class="mainProduct" >
             	<%
-            		ArticoloModel model;
-            		Articolo articolo;
+            		ArticoloModel model = new ModelliniModel();
             		
-            		model = new ModelliniModel();
-            		articolo =	new ModelliniBean();
+            		ArrayList<Articolo> topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+            		Collections.sort(topProducts, new venditeComparator());
+            		Collections.reverse(topProducts);
+            		topProducts.subList(5, topProducts.size()).clear();
             		
                 	String folder = "Modellini";
                 	String nomeImmagine = new String();
                 	long seriale;
-                %>
-						<div class = "listProdHome">
+
+							for(Articolo articolo : topProducts){
+								nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+								seriale = articolo.getSeriale();
+								%>
+								<div class = "listProdHome" >
 	
-							<ul style="list-style-type:none;">
-							<% 
-							articolo = model.doRetrieveByKey(300000000000013L);
-							nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							seriale = articolo.getSeriale();
-							%>
-							<a href="Prodotto.jsp?id=<%=seriale%>">
-							<div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
+								<ul style="list-style-type:none; ">
+								<a href="Prodotto.jsp?id=<%=seriale%>">
+								<div class="prodottoHome">
+								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+								<br>
+								<%=articolo.getNome()%>
+								<br>
+								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+								</div></a>
+								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+									<div class="aggiungiCarrelloProd">
+										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
+									</div>
+								</form>
+								</ul>
+								</div>
+								<% } %>
 							
-							</ul>
-						</div>
-               
-                    	<div class = "listProdHome">
-	
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(300000000000011L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							
-							</ul>
-						</div>
-					     
-                    	<div class = "listProdHome">
-	
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(300000000000014L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							
-							</ul>
-						</div>
-                    
-                    	<div class = "listProdHome">
-	
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(300000000000012L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							
-							</ul>
-						</div>
-                       
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(300000000000017L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							
-							</ul>
-						</div>        
+						
             </div>
         </div>
 
@@ -158,187 +97,80 @@
             <div class="mainProduct">
             	<%
             		model = new FumettiModel();
-            		articolo =	new FumettiBean();
-                	folder = "Fumetti";
-                	nomeImmagine = new String();               	
-                %>
+            		topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+            		Collections.sort(topProducts, new venditeComparator());
+            		Collections.reverse(topProducts);
+            		topProducts.subList(5, topProducts.size()).clear();
+            		
+                	folder = "Fumetti";            	
                 
-                    
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(100000000000016L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
+							for(Articolo articolo : topProducts){
+								nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+								seriale = articolo.getSeriale();
+								%>
+								<div class = "listProdHome" >
+	
+								<ul style="list-style-type:none; ">
+								<a href="Prodotto.jsp?id=<%=seriale%>">
+								<div class="prodottoHome">
+								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+								<br>
+								<%=articolo.getNome()%>
+								<br>
+								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+								</div></a>
+								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+									<div class="aggiungiCarrelloProd">
+										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
+									</div>
+								</form>
+								</ul>
+								</div>
+								<% } %>
 							
-							</ul>
-						</div>
-                       
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(100000000000006L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-                              
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(100000000000012L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-             
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(100000000000005L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-                    
-      					<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(100000000000001L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
+							
        
             </div>
         </div>
 
         <div class="categoria">
             <h3>Grafiche e poster più venduti</h3>
-            <div class="mainProduct">
-            <%
+            <div class="mainProduct" >
+            	<%
 					model = new GraficheModel();
-            		articolo =	new GraficheBean();
+            		topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+            		Collections.sort(topProducts, new venditeComparator());
+            		Collections.reverse(topProducts);
+            		topProducts.subList(5, topProducts.size()).clear();
             		
                 	folder = "Grafiche";
-                	nomeImmagine = new String();
-                %>
 
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(200000000000005L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
+							for(Articolo articolo : topProducts){
+								nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+								seriale = articolo.getSeriale();
+								%>
+								<div class = "listProdHome" >
+								<ul style="list-style-type:none; display:inline-block;">
+								<a href="Prodotto.jsp?id=<%=seriale%>">
+								<div class="prodottoHome">
+								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+								<br>
+								<%=articolo.getNome()%>
+								<br>
+								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+								</div></a>
+								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+									<div class="aggiungiCarrelloProd">
+										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
+									</div>
+								</form>
+								</ul>
+								</div>
+								<% } %>
+							
                        
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(200000000000008L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-                       
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(200000000000018L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-  
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(200000000000016L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
-
-                    	<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							<% 
-							 articolo = model.doRetrieveByKey(200000000000015L);
-							 nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-							 seriale = articolo.getSeriale();%>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
-							Prezzo: <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							</ul>
-						</div>
             </div>
+               
         </div>
     </div>
 

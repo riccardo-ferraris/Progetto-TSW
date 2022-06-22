@@ -38,6 +38,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setQuantità(rs.getInt("quantità"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				
 				return bean;
 			} else
@@ -80,6 +81,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setQuantità(rs.getInt("quantità"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -121,6 +123,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setQuantità(rs.getInt("quantità"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -162,6 +165,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setQuantità(rs.getInt("quantità"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -198,8 +202,7 @@ public class GraficheModel extends ArticoloModel{
 			preparedStatement.setString(6, grafica.getCategoria());
 			
 			result = preparedStatement.executeUpdate();
-			//System.out.println(fumetto.getCategoria());
-			//connection.commit();	
+			
 				return result;
 			
 		} finally {
@@ -250,6 +253,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setQuantità(rs.getInt("quantità"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 

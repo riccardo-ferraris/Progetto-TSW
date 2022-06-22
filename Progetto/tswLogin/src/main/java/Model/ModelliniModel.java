@@ -40,6 +40,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				
 				return bean;
 			} else
@@ -84,6 +85,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -127,6 +129,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -170,6 +173,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 
@@ -208,8 +212,7 @@ public class ModelliniModel extends ArticoloModel{
 			preparedStatement.setString(8, modellino.getCategoria());
 			System.out.println(modellino.getCategoria());
 			result = preparedStatement.executeUpdate();
-			//System.out.println(fumetto.getCategoria());
-			//connection.commit();	
+				
 				return result;
 			
 		} finally {
@@ -264,6 +267,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
+				bean.setNumVendite(rs.getInt("numVendite"));
 				products.add(bean);
 			}
 

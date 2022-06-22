@@ -250,6 +250,7 @@ header {
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
     margin:4% 2%;
+    
 }
 
 .listProdHome ul {
@@ -731,4 +732,21 @@ header {
     appearance: none;
     border-radius: 0.25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.quickAggiungi {
+	border: 1px solid #2d3b55;
+	border-radius:0.5em;
+	background-color: #2d3b55;
+	color: white;
+	font-weight: bold;
+	width:70%;
+	padding:2% 3%;
+	font-size:90%;
+}
+
+.quickAggiungi:hover {
+	background-color: #2d3b88;
+	transition:0.3s;
+	cursor:pointer;
 }

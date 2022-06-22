@@ -245,12 +245,12 @@ header {
 }
 
 .listProdHome {
-    width: 18%;
+    width: 19%;
     vertical-align: top;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
-    margin:4% 2%;
-    
+    margin:4% 1%;
+    text-align:center;
 }
 
 .listProdHome ul {

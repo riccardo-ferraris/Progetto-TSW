@@ -28,7 +28,7 @@
     <title>Home</title>
 </head>
 
-<body>
+<body style="background-color:rgba(173, 216, 230, .7)";>
     <jsp:include page="header.jsp"/>
 
     <nav id="mainNav">	

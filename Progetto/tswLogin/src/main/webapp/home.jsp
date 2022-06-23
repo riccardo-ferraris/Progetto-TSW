@@ -28,7 +28,7 @@
     <title>Home</title>
 </head>
 
-<body>
+<body style="background-image: url('sfondo00006.gif')">
     <jsp:include page="header.jsp"/>
 
     <nav id="mainNav">	

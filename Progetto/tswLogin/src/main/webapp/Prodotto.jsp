@@ -8,6 +8,7 @@
     <%@page import="Model.ModelliniModel" %>
     <%@page import="Model.Articolo" %>
     <%@page import="Model.ArticoloModel" %>
+    <%@page import="Model.UserBean" %>
     <%@page import="java.util.List" %>
     <%@page import="java.util.LinkedList" %>
 <!DOCTYPE html>
@@ -21,6 +22,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <%
+UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+if(utente == null){
+	request.getSession().setAttribute("ruolo", "guest");
+	}
+
 
 String seriale = request.getParameter("id");
 char firstChar = seriale.charAt(0);
@@ -38,23 +44,16 @@ switch(firstDigit){
 		</head>
 		<body>
 			<jsp:include page="header.jsp"/>
-			
-		<nav id="mainNav">
-        	<ul id="menuList">
-            	<li><a href="./RedirectServlet?page=catalogo">CATALOGO</a></li>
-        	</ul>
-        	<ul id="menuList2">
-            	<li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                	<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-              	</svg></a></li>
-            	<li><input type="text" placeholder="Cerca" id="search" style="border-radius: 20px;"></li>
-            	<li><a href="/partnership">PARTNERSHIP</a></li>
-            	<li><a href="/utente">UTENTE</a></li>
-        	</ul>
-    	</nav>
+		<% 
+			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+				<jsp:include page="navbarUnlogged.jsp"/>
+			<%}else{ %>
+				<jsp:include page="navbarLogged.jsp"/>
+			<% } %>
 		
 		<div style="display:flex; width:100%; align-items:center">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
+			
 			<div class="imgProdotto">
 				<img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
 			</div>
@@ -85,20 +84,12 @@ switch(firstDigit){
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
-		
-		<nav id="mainNav">
-        	<ul id="menuList">
-            	<li><a href="./RedirectServlet?page=catalogo">CATALOGO</a></li>
-        	</ul>
-        	<ul id="menuList2">
-            	<li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                	<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-              	</svg></a></li>
-            	<li><input type="text" placeholder="Cerca" id="search" style="border-radius: 20px;"></li>
-            	<li><a href="/partnership">PARTNERSHIP</a></li>
-            	<li><a href="/utente">UTENTE</a></li>
-        	</ul>
-    	</nav>
+		<% 
+			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+				<jsp:include page="navbarUnlogged.jsp"/>
+			<%}else{ %>
+				<jsp:include page="navbarLogged.jsp"/>
+			<% } %>
 		
 		<div style="display:flex">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
@@ -132,20 +123,12 @@ switch(firstDigit){
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
-		
-		<nav id="mainNav">
-        	<ul id="menuList">
-            	<li><a href="./RedirectServlet?page=catalogo">CATALOGO</a></li>
-        	</ul>
-        	<ul id="menuList2">
-            	<li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                	<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-              	</svg></a></li>
-            	<li><input type="text" placeholder="Cerca" id="search" style="border-radius: 20px;"></li>
-            	<li><a href="/partnership">PARTNERSHIP</a></li>
-            	<li><a href="/utente">UTENTE</a></li>
-        	</ul>
-    	</nav>
+		<% 
+			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+				<jsp:include page="navbarUnlogged.jsp"/>
+			<%}else{ %>
+				<jsp:include page="navbarLogged.jsp"/>
+			<% } %>
     	
     	<div style="display:flex">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>

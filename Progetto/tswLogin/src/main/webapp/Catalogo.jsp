@@ -41,28 +41,17 @@
 </head>
 
 <body>
-
-	<jsp:include page="header.jsp"/>
-
-    <nav id="mainNav">
-        <ul id="menuList">
-            <li><a href="#fumetti">FUMETTI</a></li>
-            <li><a href="#grafiche">GRAFICHE</a></li>
-            <li><a href="#modellini">MODELLINI</a></li>
-        </ul>
-        <ul id="menuList2">
-            <li><a href="./carrello.jsp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-              </svg></a></li>
-            <li>
-            	<form method="get" action="./SearchServlet">
-            		<input type="text" placeholder="Cerca" id="search" name="keyWord" style="border-radius: 20px;">
-            	</form>
-            </li>
-            <li><a href="/partnership">PARTNERSHIP</a></li>
-            <li><a href="/utente">UTENTE</a></li>
-        </ul>
-    </nav>
+		<jsp:include page="header.jsp"/>
+		<% 
+			UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+			if(utente == null){
+			request.getSession().setAttribute("ruolo", "guest");
+			}
+			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+				<jsp:include page="navbarUnlogged.jsp"/>
+			<%}else{ %>
+				<jsp:include page="navbarLogged.jsp"/>
+			<% } %>
 
 	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
 	
@@ -72,14 +61,9 @@
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
 		
-		<% 
-		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-		if(utente == null){
-			request.getSession().setAttribute("ruolo", "guest");
-		}
-		if(request.getSession().getAttribute("ruolo").equals("admin"))
-		{
-			
+		<%
+			if(request.getSession().getAttribute("ruolo").equals("admin"))
+			{
 		%>
 		<div style="margin-left:60%; width:20%; max-width:300px; float:right">
 			<a href="./CatalogoAdmin.jsp">

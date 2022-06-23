@@ -29,7 +29,7 @@
     <title>Home</title>
 </head>
 
-<body style="background-color:rgba(173, 216, 230, .7);">
+<body style="background-image: url('sfondo00006.gif')">
     <jsp:include page="header.jsp"/>
 		<% 
 			UserBean utente = (UserBean) request.getSession().getAttribute("utente");

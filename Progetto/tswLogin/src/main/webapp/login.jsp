@@ -1,3 +1,4 @@
+<%@page import="Model.UserBean" %>
 <!DOCTYPE html>
 <html lang="it">
 
@@ -11,7 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <title>Login</title>
 </head>
-
+	<%
+	if(request.getSession().getAttribute("utente") == null){;
+		request.getSession().setAttribute("ruolo", "guest");
+	}
+	if(!request.getSession().getAttribute("ruolo").equals("guest"))
+	{
+		response.sendRedirect("home.jsp");
+		return;
+	} %>
 <body>
     <jsp:include page="header.jsp"/>
 	<jsp:include page="navbarUnlogged.jsp"/>

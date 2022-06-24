@@ -41,13 +41,12 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		UserModel model = new UserModel();
 		
-		//aggiungere un filter per i ruoli dell'utente
 		
 		try {
 			UserBean utente = model.doRetrieveByKey(username);
 			request.getSession().setAttribute("ruolo", utente.getRuolo());
 			if (utente == null || !utente.getPassword().trim().equals(password) ) {
-				request.getSession().setAttribute("utente", "Account non trovato");
+				request.getSession().setAttribute("utente", null);
 				response.setContentType("text/html");
 				response.sendRedirect("InvalidLogin.jsp");
 				
@@ -56,7 +55,6 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("utente", utente);
 				response.setContentType("text/html");
 				String page = request.getParameter("pageLogin");
-				System.out.println(page);
 				if(page.trim().equals("carrello.jsp")){
 					response.sendRedirect("./" + page);
 				}else {

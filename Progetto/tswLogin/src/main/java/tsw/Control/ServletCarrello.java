@@ -93,12 +93,12 @@ public class ServletCarrello extends HttpServlet {
 	    		
 	    		int quant = Integer.valueOf(request.getParameter("numAggiungi")); //La variabile quant prende il valore del parametro numAggiungi, che contiene la quantità del prodotto che l'utente ha inserito nel carrello
     			carrello.aggiungi(prodotto, quant); //Il prodotto viene aggiunto il carrello con la quantità specificata, tramite il metodo aggiungi()
-    			  
+    			System.out.println(page);
     			request.getSession().setAttribute("carrello", carrello); //Salva il carrello 
-    			if(page.equals("Catalogo.jsp")) {
-    				response.sendRedirect(page);
-    			}else {
+    			if(page.equals("Prodotto.jsp")) {
     				response.sendRedirect("Prodotto.jsp?id="+codice); //Torna alla pagina del prodotto
+    			}else {
+    				response.sendRedirect(page); //Torna alla pagina dalla quale viene invocata la servlet
     			}
     			return;
     			  
@@ -130,6 +130,7 @@ public class ServletCarrello extends HttpServlet {
 	    			if(page.equals("Prodotto.jsp")) { //In caso di errore, se la servlet è stata invocata dalla pagina del prodotto
 	    				response.sendRedirect(page+ "?id=" +codProd); //L'utente viene reindirizzato alla pagina del prodotto da cui ha invocato la servlet
 	    			}
+	    			System.out.println(page);
 	    			response.sendRedirect(page); //In caso di errore torniamo alla pagina da cui abbiamo invocato la servlet
     				return;
 	    }

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Pagina Prodotto Admin</title>
+</head>
+<body>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
     <%@page import="Model.FumettiBean" %>
     <%@page import="Model.FumettiModel" %> 
      <%@page import="Model.GraficheBean" %>
@@ -16,7 +25,6 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<meta charset="UTF-8">
 	<link rel="stylesheet" href="website.css">
     <link rel="shortcut icon" type="image/png" href="beep beep.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -200,7 +208,8 @@ switch(firstDigit){
   			</div>
   			<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>
   		</div>
-  		
         <jsp:include page="footer.jsp"/>
+</body>
+</html>
 </body>
 </html>

@@ -12,7 +12,15 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Register</title>
 </head>
-
+<%
+	if(request.getSession().getAttribute("utente") == null){;
+		request.getSession().setAttribute("ruolo", "guest");
+	}
+	if(!request.getSession().getAttribute("ruolo").equals("guest"))
+	{
+		response.sendRedirect("home.jsp");
+		return;
+	} %>
 <body>
 	
     <jsp:include page="header.jsp"/>

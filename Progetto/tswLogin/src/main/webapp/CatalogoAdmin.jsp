@@ -15,14 +15,16 @@
     <%@page import="tsw.Control.nuovoProdottoServlet" %>
 <!DOCTYPE html>
 <html>
-<%
-	UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-	if(utente == null || !utente.getRuolo().equals("admin"))
-	{
-		response.sendRedirect("Catalogo.jsp");	
-		return;
+<%String utente = String.valueOf(request.getSession().getAttribute("utente"));
+	if(utente == null){
+		request.getSession().setAttribute("utente", "guest");
 	}
-%>
+	if(!utente.equals("guest"))
+	{
+		//out.println(utente);
+		response.sendRedirect("home.jsp");
+		return;
+	} %>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

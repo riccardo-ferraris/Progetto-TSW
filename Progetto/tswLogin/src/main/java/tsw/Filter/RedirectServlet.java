@@ -31,12 +31,12 @@ public class RedirectServlet extends HttpServlet {
 		String ruoloUtente = (String) request.getSession().getAttribute("ruolo");
 		//System.out.println(ruoloUtente);
 		if(page.trim().equals("catalogo")){
-			if(ruoloUtente == null ||ruoloUtente.equals("admin")){
+			if(ruoloUtente == null || !ruoloUtente.equals("admin")){
 				//System.out.println("flag"); 
-				response.sendRedirect("CatalogoAdmin.jsp");
-			}else {
-				//System.out.println("err");
 				response.sendRedirect("Catalogo.jsp");
+			}else if(ruoloUtente.equals("admin")){
+				//System.out.println("err");
+				response.sendRedirect("CatalogoAdmin.jsp");
 			}
 			
 			return;

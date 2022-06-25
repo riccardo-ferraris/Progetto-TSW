@@ -15,14 +15,16 @@
     <%@page import="tsw.Control.nuovoProdottoServlet" %>
 <!DOCTYPE html>
 <html>
-<%String utente = String.valueOf(request.getSession().getAttribute("utente"));
+<%UserBean utente = (UserBean) request.getSession().getAttribute("utente");;
 	if(utente == null){
-		request.getSession().setAttribute("utente", "guest");
+		request.getSession().setAttribute("ruolo", "guest");
+		response.sendRedirect("Catalogo.jsp");
+		return;
 	}
-	if(!utente.equals("guest"))
+	if(!utente.getRuolo().equals("admin"))
 	{
 		//out.println(utente);
-		response.sendRedirect("home.jsp");
+		response.sendRedirect("Catalogo.jsp");
 		return;
 	} %>
 <meta charset="UTF-8">

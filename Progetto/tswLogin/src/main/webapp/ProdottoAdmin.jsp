@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Pagina Prodotto Admin</title>
-</head>
-<body>
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@page import="Model.FumettiBean" %>
+     <%@page import="Model.FumettiBean" %>
     <%@page import="Model.FumettiModel" %> 
      <%@page import="Model.GraficheBean" %>
     <%@page import="Model.GraficheModel" %>
@@ -20,8 +11,12 @@
     <%@page import="Model.UserBean" %>
     <%@page import="java.util.List" %>
     <%@page import="java.util.LinkedList" %>
+    
 <!DOCTYPE html>
 <html>
+
+
+   
 
 <head>
 	<meta charset="ISO-8859-1">
@@ -199,11 +194,11 @@ switch(firstDigit){
   			<div style="display:flex">
   				<p><strong>Nome Utente</strong></p>
   				<div class="star-wrapper" style="margin:0 5%">
-  					<a href="#" class="fas fa-star s1"></a>
-  					<a href="#" class="fas fa-star s2"></a>
-  					<a href="#" class="fas fa-star s3"></a>
-  					<a href="#" class="fas fa-star s4"></a>
-  					<a href="#" class="fas fa-star s5"></a>
+  					<a href="" class="fas fa-star s1"></a>
+  					<a href="" class="fas fa-star s2"></a>
+  					<a href="" class="fas fa-star s3"></a>
+  					<a href="" class="fas fa-star s4"></a>
+  					<a href="" class="fas fa-star s5"></a>
 				</div>
   			</div>
   			<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>

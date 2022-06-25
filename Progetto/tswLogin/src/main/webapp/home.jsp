@@ -32,6 +32,7 @@
 <body style="background-image: url('sfondo00006.gif')">
     <jsp:include page="header.jsp"/>
 		<% 
+		
 			UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 			if(utente == null){
 			request.getSession().setAttribute("ruolo", "guest");

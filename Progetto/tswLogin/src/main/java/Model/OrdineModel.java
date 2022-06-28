@@ -70,7 +70,7 @@ public class OrdineModel {
 								throw new IllegalArgumentException("Unexpected value: " );
 							}
 							
-							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"));
+							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"), rs.getDouble("prezzo"));
 							arrayProdotti.add(prodCarrello);
 						}
 					}

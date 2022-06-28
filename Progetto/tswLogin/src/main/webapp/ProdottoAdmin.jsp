@@ -27,12 +27,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <%
 UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+String seriale = request.getParameter("id");
 if(utente == null){
 	request.getSession().setAttribute("ruolo", "guest");
+	response.sendRedirect("Prodotto.jsp?id="+seriale);
+	return;
 	}
+if(!utente.getRuolo().equals("admin"))
+{
+	//out.println(utente);
+	response.sendRedirect("Prodotto.jsp?id="+seriale);
+	return;
+}
 
 
-String seriale = request.getParameter("id");
+
+
 char firstChar = seriale.charAt(0);
 int firstDigit = Integer.parseInt("" + firstChar);
 ArticoloModel articoloModel = null;
@@ -167,14 +177,17 @@ switch(firstDigit){
          %>
          <div class="aggiungiCarrello">
          	<label for="quantità"> Quantità: </label>
-         	<form action="./ServletCarrello?page=/Prodotto.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
+         	<form action="./ServletCarrello?page=ProdottoAdmin.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
          		<input type="number" value="1" min="1" name="numAggiungi" id="quantità"/>
          		<button type="submit" class="cartButton">
                 	Aggiungi al carrello
                 </button>
             </form>
          </div>
-       <% } %>
+       <% }else{%>
+    	<p>Prodotto non disponibile</p>   
+       <%}%>
+       }
        <div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        		<div style="display:flex">
        	    	<label for="exampleFormControlTextarea1">Lascia una recensione</label>

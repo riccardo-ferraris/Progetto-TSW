@@ -15,7 +15,6 @@
 <html>
 
 <head>
-	<meta charset="ISO-8859-1">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="website.css">
     <link rel="shortcut icon" type="image/png" href="beep beep.png">

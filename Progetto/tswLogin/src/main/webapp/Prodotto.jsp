@@ -8,6 +8,8 @@
     <%@page import="Model.ModelliniModel" %>
     <%@page import="Model.Articolo" %>
     <%@page import="Model.ArticoloModel" %>
+    <%@page import="Model.RecensioneModel" %>
+    <%@page import="Model.RecensioneBean" %>
     <%@page import="Model.UserBean" %>
     <%@page import="java.util.List" %>
     <%@page import="java.util.LinkedList" %>
@@ -164,42 +166,57 @@ switch(firstDigit){
          <div class="aggiungiCarrello">
          	<label for="quantità"> Quantità: </label>
          	<form action="./ServletCarrello?page=Prodotto.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
-         		<input type="number" value="1" min="1" name="numAggiungi" id="quantità"/>
+         		<input type="number" value="1" min="1" max="<%=articolo.getQuantità()%>" name="numAggiungi" id="quantità"/>
          		<button type="submit" class="cartButton">
                 	Aggiungi al carrello
                 </button>
             </form>
          </div>
        <% } %>
-       <div class="form-group" style="width:60%; margin:0 30% 5% 10%">
-       		<div style="display:flex">
-       	    	<label for="exampleFormControlTextarea1">Lascia una recensione</label>
-       			<div class="star-wrapper" style="margin:0 5%">
-  					<a href="#" class="fas fa-star s1"></a>
-  					<a href="#" class="fas fa-star s2"></a>
-  					<a href="#" class="fas fa-star s3"></a>
-  					<a href="#" class="fas fa-star s4"></a>
-  					<a href="#" class="fas fa-star s5"></a>
+       <hr>
+       	<form>
+       		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
+       			<div style="display:flex">
+       	    		<label style="font-size:110%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
+       				<div class="star-wrapper" style="margin:0 5%">
+  						<a href="#" class="fas fa-star s1"></a>
+  						<a href="#" class="fas fa-star s2"></a>
+  						<a href="#" class="fas fa-star s3"></a>
+  						<a href="#" class="fas fa-star s4"></a>
+  						<a href="#" class="fas fa-star s5"></a>
+					</div>
+					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
-				<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
-			</div>
-    		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  		</div>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  			</div>
+  		</form>
   		
-  		<div class="placeholderRev">
+  		<form>
+  			<label for="reviewsFilter">Filtra per:</label>
+  			<select>
+  				<option>1 stella</option>
+  				<option>2 stelle</option>
+  				<option>3 stelle</option>
+  				<option>4 stelle</option>
+  				<option>5 stelle</option>
+  			</select>
+  		</form>
+  		<div class="recensioniProdotto">
   			<div style="display:flex">
   				<p><strong>Nome Utente</strong></p>
   				<div class="star-wrapper" style="margin:0 5%">
-  					<a href="#" class="fas fa-star s1"></a>
-  					<a href="#" class="fas fa-star s2"></a>
-  					<a href="#" class="fas fa-star s3"></a>
-  					<a href="#" class="fas fa-star s4"></a>
-  					<a href="#" class="fas fa-star s5"></a>
+  					<p class="fas fa-star s1"></p>
+  					<p class="fas fa-star s2"></p>
+  					<p class="fas fa-star s3"></p>
+  					<p class="fas fa-star s4"></p>
+  					<p class="fas fa-star s5"></p>
 				</div>
   			</div>
   			<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>
   		</div>
-  		
+  		<p><%RecensioneModel mod = new RecensioneModel();
+  		out.println(mod.doRetrieveBySerialeAndPunteggio(300000000000013L, 5).toString()); //bisogna filtrare le recensioni con ajax in base al punteggio
+  		%></p>
         <jsp:include page="footer.jsp"/>
 </body>
 </html>

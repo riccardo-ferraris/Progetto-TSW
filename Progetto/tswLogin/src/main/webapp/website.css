@@ -767,6 +767,15 @@ header {
   position: relative;
   direction: rtl;
 }
+
+.star-wrapper p {
+  font-size: 1em;
+  color: #c0c0c0;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin: 4px;
+}
+
 .star-wrapper a {
   font-size: 1em;
   color: #c0c0c0;
@@ -794,7 +803,7 @@ header {
   color: gold;
 }
 
-.placeholderRev {
+.recensioniProdotto {
   width:60%;
   margin:5% 30% 5% 10%;
   padding:1%;

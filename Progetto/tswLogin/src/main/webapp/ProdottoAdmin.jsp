@@ -178,7 +178,7 @@ switch(firstDigit){
          <div class="aggiungiCarrello">
          	<label for="quantità"> Quantità: </label>
          	<form action="./ServletCarrello?page=ProdottoAdmin.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
-         		<input type="number" value="1" min="1" name="numAggiungi" id="quantità"/>
+         		<input type="number" value="1" min="1" max="<%=articolo.getQuantità()%>" name="numAggiungi" id="quantità"/>
          		<button type="submit" class="cartButton">
                 	Aggiungi al carrello
                 </button>

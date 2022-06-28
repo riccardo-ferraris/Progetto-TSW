@@ -68,7 +68,7 @@
 						<div>	
 							<label for="quantità">Quantità:</label>
 							<form action="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
-								<input type="number" name="numModifica" id="quantità" min="1" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
+								<input type="number" name="numModifica" id="quantità" min="1" max="<%=prodottoCarrello.getQuantità()%>" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
 							</form>
 							
 							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantità(); %>

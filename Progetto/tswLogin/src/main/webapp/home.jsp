@@ -142,21 +142,21 @@
 								seriale = articolo.getSeriale();
 								%>
 								<div class = "listProdHome" >
-								<ul style="list-style-type:none; display:inline-block;">
-								<a href="Prodotto.jsp?id=<%=seriale%>">
-								<div class="prodottoHome">
-								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-								<br>
-								<%=articolo.getNome()%>
-								<br>
-								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-								</div></a>
-								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+									<ul style="list-style-type:none; display:inline-block;">
+									<a href="Prodotto.jsp?id=<%=seriale%>">
+									<div class="prodottoHome">
+										<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+										<br>
+										<%=articolo.getNome()%>
+										<br>
+										<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+									</div></a>
+									<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
-								</form>
-								</ul>
+									</form>
+									</ul>
 								</div>
 								<% } %>
             </div>

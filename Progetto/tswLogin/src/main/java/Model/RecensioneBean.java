@@ -49,6 +49,18 @@ public class RecensioneBean {
 	public void setPunteggio(int punteggio) {
 		this.punteggio = punteggio;
 	}
+
+	@Override
+	public String toString() {
+		return "RecensioneBean [username=" + username + ", testo=" + testo + ", seriale=" + seriale + ", punteggio="
+				+ punteggio + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return ((RecensioneBean)obj).username.equals(username) && ((RecensioneBean)obj).seriale == seriale;
+	}
+	
 	
 	
 }

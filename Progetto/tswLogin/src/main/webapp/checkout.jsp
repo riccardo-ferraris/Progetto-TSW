@@ -36,6 +36,7 @@
 	<jsp:include page="header.jsp"/>
 
 <div class="container">
+<form action="./FinalizzaAcquistoServlet" id="formAcquisto" class="needs-validation" novalidate="">
     <div class="py-5 text-center">
         <h2>Checkout</h2>
     </div>
@@ -114,7 +115,7 @@
          </div>
          <hr class="mb-4">
          <h4 class="mb-3">Indirizzo di spedizione</h4>
-         <form action="./FinalizzaAcquistoServlet" id="formAcquisto" class="needs-validation" novalidate="">
+         
          	<div class="row">
             	<div class="col-md-6 mb-3">
                 	<label for="firstName">Nome</label>

@@ -29,7 +29,7 @@
     <title>Home</title>
 </head>
 
-<body style="background-image: url('sfondo00006.gif')">
+<body>
     <jsp:include page="header.jsp"/>
 		<% 
 		

@@ -1,7 +1,25 @@
 body {
     margin: 0%;
     font-family: 'Rubik', sans-serif;
+    background-image: url('sfondo00006.gif')
 }
+
+
+
+body::-webkit-scrollbar {
+  width: 1em;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #F1F1F1;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #2d3b55;    /* color of the scroll thumb */
+  border: 0.1em solid #1066A8;
+}
+
+
 
 .loginForm {
     width: 500px;

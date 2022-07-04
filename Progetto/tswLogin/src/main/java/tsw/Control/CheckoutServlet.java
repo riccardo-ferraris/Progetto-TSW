@@ -62,8 +62,7 @@ public class CheckoutServlet extends HttpServlet {
 		double totale = (double) request.getSession().getAttribute("totale");
 		LocalDateTime dataTemp = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Date dataFinal = Date.valueOf(dataTemp.format(formatter)); 
-		OrdineModel model = new OrdineModel();
+		Date dataFinal = Date.valueOf(dataTemp.format(formatter));
 		//System.out.println(dataFinal);
 		
 		Carrello prodOrdine = (Carrello) request.getSession().getAttribute("carrello");

@@ -202,45 +202,46 @@ public class OrdineModel {
 			String catProd = new String();
 			for (ProdottoInCarrello prod : prodottiOrdine) {
 				catProd = prod.getProdotto().getMacroCategoria();
-				sql = "insert into prodottiordine (codiceordine, seriale" + catProd + ") values(?, ?);";
+				sql = "insert into prodottiordine (codiceordine, seriale" + catProd + ", quantità, prezzo) values(?, ?, ?, ?);";
 				preparedStatement = connection.prepareStatement(sql);
 				
 				preparedStatement.setString(1, codice);
-				System.out.println(codice);
 				preparedStatement.setLong(2, prod.getProdotto().getSeriale());
+				preparedStatement.setInt(3, prod.getQuantità());
+				preparedStatement.setDouble(4, prod.getPrezzo());
 				
-				result = preparedStatement.executeUpdate();
-				
-				sql = "insert into indirizzospedizione (codice, utente, indirizzo, stato, città, CAP, nome, cognome)"
-						+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
-				
-				preparedStatement = connection.prepareStatement(sql);
-				
-				preparedStatement.setString(1, ordine.getCodice());
-				preparedStatement.setString(2, ordine.getUtente());
-				preparedStatement.setString(3, ordine.getIndirizzoS());
-				preparedStatement.setString(4, ordine.getStatoS());
-				preparedStatement.setString(5, ordine.getCityS());
-				preparedStatement.setLong(6, ordine.getCapS());
-				preparedStatement.setString(7, ordine.getNomeS());
-				preparedStatement.setString(8, ordine.getCognomeS());
-				result = preparedStatement.executeUpdate();
-				
-				sql = "insert into indirizzofatturazione (codice, utente, indirizzo, stato, città, CAP, nome, cognome)"
-						+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
-				
-				preparedStatement = connection.prepareStatement(sql);
-				
-				preparedStatement.setString(1, ordine.getCodice());
-				preparedStatement.setString(2, ordine.getUtente());
-				preparedStatement.setString(3, ordine.getIndirizzoF());
-				preparedStatement.setString(4, ordine.getStatoF());
-				preparedStatement.setString(5, ordine.getCityF());
-				preparedStatement.setLong(6, ordine.getCapF());
-				preparedStatement.setString(7, ordine.getNomeF());
-				preparedStatement.setString(8, ordine.getCognomeF());
 				result = preparedStatement.executeUpdate();
 			}
+				
+			sql = "insert into indirizzospedizione (ordine, utente, indirizzo, stato, città, CAP, nome, cognome)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+			
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, ordine.getCodice());
+			preparedStatement.setString(2, ordine.getUtente());
+			preparedStatement.setString(3, ordine.getIndirizzoS());
+			preparedStatement.setString(4, ordine.getStatoS());
+			preparedStatement.setString(5, ordine.getCityS());
+			preparedStatement.setLong(6, ordine.getCapS());
+			preparedStatement.setString(7, ordine.getNomeS());
+			preparedStatement.setString(8, ordine.getCognomeS());
+			result = preparedStatement.executeUpdate();
+			
+			sql = "insert into indirizzofatturazione (ordine, utente, indirizzo, stato, città, CAP, nome, cognome)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+			
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, ordine.getCodice());
+			preparedStatement.setString(2, ordine.getUtente());
+			preparedStatement.setString(3, ordine.getIndirizzoF());
+			preparedStatement.setString(4, ordine.getStatoF());
+			preparedStatement.setString(5, ordine.getCityF());
+			preparedStatement.setLong(6, ordine.getCapF());
+			preparedStatement.setString(7, ordine.getNomeF());
+			preparedStatement.setString(8, ordine.getCognomeF());
+			result = preparedStatement.executeUpdate();
 			
 				return result;
 			

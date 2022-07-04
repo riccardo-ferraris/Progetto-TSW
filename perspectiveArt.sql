@@ -107,6 +107,7 @@ CREATE TABLE `indirizzofatturazione` (
 
 LOCK TABLES `indirizzofatturazione` WRITE;
 /*!40000 ALTER TABLE `indirizzofatturazione` DISABLE KEYS */;
+INSERT INTO `indirizzofatturazione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo');
 /*!40000 ALTER TABLE `indirizzofatturazione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,6 +138,7 @@ CREATE TABLE `indirizzospedizione` (
 
 LOCK TABLES `indirizzospedizione` WRITE;
 /*!40000 ALTER TABLE `indirizzospedizione` DISABLE KEYS */;
+INSERT INTO `indirizzospedizione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo');
 /*!40000 ALTER TABLE `indirizzospedizione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +197,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','nicola1',38.2,'2022-05-28');
+INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','nicola1',38.2,'2022-05-28'),('AA00000002','lenny97',36,'2022-07-04'),('AA00000003','lenny97',36,'2022-07-04'),('AA00000004','francesco1',36,'2022-07-04');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +221,7 @@ CREATE TABLE `prodottiordine` (
   KEY `serialeGrafiche_idx` (`serialeGrafiche`),
   KEY `serialeModellini_idx` (`serialeModellini`),
   CONSTRAINT `prodottiordine_chk_1` CHECK (((((case when (`serialeFumetti` is null) then 0 else 1 end) + (case when (`serialeGrafiche` is null) then 0 else 1 end)) + (case when (`serialeModellini` is null) then 0 else 1 end)) = 1))
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +230,7 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1,5),(8,'AA00000001','100000000000016',NULL,NULL,1,3.76),(9,'AA00000001','100000000000018',NULL,NULL,1,8.54);
+INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1,5),(8,'AA00000001','100000000000016',NULL,NULL,1,3.76),(9,'AA00000001','100000000000018',NULL,NULL,1,8.54),(14,'AA00000002',NULL,NULL,'300000000000012',1,0),(15,'AA00000002',NULL,NULL,'300000000000014',1,0),(16,'AA00000003',NULL,NULL,'300000000000014',1,0),(17,'AA00000003',NULL,NULL,'300000000000012',1,0),(18,'AA00000003',NULL,NULL,'300000000000017',1,0),(19,'AA00000004',NULL,NULL,'300000000000017',1,0),(20,'AA00000004',NULL,NULL,'300000000000014',1,0),(21,'AA00000004',NULL,NULL,'300000000000012',1,0);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-04 10:43:08
+-- Dump completed on 2022-07-04 14:37:22

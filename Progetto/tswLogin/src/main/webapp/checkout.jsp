@@ -36,7 +36,7 @@
 	<jsp:include page="header.jsp"/>
 
 <div class="container">
-<form action="./FinalizzaAcquistoServlet" id="formAcquisto" class="needs-validation" novalidate="">
+<form action="./FinalizzaAcquistoServlet" id="formAcquisto" class="needs-validation" novalidate="" method="post">
     <div class="py-5 text-center">
         <h2>Checkout</h2>
     </div>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                 	<label for="lastName">Cognome</label>
-                	<input type="text" class="form-control" id="lastNameS" name="nomeS" placeholder="" value="" required="">
+                	<input type="text" class="form-control" id="lastNameS" name="cognomeS" placeholder="" value="" required="">
                     <div class="invalid-feedback">Inserisci un cognome valido.</div>
                </div>
             </div>
@@ -219,7 +219,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                 	<label for="lastName">Cognome</label>
-                	<input type="text" class="form-control" id="lastNameF" name="nomeF" placeholder="" value="" required="">
+                	<input type="text" class="form-control" id="lastNameF" name="cognomeF" placeholder="" value="" required="">
                     <div class="invalid-feedback">Inserisci un cognome valido.</div>
                </div>
             </div>

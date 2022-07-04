@@ -213,6 +213,7 @@ CREATE TABLE `prodottiordine` (
   `serialeGrafiche` varchar(15) DEFAULT NULL,
   `serialeModellini` varchar(15) DEFAULT NULL,
   `quantità` int NOT NULL,
+  `prezzo` double NOT NULL,
   PRIMARY KEY (`id`,`codiceordine`),
   KEY `serialeFumetti_idx` (`serialeFumetti`),
   KEY `serialeGrafiche_idx` (`serialeGrafiche`),
@@ -227,8 +228,44 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1),(8,'AA00000001','100000000000016',NULL,NULL,1),(9,'AA00000001','100000000000018',NULL,NULL,1);
+INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1,5),(8,'AA00000001','100000000000016',NULL,NULL,1,3.76),(9,'AA00000001','100000000000018',NULL,NULL,1,8.54);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `recensione`
+--
+
+DROP TABLE IF EXISTS `recensione`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `recensione` (
+  `idrecensione` int NOT NULL AUTO_INCREMENT,
+  `punteggio` int NOT NULL,
+  `testo` varchar(5000) NOT NULL,
+  `serialeFumetti` varchar(15) DEFAULT NULL,
+  `serialeGrafiche` varchar(15) DEFAULT NULL,
+  `serialeModellini` varchar(15) DEFAULT NULL,
+  `usernameUtente` varchar(15) NOT NULL,
+  PRIMARY KEY (`idrecensione`,`usernameUtente`),
+  KEY `serialeFumetti_idx` (`serialeFumetti`),
+  KEY `serialeGrafiche_idx` (`serialeGrafiche`),
+  KEY `serialeModellini_idx` (`serialeModellini`),
+  KEY `usernameUtente_idx` (`usernameUtente`),
+  KEY `usernameUser_idx` (`usernameUtente`),
+  CONSTRAINT `usernameUser` FOREIGN KEY (`usernameUtente`) REFERENCES `utente` (`username`),
+  CONSTRAINT `recensione_chk_1` CHECK (((((case when (`serialeFumetti` is null) then 0 else 1 end) + (case when (`serialeGrafiche` is null) then 0 else 1 end)) + (case when (`serialeModellini` is null) then 0 else 1 end)) = 1))
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recensione`
+--
+
+LOCK TABLES `recensione` WRITE;
+/*!40000 ALTER TABLE `recensione` DISABLE KEYS */;
+INSERT INTO `recensione` VALUES (10,3,'ddddddddddddddddddddddddddd',NULL,NULL,'300000000000013','nicola1'),(11,5,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','100000000000004',NULL,NULL,'nicola1'),(12,2,'bvbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',NULL,'200000000000008',NULL,'lenny97'),(13,5,'dddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',NULL,NULL,'300000000000013','marisuzc'),(14,4,'cvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',NULL,NULL,'300000000000013','mr234'),(15,2,'bbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',NULL,NULL,'300000000000013','rickyfer2');
+/*!40000 ALTER TABLE `recensione` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -268,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 18:06:53
+-- Dump completed on 2022-07-04 10:43:08

@@ -38,7 +38,7 @@
             	</form>
             </li>
             <li><a href="/partnership">PARTNERSHIP</a></li>
-            <li><a href="/utente">UTENTE</a></li>
+            <li><a href="./paginaUtente.jsp">UTENTE</a></li>
         </ul>
     </nav>
 </body>

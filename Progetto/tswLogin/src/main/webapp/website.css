@@ -285,8 +285,6 @@ header {
     color: #2d3b55;
 }
 
-
-
 .prodotto {
     display: inline-block;
     text-align: center;
@@ -297,8 +295,6 @@ header {
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
     vertical-align: top;
-    
-    
 }
 
 .prodotto a{
@@ -308,8 +304,7 @@ header {
 .prodotto:hover {
     background-color: #f6f3f3;
     transition: 0.5s;
-    text-decoration:none;	
-    
+    text-decoration:none;    
 }
 
 .prodotto a:hover {

@@ -596,6 +596,7 @@ header {
 
 .imgProdotto {
 	 width:35%; 
+	 display:flex;
 }
 
 .caratteristicheProd {
@@ -606,6 +607,7 @@ header {
 
 .caratteristicheProd div {
 	margin:1%;
+	display:flex;
 }
 
 .aggiungiCarrello {

@@ -295,6 +295,7 @@ header {
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
     vertical-align: top;
+    color:#2d3b55;
 }
 
 .prodotto a{
@@ -330,7 +331,7 @@ header {
     text-align: center;
     border-bottom: 1px solid black;
     font-weight: bold;
-    font-size: 150%;
+    font-size: 200%;
 }
 
 .form-popup {
@@ -821,4 +822,16 @@ header {
 
 .datiPersonali p {
 	font-size: 1em;
+}
+
+.deleteProd {
+	background-color:unset;
+	border:1px solid #2d3b55;
+	border-radius:50%;
+}
+
+.deleteProd:hover {
+	color:white;
+	background-color:#2d3b55;
+	transition:0.3s;
 }

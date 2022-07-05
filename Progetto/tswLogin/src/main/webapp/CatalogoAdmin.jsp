@@ -226,13 +226,12 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>
 	<div class = "listProd">
-	
 		<ul style="list-style-type:none;">
 		<% for(FumettiBean fumetto : arrayManga){ 
 			String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", "");
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>">
-			<div class="prodotto">
+		<div class="prodotto">
 			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
@@ -244,12 +243,14 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
-			<div class="aggiungiCarrelloProd">
-				<button class="piu" style="color:white">Aggiungi al carrello</button>
-			</div>
-		</form>
-			</div>
+				<div class="aggiungiCarrelloProd">
+					<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">				
+						<button class="piu" style="color:white">Aggiungi al carrello</button>
+					</form>
+				</div>
+				<br>
+			<button class="deleteProd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></button>
+		</div>
 			<% } %>
 		</ul>
 	</div>

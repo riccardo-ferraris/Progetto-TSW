@@ -177,21 +177,20 @@ switch(firstDigit){
        	<form>
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        			<div style="display:flex">
-       	    		<label style="font-size:110%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
-       				<div class="star-wrapper" style="margin:0 5%">
-  						<a href="#" class="fas fa-star s1"></a>
-  						<a href="#" class="fas fa-star s2"></a>
-  						<a href="#" class="fas fa-star s3"></a>
-  						<a href="#" class="fas fa-star s4"></a>
-  						<a href="#" class="fas fa-star s5"></a>
+       	    		<label style="font-size:110%; padding-top:1%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
+       				<div class="star_rating" style="margin:0 5%">
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
 					</div>
-					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
     			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   			</div>
   		</form>
   		
-  		<form>
+  		<form style="margin-left:5%">
   			<label for="reviewsFilter">Filtra per:</label>
   			<select>
   				<option>1 stella</option>
@@ -203,13 +202,13 @@ switch(firstDigit){
   		</form>
   		<div class="recensioniProdotto">
   			<div style="display:flex">
-  				<p><strong>Nome Utente</strong></p>
-  				<div class="star-wrapper" style="margin:0 5%">
-  					<p class="fas fa-star s1"></p>
-  					<p class="fas fa-star s2"></p>
-  					<p class="fas fa-star s3"></p>
-  					<p class="fas fa-star s4"></p>
-  					<p class="fas fa-star s5"></p>
+  				<p style="padding-top:1%"><strong>Nome Utente</strong></p>
+  				<div class="star_rating" style="margin:0 5%">
+  					<button class="star">&#9734;</button>
+  					<button class="star">&#9734;</button>
+  					<button class="star">&#9734;</button>
+  					<button class="star">&#9734;</button>
+  					<button class="star">&#9734;</button>
 				</div>
   			</div>
   			<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>
@@ -218,5 +217,23 @@ switch(firstDigit){
   		out.println(mod.doRetrieveBySerialeAndPunteggio(300000000000013L, 5).toString()); //bisogna filtrare le recensioni con ajax in base al punteggio
   		%></p>
         <jsp:include page="footer.jsp"/>
+        
+        
+        <script>
+        const allStars = document.querySelectorAll('.star');
+
+        allStars.forEach((star, i) =>{
+            star.onclick = function(){
+                let current_star_level = i+1;
+                allStars.forEach((star, j) => {
+                    if(current_star_level >= j+1){
+                        star.innerHTML = '&#9733';
+                    }else {
+                        star.innerHTML = '&#9734';
+                    }
+                })
+            }
+        })
+        </script>
 </body>
 </html>

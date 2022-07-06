@@ -180,13 +180,13 @@ switch(firstDigit){
        	<form>
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        			<div style="display:flex">
-       	    		<label style="font-size:110%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
-       				<div class="star-wrapper" style="margin:0 5%">
-  						<a href="#" class="fas fa-star s1"></a>
-  						<a href="#" class="fas fa-star s2"></a>
-  						<a href="#" class="fas fa-star s3"></a>
-  						<a href="#" class="fas fa-star s4"></a>
-  						<a href="#" class="fas fa-star s5"></a>
+       	    		<label style="font-size:110%; padding-top:1%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
+       				<div class="star_rating" style="margin:0 5%">
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
 					</div>
 					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
@@ -194,7 +194,7 @@ switch(firstDigit){
   			</div>
   		</form>
   		
-  		<form id="formRetrieveRecensioni" method="get">
+  		<form id="formRetrieveRecensioni" >
   			<label for="reviewsFilter">Filtra per:</label>
   			<select name="punteggioSelected" id="selectPunteggio">
   				<option value="1">1 stella</option>
@@ -206,21 +206,8 @@ switch(firstDigit){
   			</select>
   		</form>
   		
-  		<div id="recensioniContainer">
-  			<div class="recensioniProdotto">
-  				<div style="display:flex">
-  					<p><strong>Nome Utente</strong></p>
-  					<div class="star-wrapper" style="margin:0 5%">
-  						<p class="fas fa-star s1"></p>
-  						<p class="fas fa-star s2"></p>
-  						<p class="fas fa-star s3"></p>
-  						<p class="fas fa-star s4"></p>
-  						<p class="fas fa-star s5"></p>
-					</div>
-  				</div>
-  				<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>
-  			</div>
-  		</div>      
+  		<div id="recensioniContainer"></div>
+  		      
         <jsp:include page="footer.jsp"/>
         
         <script>
@@ -271,7 +258,8 @@ switch(firstDigit){
         	for(var i = 0, k = prodJson.length; i < k; i++){
         		  var recensione = $(document.createElement('div')),
         		  	  header = $(document.createElement('div')),
-        		      nomeUtente = $(document.createElement('p')),
+        		  	  nomeUtenteContainer = $(document.createElement('p')),
+        		 	  nomeUtente = $(document.createElement('strong')),
         		      valutazione = $(document.createElement('div')),
         		      s1 = $(document.createElement('p')),
         		      s2 = $(document.createElement('p')),
@@ -280,32 +268,55 @@ switch(firstDigit){
         		      s5 = $(document.createElement('p')),
         		      testo = $(document.createElement('p'));
 
-        		  // add id to event wrapper, if undefined generate random ID to avoid conflicts
-        		  recensione.attr('id', 'recensione_' || Math.floor(Math.random()*100));
-        		  header.attr('class', 'recensioniProdotto');
-        		  s1.attr('class', 'fas fa-star s1');
-        		  s2.attr('class', 'fas fa-star s2');
-        		  s3.attr('class', 'fas fa-star s3');
-        		  s4.attr('class', 'fas fa-star s4');
-        		  s5.attr('class', 'fas fa-star s5');
+        		  // add id to event wrapper, if undefined generate random ID to avoid conflicts 
+        		  recensione.attr('class', 'recensioniProdotto');
+        		  header.attr('class', 'headerRecensione');
+        		  valutazione.attr('class', 'star_ratingP');
+        		  s1.attr('class', 'starP');
+        		  s2.attr('class', 'starP');
+        		  s3.attr('class', 'starP');
+        		  s4.attr('class', 'starP');
+        		  s5.attr('class', 'starP');
 
         		  // add each item, if undefined then insert empty text
         		  header.appendTo(recensione);
-        		  nomeUtente.text(jsonData[i].username || "").appendTo(header);
+        		  nomeUtenteContainer.appendTo(header);
+        		  nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
         		  valutazione.appendTo(header);
-        		  s1.appendTo(valutazione);
-        		  s2.appendTo(valutazione);
-        		  s3.appendTo(valutazione);
-        		  s4.appendTo(valutazione);
-        		  s5.appendTo(valutazione);
-        		  testo.text(jsonData[i].testo || "").appendTo(header);
-				  	
+        		  s1.text("").appendTo(valutazione);
+        		  s2.text("").appendTo(valutazione);
+        		  s3.text("").appendTo(valutazione);
+        		  s4.text("").appendTo(valutazione);
+        		  s5.text("").appendTo(valutazione);
+        		  
+        		  testo.text(jsonData[i].testo || "").appendTo(recensione);
+        		  	
         		  // append & appendTo do exactly the same thing, markup preference
         		  container.append(recensione);
-        		}
+        		  var el = document.querySelectorAll(".starP"); 
+        		  for(var j = 0; j < el.length; j++){
+        			  el[j].innerHTML='&#9733';    // Change the content
+        		  }
+        	}
         }
         
+        
+        const allStars = document.querySelectorAll('.star');
+
+        allStars.forEach((star, i) =>{
+            star.onclick = function(){
+                let current_star_level = i+1;
+                allStars.forEach((star, j) => {
+                    if(current_star_level >= j+1){
+                        star.innerHTML = '&#9733';
+                    }else {
+                        star.innerHTML = '&#9734';
+                    }
+                })
+            }
+        })
         </script>
+       
         
 </body>
 </html>

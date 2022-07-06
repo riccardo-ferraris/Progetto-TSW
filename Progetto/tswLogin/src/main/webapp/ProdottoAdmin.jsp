@@ -70,19 +70,34 @@ switch(firstDigit){
 			
 			<div class="imgProdotto">
 				<img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
+				<div>
+					<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+				</div>
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
 					<p> <%out.println(articolo.getNome());%> </p>
+					<div>
+						<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+					</div>
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
+					<div>
+						<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+					</div>
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
+					<div>
+						<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+					</div>
 				</div>
 				<div style="font-size:1em">
 					<p> <%out.println(articolo.getDescrizione());%> </p>
+					<div>
+						<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+					</div>
 				</div>
 			</div>	
 		</div>	
@@ -191,13 +206,13 @@ switch(firstDigit){
        <div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        		<div style="display:flex">
        	    	<label for="exampleFormControlTextarea1">Lascia una recensione</label>
-       			<div class="star-wrapper" style="margin:0 5%">
-  					<a href="#" class="fas fa-star s1"></a>
-  					<a href="#" class="fas fa-star s2"></a>
-  					<a href="#" class="fas fa-star s3"></a>
-  					<a href="#" class="fas fa-star s4"></a>
-  					<a href="#" class="fas fa-star s5"></a>
-				</div>
+       			<div class="star_rating" style="margin:0 5%">
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+					</div>
 				<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 			</div>
     		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -206,13 +221,13 @@ switch(firstDigit){
   		<div class="placeholderRev">
   			<div style="display:flex">
   				<p><strong>Nome Utente</strong></p>
-  				<div class="star-wrapper" style="margin:0 5%">
-  					<a href="" class="fas fa-star s1"></a>
-  					<a href="" class="fas fa-star s2"></a>
-  					<a href="" class="fas fa-star s3"></a>
-  					<a href="" class="fas fa-star s4"></a>
-  					<a href="" class="fas fa-star s5"></a>
-				</div>
+  				<div class="star_rating" style="margin:0 5%">
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+  						<button class="star">&#9734;</button>
+					</div>
   			</div>
   			<p>Recensione ahàflkjawjejhkjnsg,amnlsakjljflkenm,ab,fjsldkaksjdlkasnf,baskfjakJBF,</p>
   		</div>

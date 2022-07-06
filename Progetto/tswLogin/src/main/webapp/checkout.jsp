@@ -68,9 +68,9 @@
 				 }
 				%>
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                    	<div>
-                    		<img src="./gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:15%>
+                    <div style="display:flex">
+                    	<div style="width:20%">
+                    		<img src="./gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:60%>
                         </div>
                         <div>	
                         	<h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>
@@ -155,7 +155,7 @@
                             <option>Torino</option>
                             <option>Bologna</option>
                         </select>
-                        <div class="invalid-feedback">Seleziona una città  valida</div>
+                        <div class="invalid-feedback">Seleziona una città valida</div>
                 </div>
                 <div class="col-md-3 mb-3">
                 	<label for="zip">CAP</label>

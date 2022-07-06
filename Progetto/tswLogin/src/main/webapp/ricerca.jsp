@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<title>Insert title here</title>
+<title>Ricerca prodotto</title>
 </head>
 <body>
 	<%
@@ -34,8 +34,8 @@
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
     
-            <h3>Risultati ricerca: "<%=keyWord%>"</h3>
-            <div class="listProd">
+            <h3 style="margin:3% 0 0 3%">Risultati ricerca: "<%=keyWord%>"</h3>
+            <div class="listProd" style="display:flex; flex-wrap:wrap">
             	<%
             		String folder = new String();
             		String nomeImmagine = new String();
@@ -46,7 +46,7 @@
 						seriale = articolo.getSeriale();
 						folder = articolo.getMacroCategoria();	
 						%>
-            			<div class = "listProdHome">
+            			<div class = "listProdHome" style="margin:4% 1%; width:18%">
 							<ul style="list-style-type:none;">
 							
 							<a href="Prodotto.jsp?id=<%=seriale%>">

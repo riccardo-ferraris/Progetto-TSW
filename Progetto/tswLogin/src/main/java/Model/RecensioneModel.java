@@ -105,7 +105,7 @@ public class RecensioneModel {
 		Collection<RecensioneBean> recensioniProdotto = new LinkedList<RecensioneBean>(doRetrieveAllBySeriale(seriale, categoria));
 		
 		for(RecensioneBean tempRec : recensioniUser) {	
-			System.out.println(tempRec.toString());
+			//System.out.println(tempRec.toString());
 			if(recensioniProdotto.contains(tempRec)) {
 				recensione = tempRec;
 				
@@ -115,7 +115,7 @@ public class RecensioneModel {
 		return recensione;
 	}
 
-	public synchronized Collection<RecensioneBean> doRetrieveBySerialeAndPunteggio(long seriale, int punteggio) throws SQLException, ClassNotFoundException{
+	public synchronized Collection<RecensioneBean> doRetrieveBySerialeAndPunteggio(long seriale, int punteggio, String categoria) throws SQLException, ClassNotFoundException{
 		Collection<RecensioneBean> recensioniProdotto = new LinkedList<RecensioneBean>();
 		
 		Connection connection = null;
@@ -125,11 +125,12 @@ public class RecensioneModel {
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from recensione where punteggio = ?;";
+			String sql = "select * from recensione where punteggio = ? AND seriale" + categoria + " = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setInt(1, punteggio);
+			preparedStatement.setLong(2, seriale);
 
 			rs = preparedStatement.executeQuery();
 			

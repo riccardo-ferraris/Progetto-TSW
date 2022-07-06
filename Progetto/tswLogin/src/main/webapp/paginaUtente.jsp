@@ -50,6 +50,33 @@
 			</div>
 			<div>
 				<h1><strong>Ordini</strong></h1><hr>
+				<div class="orderArea">
+					<div class="imgArea">
+						<img src="#" alt="immagine">
+					</div>
+					<div class="infoArea">
+						<div class="firstLine">
+							<div class="nameArea">
+								<p>Nome prodotto</p>
+							</div>
+							<div class="priceArea">
+								<p>Prezzo</p>
+							</div>
+						</div>
+						
+						<div class="secondLine">
+							<div class="dateArea">
+								<p>Data ordine</p>
+							</div>
+							
+							<div class="checkArea">
+								<p>Scarica fattura</p>
+							</div>
+						</div>
+					</div>
+				
+				
+				</div>
 			</div>
 		</div>
 			

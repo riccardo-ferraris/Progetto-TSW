@@ -56,9 +56,13 @@
 							<%=articolo.getNome()%>
 							<br>
 							<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</div></a>
-							
+							</a>
+							<div class="aggiungiCarrelloProd">
+								<button class="piu" style="color:white">Aggiungi al carrello</button>
+							</div>
+							</div>					
 							</ul>
+							
 						</div>
             		<% } %>    
          </div>

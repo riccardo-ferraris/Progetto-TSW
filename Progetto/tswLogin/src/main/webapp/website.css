@@ -246,15 +246,30 @@ header {
 }
 
 .mainProduct {
-    border-bottom: #222 1px solid;
-    border-top: #222 1px solid;
+/*    border-bottom: #222 1px solid;
+    border-top: #222 1px solid;*/
     display:flex;
+    border:2px solid #2d3b55;
+	/*-webkit-box-shadow: 5px 5px 15px 5px #016170, -9px 5px 15px 5px #00E0C6, -7px -5px 15px 5px #2D3B55, 12px -5px 15px 5px #016170, 12px 10px 15px 7px #00E0C6, -10px 10px 15px 7px #2D3B55, -10px -7px 27px 1px #016170, 8px 6px 25px 12px #00E0C6; 
+	box-shadow: 5px 5px 15px 5px #016170, -9px 5px 15px 5px #00E0C6, -7px -5px 15px 5px #2D3B55, 12px -5px 15px 5px #016170, 12px 10px 15px 7px #00E0C6, -10px 10px 15px 7px #2D3B55, -10px -7px 27px 1px #016170, 8px 6px 25px 12px #00E0C6;
+*/
+	-webkit-box-shadow: 5px 5px 15px 5px #016170, -9px 5px 15px 5px #2D3B55, -7px -5px 15px 5px #009393, 
+						12px -5px 15px 5px #016170, 12px 10px 15px 7px #2D3B55, -10px 10px 15px 7px #009393, 
+						-10px -7px 27px 1px #016170, 8px 6px 25px 12px #2D3B55; 
+	box-shadow: 5px 5px 15px 5px #016170, -9px 5px 15px 5px #2D3B55, -7px -5px 15px 5px #009393, 
+				12px -5px 15px 5px #016170, 12px 10px 15px 7px #2D3B55, -10px 10px 15px 7px #009393, 
+				-10px -7px 27px 1px #016170, 8px 6px 25px 12px #2D3B55;
+	
 }
 
 .categoria {
     padding: 0 10%;
     position: relative;
     margin: 5%;
+}
+
+.categoria h3 {
+	margin-bottom:1em;
 }
 
 .topProduct{
@@ -834,4 +849,36 @@ header {
 	color:white;
 	background-color:#2d3b55;
 	transition:0.3s;
+}
+
+.orderArea {
+	width:100%;
+	display:flex;
+	border:2px solid #2d3b55;
+	border-radius:1em;
+	-webkit-box-shadow: -4px 5px 15px 2px #000000; 
+	box-shadow: -4px 5px 15px 2px #000000;
+	background-color:#ededed;
+}
+
+.imgArea {
+	width:25%;
+}
+
+.infoArea {
+	width:75%;
+}
+
+.firstLine, .secondLine{
+	display:flex;
+}
+
+.nameArea, .dateArea {
+	width:70%;
+	padding:2%;
+}
+
+.priceArea, .checkArea {
+	width:30%;
+	padding:2%;
 }

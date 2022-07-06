@@ -800,6 +800,11 @@ header {
   font-size:1.5em;
 }
 
+.starP{
+	color: #ff9800;
+	font-size:1.5em;
+}
+
 .star:hover {
   cursor:pointer;
 }
@@ -807,6 +812,19 @@ header {
 .star_rating {
   user-select:none;
   align-items:center;
+}
+
+.star_ratingP{
+	margin: -0.7% 2%;
+	display: flex;
+}
+
+.headerRecensione{
+	display: flex;
+}
+
+.nomeUtenteContainer{
+	padding-top: 1%;
 }
 
 .recensioniProdotto {

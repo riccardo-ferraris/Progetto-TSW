@@ -330,11 +330,13 @@ header {
 .prodottoHome {
     display: inline-block;
     text-align: center;
-    vertical-align: top;
+    vertical-align:top;
     padding: 2% 2%;
     margin: 0 5px;
     width: 100%;
 }
+
+
 
 .prodottoHome:hover {
     background-color: #f6f3f3;

@@ -124,46 +124,19 @@ public class ServletCarrello extends HttpServlet {
 	    		response.sendRedirect("carrello.jsp"); //In caso di errore torniamo alla pagina carrello
 		    	return;
     			
-	    		case "svuotaCarrello": carrello.clearAll(); //Svuotiamo il carrello tramite il metodo clearAll()
-	    			response.sendRedirect("carrello.jsp"); //Torniamo alla pagina carrello
-	    			return;
+	    	case "svuotaCarrello": carrello.clearAll(); //Svuotiamo il carrello tramite il metodo clearAll()
+	    		response.sendRedirect("carrello.jsp"); //Torniamo alla pagina carrello
+	    		return;
     			
-	    		default: 
-	    			if(page.equals("Prodotto.jsp")) { //In caso di errore, se la servlet è stata invocata dalla pagina del prodotto
-	    				response.sendRedirect(page+ "?id=" +codProd); //L'utente viene reindirizzato alla pagina del prodotto da cui ha invocato la servlet
-	    			}
-	    			System.out.println(page);
-	    			response.sendRedirect(page); //In caso di errore torniamo alla pagina da cui abbiamo invocato la servlet
-    				return;
-	    }
-	    		  
-	    		  /**********************************************************************************************************
-	    		   * Metodo con if-else nestati poco pulito, ho optato per sostituirlo con uno switch							
-	    		   * Questo commento verrà definitivamente eliminato successivamente, una volta appurato che il nuovo codice
-	    		   * sia equivalente e funzionante
-	    		   **********************************************************************************************************
-	    		  if (action.trim().equals("aggiungi")) {
-	    			  int quant = Integer.valueOf(request.getParameter("quantita"));
-	    			  carrello.aggiungi(prodotto, quant);
-		  
-	    			  request.getSession().setAttribute("carrello", carrello);	//salva il carrello  
-	    			  response.sendRedirect("Prodotto.jsp?id="+codice); //torna alla pagina del prodotto
-
-	    			  return;
-	    		  }
-	    		  else if (action.trim().equals("rimuoviBySeriale")) {
-	    			  carrello.rimuoviProdotto(codice);
- 
-	    			  request.getSession().setAttribute("carrello", carrello); //salva il carrello
-	    			  response.sendRedirect("carrello.jsp"); //torna al carrello
-	    			  return;
-	    		  }
-	    		  else {  //errore 			  
-	    			  response.sendRedirect("Prodotto.jsp");
-	    			  return;
-	    		  }*/
-	    	  
-	    	}
+	    	default: 
+	    		if(page.equals("Prodotto.jsp")) { //In caso di errore, se la servlet è stata invocata dalla pagina del prodotto
+	    			response.sendRedirect(page+ "?id=" +codProd); //L'utente viene reindirizzato alla pagina del prodotto da cui ha invocato la servlet
+	    		}
+	    		System.out.println(page);
+	    		response.sendRedirect(page); //In caso di errore torniamo alla pagina da cui abbiamo invocato la servlet
+    			return;
+	    }  	  
+	}
 	      
 		
 

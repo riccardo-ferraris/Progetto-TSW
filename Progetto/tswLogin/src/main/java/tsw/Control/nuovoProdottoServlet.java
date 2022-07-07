@@ -107,18 +107,17 @@ public class nuovoProdottoServlet extends HttpServlet {
 	     
 		
 		default: System.out.println("Errore!");
-		break;
+		return;
 		}
 		//System.out.println(articolo.getMacroCategoria());
 		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), articolo.getMacroCategoria(), articolo.getNome());
 		response.sendRedirect("CatalogoAdmin.jsp");
-       
+		return;
 
 	}
 	
 	
-	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException
-	{
+	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException{
 	    final String fileName = titolo + ".jpg";
 
 		String savePath = appPath + SAVE_DIR + folder;
@@ -142,6 +141,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 	    catch (Exception e) 
 	    {
 	    	System.out.println("Error:" + e.getMessage());
+	    	return;
 	    } 
 	    finally 
 	    {
@@ -154,7 +154,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 	            filecontent.close();
 	        }
 	    }
+	    
+	    return;
 	}
-	
 	
 }

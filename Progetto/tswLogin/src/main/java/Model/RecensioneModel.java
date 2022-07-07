@@ -101,18 +101,46 @@ public class RecensioneModel {
 	
 	public synchronized RecensioneBean doRetrieveByUsernameAndSeriale(String username, long seriale, String categoria) throws SQLException, ClassNotFoundException{
 		RecensioneBean recensione = new RecensioneBean();
-		Collection<RecensioneBean> recensioniUser = new LinkedList<RecensioneBean>(doRetrieveAllByUsername(username));
-		Collection<RecensioneBean> recensioniProdotto = new LinkedList<RecensioneBean>(doRetrieveAllBySeriale(seriale, categoria));
 		
-		for(RecensioneBean tempRec : recensioniUser) {	
-			//System.out.println(tempRec.toString());
-			if(recensioniProdotto.contains(tempRec)) {
-				recensione = tempRec;
-				
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "select * from recensione where usernameUtente = ? AND seriale" + categoria + " = ?;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, username);
+			preparedStatement.setLong(2, seriale);
+
+			rs = preparedStatement.executeQuery();
+			RecensioneBean bean = new RecensioneBean();
+			
+			while(rs.next()) {
+				bean.setUsername(rs.getString("usernameUtente"));
+				bean.setTesto(rs.getString("testo"));
+				bean.setPunteggio(rs.getInt("punteggio"));
+	
+				for(int i = 4; i <= 6; i++) {
+					if(rs.getString(i) != null) {	
+							bean.setSeriale(rs.getLong(i));		
+					}
+				}				
 			}
-		}
-		
-		return recensione;
+			
+			return bean;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}		
 	}
 
 	public synchronized Collection<RecensioneBean> doRetrieveBySerialeAndPunteggio(long seriale, int punteggio, String categoria) throws SQLException, ClassNotFoundException{

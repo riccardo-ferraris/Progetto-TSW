@@ -98,7 +98,7 @@ public class ServletCarrello extends HttpServlet {
     			if(page.equals("Prodotto.jsp") || page.equals("ProdottoAdmin.jsp")) {
     				response.sendRedirect(page+"?id="+codice); //Torna alla pagina del prodotto
     			}else {
-    				response.sendRedirect(page); //Torna alla pagina dalla quale viene invocata la servlet
+    				//response.sendRedirect(page); //Torna alla pagina dalla quale viene invocata la servlet
     			}
     			return;
     			  

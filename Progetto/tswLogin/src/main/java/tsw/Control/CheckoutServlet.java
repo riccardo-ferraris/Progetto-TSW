@@ -73,5 +73,7 @@ public class CheckoutServlet extends HttpServlet {
 		request.getSession().setAttribute("checkoutOrdine", ordine);
 		response.sendRedirect("checkout.jsp");
 		}
+		
+		return;
 	}
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Model.Ordine;
 import Model.OrdineModel;
 import Model.UserBean;
+import Util.Carrello;
 
 /**
  * Servlet implementation class FinalizzaAcquistoServlet
@@ -81,9 +82,15 @@ public class FinalizzaAcquistoServlet extends HttpServlet {
 		
 		try {
 			model.databaseInsert(checkoutOrdine);
+			Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+			carrello.clearAll();
+			request.getSession().setAttribute("carrello", carrello);
+			response.sendRedirect("./carrello.jsp");
+			return;
 	  } catch (SQLException e) {
 		  // TODO Auto-generated catch block
 		  e.printStackTrace();
+		  return;
 	  	}
 	
 	}

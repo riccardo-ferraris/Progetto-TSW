@@ -26,7 +26,7 @@
 	<jsp:include page="navbarUnlogged.jsp"/>
     
 	<%String pageRedirect = request.getParameter("pageLogin");%>
-    <form action="./LoginServlet?pageLogin=<%=pageRedirect%>" method="post" class="loginForm">
+    <form id="loginForm" class="loginForm" method="post">
         <h1 id="accedi">Accedi</h1>
         <div class="content">
             <div class="input-field">
@@ -35,17 +35,44 @@
             <div class="input-field">
                 <input type="password" placeholder="Password" id="password" name="password">
             </div>
+            
         </div>
+        <p id="loginErr" class="loginError"></p>
         <a href="" class="link">Hai dimenticato la password?</a>
         <br><br>
         <div class="action">
             <a href="register.jsp">Registrati</a>
-            <button>Login</button>
+            <button id="loginButton">Login</button>
         </div>
     </form>
 
     <jsp:include page="footer.jsp"/>
+	
+	<script>
+    
+       $('#loginForm').on('submit', function(e){
+    	   e.preventDefault();
 
+          $.ajax({
+        	  type: "POST",
+              url:"LoginServlet",
+              data: $("#loginForm").serialize(),
+              cache: false,
+              success: function (data) {
+                 if(data.substring(0, 4)=='True'){
+                   let redirectPage = data.replace('True', '');
+                   $(location).attr('href', redirectPage);
+                 }else{
+                     var el = document.getElementById("loginErr");
+                     el.innerHTML = "Errore! Utente o password non corretti! Riprovare!"
+                 }
+              }
+             });
+          return;
+           });
+        
+   </script>
+	
 </body>
 
 </html>

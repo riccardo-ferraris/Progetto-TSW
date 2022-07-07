@@ -2,7 +2,10 @@ package tsw.Control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request, response);
 	}
 
 	/**
@@ -44,29 +47,31 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			UserBean utente = model.doRetrieveByKey(username);
-			request.getSession().setAttribute("ruolo", utente.getRuolo());
-			if (utente == null || !utente.getPassword().trim().equals(password) ) {
-				request.getSession().setAttribute("utente", null);
-				response.setContentType("text/html");
-				response.sendRedirect("InvalidLogin.jsp");
 				
-			}
+			if (utente == null || !utente.getPassword().trim().equals(password) ) {
+				request.getSession().setAttribute("utente", null);             
+		        response.setContentType("text/html;charset=UTF-8");
+		        request.getSession().setAttribute("ruolo", "guest");
+		        response.getWriter().write("False");
+		  }
 			else if (utente.getPassword().trim().equals(password)) {
 				request.getSession().setAttribute("utente", utente);
-				response.setContentType("text/html");
+				request.getSession().setAttribute("ruolo", utente.getRuolo());
+				response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().write("True");
 				String page = request.getParameter("pageLogin");
-				if(page.trim().equals("carrello.jsp")){
-					response.sendRedirect("./" + page);
+				if(page != null) {
+					response.getWriter().write(page);
 				}else {
-					response.sendRedirect("./RedirectServlet?page=catalogo");
+					response.getWriter().write("./RedirectServlet?page=catalogo");
 				}
-				
-				return;
 			}
 			
 		} catch (SQLException | ClassNotFoundException e) {
+			System.out.println("error loginservlet");
 			return;
 		}
+		return;
 	}
 
 }

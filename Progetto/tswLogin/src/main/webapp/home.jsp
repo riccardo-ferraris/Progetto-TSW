@@ -30,6 +30,7 @@
 </head>
 
 <body>
+
     <jsp:include page="header.jsp"/>
 		<% 
 		
@@ -42,6 +43,17 @@
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
+			<div id="aggProdMex" class="hidden">
+				<div id="popupAggContainer">
+	 				<h1 id="titoloPopup">Prodotto aggiunto al carrello</h1>
+        			<div class="content">
+            		</div> 
+        			<br><br>
+        			<div class="action">
+
+        			</div>
+		    		</div>
+			</div>
 			
     <div class="topProduct">
         <div class="categoria">
@@ -63,7 +75,7 @@
 								nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
 								seriale = articolo.getSeriale();
 								%>
-								<div class = "listProdHome" >
+								<div class="listProdHome">
 	
 								<ul style="list-style-type:none; ">
 								<a href="Prodotto.jsp?id=<%=seriale%>">
@@ -74,7 +86,7 @@
 								<br>
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 								</div></a>
-								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
@@ -113,7 +125,7 @@
 								<br>
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 								</div></a>
-								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
@@ -151,7 +163,7 @@
 										<br>
 										<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 									</div></a>
-									<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+									<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
@@ -163,7 +175,34 @@
         </div>
     </div>
     	<jsp:include page="footer.jsp"/>
-
+	
+	<script>
+	$('.quickAggCarrello').on('submit', function (e) {
+		e.preventDefault();
+	    var id = this.id;
+	    console.log(id);
+   
+	    const parametersArray = id.split("_");
+	    console.log(parametersArray);
+          $.ajax({
+        	  type: "GET",
+              url:"ServletCarrello?page=home.jsp&seriale="+parametersArray[1]+"&macroCategoria="+parametersArray[2]+"&action=aggiungi&numAggiungi=1",
+              cache: false,
+              success: function (data) {
+            	  console.log("added product with no errors");
+ 				  
+		      	  $("#aggProdMex").removeClass('hidden');
+ 
+            	  setTimeout(function (){
+            		  $("#aggProdMex").addClass('hidden')  
+            		}, 1000);       
+              },
+              error: function(){
+                 alert("error");
+              } 
+         });
+     });
+   </script>
 </body>
 
 </html>

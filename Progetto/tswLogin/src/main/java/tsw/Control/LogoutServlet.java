@@ -1,28 +1,24 @@
 package tsw.Control;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Model.UserBean;
-import Model.UserModel;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +27,12 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String page = (request.getParameter("pageLogout")).replace("/", "");
+        session.invalidate();
+        response.sendRedirect(page);
+        return;
 	}
 
 	/**
@@ -39,25 +40,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-				
-		UserBean bean = new UserBean(username, password, nome, cognome, "user", email);
-		UserModel model = new UserModel();
-				
-		try {
-			model.databaseInsert(bean);
-			response.sendRedirect("./Catalogo.jsp");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
-				
-		return;
+		doGet(request, response);
 	}
 
 }

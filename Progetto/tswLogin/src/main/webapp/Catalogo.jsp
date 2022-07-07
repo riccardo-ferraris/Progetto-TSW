@@ -54,6 +54,17 @@
 			<% } %>
 
 	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
+	<div id="aggProdMex" class="hidden">
+				<div id="popupAggContainer">
+	 				<h1 id="titoloPopup">Prodotto aggiunto al carrello</h1>
+        			<div class="content">
+            		</div> 
+        			<br><br>
+        			<div class="action">
+
+        			</div>
+		    		</div>
+			</div>
 	
 		<div style="display:flex; width:100%">
 		<div style="width:20%">
@@ -98,7 +109,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=fumetto.getSeriale()+"_"+fumetto.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -130,7 +141,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=fumetto.getSeriale()%>&macroCategoria=<%=fumetto.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=fumetto.getSeriale()+"_"+fumetto.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -164,7 +175,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=grafica.getSeriale()+"_"+grafica.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -195,7 +206,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=grafica.getSeriale()%>&macroCategoria=<%=grafica.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=grafica.getSeriale()+"_"+grafica.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -231,7 +242,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -261,7 +272,7 @@
 			<br>
 			</li>
 			</a>
-		<form action="./ServletCarrello?page=Catalogo.jsp&seriale=<%=modellino.getSeriale()%>&macroCategoria=<%=modellino.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
+		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
 			<div class="aggiungiCarrelloProd">
 				<button class="piu" style="color:white">Aggiungi al carrello</button>
 			</div>
@@ -272,6 +283,35 @@
 		</div>
 		
 		<jsp:include page="footer.jsp"/>
-	
+		<script>
+	$('.quickAggCarrello').on('submit', function (e) {
+		e.preventDefault();
+	    var id = this.id;
+	    console.log(id);
+   
+	    const parametersArray = id.split("_");
+	    console.log(parametersArray);
+          $.ajax({
+        	  type: "GET",
+              url:"ServletCarrello?page=Catalogo.jsp&seriale="+parametersArray[1]+"&macroCategoria="+parametersArray[2]+"&action=aggiungi&numAggiungi=1",
+              cache: false,
+              success: function (data) {
+            	  console.log("added product with no errors");
+ 
+            	  $("#aggProdMex").css('display','block').removeClass('hidden');
+            	  setTimeout(function (){
+            		  
+            		  $("#aggProdMex").addClass('hidden')
+            		            
+            		}, 1000);
+                  
+                  
+              },
+              error: function(){
+                 alert("error");
+              } 
+         });
+     });
+   </script>
 </body>
 </html>

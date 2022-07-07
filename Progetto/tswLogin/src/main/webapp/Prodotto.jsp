@@ -299,8 +299,7 @@ switch(firstDigit){
         		  }
         	}
         }
-        
-        
+  
         const allStars = document.querySelectorAll('.star');
 
         allStars.forEach((star, i) =>{

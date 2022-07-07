@@ -40,24 +40,6 @@ public class FiltraRecensioni extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int punti = Integer.parseInt(request.getParameter("punteggioSelected"));
-		long seriale = Long.parseLong(request.getParameter("serialeProdotto"));
-		String categoria = request.getParameter("categoriaProdotto");
-		RecensioneModel model = new RecensioneModel();
-		ArrayList<RecensioneBean> filteredRecensioni = null;
-		
-		try {
-			filteredRecensioni = new ArrayList<RecensioneBean>(model.doRetrieveBySerialeAndPunteggio(seriale, punti, categoria));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.getSession().setAttribute("resultRecensioni", filteredRecensioni);
 	}
 
 	/**
@@ -117,15 +99,7 @@ public class FiltraRecensioni extends HttpServlet {
 		
 		response.setContentType("application/json");
 		new Gson().toJson(filteredRecensioni, response.getWriter());
-		/*
-		Gson gson = new Gson();
-        Object[] arr = new Object[3];
-		
-		
-		
-		
-		new Gson().toJson(filteredRecensioni, response.getWriter());
-		//request.setAttribute("resultRecensioni", filteredRecensioni);*/
+		return;
 	}
 
 }

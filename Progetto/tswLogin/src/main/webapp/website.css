@@ -330,11 +330,13 @@ header {
 .prodottoHome {
     display: inline-block;
     text-align: center;
-    vertical-align: top;
+    vertical-align:top;
     padding: 2% 2%;
     margin: 0 5px;
     width: 100%;
 }
+
+
 
 .prodottoHome:hover {
     background-color: #f6f3f3;
@@ -828,10 +830,12 @@ header {
 .recensioniProdotto {
   width:60%;
   margin:5% 30% 5% 10%;
-  padding:1%;
+  padding:1% 2%;
   background-color: #e6f5f7;
   border: 1px solid black;
   border-radius: .5em;
+  -webkit-box-shadow: -4px 5px 15px 2px #000000; 
+  box-shadow: -4px 5px 15px 2px #000000;
 }
 
 .areaUtente {
@@ -901,6 +905,7 @@ header {
 	padding:2%;
 }
 
+
 .loginError{
 	text-align: center;
 	color: red;	
@@ -966,4 +971,9 @@ header {
 
 .hidden{
     opacity:0;
+}
+
+#formRetrieveRecensioni {
+	margin-left:5%;
+
 }

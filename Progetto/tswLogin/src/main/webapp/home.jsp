@@ -82,8 +82,8 @@
 								<div class="prodottoHome">
 								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
 								<br>
-								<%=articolo.getNome()%>
-								<br>
+								<p><%=articolo.getNome()%></p>
+								
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 								</div></a>
 								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">

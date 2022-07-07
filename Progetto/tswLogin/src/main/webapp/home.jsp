@@ -111,12 +111,13 @@
 								<br>
 								<p><%=articolo.getNome()%></p>	
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-								</div></a>
+								</a>
 								<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
 								</form>
+								</div>
 								</ul>
 								</div>
 								<% } %>
@@ -148,12 +149,13 @@
 										<br>
 										<p><%=articolo.getNome()%></p>	
 										<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-									</div></a>
+									</a>
 									<form action="./ServletCarrello?page=home.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi&numAggiungi=1" method="post">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
 									</form>
+									</div>
 									</ul>
 								</div>
 								<% } %>

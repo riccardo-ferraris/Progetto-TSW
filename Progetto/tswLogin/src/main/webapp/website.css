@@ -855,6 +855,8 @@ header {
 
 .nicknameArea, .passwordArea{
 	display:flex;
+	width:80%;
+	margin:0 10%;
 }
 
 .datiPersonali p {
@@ -1004,10 +1006,10 @@ header {
 .password-modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 40px;
+  padding: 3%;
   border: 1px solid #888;
-  width: 15%;
-  left: 43%;
+  width: 30%;
+  left: 35%;
   top: 35%;
   position: absolute;
 }
@@ -1032,4 +1034,21 @@ header {
 
 .modificaPasswordVisuallyHidden{
 	opacity: 0;
+}
+
+.savePw {
+	background-color: #2d3b55;
+	color:white;
+	padding:2% 6%;
+	width:30%;
+	margin:0 35%;
+}
+
+#modificaPasswordForm input {
+	width:80%;
+	margin:1% 10%;
+}
+
+#modificaPasswordForm input:focus {
+	background-color: #f3f3f3;
 }

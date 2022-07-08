@@ -42,6 +42,17 @@
 
 <body>
 		<jsp:include page="header.jsp"/>
+		<%
+			try {
+			    response.setHeader("Cache-Control","no-cache");
+			    response.setHeader("Cache-Control","no-store");
+			    response.setHeader("Pragma","no-cache");
+			    response.setDateHeader ("Expires", 0);
+			}
+			catch(Exception ex) {
+			    out.println(ex);
+			}
+			%>
 		<% 
 			UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 			if(utente == null){

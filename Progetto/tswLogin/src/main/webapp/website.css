@@ -985,3 +985,51 @@ header {
 	margin-left:5%;
 
 }
+
+.modalPass {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  transition: all 0.4s linear;
+}
+
+/* Modal Content */
+.password-modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 15%;
+  left: 43%;
+  top: 35%;
+  position: absolute;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modificaPasswordHidden{
+	display: none;
+}
+
+.modificaPasswordVisuallyHidden{
+	opacity: 0;
+}

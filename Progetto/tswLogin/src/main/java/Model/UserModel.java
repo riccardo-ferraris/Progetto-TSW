@@ -79,4 +79,29 @@ public class UserModel {
 			}	
 		}
 	}
+	
+	// metodo per la connessione al database per cambiare la password
+	public void changePassword(String username, String password) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "update utente set password = ? where username = '" + username+"';";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, password);
+			
+			preparedStatement.executeUpdate();		
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
+	}
 }

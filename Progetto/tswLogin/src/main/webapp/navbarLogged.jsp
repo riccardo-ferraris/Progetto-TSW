@@ -18,6 +18,10 @@
 <body>
 	<%
 		UserBean utente = ((UserBean)request.getSession().getAttribute("utente"));
+	if(utente == null){
+		response.sendRedirect("login.jsp");
+		return;
+	}
 	%>
 	<nav id="mainNav">
 	<form action="./RedirectServlet?page=catalogo" method="POST">

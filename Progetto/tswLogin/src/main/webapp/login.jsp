@@ -49,7 +49,6 @@
     <jsp:include page="footer.jsp"/>
 	
 	<script>
-    
        $('#loginForm').on('submit', function(e){
     	   e.preventDefault();
 
@@ -70,7 +69,6 @@
              });
           return;
            });
-        
    </script>
 	
 </body>

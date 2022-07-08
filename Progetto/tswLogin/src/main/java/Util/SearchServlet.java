@@ -43,14 +43,15 @@ public class SearchServlet extends HttpServlet {
 		GraficheModel gModel = new GraficheModel();
 		ModelliniModel mModel = new ModelliniModel();
 		String keyWord = request.getParameter("keyWord");
-		request.getSession().setAttribute("keyWord", keyWord);
-		ArrayList<Articolo> ricercaProdotti = new ArrayList<Articolo>();
 		
+		request.getSession().setAttribute("keyWord", keyWord);
+		
+		ArrayList<Articolo> ricercaProdotti = new ArrayList<Articolo>();
 		ArrayList<FumettiBean> ricercaFumetti = new ArrayList<FumettiBean>();
 		ArrayList<GraficheBean> ricercaGrafiche = new ArrayList<GraficheBean>();
 		ArrayList<ModelliniBean> ricercaModellini = new ArrayList<ModelliniBean>();
-		try {
-			
+		
+		try {	
 			ricercaFumetti = new ArrayList<FumettiBean>(fModel.doRetrieveAllByKeyWord(null, keyWord));
 			ricercaGrafiche = new ArrayList<GraficheBean>(gModel.doRetrieveAllByKeyWord(null, keyWord));
 			ricercaModellini = new ArrayList<ModelliniBean>(mModel.doRetrieveAllByKeyWord(null, keyWord));

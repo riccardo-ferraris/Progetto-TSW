@@ -43,17 +43,7 @@
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-			<div id="aggProdMex" class="hidden">
-				<div id="popupAggContainer">
-	 				<h1 id="titoloPopup">Prodotto aggiunto al carrello</h1>
-        			<div class="content">
-            		</div> 
-        			<br><br>
-        			<div class="action">
-
-        			</div>
-		    		</div>
-			</div>
+			<jsp:include page="PopupAcquisto.html"/>
 			
     <div class="topProduct">
         <div class="categoria">

@@ -54,17 +54,7 @@
 			<% } %>
 
 	<h1 class="titoloCatalogo">CATALOGO NEGOZIO</h1>
-	<div id="aggProdMex" class="hidden">
-				<div id="popupAggContainer">
-	 				<h1 id="titoloPopup">Prodotto aggiunto al carrello</h1>
-        			<div class="content">
-            		</div> 
-        			<br><br>
-        			<div class="action">
-
-        			</div>
-		    		</div>
-			</div>
+	<jsp:include page="PopupAcquisto.html"/>
 	
 		<div style="display:flex; width:100%">
 		<div style="width:20%">

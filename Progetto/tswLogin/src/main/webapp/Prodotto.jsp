@@ -49,12 +49,15 @@ switch(firstDigit){
 		</head>
 		<body>
 			<jsp:include page="header.jsp"/>
+			<jsp:include page="PopupAcquisto.html"/>
+			
 		<% 
 			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
 				<jsp:include page="navbarUnlogged.jsp"/>
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
+		
 		
 		<div style="display:flex; width:100%; align-items:center">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
@@ -89,6 +92,7 @@ switch(firstDigit){
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
+		<jsp:include page="PopupAcquisto.html"/>
 		<% 
 			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
 				<jsp:include page="navbarUnlogged.jsp"/>
@@ -128,6 +132,8 @@ switch(firstDigit){
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
+		<jsp:include page="PopupAcquisto.html"/>
+		
 		<% 
 			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
 				<jsp:include page="navbarUnlogged.jsp"/>
@@ -168,9 +174,9 @@ switch(firstDigit){
          %>
          <div class="aggiungiCarrello">
          	<label for="quantità"> Quantità: </label>
-         	<form action="./ServletCarrello?page=Prodotto.jsp&seriale=<%=articolo.getSeriale()%>&macroCategoria=<%=articolo.getMacroCategoria()%>&action=aggiungi" method="post">
+         	<form id="formAggiungiCarrello_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>" class="formAggiungiCarrello" method="get">
          		<input type="number" value="1" min="1" max="<%=articolo.getQuantità()%>" name="numAggiungi" id="quantità"/>
-         		<button type="submit" class="cartButton">
+         		<button class="cartButton">
                 	Aggiungi al carrello
                 </button>
             </form>
@@ -316,6 +322,39 @@ switch(firstDigit){
         })
         </script>
        
+        <script>
         
+    	
+			$('.formAggiungiCarrello').on('submit', function (e) {
+			e.preventDefault();
+			var idProd = this.id;
+	    	console.log(idProd);
+
+	    	const parametersArray = idProd.split("_");
+	    	console.log(parametersArray);
+	    	
+          	$.ajax({
+        	  type: "GET",
+              url:"ServletCarrello?page=Prodotto.jsp&seriale="+parametersArray[1]+"&macroCategoria="+parametersArray[2]+"&action=aggiungi",
+              cache: false,
+              data: $('#formAggiungiCarrello_'+parametersArray[1]+'_'+parametersArray[2]).serialize(),
+              success: function (data) {
+            	  console.log("added product with no errors");
+ 
+            	  $("#aggProdMex").css('display','block').removeClass('hidden');
+            	  setTimeout(function (){
+            		  
+            		  $("#aggProdMex").addClass('hidden')
+            		            
+            		}, 1000);
+                  
+                  
+              },
+              error: function(){
+                 alert("error");
+              } 
+         });
+     });
+   </script>
 </body>
 </html>

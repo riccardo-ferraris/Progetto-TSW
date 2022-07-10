@@ -234,7 +234,6 @@ switch(firstDigit){
             contentType: "application/json",
             data: JSON.stringify(prodotto),
             success: function(data){	
-            	//alert(JSON.stringify(data));
             	generaRecensioni(data);
             },
             
@@ -262,47 +261,43 @@ switch(firstDigit){
         	var container = $("#recensioniContainer");
         	
         	for(var i = 0, k = prodJson.length; i < k; i++){
-        		  var recensione = $(document.createElement('div')),
-        		  	  header = $(document.createElement('div')),
-        		  	  nomeUtenteContainer = $(document.createElement('p')),
-        		 	  nomeUtente = $(document.createElement('strong')),
-        		      valutazione = $(document.createElement('div')),
-        		      s1 = $(document.createElement('p')),
-        		      s2 = $(document.createElement('p')),
-        		      s3 = $(document.createElement('p')),
-        		      s4 = $(document.createElement('p')),
-        		      s5 = $(document.createElement('p')),
-        		      testo = $(document.createElement('p'));
+        		var recensione = $(document.createElement('div')),
+        		header = $(document.createElement('div')),
+        		nomeUtenteContainer = $(document.createElement('p')),
+        		nomeUtente = $(document.createElement('strong')),
+        		valutazione = $(document.createElement('div')),
+        		s1 = $(document.createElement('p')),
+        		s2 = $(document.createElement('p')),
+        		s3 = $(document.createElement('p')),
+       			s4 = $(document.createElement('p')),
+  			    s5 = $(document.createElement('p')),
+        		testo = $(document.createElement('p'));
 
-        		  // add id to event wrapper, if undefined generate random ID to avoid conflicts 
-        		  recensione.attr('class', 'recensioniProdotto');
-        		  header.attr('class', 'headerRecensione');
-        		  valutazione.attr('class', 'star_ratingP');
-        		  s1.attr('class', 'starP');
-        		  s2.attr('class', 'starP');
-        		  s3.attr('class', 'starP');
-        		  s4.attr('class', 'starP');
-        		  s5.attr('class', 'starP');
+	       		recensione.attr('class', 'recensioniProdotto');
+	       		header.attr('class', 'headerRecensione');
+	       		valutazione.attr('class', 'star_ratingP');
+	       		s1.attr('class', 'starP');
+	       		s2.attr('class', 'starP');
+	       		s3.attr('class', 'starP');
+	       		s4.attr('class', 'starP');
+	       		s5.attr('class', 'starP');
 
-        		  // add each item, if undefined then insert empty text
-        		  header.appendTo(recensione);
-        		  nomeUtenteContainer.appendTo(header);
-        		  nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
-        		  valutazione.appendTo(header);
-        		  s1.text("").appendTo(valutazione);
-        		  s2.text("").appendTo(valutazione);
-        		  s3.text("").appendTo(valutazione);
-        		  s4.text("").appendTo(valutazione);
-        		  s5.text("").appendTo(valutazione);
+        		header.appendTo(recensione);
+        		nomeUtenteContainer.appendTo(header);
+        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
+        		valutazione.appendTo(header);
+        		s1.text("").appendTo(valutazione);
+        		s2.text("").appendTo(valutazione);
+        		s3.text("").appendTo(valutazione);
+        		s4.text("").appendTo(valutazione);
+        		s5.text("").appendTo(valutazione);
+        		testo.text(jsonData[i].testo || "").appendTo(recensione);
+        		container.append(recensione);
         		  
-        		  testo.text(jsonData[i].testo || "").appendTo(recensione);
-        		  	
-        		  // append & appendTo do exactly the same thing, markup preference
-        		  container.append(recensione);
-        		  var el = document.querySelectorAll(".starP"); 
-        		  for(var j = 0; j < el.length; j++){
-        			  el[j].innerHTML='&#9733';    // Change the content
-        		  }
+        		var el = document.querySelectorAll(".starP"); 
+        		for(var j = 0; j < el.length; j++){
+        			el[j].innerHTML='&#9733';
+        		}
         	}
         }
   
@@ -324,7 +319,6 @@ switch(firstDigit){
        
         <script>
         
-    	
 			$('.formAggiungiCarrello').on('submit', function (e) {
 			e.preventDefault();
 			var idProd = this.id;
@@ -343,12 +337,8 @@ switch(firstDigit){
  
             	  $("#aggProdMex").css('display','block').removeClass('hidden');
             	  setTimeout(function (){
-            		  
             		  $("#aggProdMex").addClass('hidden')
-            		            
             		}, 1000);
-                  
-                  
               },
               error: function(){
                  alert("error");

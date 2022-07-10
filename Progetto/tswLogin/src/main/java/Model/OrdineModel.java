@@ -13,7 +13,7 @@ import Util.DriverManagerConnectionPool;
 
 public class OrdineModel {
 	
-	public synchronized Ordine doRetrieveByKey(String codice) throws SQLException, ClassNotFoundException {
+	public synchronized Ordine doRetrieveAllByKey(String codice) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
@@ -126,7 +126,120 @@ public class OrdineModel {
 		}
 	}
 	
-	public synchronized Collection<FumettiBean> doRetrieveAll(String order) throws SQLException {
+	public synchronized ArrayList<Ordine> doRetrieveAllByUsername(String username) throws SQLException, ClassNotFoundException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+		ArrayList<Ordine> arrayOrdini = new ArrayList<Ordine>();
+		
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			String sql = "select * from ordine where utente = ?;";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
+			rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				Ordine bean = new Ordine();
+				bean.setCodice(rs.getString("codice"));
+				bean.setUtente(rs.getString("utente"));
+				bean.setTotale(rs.getDouble("totale"));
+				bean.setData(rs.getDate("data"));	
+				
+				sql = "select * from prodottiordine where codiceordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				ResultSet rsTemp = preparedStatement.executeQuery();
+					
+				ResultSetMetaData rsmd = rsTemp.getMetaData();
+				String cat = new String();
+				
+				
+				ArticoloModel model;
+				Articolo articolo;
+				if(rsTemp.next()) {
+					for(int i = 3; i <= 5; i++) {
+						if(rsTemp.getString(i) != null) {
+							
+							cat = rsmd.getColumnName(i).replace("seriale", "");
+							switch (cat) {
+							case "Fumetti": 
+								model = new FumettiModel();
+								articolo = new FumettiBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+							case "Grafiche":
+								model = new GraficheModel();
+								articolo = new GraficheBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+							case "Modellini":
+								model = new ModelliniModel();
+								articolo = new ModelliniBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+								
+							default:
+								throw new IllegalArgumentException("Unexpected value: " );
+							}
+							
+							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
+							arrayProdotti.add(prodCarrello);
+						}
+					}
+				}
+				
+				bean.setArticoliOrdine(arrayProdotti);
+				
+				sql = "select * from indirizzospedizione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				rsTemp = preparedStatement.executeQuery();
+
+				if (rsTemp.next()) {
+					bean.setIndirizzoS(rsTemp.getString("indirizzo"));
+					bean.setStatoS(rsTemp.getString("stato"));
+					bean.setCityS(rsTemp.getString("città"));
+					bean.setCapS(rsTemp.getLong("CAP"));
+					bean.setNomeS(rsTemp.getString("nome"));
+					bean.setCognomeS(rsTemp.getString("cognome"));
+					
+					rsTemp = preparedStatement.executeQuery();	
+				}
+				
+				sql = "select * from indirizzofatturazione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				rsTemp = preparedStatement.executeQuery();
+
+				if (rsTemp.next()) {
+					bean.setIndirizzoF(rsTemp.getString("indirizzo"));
+					bean.setStatoF(rsTemp.getString("stato"));
+					bean.setCityF(rsTemp.getString("città"));
+					bean.setCapF(rsTemp.getLong("CAP"));
+					bean.setNomeF(rsTemp.getString("nome"));
+					bean.setCognomeF(rsTemp.getString("cognome"));
+					
+					rsTemp = preparedStatement.executeQuery();	
+				}
+					
+				arrayOrdini.add(bean);
+			}
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return arrayOrdini;
+	}
+	
+	public synchronized Collection<FumettiBean> doRetrieveAll(String order) throws SQLException { //è da implementare
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 

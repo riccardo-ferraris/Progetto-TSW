@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,26 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import org.json.HTTP;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
+import Model.Ordine;
+import Model.OrdineModel;
 import Model.RecensioneBean;
 import Model.RecensioneModel;
 
 /**
- * Servlet implementation class FiltraRecensioni
+ * Servlet implementation class FiltraOrdini
  */
-@WebServlet(value = "/FiltraRecensioni")
-public class FiltraRecensioni extends HttpServlet {
+@WebServlet("/FiltraOrdini")
+public class FiltraOrdini extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FiltraRecensioni() {
+    public FiltraOrdini() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,6 +40,7 @@ public class FiltraRecensioni extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -63,30 +64,21 @@ public class FiltraRecensioni extends HttpServlet {
 			e1.printStackTrace();
 		}
         
-        int punti = 0;
-		long seriale = 0;
-		String categoria = new String();
+		String username = new String();
 		
         try {
-			punti = obj.getInt("punteggio");
-			seriale = obj.getLong("seriale");
-			categoria = obj.getString("categoria");
-			
+			username = obj.getString("username");
+		
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        RecensioneModel model = new RecensioneModel();
-		ArrayList<RecensioneBean> filteredRecensioni = null;
-		
-		try {
-			if(punti != 9) {
-				filteredRecensioni = new ArrayList<RecensioneBean>(model.doRetrieveBySerialeAndPunteggio(seriale, punti, categoria));
-			}else {
-				filteredRecensioni = new ArrayList<RecensioneBean>(model.doRetrieveAllBySeriale(seriale, categoria));
-			}
-			
+        OrdineModel model = new OrdineModel();
+		ArrayList<Ordine> filteredOrdini = null;
+        try {
+
+		filteredOrdini = new ArrayList<Ordine>(model.doRetrieveAllByUsername(username));
+				
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,8 +88,10 @@ public class FiltraRecensioni extends HttpServlet {
 		}
 		
 		response.setContentType("application/json");
-		new Gson().toJson(filteredRecensioni, response.getWriter());
+		new Gson().toJson(filteredOrdini, response.getWriter());
 		return;
 	}
+
+	
 
 }

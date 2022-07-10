@@ -76,33 +76,33 @@
 			</div>
 			<div>
 				<h1><strong>Ordini</strong></h1><hr>
-				<div class="orderArea">
-					<div class="imgArea">
-						<img src="#" alt="immagine">
-					</div>
-					<div class="infoArea">
-						<div class="firstLine">
-							<div class="nameArea">
-								<p>Nome prodotto</p>
-							</div>
-							<div class="priceArea">
-								<p>Prezzo</p>
-							</div>
+				<div id="ordersContainer">
+					<div class="orderArea">
+						<div class="imgArea">
+							<img src="#" alt="immagine">
 						</div>
-						
-						<div class="secondLine">
-							<div class="dateArea">
-								<p>Data ordine</p>
+						<div class="infoArea">
+							<div class="firstLine">
+								<div class="nameArea">
+									<p>Nome prodotto</p>
+								</div>
+								<div class="priceArea">
+									<p>Prezzo</p>
+								</div>
 							</div>
 							
-							<div class="checkArea">
-								<p>Scarica fattura</p>
+							<div class="secondLine">
+								<div class="dateArea">
+									<p>Data ordine</p>
+								</div>
+								
+								<div class="checkArea">
+									<p>Scarica fattura</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				
-				
-				</div>
+				</div>	
 			</div>
 		</div>
 			
@@ -124,6 +124,8 @@
 				modal.classList.add('modificaPasswordVisuallyHidden');    
 			    modal.addEventListener('transitionend', function(e) {
 			      modal.classList.add('modificaPasswordHidden');
+			      document.getElementById("modificaPasswordForm").reset();
+			      el.innerHTML = "";
 			    }, {
 			      capture: false,
 			      once: true,
@@ -135,7 +137,9 @@
 		  		if (event.target == modal) {
 		  			modal.classList.add('modificaPasswordVisuallyHidden');    
 		  			modal.addEventListener('transitionend', function(e) {
-		  				modal.classList.add('modificaPasswordHidden');
+		  			modal.classList.add('modificaPasswordHidden')
+		  			document.getElementById("modificaPasswordForm").reset();
+		  			el.innerHTML = "";
 				    }, {
 				      capture: false,
 				      once: true,
@@ -155,7 +159,8 @@
     	   
     	   if(nuovaPass != ripetiNuovaPass){
     		   el.innerHTML = "Le due password devono coincidere!"
-    			   fname.style.borderColor = "red";
+    		   document.getElementById("newPasswordModal").style.borderColor = "red";
+    		   document.getElementById("repeatNewPasswordModal").style.borderColor = "red";
     	   }else{
     	   
           $.ajax({
@@ -186,6 +191,95 @@
           return;
            });
    
+   </script>
+   
+   <script>
+		function inviaJson(e){
+		   var utente = {username: '<%=utente.getUsername()%>'}
+	   		
+		   $.ajax({
+		       url: "FiltraOrdini",
+		       type: "POST",
+		       dataType: "json",
+		       contentType: "application/json",
+		       data: JSON.stringify(utente),
+		       success: function(data){	
+				   console.log(data);
+		    	   generaOrdini(data);
+		       	
+		       },
+		       
+		       cache: false,
+		       async: true,
+		       processData:false,
+		       
+		       error: function(){
+		           alert("error");
+		       }           
+		   })
+		};
+		
+		$(document).ready(function(e) { inviaJson(e); });
+		
+		function generaOrdini(jsonData){
+        	var prodJson = JSON.stringify(jsonData);
+     	
+        	const boxes = document.querySelectorAll('.orderArea');
+        	boxes.forEach(box => {
+        	  box.remove();
+        	});
+        	
+        	var container = $("#ordersContainer");
+        	
+        	for(var i = 0, k = prodJson.length; i < k; i++){
+        		var ordine = $(document.createElement('div')),
+        		
+        		imgArea = $(document.createElement('div')),
+        		img = $(document.createElement('img')),
+        		
+        		infoArea = $(document.createElement('div')),
+        		firstLine = $(document.createElement('div')),
+        		nameArea = $(document.createElement('div')),
+        		nomeProdotto = $(document.createElement('p')),
+        		
+        		priceArea = $(document.createElement('div')),
+        		prezzo = $(document.createElement('p')),
+        		
+        		secondLine = $(document.createElement('div')),
+        		dateArea = $(document.createElement('div')),
+        		dataOrdine = $(document.createElement('p')),
+        		
+        		checkArea = $(document.createElement('div')),
+       			fattura = $(document.createElement('p'));
+  			    
+
+       			ordine.attr('class', 'orderArea');
+        		imgArea.attr('class', 'imgArea');
+        		img.attr('src', 'beep beep.png');
+        		infoArea.attr('class', 'infoArea');
+        		firstLine.attr('class', 'firstLine');
+        		nameArea.attr('class', 'nameArea');
+        		priceArea.attr('class', 'priceArea');
+        		secondLine.attr('class', 'secondLine');
+        		dateArea.attr('class', 'dateArea');
+        		checkArea.attr('class', 'checkArea');
+
+        		imgArea.appendTo(ordine);
+        		img.appendTo(imgArea);
+        		infoArea.appendTo(ordine);
+        		firstLine.appendTo(infoArea);
+        		nameArea.appendTo(firstLine);
+        		nomeProdotto.text(jsonData[i].nome || "").appendTo(nameArea);
+        		priceArea.appendTo(firstLine);
+        		prezzo.text(jsonData[i].prezzo || "").appendTo(priceArea);
+        		secondLine.appendTo(infoArea);
+        		dateArea.appendTo(infoArea);
+        		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
+        		checkArea.appendTo(secondLine);
+        		fattura.text("Scarica Fattura").append(checkArea);
+	
+        	}
+        }
    </script>
 </body>
 </html>

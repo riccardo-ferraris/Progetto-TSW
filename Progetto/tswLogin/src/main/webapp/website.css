@@ -320,11 +320,22 @@ header {
 .prodotto:hover {
     background-color: #f6f3f3;
     transition: 0.5s;
-    text-decoration:none;    
+    text-decoration:none;
+    transform: scale(1.01);
+    -webkit-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+	-moz-box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
+	box-shadow: 3px 6px 14px -2px rgba(45,59,85,0.82);
 }
 
 .prodotto a:hover {
     color: #2d3b55;;
+}
+
+.productName {
+	overflow:hidden;
+	white-space:no-wrap;
+	height:50px;
+	text-overflow:ellipsis;
 }
 
 .prodottoHome {
@@ -335,8 +346,6 @@ header {
     margin: 0 5px;
     width: 100%;
 }
-
-
 
 .prodottoHome:hover {
     background-color: #f6f3f3;
@@ -867,6 +876,8 @@ header {
 	background-color:unset;
 	border:1px solid #2d3b55;
 	border-radius:50%;
+	width:25px;
+	height:25px;
 }
 
 .deleteProd:hover {

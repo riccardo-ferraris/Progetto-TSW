@@ -127,7 +127,7 @@
             font-weight:bold;
         }
 
-        .navbar a:hover {
+        .navbar a:hover, .navbar button:hover {
             background-color: white;
             color: rgba(45, 59, 85);
             transition: background-color 0.5s;

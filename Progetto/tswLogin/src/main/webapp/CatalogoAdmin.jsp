@@ -235,8 +235,7 @@
 			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=fumetto.getTitolo()%>
-			<br>
+			<p class="productName"><%=fumetto.getTitolo()%></p>
 			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
 			<br>
 			
@@ -269,8 +268,8 @@
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<%=fumetto.getTitolo()%><br>
+			<br><br>
+			<p class="productName"><%=fumetto.getTitolo()%></p>
 			Prezzo: <%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
 			<br>
 			</li>
@@ -303,9 +302,9 @@
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<%=grafica.getTitolo()%>
-			<br>
+			<br><br>
+			<p class="productName"><%=grafica.getTitolo()%></p>
+			
 			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 			
 			<br>
@@ -336,8 +335,8 @@
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<%=grafica.getTitolo()%><br>
+			<br><br>
+			<p class="productName"><%=grafica.getTitolo()%></p>
 			Prezzo: <%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 
 			<br>
@@ -373,9 +372,9 @@
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<%=modellino.getNome()%>
-			<br>
+			<br><br>
+			<p class="productName"><%=modellino.getNome()%></p>
+			
 			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>	
 			<br>
 			</li>
@@ -405,8 +404,8 @@
 			long seriale = modellino.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
 			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<%=modellino.getNome()%><br>
+			<br><br>
+			<p class="productName"><%=modellino.getNome()%></p>
 			Prezzo: <%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
 			<br>
 			</li>

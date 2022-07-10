@@ -102,8 +102,8 @@
 			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=fumetto.getTitolo()%>
-			<br>
+			<p class="productName"><%=fumetto.getTitolo()%></p>
+			
 			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%>
 			<br>
 			
@@ -136,7 +136,7 @@
 			<li style="float:none"><img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=fumetto.getTitolo()%><br>
+			<p class="productName"><%=fumetto.getTitolo()%></p>
 			<%out.println(String.format("%.2f&euro;", fumetto.getPrezzo()));%><br>
 			
 			<br>
@@ -170,8 +170,8 @@
 			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=grafica.getTitolo()%>
-			<br>
+			<p class="productName"><%=grafica.getTitolo()%></p>
+			
 			<%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 			<br>
 			</li>
@@ -201,7 +201,7 @@
 			<li style="float:none"><img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=grafica.getTitolo()%><br>
+			<p class="productName"><%=grafica.getTitolo()%></p>
 			<%out.println(String.format("%.2f&euro;", grafica.getPrezzo()));%><br>
 			
 			<br>
@@ -237,8 +237,8 @@
 			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=modellino.getNome()%>
-			<br>
+			<p class="productName"><%=modellino.getNome()%></p>
+			
 			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
 			<br>
 			</li>
@@ -268,7 +268,7 @@
 			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
 			<br>
 			<br>
-			<%=modellino.getNome()%><br>
+			<p class="productName"><%=modellino.getNome()%></p>
 			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
 			<br>
 			</li>

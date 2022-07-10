@@ -82,16 +82,17 @@
 								<a href="Prodotto.jsp?id=<%=seriale%>">
 								<div class="prodottoHome">
 								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-								<br>
-								<p><%=articolo.getNome()%></p>
+								<br><br>
+								<p class="productName"><%=articolo.getNome()%></p>
 								
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-								</div></a>
+								</a>
 								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
 								</form>
+								</div>
 								</ul>
 								</div>
 								<% } %>
@@ -121,16 +122,17 @@
 								<a href="Prodotto.jsp?id=<%=seriale%>">
 								<div class="prodottoHome">
 								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-								<br>
-								<%=articolo.getNome()%>
-								<br>
+								<br><br>
+								<p class="productName"><%=articolo.getNome()%></p>
+								
 								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-								</div></a>
+								</a>
 								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
 								</form>
+								</div>
 								</ul>
 								</div>
 								<% } %>
@@ -159,16 +161,17 @@
 									<a href="Prodotto.jsp?id=<%=seriale%>">
 									<div class="prodottoHome">
 										<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-										<br>
-										<%=articolo.getNome()%>
-										<br>
+										<br><br>
+										<p class="productName"><%=articolo.getNome()%></p>
+										
 										<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-									</div></a>
+									</a>
 									<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
 									<div class="aggiungiCarrelloProd">
 										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
 									</div>
 									</form>
+									</div>
 									</ul>
 								</div>
 								<% } %>

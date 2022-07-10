@@ -56,7 +56,7 @@
                         <input type="text" placeholder="Cerca" id="search" name="keyWord" style="border-radius: 20px;">
                     </form>
                 </li>
-                <li class="nav-item"><a href=""><%=utente.getUsername().toUpperCase()%></a></li>
+                <li class="nav-item"><a href="./paginaUtente.jsp"><%=utente.getUsername().toUpperCase()%></a></li>
                 <li class="nav-item">
                     <form action="./LogoutServlet?pageLogout=${pageContext.request.servletPath}" method="post">
                         <button class="logoutButton" href="#">
@@ -138,13 +138,16 @@
             height: 60px;
         }
 
-        .navbar a {
+        .navbar a, .navbar button {
             position: relative;
+            background-color:#2d3b55;
             color: white;
             text-align: center;
             padding: 16px;
             margin: 2px;
             text-decoration: none;
+            border:none;
+            font-weight:bold;
         }
 
         .navbar a:hover {
@@ -201,7 +204,7 @@
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 60px;
+                top: 133px;
                 gap: 0;
                 flex-direction: column;
                 background-color: #2d3b55;
@@ -248,7 +251,7 @@
 			transition: .5s;
 			visibility: visible;
 			opacity: 1;
-			top:57px;
+			top:60px;
 		}
     </style>
 

@@ -110,7 +110,7 @@
 		<script>
 			var modal = document.getElementById("passwordModal");
 			var btn = document.getElementById("modificaPassword");
-
+			var el = document.getElementById("passErr");
 			var span = document.getElementsByClassName("close")[0];
  
 			btn.onclick = function() {
@@ -125,6 +125,8 @@
 			    modal.addEventListener('transitionend', function(e) {
 			      modal.classList.add('modificaPasswordHidden');
 			      document.getElementById("modificaPasswordForm").reset();
+			      document.getElementById("newPasswordModal").style.borderColor = "";
+		    	  document.getElementById("repeatNewPasswordModal").style.borderColor = "";
 			      el.innerHTML = "";
 			    }, {
 			      capture: false,
@@ -139,6 +141,8 @@
 		  			modal.addEventListener('transitionend', function(e) {
 		  			modal.classList.add('modificaPasswordHidden')
 		  			document.getElementById("modificaPasswordForm").reset();
+		  			document.getElementById("newPasswordModal").style.borderColor = "";
+		    		document.getElementById("repeatNewPasswordModal").style.borderColor = "";
 		  			el.innerHTML = "";
 				    }, {
 				      capture: false,
@@ -152,7 +156,7 @@
 		<script>
        $('#modificaPasswordForm').on('submit', function(e){
     	   e.preventDefault();
-    	   var el = document.getElementById("passErr");
+    	   
     	   
     	   let nuovaPass = $("#newPasswordModal").val()
     	   let ripetiNuovaPass = $("#repeatNewPasswordModal").val()
@@ -181,7 +185,7 @@
      			      passive: false
      			    });
                  }else if(data == 'Incorrect'){ 
-                     el.innerHTML = "Errore, la vecchia password inserita è errata!";
+                     el.innerHTML = "Errore, la vecchia password inserita Ã¨ errata!";
                  }else{ 
                      el.innerHTML = "Errore di sistema, riprovare";
                  }
@@ -228,56 +232,66 @@
         	boxes.forEach(box => {
         	  box.remove();
         	});
-        	
+        	//console.log(jsonData[0].articoliOrdine.length);
         	var container = $("#ordersContainer");
-        	
-        	for(var i = 0, k = prodJson.length; i < k; i++){
-        		var ordine = $(document.createElement('div')),
-        		
-        		imgArea = $(document.createElement('div')),
-        		img = $(document.createElement('img')),
-        		
-        		infoArea = $(document.createElement('div')),
-        		firstLine = $(document.createElement('div')),
-        		nameArea = $(document.createElement('div')),
-        		nomeProdotto = $(document.createElement('p')),
-        		
-        		priceArea = $(document.createElement('div')),
-        		prezzo = $(document.createElement('p')),
-        		
-        		secondLine = $(document.createElement('div')),
-        		dateArea = $(document.createElement('div')),
-        		dataOrdine = $(document.createElement('p')),
-        		
-        		checkArea = $(document.createElement('div')),
-       			fattura = $(document.createElement('p'));
-  			    
-
-       			ordine.attr('class', 'orderArea');
-        		imgArea.attr('class', 'imgArea');
-        		img.attr('src', 'beep beep.png');
-        		infoArea.attr('class', 'infoArea');
-        		firstLine.attr('class', 'firstLine');
-        		nameArea.attr('class', 'nameArea');
-        		priceArea.attr('class', 'priceArea');
-        		secondLine.attr('class', 'secondLine');
-        		dateArea.attr('class', 'dateArea');
-        		checkArea.attr('class', 'checkArea');
-
-        		imgArea.appendTo(ordine);
-        		img.appendTo(imgArea);
-        		infoArea.appendTo(ordine);
-        		firstLine.appendTo(infoArea);
-        		nameArea.appendTo(firstLine);
-        		nomeProdotto.text(jsonData[i].nome || "").appendTo(nameArea);
-        		priceArea.appendTo(firstLine);
-        		prezzo.text(jsonData[i].prezzo || "").appendTo(priceArea);
-        		secondLine.appendTo(infoArea);
-        		dateArea.appendTo(infoArea);
-        		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
-        		checkArea.appendTo(secondLine);
-        		fattura.text("Scarica Fattura").append(checkArea);
-	
+        	for(var i = 0, k = jsonData.length; i < k; i++){
+        		console.log(i);
+	        		var ordine = $(document.createElement('div')),
+	        		 dateArea = $(document.createElement('div')),
+	        		 labelData = $(document.createElement('p'));
+	           		 dataOrdine = $(document.createElement('p'));
+	        	for(var j = 0, l = jsonData[i].articoliOrdine.length; j < l; j++){	
+	        		var productArea = $(document.createElement('div')),
+	        		
+	       			imgArea = $(document.createElement('div')),
+	           		img = $(document.createElement('img')),
+	           		
+	           		infoArea = $(document.createElement('div')),
+	           		firstLine = $(document.createElement('div')),
+	           		nameArea = $(document.createElement('div')),
+	           		nomeProdotto = $(document.createElement('p')),
+	           		
+	           		priceArea = $(document.createElement('div')),
+	           		prezzo = $(document.createElement('p')),
+	           		
+	           		secondLine = $(document.createElement('div')),
+	           		
+	           		checkArea = $(document.createElement('div')),
+	          		fattura = $(document.createElement('p'));
+	     			    
+	          		ordine.attr('class', 'orderArea');
+	          		productArea.attr('class', 'productArea');
+	           		imgArea.attr('class', 'imgArea');
+	           		img.attr('src', 'beep beep.png');
+	           		img.attr('style', 'width:100%');
+	           		infoArea.attr('class', 'infoArea');
+	           		firstLine.attr('class', 'firstLine');
+	           		nameArea.attr('class', 'nameArea');
+	           		priceArea.attr('class', 'priceArea');
+	           		secondLine.attr('class', 'secondLine');
+	           		dateArea.attr('class', 'dateArea');
+	           		checkArea.attr('class', 'checkArea');
+	   				
+	           		imgArea.appendTo(productArea);
+	           		img.appendTo(imgArea);
+	           		infoArea.appendTo(productArea);
+	           		firstLine.appendTo(infoArea);
+	           		nameArea.appendTo(firstLine);
+	           		nomeProdotto.text(jsonData[i].articoliOrdine[j].prodotto.nome|| "").appendTo(nameArea);
+	           		priceArea.appendTo(firstLine);
+	           		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
+	           		secondLine.appendTo(infoArea);
+	           		
+	           		checkArea.appendTo(secondLine);
+	           		fattura.text("Scarica Fattura").append(checkArea);
+	           		
+	           		
+	           		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
+	           		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
+	           		ordine.append(dateArea);
+	           		ordine.append(productArea);
+	           		container.append(ordine);
+	       		}
         	}
         }
    </script>

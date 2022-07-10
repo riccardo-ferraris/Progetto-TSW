@@ -183,20 +183,21 @@ switch(firstDigit){
          </div>
        <% } %>
        <hr>
-       	<form>
+       	<form action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}?id=<%=articolo.getSeriale()%>" method="post">
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        			<div style="display:flex">
        	    		<label style="font-size:110%; padding-top:1%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
        				<div class="star_rating" style="margin:0 5%">
-  						<button type="button" class="star">&#9734;</button>
-  						<button type="button" class="star">&#9734;</button>
-  						<button type="button" class="star">&#9734;</button>
-  						<button type="button" class="star">&#9734;</button>
-  						<button type="button" class="star">&#9734;</button>
+  						<button value="1" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
+  						<button value="2" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
+  						<button value="3" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
+  						<button value="4" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
+  						<button value="5" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
 					</div>
 					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
     			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    			<button>Invia</button>
   			</div>
   		</form>
   		
@@ -294,18 +295,24 @@ switch(firstDigit){
         		testo.text(jsonData[i].testo || "").appendTo(recensione);
         		container.append(recensione);
         		  
-        		var el = document.querySelectorAll(".starP"); 
+        		var el = [s1, s2, s3, s4, s5];
+        		
         		for(var j = 0; j < el.length; j++){
-        			el[j].innerHTML='&#9733';
+        			if(j < jsonData[i].punteggio){
+        				el[j][0].innerHTML='&#9733';
+        			}else{
+        				el[j][0].innerHTML='&#9734';
+        			}
         		}
         	}
         }
   
         const allStars = document.querySelectorAll('.star');
-
+		let punteggio;
         allStars.forEach((star, i) =>{
             star.onclick = function(){
                 let current_star_level = i+1;
+                console.log(current_star_level);
                 allStars.forEach((star, j) => {
                     if(current_star_level >= j+1){
                         star.innerHTML = '&#9733';
@@ -315,6 +322,7 @@ switch(firstDigit){
                 })
             }
         })
+        
         </script>
        
         <script>

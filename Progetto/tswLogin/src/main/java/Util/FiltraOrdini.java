@@ -86,7 +86,6 @@ public class FiltraOrdini extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		response.setContentType("application/json");
 		new Gson().toJson(filteredOrdini, response.getWriter());
 		return;

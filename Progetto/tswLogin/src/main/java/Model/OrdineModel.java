@@ -130,7 +130,7 @@ public class OrdineModel {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-		ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+		
 		ArrayList<Ordine> arrayOrdini = new ArrayList<Ordine>();
 		
 		try {			
@@ -139,9 +139,10 @@ public class OrdineModel {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
 			rs = preparedStatement.executeQuery();
-			
 			while(rs.next()) {
+				System.out.println(rs.getString("codice"));
 				Ordine bean = new Ordine();
+				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
 				bean.setCodice(rs.getString("codice"));
 				bean.setUtente(rs.getString("utente"));
 				bean.setTotale(rs.getDouble("totale"));
@@ -157,8 +158,9 @@ public class OrdineModel {
 				
 				
 				ArticoloModel model;
-				Articolo articolo;
-				if(rsTemp.next()) {
+				Articolo articolo = null;
+				
+				while(rsTemp.next()) {
 					for(int i = 3; i <= 5; i++) {
 						if(rsTemp.getString(i) != null) {
 							
@@ -182,12 +184,11 @@ public class OrdineModel {
 								
 							default:
 								throw new IllegalArgumentException("Unexpected value: " );
-							}
-							
-							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
-							arrayProdotti.add(prodCarrello);
+							}	
 						}
 					}
+					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
+					arrayProdotti.add(prodCarrello);
 				}
 				
 				bean.setArticoliOrdine(arrayProdotti);
@@ -235,7 +236,7 @@ public class OrdineModel {
 				connection.close();
 			}
 		}
-		
+
 		return arrayOrdini;
 	}
 	

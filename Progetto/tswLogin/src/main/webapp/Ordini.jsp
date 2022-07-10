@@ -17,7 +17,5 @@
 <title>Ordini</title>
 </head>
 <body>
-	
-	<%out.println(model.doRetrieveByKey("AA00000001")); %>
 </body>
 </html>

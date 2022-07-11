@@ -93,7 +93,7 @@
                     <span>Totale (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
                 </li>
-                <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55; width:40%; margin-top:5%">Acquista ora</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55; width:50%; margin-top:5%; font-size:1.2em">Acquista ora</button>
             </ul>
         </div>
         <div class="col-md-8 order-md-1">

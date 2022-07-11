@@ -47,7 +47,7 @@
         	<div class="">
                 <p id="error_messages" style="color: red;"></p>
             	</div>
-        	<br><br>
+        	
         	
         	<div class="action">
             	<button id="prosegui" type="button" onclick="validate(1)">Prosegui</button>

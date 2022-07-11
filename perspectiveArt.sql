@@ -107,7 +107,7 @@ CREATE TABLE `indirizzofatturazione` (
 
 LOCK TABLES `indirizzofatturazione` WRITE;
 /*!40000 ALTER TABLE `indirizzofatturazione` DISABLE KEYS */;
-INSERT INTO `indirizzofatturazione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo');
+INSERT INTO `indirizzofatturazione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo'),('lenny97','AA00000005','Via DDD 23','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000007','Via Perna 14','Italia','Milano','82019','Nicola','Frugieri'),('marisuzc','AA00000006','Via AAA 24','Italia','Napoli','34567','Marisa','La Sorda');
 /*!40000 ALTER TABLE `indirizzofatturazione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `indirizzospedizione` (
 
 LOCK TABLES `indirizzospedizione` WRITE;
 /*!40000 ALTER TABLE `indirizzospedizione` DISABLE KEYS */;
-INSERT INTO `indirizzospedizione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo');
+INSERT INTO `indirizzospedizione` VALUES ('francesco1','AA00000004','Via SSSS 14','Italia','Milano','82019','Fra','FR'),('lenny97','AA00000002','Via Perna 14','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000003','Via ddd 14','Italia','Napoli','82019','Lenny','Skiavo'),('lenny97','AA00000005','Via DDD 23','Italia','Milano','82019','Lenny','Skiavo'),('lenny97','AA00000007','Via Perna 14','Italia','Milano','82019','Nicola','Frugieri'),('marisuzc','AA00000006','Via AAA 24','Italia','Napoli','34567','Marisa','La Sorda');
 /*!40000 ALTER TABLE `indirizzospedizione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +197,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','nicola1',38.2,'2022-05-28'),('AA00000002','lenny97',36,'2022-07-04'),('AA00000003','lenny97',36,'2022-07-04'),('AA00000004','francesco1',36,'2022-07-04');
+INSERT INTO `ordine` VALUES ('AA00000000','mr234',35,'2022-05-26'),('AA00000001','nicola1',38.2,'2022-05-28'),('AA00000002','lenny97',36,'2022-07-04'),('AA00000003','lenny97',36,'2022-07-04'),('AA00000004','francesco1',36,'2022-07-04'),('AA00000005','lenny97',25,'2022-07-07'),('AA00000006','marisuzc',36,'2022-07-07'),('AA00000007','lenny97',24,'2022-07-09');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ CREATE TABLE `prodottiordine` (
   KEY `serialeGrafiche_idx` (`serialeGrafiche`),
   KEY `serialeModellini_idx` (`serialeModellini`),
   CONSTRAINT `prodottiordine_chk_1` CHECK (((((case when (`serialeFumetti` is null) then 0 else 1 end) + (case when (`serialeGrafiche` is null) then 0 else 1 end)) + (case when (`serialeModellini` is null) then 0 else 1 end)) = 1))
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `prodottiordine` (
 
 LOCK TABLES `prodottiordine` WRITE;
 /*!40000 ALTER TABLE `prodottiordine` DISABLE KEYS */;
-INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1,5),(8,'AA00000001','100000000000016',NULL,NULL,1,3.76),(9,'AA00000001','100000000000018',NULL,NULL,1,8.54),(14,'AA00000002',NULL,NULL,'300000000000012',1,0),(15,'AA00000002',NULL,NULL,'300000000000014',1,0),(16,'AA00000003',NULL,NULL,'300000000000014',1,0),(17,'AA00000003',NULL,NULL,'300000000000012',1,0),(18,'AA00000003',NULL,NULL,'300000000000017',1,0),(19,'AA00000004',NULL,NULL,'300000000000017',1,0),(20,'AA00000004',NULL,NULL,'300000000000014',1,0),(21,'AA00000004',NULL,NULL,'300000000000012',1,0);
+INSERT INTO `prodottiordine` VALUES (7,'AA00000001','100000000000014',NULL,NULL,1,5),(8,'AA00000001','100000000000016',NULL,NULL,1,3.76),(9,'AA00000001','100000000000018',NULL,NULL,1,8.54),(14,'AA00000002',NULL,NULL,'300000000000011',1,5),(15,'AA00000002',NULL,NULL,'300000000000014',1,5),(16,'AA00000003',NULL,NULL,'300000000000010',1,5),(17,'AA00000003',NULL,NULL,'300000000000012',1,5),(18,'AA00000003',NULL,NULL,'300000000000017',1,5),(19,'AA00000004',NULL,NULL,'300000000000002',1,5),(20,'AA00000004',NULL,NULL,'300000000000003',1,5),(21,'AA00000004',NULL,NULL,'300000000000005',1,5),(22,'AA00000005','100000000000004',NULL,NULL,5,5),(23,'AA00000006',NULL,NULL,'300000000000008',1,5),(24,'AA00000006',NULL,NULL,'300000000000004',1,5),(25,'AA00000006',NULL,NULL,'300000000000009',1,5),(26,'AA00000007',NULL,NULL,'300000000000017',1,5.05),(27,'AA00000007',NULL,NULL,'300000000000011',1,5.05);
 /*!40000 ALTER TABLE `prodottiordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +257,7 @@ CREATE TABLE `recensione` (
   KEY `usernameUser_idx` (`usernameUtente`),
   CONSTRAINT `usernameUser` FOREIGN KEY (`usernameUtente`) REFERENCES `utente` (`username`),
   CONSTRAINT `recensione_chk_1` CHECK (((((case when (`serialeFumetti` is null) then 0 else 1 end) + (case when (`serialeGrafiche` is null) then 0 else 1 end)) + (case when (`serialeModellini` is null) then 0 else 1 end)) = 1))
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +266,7 @@ CREATE TABLE `recensione` (
 
 LOCK TABLES `recensione` WRITE;
 /*!40000 ALTER TABLE `recensione` DISABLE KEYS */;
-INSERT INTO `recensione` VALUES (10,3,'ddddddddddddddddddddddddddd',NULL,NULL,'300000000000013','nicola1'),(11,5,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','100000000000004',NULL,NULL,'nicola1'),(12,2,'bvbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',NULL,'200000000000008',NULL,'lenny97'),(13,5,'dddcccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',NULL,NULL,'300000000000013','marisuzc'),(14,4,'cvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv',NULL,NULL,'300000000000013','mr234'),(15,2,'bbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',NULL,NULL,'300000000000013','rickyfer2');
+INSERT INTO `recensione` VALUES (10,4,'È molto bello',NULL,NULL,'300000000000013','nicola1'),(11,5,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','100000000000004',NULL,NULL,'nicola1'),(12,2,'bvbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',NULL,'200000000000008',NULL,'lenny97'),(13,5,'Prodotto ottimo, ve lo consiglio!',NULL,NULL,'300000000000013','marisuzc'),(14,4,'Questo Funko pop merita tantissimo, acquistatelo!',NULL,NULL,'300000000000013','mr234'),(15,5,'L\'ho acquistato per mio nipote Mi Fu che viene dalla Cina, ne è rimasto veramente soddisfatto',NULL,NULL,'300000000000013','rickyfer2'),(16,4,'Ciao Alfredo, bel funko!',NULL,NULL,'300000000000013','lenny97'),(17,5,'Bellissimo','100000000000006',NULL,NULL,'lenny97'),(18,1,'Questo fumetto è stato stampato al contrario, l\'ho dovuto leggere da destra verso sinistra, 1 stella.','100000000000000',NULL,NULL,'lenny97');
 /*!40000 ALTER TABLE `recensione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +294,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('CarFul','carmine123','Carmine','Fulgieri','user','carminefulgieri@gmail.com'),('francesco1','fra123','Francesco','Rossi','user','francescorossi@gmail.com'),('lenny97','pass321','Leonardo','Schiavo','user','lennyschiavo@gmail.com'),('marisuzc','marisa23','Marisa','La Sorda','user','marisalasorda@gmail.com'),('mr234','mario234','Mario','Verdi','user','marioverdi@gmail.com'),('nicola1','nicola123','Nicola','Frugieri','admin','nicolafrugieri@gmail.com'),('rickyfer2','rickyfer123','Riccardo','Ferraris','admin','rickyferraris@gmail.com');
+INSERT INTO `utente` VALUES ('CarFul','carmine123','Carmine','Fulgieri','user','carminefulgieri@gmail.com'),('francesco1','fra123','Francesco','Rossi','user','francescorossi@gmail.com'),('lenny97','pass321','Leonardo','Schiavo','user','lennyschiavo@gmail.com'),('marisuzc','marisa23','Marisa','La Sorda','user','marisalasorda@gmail.com'),('mr234','mario234','Mario','Verdi','user','marioverdi@gmail.com'),('nicola1','nicola123','Nicola','Frugieri','admin','nicolafrugieri@gmail.com'),('rickyfer2','ricky123','Riccardo','Ferraris','admin','rickyferraris@gmail.com');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -307,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-04 14:37:22
+-- Dump completed on 2022-07-11 22:37:32

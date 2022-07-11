@@ -58,7 +58,13 @@
                 </li>
                 <li class="nav-item"><a href="./paginaUtente.jsp"><%=utente.getUsername().toUpperCase()%></a></li>
                 <li class="nav-item">
-                    <form action="./LogoutServlet?pageLogout=${pageContext.request.servletPath}" method="post">
+                <% 
+                	String parametri = "";
+                	if(request.getQueryString() != null){
+                		parametri = "?"+request.getQueryString();
+                }
+                 %>
+                    <form action="./LogoutServlet?pageLogout=${pageContext.request.servletPath}<%=parametri %>" method="post">
                         <button class="logoutButton" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-box-arrow-right" viewBox="0 0 16 16">

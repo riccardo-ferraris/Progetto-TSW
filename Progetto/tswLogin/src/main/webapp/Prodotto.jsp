@@ -14,6 +14,9 @@
     <%@page import="java.util.List" %>
     <%@page import="java.util.LinkedList" %>
     <%@page import="java.util.ArrayList" %>
+    <%@page import="org.json.JSONObject" %>
+    <%@page import="com.google.gson.JsonElement"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +34,11 @@ UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 if(utente == null){
 	request.getSession().setAttribute("ruolo", "guest");
 	}
+
+JsonElement utenteJson = null;
+if(utente != null){
+	utenteJson = utente.toJson();
+}
 
 
 String seriale = request.getParameter("id");
@@ -66,16 +74,16 @@ switch(firstDigit){
 				<img class="immagineProd" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg">
 			</div>
 			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
+				<div class="caratTitolo">
 					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
-				<div style="font-size:1.5em">
+				<div class="caratCateg">
 					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
 				</div>
-				<div style="font-size:1.5em">
+				<div class="caratPrezzo">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
 				</div>
-				<div style="font-size:1em">
+				<div class="caratDesc">
 					<p> <%out.println(articolo.getDescrizione());%> </p>
 				</div>
 			</div>	
@@ -147,16 +155,16 @@ switch(firstDigit){
 				<img class="immagineProd" src="./gallery/Modellini/<%=nomeImmagine%>.jpg">
 			</div>
 			<div class="caratteristicheProd">
-				<div class="caratTitolo">
+				<div style="font-weight:bold; font-size:2em">
 					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
-				<div class="caratCateg">
+				<div style="font-size:1.5em">
 					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
 				</div>
-				<div class="caratPrezzo">
+				<div style="font-size:1.5em">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
 				</div>
-				<div class="caratDesc">
+				<div style="font-size:1em">
 					<p> <%out.println(articolo.getDescrizione());%> </p>
 				</div>
 			</div>
@@ -183,23 +191,30 @@ switch(firstDigit){
          </div>
        <% } %>
        <hr>
-       	<form action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}?id=<%=articolo.getSeriale()%>" method="post">
+       	<form name="aggiungiRecensione" action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}&id=<%=articolo.getSeriale()%>&categoriaProdotto=<%=articolo.getMacroCategoria()%>" method="post">
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        			<div class="recensioneLabelStars">
        	    		<label class="labelRecensione" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
        				<div class="star_rating" style="margin:0 5%">
-  						<button value="1" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
-  						<button value="2" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
-  						<button value="3" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
-  						<button value="4" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
-  						<button value="5" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<button type="button" class="star">&#9734;</button>
+  						<input type="hidden" name="punteggioFormRecensione">
 					</div>
 					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    			<textarea name="testoRecensione" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     			<button class="inviaRecensione">Invia</button>
   			</div>
   		</form>
+  		
+  		<div style="margin:0 30% 5% 10%">
+	  		<label style="font-size:120%; padding-top:1%" for="recensioneUtenteContainer"><strong>La tua recensione</strong></label>
+	  		<button>Modifica recensione</button>
+	  		<div id="recensioneUtenteContainer"></div>
+  		</div>
   		
   		<form id="formRetrieveRecensioni" >
   			<label for="reviewsFilter">Filtra per:</label>
@@ -260,8 +275,12 @@ switch(firstDigit){
         	});
         	
         	var container = $("#recensioniContainer");
-        	
-        	for(var i = 0, k = prodJson.length; i < k; i++){
+        	var recensioneUtenteContainer = $("#recensioneUtenteContainer");
+        	var username = null;
+        	var utente = <%=utenteJson%>;
+    		
+        	for(var i = 0, k = jsonData.length; i < k; i++){
+        		
         		var recensione = $(document.createElement('div')),
         		header = $(document.createElement('div')),
         		nomeUtenteContainer = $(document.createElement('p')),
@@ -273,39 +292,78 @@ switch(firstDigit){
        			s4 = $(document.createElement('p')),
   			    s5 = $(document.createElement('p')),
         		testo = $(document.createElement('p'));
-
-	       		recensione.attr('class', 'recensioniProdotto');
-	       		header.attr('class', 'headerRecensione');
-	       		valutazione.attr('class', 'star_ratingP');
-	       		s1.attr('class', 'starP');
-	       		s2.attr('class', 'starP');
-	       		s3.attr('class', 'starP');
-	       		s4.attr('class', 'starP');
-	       		s5.attr('class', 'starP');
-
-        		header.appendTo(recensione);
-        		nomeUtenteContainer.appendTo(header);
-        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
-        		valutazione.appendTo(header);
-        		s1.text("").appendTo(valutazione);
-        		s2.text("").appendTo(valutazione);
-        		s3.text("").appendTo(valutazione);
-        		s4.text("").appendTo(valutazione);
-        		s5.text("").appendTo(valutazione);
-        		testo.text(jsonData[i].testo || "").appendTo(recensione);
-        		container.append(recensione);
-        		  
-        		var el = [s1, s2, s3, s4, s5];
         		
-        		for(var j = 0; j < el.length; j++){
-        			if(j < jsonData[i].punteggio){
-        				el[j][0].innerHTML='&#9733';
+        		if(jsonData[i]){
+        			if((utente != null && jsonData[i].username != utente.username) || utente == null ){
+			       		recensione.attr('class', 'recensioniProdotto');
+			       		header.attr('class', 'headerRecensione');
+			       		valutazione.attr('class', 'star_ratingP');
+			       		s1.attr('class', 'starP');
+			       		s2.attr('class', 'starP');
+			       		s3.attr('class', 'starP');
+			       		s4.attr('class', 'starP');
+			       		s5.attr('class', 'starP');
+		
+		        		header.appendTo(recensione);
+		        		nomeUtenteContainer.appendTo(header);
+		        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
+		        		valutazione.appendTo(header);
+		        		s1.text("").appendTo(valutazione);
+		        		s2.text("").appendTo(valutazione);
+		        		s3.text("").appendTo(valutazione);
+		        		s4.text("").appendTo(valutazione);
+		        		s5.text("").appendTo(valutazione);
+		        		testo.text(jsonData[i].testo || "").appendTo(recensione);
+		        		container.append(recensione);
+		        		  
+		        		var el = [s1, s2, s3, s4, s5];
+		        		
+		        		for(var j = 0; j < el.length; j++){
+		        			if(j < jsonData[i].punteggio){
+		        				el[j][0].innerHTML='&#9733';
+		        			}else{
+		        				el[j][0].innerHTML='&#9734';
+		        			}
+	        			}
         			}else{
-        				el[j][0].innerHTML='&#9734';
+	        			if($('#recensioneUtenteContainer').children().length == 0){
+				       		recensione.attr('class', 'recensioneProdottoUtente');
+				       		header.attr('class', 'headerRecensione');
+				       		valutazione.attr('class', 'star_ratingP');
+				       		s1.attr('class', 'starP');
+				       		s2.attr('class', 'starP');
+				       		s3.attr('class', 'starP');
+				       		s4.attr('class', 'starP');
+				       		s5.attr('class', 'starP');
+			
+			        		header.appendTo(recensione);
+			        		nomeUtenteContainer.appendTo(header);
+			        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
+			        		valutazione.appendTo(header);
+			        		s1.text("").appendTo(valutazione);
+			        		s2.text("").appendTo(valutazione);
+			        		s3.text("").appendTo(valutazione);
+			        		s4.text("").appendTo(valutazione);
+			        		s5.text("").appendTo(valutazione);
+			        		testo.text(jsonData[i].testo || "").appendTo(recensione);
+			        		recensioneUtenteContainer.append(recensione);
+			        		  
+			        		var el = [s1, s2, s3, s4, s5];
+			        		
+			        		for(var j = 0; j < el.length; j++){
+			        			if(j < jsonData[i].punteggio){
+			        				el[j][0].innerHTML='&#9733';
+			        			}else{
+			        				el[j][0].innerHTML='&#9734';
+			        			}
+	        				}
+        				}
         			}
+        		}else{
+        			console.log("Not defined");
         		}
-        	}
-        }
+        	}	
+       }
   
         const allStars = document.querySelectorAll('.star');
 		let punteggio;
@@ -319,6 +377,9 @@ switch(firstDigit){
                     }else {
                         star.innerHTML = '&#9734';
                     }
+                    
+                document.forms["aggiungiRecensione"].elements["punteggioFormRecensione"].value = current_star_level;
+                
                 })
             }
         })
@@ -353,6 +414,11 @@ switch(firstDigit){
               } 
          });
      });
+			
+			function strcmp(a, b)
+			{   
+			    return (a<b?-1:(a>b?1:0));  
+			}
    </script>
 </body>
 </html>

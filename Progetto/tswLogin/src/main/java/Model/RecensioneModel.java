@@ -187,4 +187,37 @@ public class RecensioneModel {
 		
 		return recensioniProdotto;
 	}
+	
+	public int databaseInsert(RecensioneBean recensione, String categoriaProdotto) throws SQLException{
+		int result = 0;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into recensione (punteggio, testo, seriale"+ categoriaProdotto +", usernameUtente) values(?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, recensione.getPunteggio());
+			preparedStatement.setString(2, recensione.getTesto());
+			preparedStatement.setLong(3, recensione.getSeriale());
+			preparedStatement.setString(4, recensione.getUsername());
+			
+			result = preparedStatement.executeUpdate();
+			
+			return result;
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+				
+			} finally {
+				connection.close();
+				
+			}	
+		}
+	}
 }

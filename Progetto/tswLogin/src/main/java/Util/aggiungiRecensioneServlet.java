@@ -1,12 +1,16 @@
 package Util;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.RecensioneBean;
+import Model.RecensioneModel;
 import Model.UserBean;
 
 /**
@@ -38,16 +42,27 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+		System.out.println(request.getParameter("id"));
 		if(utente == null) {
 			String pageRedirect = request.getParameter("pageLogin");
 			response.sendRedirect("login.jsp?pageLogin=" + pageRedirect);
 			return;
 		}
 		int punteggio = Integer.parseInt(request.getParameter("punteggioFormRecensione"));
-		String testoRecensione = request.getParameter("testo");
-		System.out.println(testoRecensione);
+		String testoRecensione = request.getParameter("testoRecensione");
+		long serialeProdotto = Long.parseLong(request.getParameter("id"));
+		String categoriaProdotto = request.getParameter("categoriaProdotto");
+		RecensioneModel model = new RecensioneModel();
+		RecensioneBean bean = new RecensioneBean(utente.getUsername(), testoRecensione, serialeProdotto, punteggio);
 		
-		
+		try {
+			model.databaseInsert(bean, categoriaProdotto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.sendRedirect("Prodotto.jsp?id="+serialeProdotto);
+		return;
 	}
 
 }

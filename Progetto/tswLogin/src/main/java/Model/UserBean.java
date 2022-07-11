@@ -1,5 +1,10 @@
 package Model;
 
+import java.sql.SQLException;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
 public class UserBean {
 	private String username;
 	private String password;
@@ -74,5 +79,15 @@ public class UserBean {
 		return "Utente: Nome=" + nome + "\nCognome=" + cognome;
 	}
 	
+	public JsonElement toJson() throws SQLException{
+		String stringUtente = new Gson().toJson(this);
+		Gson gson = new Gson();
+		
+		JsonElement jsonObj = gson.fromJson(stringUtente, JsonElement.class);
+		System.out.println(jsonObj.toString());
+		jsonObj.getAsJsonObject().remove("password");
+		//System.out.println(jsonObj.toString());
+		return jsonObj;
+	}
 	
 }

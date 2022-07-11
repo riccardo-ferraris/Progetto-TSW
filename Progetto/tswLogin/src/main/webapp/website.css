@@ -827,6 +827,17 @@ header {
   box-shadow: -4px 5px 15px 2px #000000;
 }
 
+.recensioneProdottoUtente{
+  width:60%;
+  margin:5% 30% 5% 10%;
+  padding:1% 2%;
+  background-color: #e6f5f7;
+  border: 1px solid black;
+  border-radius: .5em;
+  -webkit-box-shadow: -4px 5px 15px 2px #000000; 
+  box-shadow: -4px 5px 15px 2px #000000;
+}
+
 .areaUtente {
   margin: 1% 15%;
   padding:2%;

@@ -999,8 +999,8 @@ header {
   margin: auto;
   padding: 3%;
   border: 1px solid #888;
-  width: 30%;
-  left: 35%;
+  width: 25%;
+  left: 37%;
   top: 35%;
   position: absolute;
 }
@@ -1046,10 +1046,13 @@ header {
 #modificaPasswordForm input {
 	width:80%;
 	margin:1% 10%;
+	padding:3px;
 }
 
 #modificaPasswordForm input:focus {
 	background-color: #f3f3f3;
+	border:2px solid #769ef5;
+	border-radius:3px;
 }
 
 @media (max-width:1000px){
@@ -1069,12 +1072,22 @@ header {
 		display:flex;
 		flex-direction:column;
 	}
+	
+	.password-modal-content{
+		width:35%;
+		left:32%;
+	}
 }
 
 @media (max-width: 800px){
 	.areaUtente {
   		margin: 1% 1%;
   		padding:2%;
+	}
+	
+	.password-modal-content{
+		width:40%;
+		left:30%;
 	}
 }
 
@@ -1120,6 +1133,13 @@ header {
 	}
 }
 
+@media (max-width:600px){
+	.password-modal-content{
+		width:50%;
+		left:25%;
+	}
+}
+
 @media (max-width:500px){
 	.loginForm{
 		width: 90%;
@@ -1147,6 +1167,18 @@ header {
 	#modificaPassword{
 		width:80%;
 	}
+	
+	.password-modal-content{
+		width:60%;
+		left:20%;
+	}
+}
+
+@media (max-width:453px){
+	.password-modal-content{
+		width:70%;
+		left:15%;
+	}
 }
 
 @media (max-width:353px){
@@ -1167,5 +1199,10 @@ header {
 	
 	#modificaPassword{
 		width:90%;
+	}
+	
+	.password-modal-content{
+		width:80%;
+		left:10%;
 	}
 }

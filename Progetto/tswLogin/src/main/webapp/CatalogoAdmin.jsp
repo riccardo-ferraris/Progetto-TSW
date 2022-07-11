@@ -66,7 +66,7 @@
 			<h3 class="sottointestazione" style="margin:0 0 0 25%">Manga</h3>
 		</div>
 		
-		<div style="margin-left:60%; width:20%; max-width:300px; float:right">
+		<div class="catButton">
 			<button class="open-button" onclick="openForm()"
 			title='Pop Up'>Aggiungi un nuovo articolo</button>
 			

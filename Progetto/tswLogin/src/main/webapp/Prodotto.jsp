@@ -59,11 +59,11 @@ switch(firstDigit){
 			<% } %>
 		
 		
-		<div style="display:flex; width:100%; align-items:center">
+		<div class="divProdIntero">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
 			
 			<div class="imgProdotto">
-				<img src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
+				<img class="immagineProd" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
@@ -100,10 +100,10 @@ switch(firstDigit){
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
 		
-		<div style="display:flex">
+		<div class="divProdIntero">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				<img class="immagineProd" src="./gallery/Grafiche/<%=nomeImmagine%>.jpg">
 			</div>
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
@@ -141,22 +141,22 @@ switch(firstDigit){
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
     	
-    	<div style="display:flex">
+    	<div class="divProdIntero">
 			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 			<div class="imgProdotto">
-				<img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				<img class="immagineProd" src="./gallery/Modellini/<%=nomeImmagine%>.jpg">
 			</div>
 			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
+				<div class="caratTitolo">
 					<p> <%out.println(articolo.getNome());%> </p>
 				</div>
-				<div style="font-size:1.5em">
+				<div class="caratCateg">
 					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
 				</div>
-				<div style="font-size:1.5em">
+				<div class="caratPrezzo">
 					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
 				</div>
-				<div style="font-size:1em">
+				<div class="caratDesc">
 					<p> <%out.println(articolo.getDescrizione());%> </p>
 				</div>
 			</div>
@@ -185,8 +185,8 @@ switch(firstDigit){
        <hr>
        	<form action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}?id=<%=articolo.getSeriale()%>" method="post">
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
-       			<div style="display:flex">
-       	    		<label style="font-size:110%; padding-top:1%" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
+       			<div class="recensioneLabelStars">
+       	    		<label class="labelRecensione" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
        				<div class="star_rating" style="margin:0 5%">
   						<button value="1" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
   						<button value="2" name="punteggioFormRecensione" type="button" class="star">&#9734;</button>
@@ -197,7 +197,7 @@ switch(firstDigit){
 					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
     			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    			<button>Invia</button>
+    			<button class="inviaRecensione">Invia</button>
   			</div>
   		</form>
   		

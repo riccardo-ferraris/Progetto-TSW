@@ -21,7 +21,7 @@ body::-webkit-scrollbar-thumb {
 
 
 .loginForm {
-    width: 40%;
+    width: 500px;
     background-color: white;
     padding: 0 2% 2% 2%;
     border: 5px solid black;
@@ -388,6 +388,12 @@ header {
   color:white;
 }
 
+.catButton{
+	margin-left:60%; 
+	width:20%;  
+	float:right;
+}
+
 .open-button {
   background-color: #2d3b55;
   color: white;
@@ -545,9 +551,20 @@ header {
 	border-radius: 10px;
 }
 
+.divProdIntero{
+	display:flex; 
+	width:100%; 
+	align-items:center;
+}
+
 .imgProdotto {
 	 width:35%; 
 	 display:flex;
+}
+
+.immagineProd{
+	width:50%; 
+	margin:auto;
 }
 
 .caratteristicheProd {
@@ -561,10 +578,32 @@ header {
 	display:flex;
 }
 
+.caratTitolo{
+	font-weight:bold; 
+	font-size:2em;
+}
+
+.caratCateg, .caratPrezzo {
+	font-size:1.5em;
+}
+
+.caratDesc {
+	font-size:1em;
+}
+
 .aggiungiCarrello {
-	width:40%;
-	margin:0 30% 5% 30%;
+	width:50%;
+	margin:auto;
 	padding:0 5%;
+}
+
+.labelRecensione{
+	font-size:110%; 
+	padding-top:1%;
+}
+
+.recensioneLabelStars{
+	display:flex;
 }
 
 .cartButton {
@@ -755,6 +794,18 @@ header {
 .star_ratingP{
 	margin: -0.7% 2%;
 	display: flex;
+}
+
+.inviaRecensione {
+	background-color: #2d3b55;
+	color: white;
+	padding:0.5em 1em;
+	border-radius:0.3em;
+	margin:10px 0;
+}
+
+.inviaRecensione:hover{
+	background-color: #3a4e70;
 }
 
 .headerRecensione{
@@ -968,6 +1019,14 @@ header {
   cursor: pointer;
 }
 
+#modificaPassword{
+	width:60%; 
+	padding:.5em; 
+	background-color:#2d3b55; 
+	color:white; 
+	margin:5% 25%;
+}
+
 .modificaPasswordHidden{
 	display: none;
 }
@@ -1001,6 +1060,22 @@ header {
 	.loginForm{
 		width: 50%;
 	}
+	
+	.catButton{
+		width:30%;	
+	}
+	
+	.divProdIntero{
+		display:flex;
+		flex-direction:column;
+	}
+}
+
+@media (max-width: 800px){
+	.areaUtente {
+  		margin: 1% 1%;
+  		padding:2%;
+	}
 }
 
 @media (max-width:750px){
@@ -1012,17 +1087,85 @@ header {
 	.loginForm{
 		width: 70%;
 	}
+	
+	.catButton{
+		width:50%;
+		margin-left:50%;	
+	}
+	
+	.caratTitolo{
+		font-weight:bold; 
+		font-size:1.5em;
+	}
+
+	.caratCateg, .caratPrezzo {
+		font-size:1em;
+	}
+
+	.caratDesc {
+		font-size:1em;
+	}
+	
+	.imgProdotto{
+		width: 55%;
+	}
+	
+	.aggiungiCarrello{
+		padding:0;
+	}
+	
+	.labelRecensione{
+		font-size:80%; 
+		padding-top:1%;
+	}
 }
 
 @media (max-width:500px){
 	.loginForm{
 		width: 90%;
 	}
+	
+	.catButton{
+		width:70%;
+		margin-left:30%;	
+	}
+	
+	.aggiungiCarrello{
+		padding:0;
+		width: 60%;
+	}
+	
+	.recensioneLabelStars{
+		display:flex;
+		flex-direction:column;
+	}
+	
+	.labelRecensione{
+		margin-bottom:0;
+	}
+	
+	#modificaPassword{
+		width:80%;
+	}
 }
 
-@media (max-width:350px){
+@media (max-width:353px){
 	.prodotto{
 		width:85%;
 		margin: 10px 5px;
+	}
+	
+	.catButton{
+		width:75%;
+		margin-left:25%;	
+	}
+	
+	.aggiungiCarrello{
+		padding:0;
+		width: 80%;
+	}
+	
+	#modificaPassword{
+		width:90%;
 	}
 }

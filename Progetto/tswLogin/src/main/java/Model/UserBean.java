@@ -84,9 +84,7 @@ public class UserBean {
 		Gson gson = new Gson();
 		
 		JsonElement jsonObj = gson.fromJson(stringUtente, JsonElement.class);
-		System.out.println(jsonObj.toString());
 		jsonObj.getAsJsonObject().remove("password");
-		//System.out.println(jsonObj.toString());
 		return jsonObj;
 	}
 	

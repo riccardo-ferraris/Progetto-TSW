@@ -11,19 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.RecensioneBean;
 import Model.RecensioneModel;
-import Model.UserBean;
 
 /**
- * Servlet implementation class aggiungiRecensioneServlet
+ * Servlet implementation class ModificaRecensione
  */
-@WebServlet("/aggiungiRecensioneServlet")
-public class aggiungiRecensioneServlet extends HttpServlet {
+@WebServlet("/ModificaRecensione")
+public class ModificaRecensione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public aggiungiRecensioneServlet() {
+    public ModificaRecensione() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +32,30 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-		
-		if(utente == null) {
-			String pageRedirect = request.getParameter("pageLogin");
-			response.sendRedirect("login.jsp?pageLogin=" + pageRedirect);
-			return;
-		}
-		int punteggio = Integer.parseInt(request.getParameter("punteggioFormRecensione"));
-		String testoRecensione = request.getParameter("testoRecensione");
-		long serialeProdotto = Long.parseLong(request.getParameter("id"));
-		String categoriaProdotto = request.getParameter("categoriaProdotto");
+		String testo = request.getParameter("testoRecensione");
+		int punteggio = Integer.parseInt(request.getParameter("punti"));
+		long seriale = Long.parseLong(request.getParameter("seriale"));
+		String username = request.getParameter("username");
+		String categoria = request.getParameter("categoria");
 		RecensioneModel model = new RecensioneModel();
-		RecensioneBean bean = new RecensioneBean(utente.getUsername(), testoRecensione, serialeProdotto, punteggio);
+		RecensioneBean recensione = new RecensioneBean(username, testo, seriale, punteggio);
 		
 		try {
-			model.databaseInsert(bean, categoriaProdotto);
+			model.updateRecensione(recensione, categoria);
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write("True");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			response.getWriter().write("Error");
 			e.printStackTrace();
+			
 		}
-		response.sendRedirect("Prodotto.jsp?id="+serialeProdotto);
 		return;
 	}
 

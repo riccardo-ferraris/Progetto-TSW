@@ -188,7 +188,7 @@ public class RecensioneModel {
 		return recensioniProdotto;
 	}
 	
-	public int databaseInsert(RecensioneBean recensione, String categoriaProdotto) throws SQLException{
+	public synchronized int databaseInsert(RecensioneBean recensione, String categoriaProdotto) throws SQLException{
 		int result = 0;
 		
 		Connection connection = null;
@@ -219,5 +219,33 @@ public class RecensioneModel {
 				
 			}	
 		}
+	}
+	
+	public synchronized void updateRecensione(RecensioneBean recensione, String categoria) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "update `perspectiveart`.`recensione` set `testo` = ?, `punteggio` = ? where (`usernameUtente` = ?) AND (seriale" + categoria + " = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, recensione.getTesto());
+			preparedStatement.setInt(2, recensione.getPunteggio());
+			preparedStatement.setString(3, recensione.getUsername());
+			preparedStatement.setLong(4, recensione.getSeriale());
+
+			preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}	
 	}
 }

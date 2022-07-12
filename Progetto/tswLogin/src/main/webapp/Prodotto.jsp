@@ -191,7 +191,7 @@ switch(firstDigit){
          </div>
        <% } %>
        <hr>
-       	<form name="aggiungiRecensione" action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}&id=<%=articolo.getSeriale()%>&categoriaProdotto=<%=articolo.getMacroCategoria()%>" method="post">
+       	<form id="aggiungiRecensioneForm" name="aggiungiRecensione" action="./aggiungiRecensioneServlet?pageLogin=${pageContext.request.servletPath}&id=<%=articolo.getSeriale()%>&categoriaProdotto=<%=articolo.getMacroCategoria()%>" method="post">
        		<div class="form-group" style="width:60%; margin:0 30% 5% 10%">
        			<div class="recensioneLabelStars">
        	    		<label class="labelRecensione" for="exampleFormControlTextarea1"><strong>Lascia una recensione</strong></label>
@@ -205,14 +205,14 @@ switch(firstDigit){
 					</div>
 					<script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 				</div>
-    			<textarea name="testoRecensione" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    			<textarea name="testoRecensione" class="form-control" id="exampleFormControlTextarea1" rows="3" minlength="50" maxlength="5000" required></textarea>
     			<button class="inviaRecensione">Invia</button>
   			</div>
   		</form>
   		
   		<div style="margin:0 30% 5% 10%">
 	  		<label style="font-size:120%; padding-top:1%" for="recensioneUtenteContainer"><strong>La tua recensione</strong></label>
-	  		<button>Modifica recensione</button>
+	  		<button id="modificaRecensioneBtn">Modifica recensione</button>
 	  		<div id="recensioneUtenteContainer"></div>
   		</div>
   		
@@ -233,7 +233,7 @@ switch(firstDigit){
         <jsp:include page="footer.jsp"/>
         
         <script>
-     
+        var current_star_level;
         function inviaJson(e){
         	//e.preventDefault();
       
@@ -265,7 +265,7 @@ switch(firstDigit){
     
     $('#selectPunteggio').on('change',function(e) { inviaJson(e); });
     $(document).ready(function(e) { inviaJson(e); });
-
+    var utente = <%=utenteJson%>;
         function generaRecensioni(jsonData){
         	var prodJson = JSON.stringify(jsonData);
      	
@@ -275,13 +275,12 @@ switch(firstDigit){
         	});
         	
         	var container = $("#recensioniContainer");
-        	var recensioneUtenteContainer = $("#recensioneUtenteContainer");
-        	var username = null;
-        	var utente = <%=utenteJson%>;
+        	var recensioneUtenteContainer = $("#recensioneUtenteContainer");      	
     		
         	for(var i = 0, k = jsonData.length; i < k; i++){
         		
         		var recensione = $(document.createElement('div')),
+        		recensioneDiv = $(document.createElement('div')),
         		header = $(document.createElement('div')),
         		nomeUtenteContainer = $(document.createElement('p')),
         		nomeUtente = $(document.createElement('strong')),
@@ -303,8 +302,10 @@ switch(firstDigit){
 			       		s3.attr('class', 'starP');
 			       		s4.attr('class', 'starP');
 			       		s5.attr('class', 'starP');
-		
-		        		header.appendTo(recensione);
+			       		recensioneDiv.attr("class", "divInnerRecensione");
+			       		
+			       		recensioneDiv.appendTo(recensione);
+		        		header.appendTo(recensioneDiv);
 		        		nomeUtenteContainer.appendTo(header);
 		        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
 		        		valutazione.appendTo(header);
@@ -313,7 +314,7 @@ switch(firstDigit){
 		        		s3.text("").appendTo(valutazione);
 		        		s4.text("").appendTo(valutazione);
 		        		s5.text("").appendTo(valutazione);
-		        		testo.text(jsonData[i].testo || "").appendTo(recensione);
+		        		testo.text(jsonData[i].testo || "").appendTo(recensioneDiv);
 		        		container.append(recensione);
 		        		  
 		        		var el = [s1, s2, s3, s4, s5];
@@ -330,13 +331,16 @@ switch(firstDigit){
 				       		recensione.attr('class', 'recensioneProdottoUtente');
 				       		header.attr('class', 'headerRecensione');
 				       		valutazione.attr('class', 'star_ratingP');
-				       		s1.attr('class', 'starP');
-				       		s2.attr('class', 'starP');
-				       		s3.attr('class', 'starP');
-				       		s4.attr('class', 'starP');
-				       		s5.attr('class', 'starP');
+				       		s1.attr('class', 'starPUtente');
+				       		s2.attr('class', 'starPUtente');
+				       		s3.attr('class', 'starPUtente');
+				       		s4.attr('class', 'starPUtente');
+				       		s5.attr('class', 'starPUtente');
+				       		testo.attr('id', 'testoRecensione');
+				       		recensioneDiv.attr("class", "divInnerRecensione");
 			
-			        		header.appendTo(recensione);
+				       		recensioneDiv.appendTo(recensione);
+			        		header.appendTo(recensioneDiv);
 			        		nomeUtenteContainer.appendTo(header);
 			        		nomeUtente.text(jsonData[i].username || "").appendTo(nomeUtenteContainer);
 			        		valutazione.appendTo(header);
@@ -345,7 +349,7 @@ switch(firstDigit){
 			        		s3.text("").appendTo(valutazione);
 			        		s4.text("").appendTo(valutazione);
 			        		s5.text("").appendTo(valutazione);
-			        		testo.text(jsonData[i].testo || "").appendTo(recensione);
+			        		testo.text(jsonData[i].testo || "").appendTo(recensioneDiv);
 			        		recensioneUtenteContainer.append(recensione);
 			        		  
 			        		var el = [s1, s2, s3, s4, s5];
@@ -357,6 +361,7 @@ switch(firstDigit){
 			        				el[j][0].innerHTML='&#9734';
 			        			}
 	        				}
+			        		$('#aggiungiRecensioneForm').remove();
         				}
         			}
         		}else{
@@ -364,25 +369,6 @@ switch(firstDigit){
         		}
         	}	
        }
-  
-        const allStars = document.querySelectorAll('.star');
-		let punteggio;
-        allStars.forEach((star, i) =>{
-            star.onclick = function(){
-                let current_star_level = i+1;
-                console.log(current_star_level);
-                allStars.forEach((star, j) => {
-                    if(current_star_level >= j+1){
-                        star.innerHTML = '&#9733';
-                    }else {
-                        star.innerHTML = '&#9734';
-                    }
-                    
-                document.forms["aggiungiRecensione"].elements["punteggioFormRecensione"].value = current_star_level;
-                
-                })
-            }
-        })
         
         </script>
        
@@ -419,6 +405,93 @@ switch(firstDigit){
 			{   
 			    return (a<b?-1:(a>b?1:0));  
 			}
+   </script>
+   
+   <script>
+	   $('#modificaRecensioneBtn').on('click', function(e){
+			var testoRecensioneUtente = document.getElementById('testoRecensione');
+			tempText = testoRecensioneUtente.textContent;
+			const textarea = Object.assign(document.createElement('textarea'));
+			
+			
+			var els = document.querySelectorAll('.starPUtente'),
+			  		n;
+			
+			for (n = 0; n < els.length; n++) {
+				var stella = Object.assign(document.createElement('button'), {
+					  className: 'star',
+					  type: 'button',
+					  innerHTML: '&#9734;'
+					})
+			    els[n].replaceWith(stella);
+			    console.log(els[n]);
+			}
+			
+			testoRecensioneUtente.replaceWith(textarea);
+			textarea.textContent = tempText;
+			textarea.setAttribute('cols', '85%');
+			textarea.setAttribute('width', '100%');
+			textarea.setAttribute('minlength', '50');
+			textarea.setAttribute('maxlength', '5000');
+			
+			const inviaButton = Object.assign(document.createElement('button'));
+			inviaButton.setAttribute('type', 'button');
+			inviaButton.setAttribute('id', 'inviaRecensioneAggiornata');
+			inviaButton.innerHTML = "Invia";
+			//inviaButton.appendTo(document.getElementById('recensioneUtenteContainer'));
+			document.getElementById('recensioneUtenteContainer').append(inviaButton)
+			
+			var modificaRecensione = {
+					testo: textarea.textContent,
+					punteggio: clickStars()
+			};
+			
+			$('#inviaRecensioneAggiornata').on('click', function(e){
+				console.log(textarea.value);
+		      $.ajax({
+		    	  type: "POST",
+		          url:"ModificaRecensione",
+		          data: {punti: clickStars(), testoRecensione: textarea.value, username: utente.username, seriale: '<%=seriale%>', categoria: '<%=articolo.getMacroCategoria()%>'},
+		          cache: false,
+		          success: function (data) {
+		             if(data == 'True'){
+		            	 console.log('Recensione updated');
+		            	 location.reload();
+		             }else{ 
+		                 console.log('Errore!');
+		             }
+		          }
+	         });
+	   		});
+	   });
+   </script>
+   
+   <script>
+  	
+   		$('#modificaRecensioneBtn').on('click',function(e) { clickStars(e); });
+   		$(document).ready(function(e) { clickStars(e); });
+   		
+   		function clickStars(){
+		   const allStars = document.querySelectorAll('.star');
+			let punteggio;
+		   	allStars.forEach((star, i) =>{
+		       star.onclick = function(){
+		           current_star_level = i+1;
+		           console.log(current_star_level);
+		           allStars.forEach((star, j) => {
+		               if(current_star_level >= j+1){
+		                   star.innerHTML = '&#9733';
+		               }else {
+		                   star.innerHTML = '&#9734';
+		               }
+		           })
+		           document.forms["aggiungiRecensione"].elements["punteggioFormRecensione"].value = current_star_level;
+		       }
+		   })
+		  
+		   
+		   return current_star_level;
+	   }
    </script>
 </body>
 </html>

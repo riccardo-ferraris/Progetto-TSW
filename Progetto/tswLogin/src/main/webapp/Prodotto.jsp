@@ -210,7 +210,7 @@ switch(firstDigit){
   			</div>
   		</form>
   		
-  		<div style="margin:0 30% 5% 10%">
+  		<div id="divRecensioneUtenteContainer" style="margin:0 30% 5% 10%">
 	  		<label style="font-size:120%; padding-top:1%" for="recensioneUtenteContainer"><strong>La tua recensione</strong></label>
 	  		<button id="modificaRecensioneBtn">Modifica recensione</button>
 	  		<div id="recensioneUtenteContainer"></div>
@@ -275,7 +275,11 @@ switch(firstDigit){
         	});
         	
         	var container = $("#recensioniContainer");
-        	var recensioneUtenteContainer = $("#recensioneUtenteContainer");      	
+        	var recensioneUtenteContainer = $("#recensioneUtenteContainer");  
+        	
+        	if($('#recensioneUtenteContainer').children().length == 0){
+    			$('#divRecensioneUtenteContainer').hide();	
+    		}
     		
         	for(var i = 0, k = jsonData.length; i < k; i++){
         		
@@ -294,6 +298,7 @@ switch(firstDigit){
         		
         		if(jsonData[i]){
         			if((utente != null && jsonData[i].username != utente.username) || utente == null ){
+        				
 			       		recensione.attr('class', 'recensioniProdotto');
 			       		header.attr('class', 'headerRecensione');
 			       		valutazione.attr('class', 'star_ratingP');
@@ -328,6 +333,7 @@ switch(firstDigit){
 	        			}
         			}else{
 	        			if($('#recensioneUtenteContainer').children().length == 0){
+	        				$('#divRecensioneUtenteContainer').show();
 				       		recensione.attr('class', 'recensioneProdottoUtente');
 				       		header.attr('class', 'headerRecensione');
 				       		valutazione.attr('class', 'star_ratingP');
@@ -438,7 +444,7 @@ switch(firstDigit){
 			inviaButton.setAttribute('type', 'button');
 			inviaButton.setAttribute('id', 'inviaRecensioneAggiornata');
 			inviaButton.innerHTML = "Invia";
-			//inviaButton.appendTo(document.getElementById('recensioneUtenteContainer'));
+			
 			document.getElementById('recensioneUtenteContainer').append(inviaButton)
 			
 			var modificaRecensione = {

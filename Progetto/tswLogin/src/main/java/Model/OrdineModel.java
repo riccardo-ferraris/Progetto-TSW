@@ -140,7 +140,7 @@ public class OrdineModel {
 			preparedStatement.setString(1, username);
 			rs = preparedStatement.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getString("codice"));
+				//System.out.println(rs.getString("codice"));
 				Ordine bean = new Ordine();
 				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
 				bean.setCodice(rs.getString("codice"));
@@ -240,48 +240,125 @@ public class OrdineModel {
 		return arrayOrdini;
 	}
 	
-	public synchronized Collection<FumettiBean> doRetrieveAll(String order) throws SQLException { //è da implementare
+	public synchronized Collection<Ordine> doRetrieveAll(String order) throws SQLException, NumberFormatException, ClassNotFoundException { //è da implementare
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<FumettiBean> products = new LinkedList<FumettiBean>();
+		Collection<Ordine> arrayOrdini = new LinkedList<Ordine>();
 
-		String selectSQL = "SELECT * FROM ordine";
+		String sql = "SELECT * FROM ordine";
 
 		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
+			sql += " ORDER BY " + order;
 		}
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement = connection.prepareStatement(sql);
 
 			ResultSet rs = preparedStatement.executeQuery();
+			ResultSet rsTemp;
+			ResultSetMetaData rsmd = rs.getMetaData();		
 
-			while (rs.next()) {
-				FumettiBean bean = new FumettiBean();
+			while(rs.next()) {
+				//System.out.println(rs.getString("codice"));
+				Ordine bean = new Ordine();
+				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+				bean.setCodice(rs.getString("codice"));
+				bean.setUtente(rs.getString("utente"));
+				bean.setTotale(rs.getDouble("totale"));
+				bean.setData(rs.getDate("data"));	
+				
+				sql = "select * from prodottiordine where codiceordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				rsTemp = preparedStatement.executeQuery();
+					
+				rsmd = rsTemp.getMetaData();
+				String cat = new String();
+				
+				
+				ArticoloModel model;
+				Articolo articolo = null;
+				
+				while(rsTemp.next()) {
+					for(int i = 3; i <= 5; i++) {
+						if(rsTemp.getString(i) != null) {
+							
+							cat = rsmd.getColumnName(i).replace("seriale", "");
+							switch (cat) {
+							case "Fumetti": 
+								model = new FumettiModel();
+								articolo = new FumettiBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+							case "Grafiche":
+								model = new GraficheModel();
+								articolo = new GraficheBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+							case "Modellini":
+								model = new ModelliniModel();
+								articolo = new ModelliniBean();
+								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
+								break;
+								
+							default:
+								throw new IllegalArgumentException("Unexpected value: " );
+							}	
+						}
+					}
+					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
+					arrayProdotti.add(prodCarrello);
+				}
+				
+				bean.setArticoliOrdine(arrayProdotti);
+				
+				sql = "select * from indirizzospedizione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				rsTemp = preparedStatement.executeQuery();
 
-				bean.setSeriale(rs.getLong("seriale"));
-				bean.setTitolo(rs.getString("titolo"));
-				bean.setPrezzo(rs.getDouble("prezzo"));
-				bean.setQuantità(rs.getInt("quantità"));
-				bean.setDescrizione(rs.getString("descrizione"));
-				bean.setScrittore(rs.getString("scrittore"));
-				bean.setNumPagine(rs.getInt("numPagine"));
-				bean.setDisegnatore(rs.getString("disegnatore"));
-				bean.setCategoria(rs.getString("categoria"));
-				products.add(bean);
+				if (rsTemp.next()) {
+					bean.setIndirizzoS(rsTemp.getString("indirizzo"));
+					bean.setStatoS(rsTemp.getString("stato"));
+					bean.setCityS(rsTemp.getString("città"));
+					bean.setCapS(rsTemp.getLong("CAP"));
+					bean.setNomeS(rsTemp.getString("nome"));
+					bean.setCognomeS(rsTemp.getString("cognome"));
+					
+					rsTemp = preparedStatement.executeQuery();	
+				}
+				
+				sql = "select * from indirizzofatturazione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, bean.getCodice());
+				rsTemp = preparedStatement.executeQuery();
+
+				if (rsTemp.next()) {
+					bean.setIndirizzoF(rsTemp.getString("indirizzo"));
+					bean.setStatoF(rsTemp.getString("stato"));
+					bean.setCityF(rsTemp.getString("città"));
+					bean.setCapF(rsTemp.getLong("CAP"));
+					bean.setNomeF(rsTemp.getString("nome"));
+					bean.setCognomeF(rsTemp.getString("cognome"));
+					
+					rsTemp = preparedStatement.executeQuery();	
+				}
+					
+				arrayOrdini.add(bean);
 			}
-
+			
 		} finally {
 			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
+				if (!connection.isClosed())
+					connection.close();
 			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
+				connection.close();
 			}
 		}
-		return products;
+
+		return arrayOrdini;
 	}
 	
 	/**

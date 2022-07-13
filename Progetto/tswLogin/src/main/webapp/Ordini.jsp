@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 
 	<%
-	Ordine checkoutOrdine = ((Ordine) request.getSession().getAttribute("checkoutOrdine"));
 	OrdineModel model = new OrdineModel();
+	out.println(model.doRetrieveAll(null));
 	%>
 <html>
 <head>

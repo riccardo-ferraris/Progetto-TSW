@@ -51,10 +51,10 @@
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
 		
- 		<div id="carrello" style="display:flex; width:100%">			
+ 		<div id="carrello">			
 			<div class = "listProdCarrello">
 				<div  class="titoloCarrello" style="display:flex">
-					<p style="width:20%; margin-right:60%">CARRELLO</p>
+					<p style="width:20%; margin-right:auto">CARRELLO</p>
 					<form action="./ServletCarrello?page=carrello.jsp&action=svuotaCarrello" method="POST">
 						<button class="svuotaCarrello">Svuota carrello</button>
 					</form>
@@ -68,16 +68,16 @@
 					
 					<div class="prodottoCarrello">
 						<div>
-							<a href="Prodotto.jsp?id=<%=seriale%>"><img src="./gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style="width:50%"></a>
+							<a href="Prodotto.jsp?id=<%=seriale%>"><img class="imgCart" src="./gallery/<%=prodottoCarrello.getMacroCategoria()%>/<%=nomeImmagine%>.jpg"></a>
 						</div>
 						<div>
-							<a href="Prodotto.jsp?id=<%=seriale%>" style="text-decoration:none; color:black"><%=prodottoCarrello.getNome()%></a>
+							<a href="Prodotto.jsp?id=<%=seriale%>" class="prodTitolo" style="text-decoration:none; color:black"><%=prodottoCarrello.getNome()%></a>
 						</div>
 						<div>
-							Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%>
+							<p class="prodPrezzo">Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%></p>
 						</div>
 						<div>	
-							<label for="quantità">Quantità:</label>
+							<label class="prodLabel" for="quantità">Quantità:</label>
 							<form action="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
 								<input type="number" name="numModifica" id="quantità" min="1" max="<%=prodottoCarrello.getQuantità()%>" value=<%=prodotto.getQuantità()%> onchange="this.form.submit()"></input>
 							</form>
@@ -96,7 +96,7 @@
 				<% } %>
 				</ul>
 			</div>
-			<div class = "controlliCarrello" style="position:sticky; top: 10%;">				
+			<div class = "controlliCarrello"">				
 				<p style="font-size:1.3em; text-align:center">Totale: <%out.println(String.format("%.2f&euro;", totale));%> </p>
 		 		<%
 		 		if(!carrello.getProdotti().isEmpty()){ 

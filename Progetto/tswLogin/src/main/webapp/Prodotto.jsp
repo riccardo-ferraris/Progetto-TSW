@@ -436,7 +436,7 @@ switch(firstDigit){
 			testoRecensioneUtente.replaceWith(textarea);
 			textarea.textContent = tempText;
 			textarea.setAttribute('cols', '85%');
-			textarea.setAttribute('width', '100%');
+			textarea.setAttribute('class', 'textareaModify');
 			textarea.setAttribute('minlength', '50');
 			textarea.setAttribute('maxlength', '5000');
 			

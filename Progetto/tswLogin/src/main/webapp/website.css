@@ -289,12 +289,14 @@ header {
 }
 
 .form-popup {
-  display: none;
-  position: fixed;
-  bottom: 1%;
-  right: 25%;
-  z-index: 1030;
-  width: 50%;
+  	display: none;
+  	position: fixed;
+  	top: 25%;
+  	right: 25%;
+  	z-index: 1030;
+  	width: 50%;
+  	-webkit-box-shadow: 2px 2px 8px 2px #000000; 
+  	box-shadow: 2px 2px 8px 2px #000000;
 }
 
 .form-popup h1{
@@ -1134,6 +1136,11 @@ header {
 	.prodTitolo, .prodPrezzo, .prodLabel {
 		font-size:1em;
 	}
+	
+	.form-popup{
+		width:60%;
+		right:20%;
+	}
 }
 
 @media(max-width:900px){		
@@ -1171,6 +1178,11 @@ header {
 	
 	.imgCart{
 		width:55%;
+	}
+	
+	.form-popup{
+		width:70%;
+		right:15%;
 	}
 }
 
@@ -1244,6 +1256,10 @@ header {
 	
 	#quantità{
 		width:65%;
+	}
+	.form-popup{
+		width:90%;
+		right:5%;
 	}
 }
 

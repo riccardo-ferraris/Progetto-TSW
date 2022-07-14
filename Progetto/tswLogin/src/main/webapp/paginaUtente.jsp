@@ -51,7 +51,7 @@
 					<div id="passwordModal" class="modalPass modificaPasswordHidden modificaPasswordVisuallyHidden">
 					  <div class="password-modal-content">
 					    <span class="close">&times;</span>
-					    <p style="text-align:center">Modifica password</p>
+					    <p style="text-align:center"><strong>Modifica password</strong></p>
 					    <form id="modificaPasswordForm" method="post">
 					    	<input type="text" placeholder="Vecchia password" id="oldPasswordModal" name="oldPasswordModal">
 					    	<input type="text" placeholder="Nuova password" id="newPasswordModal" name="newPasswordModal">

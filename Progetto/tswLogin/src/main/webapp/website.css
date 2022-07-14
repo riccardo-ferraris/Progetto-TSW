@@ -1120,6 +1120,7 @@ header {
 
 .formFilter input{
 	width:20%;
+	padding:5px;
 }
 
 @media (max-width:1000px){

@@ -164,7 +164,7 @@ a.link {
 
 #logo {
     width: 200px;
-    min-height:73px;
+    height:95px;
     display: block;
     margin: 0 auto;
     padding: 2%;
@@ -172,6 +172,9 @@ a.link {
 
 header {
     background-color: #2d3b55;
+    position:sticky;
+    top:0px;
+    z-index:1061;
 }
 
 .mainProduct li {
@@ -576,6 +579,7 @@ header {
 .imgProdotto {
 	 width:35%; 
 	 display:flex;
+	 margin-top:5%;
 }
 
 .immagineProd{
@@ -904,6 +908,10 @@ header {
 }
 
 .orderArea {
+	display:block;
+}
+
+#ordersContainer {
 	width:100%;
 	display:flex;
 	border:2px solid #2d3b55;
@@ -913,16 +921,16 @@ header {
 	background-color:#ededed;
 }
 
+.productArea{
+	display:flex;
+}
+
 .imgArea {
 	width:25%;
 }
 
 .infoArea {
 	width:75%;
-}
-
-.firstLine, .secondLine{
-	display:flex;
 }
 
 .nameArea, .dateArea {

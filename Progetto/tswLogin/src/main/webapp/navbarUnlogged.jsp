@@ -15,7 +15,7 @@
 	<title>Navbar Unlogged</title>
 </head>
 <body>
-	<header>
+	<header class="stickyNav">
         <nav class="navbar">
             <ul  style="margin-bottom: 0;">
                 <li class="has-children">
@@ -65,6 +65,12 @@
 
         header {
             background-color: #2d3b55;
+        }
+        
+        .stickyNav{
+        	position:sticky;
+            top:95px;
+            z-index:1060;
         }
 
         li {

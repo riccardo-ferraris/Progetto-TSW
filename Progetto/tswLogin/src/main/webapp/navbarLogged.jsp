@@ -26,9 +26,9 @@
 		return;
 	}
 	%>
-    <header>
+    <header class="stickyNav">
         <nav class="navbar">
-            <ul  style="margin-bottom: 0;">
+            <ul style="margin-bottom: 0;">
                 <li class="has-children">
                 <form action="./RedirectServlet?page=catalogo" method="POST">
 	                <button style="margin-bottom: auto;">CATALOGO<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -91,6 +91,12 @@
             margin: 0;
             box-sizing: border-box;
         }
+        
+        .stickyNav{
+        	position:sticky;
+            top:95px;
+            z-index:1060;
+        }
 
         header {
             background-color: #2d3b55;
@@ -138,8 +144,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 24px;
-            position: sticky;
-            top: 0px;
             z-index: 1021;
             height: 60px;
         }

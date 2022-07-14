@@ -163,11 +163,11 @@ a.link {
 }
 
 #logo {
-    width: 200px;
+    width: 250px;
     height:95px;
     display: block;
     margin: 0 auto;
-    padding: 2%;
+    padding: 1%;
 }
 
 header {
@@ -824,12 +824,21 @@ header {
 	display: flex;
 }
 
-.inviaRecensione, #inviaRecensioneAggiornata, #modificaRecensioneBtn {
+.inviaRecensione, #inviaRecensioneAggiornata, .inviaFiltro {
 	background-color: #2d3b55;
 	color: white;
 	padding:0.5em 1em;
 	border-radius:0.3em;
 	margin:10px 0;
+}
+
+#modificaRecensioneBtn{
+	background-color: #2d3b55;
+	color: white;
+	padding:0.5em 1em;
+	border-radius:0.3em;
+	margin:10px 0;
+	float:right;
 }
 
 .inviaRecensione:hover{
@@ -1050,6 +1059,8 @@ header {
   left: 37%;
   top: 35%;
   position: absolute;
+  -webkit-box-shadow: 2px 2px 14px 3px #000000; 
+  box-shadow: 2px 2px 14px 3px #000000;
 }
 
 /* The Close Button */
@@ -1102,6 +1113,15 @@ header {
 	border-radius:3px;
 }
 
+.formFilter{
+	width:70%;
+	margin:3% auto;
+}
+
+.formFilter input{
+	width:20%;
+}
+
 @media (max-width:1000px){
 	.prodotto{
 		width:29%;
@@ -1140,6 +1160,10 @@ header {
 	.form-popup{
 		width:60%;
 		right:20%;
+	}
+	
+	#modificaRecensioneBtn{
+		float:none;
 	}
 }
 

@@ -39,25 +39,28 @@
 <title>Ordini</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"/>
+		
 	<form id="ordersFilterForm" method="post">
-		<div>
-			<h1>Filtra per:</h1>
-			<label>Username</label>
-			<input type="text" placeholder="Username" name="username">
+		<div class="formFilter">
+			<h1>Filtra per:</h1><br>
+			<label for="username">Username</label><br>
+			<input type="text" placeholder="Username" name="username" id="username"><br><br>
 			
-			<label>Data</label>
-			<input type="date" name="date">
+			<label for="date">Data</label><br>
+			<input type="date" name="date" id="date"><br><br>
 			
-			<label>Range data</label>
-			<input type="text" name="datefilter" value="" />
+			<label for="datefilter">Range data</label><br>
+			<input type="text" name="datefilter" value="" id="datefilter"/><br><br>
 			
-			<label>Seriale prodotto</label>
-			<input type="text" placeholder="Seriale prodotto" name="seriale">
+			<label for="seriale">Seriale prodotto</label><br>
+			<input type="text" placeholder="Seriale prodotto" name="seriale" id="seriale"><br><br>
 			
-			<button>Filtra</button>
+			<button class="inviaFiltro">Filtra</button>
 		</div>
 	</form>
-	
+    <jsp:include page="footer.jsp"/>
+    		
 	<script >
 	$('input[name="date"]').on("change", function(e){
 		$('input[name="datefilter"]').val('');

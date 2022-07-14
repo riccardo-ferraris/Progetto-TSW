@@ -170,9 +170,19 @@ public class Ordine {
 
 	@Override
 	public String toString() {
-		return "Ordine [codice=" + codice + ", utente=" + utente + ", totale=" + totale + ", data=" + data
-				+ ", articoliOrdine=" + articoliOrdine + "]";
+		return "\nOrdine [codice=" + codice + ",\n utente=" + utente + ",\n totale=" + totale + ",\n data=" + data
+				+ ",\n articoliOrdine=" + articoliOrdine + "]";
 	}
 	
+	public boolean containsSeriale(Long seriale) {
+		boolean result = false;
+		for(ProdottoInCarrello prod : this.articoliOrdine) {
+			if(prod.getProdotto().getSeriale() == seriale) {
+				result = true;
+			}
+		}
+		
+		return result;
+	}
 	
 }

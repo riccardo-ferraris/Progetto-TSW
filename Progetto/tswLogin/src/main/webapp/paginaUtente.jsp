@@ -13,6 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<title>Area Utente</title>
 </head>
 <body>
@@ -77,34 +79,7 @@
 			<div>
 				<h1><strong>Ordini</strong></h1><hr>
 				<div id="ordersContainer">
-					<div class="orderArea">
-						<div class="productArea">
-							<div class="imgArea">
-								<img src="#" alt="immagine">
-							</div>
-						
-							<div class="infoArea">							
-								<div class="nameArea">
-									<p>Nome prodotto</p>
-								</div>
-								<div class="priceArea">
-									<p>Prezzo</p>
-								</div>							
-							</div>
-						</div>
-					</div>
-					<div>	
-						<div>
-							<div class="dateArea">
-								<p>Data ordine</p>
-							</div>
-							
-							<div class="checkArea">
-								<p>Scarica fattura</p>
-							</div>	
-						</div>												
-					</div>
-				</div>	
+					
 			</div>
 		</div>
 			
@@ -239,9 +214,11 @@
         	for(var i = 0, k = jsonData.length; i < k; i++){
         		console.log(i);
 	        		var ordine = $(document.createElement('div')),
+	        		 header = $(document.createElement('div')),
 	        		 dateArea = $(document.createElement('div')),
-	        		 labelData = $(document.createElement('p'));
-	           		 dataOrdine = $(document.createElement('p'));
+	        		 labelData = $(document.createElement('p')),
+	           		 dataOrdine = $(document.createElement('p')),
+	           		 bodyOrdine = $(document.createElement('div'));
 	        	for(var j = 0, l = jsonData[i].articoliOrdine.length; j < l; j++){	
 	        		var productArea = $(document.createElement('div')),
 	        		
@@ -260,8 +237,10 @@
 	           		
 	           		checkArea = $(document.createElement('div')),
 	          		fattura = $(document.createElement('p'));
-	     			    
+	     			   
 	          		ordine.attr('class', 'orderArea');
+	          		header.attr('class', 'headerOrdine');
+	          		bodyOrdine.attr('class', 'bodyOrdine');
 	          		productArea.attr('class', 'productArea');
 	           		imgArea.attr('class', 'imgArea');
 	           		img.attr('src', 'beep beep.png');
@@ -273,6 +252,11 @@
 	           		secondLine.attr('class', 'secondLine');
 	           		dateArea.attr('class', 'dateArea');
 	           		checkArea.attr('class', 'checkArea');
+	           		
+	           		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
+	           		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
+	           		dateArea.appendTo(header);
+	           		ordine.append(header);
 	   				
 	           		imgArea.appendTo(productArea);
 	           		img.appendTo(imgArea);
@@ -288,10 +272,9 @@
 	           		fattura.text("Scarica Fattura").append(checkArea);
 	           		
 	           		
-	           		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
-	           		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
-	           		ordine.append(dateArea);
-	           		ordine.append(productArea);
+	           		
+	           		bodyOrdine.append(productArea);
+	           		ordine.append(bodyOrdine);
 	           		container.append(ordine);
 	       		}
         	}

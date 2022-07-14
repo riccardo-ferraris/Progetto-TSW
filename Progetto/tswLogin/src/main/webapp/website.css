@@ -919,17 +919,18 @@ header {
 }
 
 .orderArea {
-	display:block;
-}
-
-#ordersContainer {
-	width:100%;
-	display:flex;
 	border:2px solid #2d3b55;
 	border-radius:1em;
 	-webkit-box-shadow: -4px 5px 15px 2px #000000; 
 	box-shadow: -4px 5px 15px 2px #000000;
 	background-color:#ededed;
+}
+
+#ordersContainer {
+	width:100%;
+	display:flex;
+	flex-direction: column;
+	
 }
 
 .productArea{

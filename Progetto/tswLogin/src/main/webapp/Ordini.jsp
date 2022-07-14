@@ -59,6 +59,7 @@
 			<button class="inviaFiltro">Filtra</button>
 		</div>
 	</form>
+	<div style="float:right" id="ordersContainer"></div>
     <jsp:include page="footer.jsp"/>
     		
 	<script >
@@ -102,6 +103,7 @@
 	       cache: false,
 	       success: function (data) {
 	          console.log(data);
+	          generaOrdini(data);
 	          },
 	       error: function(){
                alert("error");
@@ -109,6 +111,86 @@
 	      });
 	   return;
 	    });
+</script>
+
+<script>
+function generaOrdini(jsonData){
+	var prodJson = JSON.stringify(jsonData);
+	
+	const boxes = document.querySelectorAll('.orderArea');
+	boxes.forEach(box => {
+	  box.remove();
+	});
+	//console.log(jsonData[0].articoliOrdine.length);
+	var container = $("#ordersContainer");
+	for(var i = 0, k = jsonData.length; i < k; i++){
+		console.log(i);
+    		var ordine = $(document.createElement('div')),
+    		 header = $(document.createElement('div')),
+    		 dateArea = $(document.createElement('div')),
+    		 labelData = $(document.createElement('p')),
+       		 dataOrdine = $(document.createElement('p')),
+       		 bodyOrdine = $(document.createElement('div'));
+    	for(var j = 0, l = jsonData[i].articoliOrdine.length; j < l; j++){	
+    		var productArea = $(document.createElement('div')),
+    		
+   			imgArea = $(document.createElement('div')),
+       		img = $(document.createElement('img')),
+       		
+       		infoArea = $(document.createElement('div')),
+       		firstLine = $(document.createElement('div')),
+       		nameArea = $(document.createElement('div')),
+       		nomeProdotto = $(document.createElement('p')),
+       		
+       		priceArea = $(document.createElement('div')),
+       		prezzo = $(document.createElement('p')),
+       		
+       		secondLine = $(document.createElement('div')),
+       		
+       		checkArea = $(document.createElement('div')),
+      		fattura = $(document.createElement('p'));
+ 			   
+      		ordine.attr('class', 'orderArea');
+      		header.attr('class', 'headerOrdine');
+      		bodyOrdine.attr('class', 'bodyOrdine');
+      		productArea.attr('class', 'productArea');
+       		imgArea.attr('class', 'imgArea');
+       		img.attr('src', 'beep beep.png');
+       		img.attr('style', 'width:100%');
+       		infoArea.attr('class', 'infoArea');
+       		firstLine.attr('class', 'firstLine');
+       		nameArea.attr('class', 'nameArea');
+       		priceArea.attr('class', 'priceArea');
+       		secondLine.attr('class', 'secondLine');
+       		dateArea.attr('class', 'dateArea');
+       		checkArea.attr('class', 'checkArea');
+       		
+       		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
+       		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
+       		dateArea.appendTo(header);
+       		ordine.append(header);
+				
+       		imgArea.appendTo(productArea);
+       		img.appendTo(imgArea);
+       		infoArea.appendTo(productArea);
+       		firstLine.appendTo(infoArea);
+       		nameArea.appendTo(firstLine);
+       		nomeProdotto.text(jsonData[i].articoliOrdine[j].prodotto.nome|| "").appendTo(nameArea);
+       		priceArea.appendTo(firstLine);
+       		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
+       		secondLine.appendTo(infoArea);
+       		
+       		checkArea.appendTo(secondLine);
+       		fattura.text("Scarica Fattura").append(checkArea);
+       		
+       		
+       		
+       		bodyOrdine.append(productArea);
+       		ordine.append(bodyOrdine);
+       		container.append(ordine);
+   		}
+	}
+}
 </script>
 	
 </body>

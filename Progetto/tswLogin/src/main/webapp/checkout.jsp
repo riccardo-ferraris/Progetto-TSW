@@ -47,7 +47,7 @@
                 <span class="text-muted">Il tuo carrello</span>
                 <span class="badge badge-secondary badge-pill">3</span>
             </h4>
-            <ul class="list-group mb-3 sticky-top" style="position:sticky; top:10%">
+            <ul class="list-group mb-3 sticky-top" style="position:sticky; top:20%">
                 <%
 			for(ProdottoInCarrello prod : array){ //scorriamo il carrello passato al checkout
 			

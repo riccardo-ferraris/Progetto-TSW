@@ -516,7 +516,7 @@ header {
 
 .controlliCarrello{
 	position:sticky;
-	top:10%;
+	top:25%;
 }
 
 .prodottoCarrello {
@@ -923,31 +923,53 @@ header {
 	border-radius:1em;
 	-webkit-box-shadow: -4px 5px 15px 2px #000000; 
 	box-shadow: -4px 5px 15px 2px #000000;
-	background-color:#ededed;
+	margin:4%;
 }
 
 #ordersContainer {
 	width:100%;
-	display:flex;
-	flex-direction: column;
-	
+	display:block;
 }
 
 .productArea{
 	display:flex;
+	padding:2%;
 }
 
 .imgArea {
-	width:25%;
+	width:15%;
 }
 
 .infoArea {
 	width:75%;
 }
 
-.nameArea, .dateArea {
-	width:70%;
+.nameArea, .headerOrdine {
+	width:100%;
 	padding:2%;
+}
+
+.headerOrdine{
+	background-color:#f0f2f2;
+	border-bottom:1px solid black;
+	border-radius:1em 1em 0 0;
+	display:flex;
+	justify-content:space-between;
+	text-align:center;
+	align-items:center;
+}
+
+.dateArea p:first-child, .totaleArea p:first-child, .indirizzoArea p:first-child, .codiceOrdine p:first-child, .fatturaArea p:first-child{
+	font-weight:bold;
+}
+
+.dateArea p, .totaleArea p, .indirizzoArea p, .codiceOrdine p, .fatturaArea p{
+	margin-bottom:0;
+}
+
+.fattura{
+	border: none;
+	text-decoration:underline;
 }
 
 .priceArea, .checkArea {

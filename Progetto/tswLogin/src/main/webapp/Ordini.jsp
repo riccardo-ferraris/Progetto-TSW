@@ -59,7 +59,9 @@
 			<button class="inviaFiltro">Filtra</button>
 		</div>
 	</form>
-	<div style="float:right" id="ordersContainer"></div>
+	<div style="margin:0 10%">
+		<div id="ordersContainer"></div>
+	</div>
 	
     <jsp:include page="footer.jsp"/>
     		

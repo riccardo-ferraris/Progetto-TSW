@@ -80,9 +80,9 @@
 				<h1><strong>Ordini</strong></h1><hr>
 				<div id="ordersContainer">
 					
+				</div>
 			</div>
 		</div>
-			
 		<jsp:include page="footer.jsp"/>
 		<script>
 			var modal = document.getElementById("passwordModal");
@@ -218,6 +218,20 @@
 	        		 dateArea = $(document.createElement('div')),
 	        		 labelData = $(document.createElement('p')),
 	           		 dataOrdine = $(document.createElement('p')),
+	           		 
+	           		 totaleArea = $(document.createElement('div')),
+	        		 labelTotale = $(document.createElement('p')),
+	        		 totale = $(document.createElement('p')),
+	        		 indirizzoArea = $(document.createElement('div')),
+	        		 labelIndirizzo = $(document.createElement('p')),
+	        		 indirizzo = $(document.createElement('p')),
+	        		 codiceOrdine = $(document.createElement('div')),
+	        		 labelCodice = $(document.createElement('p')),
+	        		 codice = $(document.createElement('p')),
+	        		 
+	        		 fatturaArea = $(document.createElement('div')),
+	        		 fattura = $(document.createElement('button')),
+	           		 
 	           		 bodyOrdine = $(document.createElement('div'));
 	        	for(var j = 0, l = jsonData[i].articoliOrdine.length; j < l; j++){	
 	        		var productArea = $(document.createElement('div')),
@@ -235,8 +249,8 @@
 	           		
 	           		secondLine = $(document.createElement('div')),
 	           		
-	           		checkArea = $(document.createElement('div')),
-	          		fattura = $(document.createElement('p'));
+	           		checkArea = $(document.createElement('div'));
+	          		
 	     			   
 	          		ordine.attr('class', 'orderArea');
 	          		header.attr('class', 'headerOrdine');
@@ -252,11 +266,42 @@
 	           		secondLine.attr('class', 'secondLine');
 	           		dateArea.attr('class', 'dateArea');
 	           		checkArea.attr('class', 'checkArea');
+	           		totaleArea.attr('class', 'totaleArea');
+	           		labelTotale.attr('class', 'labelTotale');
+	           		totale.attr('class', 'totale');
+	           		indirizzoArea.attr('class', 'indirizzoArea');
+	           		labelIndirizzo.attr('class', 'labelIndirizzo');
+	           		indirizzo.attr('class', 'indirizzo');
+	           		codiceOrdine.attr('class', 'codiceOrdine');
+	           		labelCodice.attr('class', 'labelCodice');
+	           		codice.attr('class', 'codice');
+	           		fatturaArea.attr('class', 'fatturaArea');
+	           		fattura.attr('class', 'fattura');
+	           		
+	           		
 	           		
 	           		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
 	           		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
 	           		dateArea.appendTo(header);
+	           		
+	           		labelTotale.text("Totale: ").appendTo(totaleArea);
+	           		totale.text(jsonData[i].totale || "").appendTo(totaleArea);
+	           		totaleArea.appendTo(header);
+	           		
+	           		labelIndirizzo.text("Indirizzo: ").appendTo(indirizzoArea);
+	           		indirizzo.text(jsonData[i].indirizzoS || "").appendTo(indirizzoArea);
+	           		indirizzoArea.appendTo(header);
+	           		
+	           		labelCodice.text("Codice ordine: ").appendTo(codiceOrdine);
+	           		codice.text(jsonData[i].codice || "").appendTo(codiceOrdine);
+	           		codiceOrdine.appendTo(header);
+	           		
+	           		fattura.text("Scarica fattura").appendTo(fatturaArea);
+	           		fatturaArea.appendTo(header);
+	           		
 	           		ordine.append(header);
+	           		
+		
 	   				
 	           		imgArea.appendTo(productArea);
 	           		img.appendTo(imgArea);
@@ -267,9 +312,6 @@
 	           		priceArea.appendTo(firstLine);
 	           		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
 	           		secondLine.appendTo(infoArea);
-	           		
-	           		checkArea.appendTo(secondLine);
-	           		fattura.text("Scarica Fattura").append(checkArea);
 	           		
 	           		
 	           		

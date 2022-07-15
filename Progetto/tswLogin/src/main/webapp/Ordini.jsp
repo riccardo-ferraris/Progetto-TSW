@@ -60,6 +60,7 @@
 		</div>
 	</form>
 	<div style="float:right" id="ordersContainer"></div>
+	
     <jsp:include page="footer.jsp"/>
     		
 	<script >

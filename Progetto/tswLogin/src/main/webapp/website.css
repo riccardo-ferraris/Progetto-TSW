@@ -1260,6 +1260,10 @@ header {
 	.imgCart{
 		width:60%;
 	}
+	
+	.open-button{
+		width:130%;
+	}
 }
 
 @media (max-width:600px){
@@ -1349,6 +1353,10 @@ header {
 	.listProdCarrello{
 		width:85%;
 	}
+	
+	.open-button{
+		width:200%;
+	}
 }
 
 @media (max-width:453px){
@@ -1385,5 +1393,9 @@ header {
 	
 	.svuotaCarrello{
 		font-size:0.5em;
+	}
+	
+	.open-button{
+		width:240%;
 	}
 }

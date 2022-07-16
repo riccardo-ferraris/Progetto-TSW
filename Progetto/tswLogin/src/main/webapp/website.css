@@ -211,7 +211,7 @@ header {
 }
 
 .listProdHome {
-    width: 19%;
+    width: 18%;
     vertical-align: top;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
@@ -278,6 +278,12 @@ header {
     padding: 2% 2%;
     margin: 0 5px;
     width: 100%;
+}
+
+.prodottoHome p{
+	height:50px;
+	overflow:hidden;
+	text-overflow:ellipsis;
 }
 
 .titoloCatalogo {

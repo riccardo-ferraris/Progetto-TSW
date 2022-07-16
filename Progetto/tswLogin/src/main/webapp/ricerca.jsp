@@ -57,15 +57,15 @@
 						seriale = articolo.getSeriale();
 						folder = articolo.getMacroCategoria();	
 						%>
-            			<div class = "listProdHome" style="margin:4% 1%; width:18%">
+            			<div class = "listProdHome">
 							<ul style="list-style-type:none;">
 							
 							<a href="Prodotto.jsp?id=<%=seriale%>">
 							<div class="prodottoHome">
 							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br>
-							<%=articolo.getNome()%>
-							<br>
+							<br><br>
+							<p><%=articolo.getNome()%></p>
+							
 							<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 							</a>
 							<div class="aggiungiCarrelloProd">

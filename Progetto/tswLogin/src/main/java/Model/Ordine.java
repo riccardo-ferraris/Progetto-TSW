@@ -1,7 +1,18 @@
 package Model;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.awt.*;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class Ordine {
 	String codice, utente, nomeF, cognomeF, indirizzoF, statoF, cityF, nomeS, cognomeS, indirizzoS, statoS, cityS;
@@ -185,4 +196,168 @@ public class Ordine {
 		return result;
 	}
 	
-}
+	public void creaFattura(String path) throws ClassNotFoundException, SQLException {
+		UserModel userModel = new UserModel();
+		UserBean utente = userModel.doRetrieveByKey(this.utente); 
+		
+		 PDDocument doc = null;
+		  
+		  try
+		  {
+			int n = 0;
+			int limit = 11;
+			Integer q;
+			int x = 0, y = 0;
+			double totaleIvaInclusa = this.getTotale();
+			double totaleIvaEsclusa = 0;
+			
+			
+			File f = new File(path + "/struttura_fattura.pdf");
+		    doc = PDDocument.load(f);
+		    PDPage page = (PDPage)doc.getDocumentCatalog().getPages().get(0);
+		    PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
+		    
+		    PDFont font = PDType1Font.HELVETICA;
+		    
+		    contentStream.beginText();
+		    contentStream.setFont(font, 8);
+		    
+		    x+=65; y+=595;
+		    contentStream.newLineAtOffset(65, 595);
+		    contentStream.showText(utente.getNome() + " " + utente.getCognome()); //stampa nome e cognome
+		    
+		    x+=0; y+=-20;
+		    contentStream.newLineAtOffset(0, -15);
+		    contentStream.showText(this.getIndirizzoF());
+		    contentStream.newLineAtOffset(0, -10);
+		    contentStream.showText(this.getCapF() + " " + this.getCityF() + " (" + this.getStatoF() + ")"); //stampa indirizzo
+		    
+		    x+=372; y+=20;
+		    contentStream.newLineAtOffset(372, 20);
+		    contentStream.showText(this.getData().toLocalDate().toString()); //stampa data fattura
+		    
+		    x+=110; y+=0;
+		    contentStream.newLineAtOffset(110, 0);
+		    contentStream.showText(this.getCodice()); //stampa numero fattura (alias id ordine)
+		    
+		    x+=-478; y+=-100;
+		    contentStream.newLineAtOffset(-478, -100);
+		    
+		    
+		    for(ProdottoInCarrello prod : this.articoliOrdine)
+		    {
+		    	q = prod.getQuantità();
+		    	
+		    	contentStream.showText("(" + prod.getProdotto().getSeriale() +") "+ prod.getProdotto().getNome()); // stampa codice e nome del prodotto
+		    
+		    	double prezzoIvaEsclusa = prod.getPrezzo() - (prod.getPrezzo() * prod.getProdotto().getIva());
+		    	totaleIvaEsclusa+= prezzoIvaEsclusa;
+		    	
+		    	x+=173; y+=0;
+		    	contentStream.newLineAtOffset(173, 0);
+		    	contentStream.showText((prod.getPrezzo()+"€")); //stampa prezzo con iva
+		    
+		    	x+=85; y+=0;
+		    	contentStream.newLineAtOffset(85, 0);
+		    	contentStream.showText(q.toString()+" pz"); //stampa quantita
+		    
+		    	x+=85; y+=0;
+		    	contentStream.newLineAtOffset(85, 0);
+		    	contentStream.showText(prezzoIvaEsclusa + "€"); //stampa prezzo senza iva
+		    
+		    	x+=80; y+=0;
+		    	contentStream.newLineAtOffset(80, 0);
+		    	contentStream.showText((prod.getProdotto().getIva()) + "%"); // stampa iva
+		    	
+		    	x+=-423; y+=-35;
+		    	contentStream.newLineAtOffset(-423, -35);
+		    	
+		    	if(n == limit)
+		    	{
+		    		limit += 20;// nuovo numero
+		    		
+		    		f = new File(path + "/fattura_nextPage.pdf");
+		    		
+		    		page = (PDPage)PDDocument.load(f).getDocumentCatalog().getPages().get(0);
+		    		
+		    		doc.addPage(page);
+		    		
+		    		contentStream.endText();
+		 		    contentStream.close();
+		    		
+		    		contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
+		    		
+		    		contentStream.beginText();
+		    		contentStream.setFont(font, 8);
+		    		
+		    		x=65; y=765;
+		    		contentStream.newLineAtOffset(x, y);
+		    	}
+		    }
+		    
+		    contentStream.endText();
+		    
+		    if(limit-n <=3)
+		    {
+		    	f = new File(path + "/fattura_nextPage.pdf");
+	    		
+	    		page = (PDPage)PDDocument.load(f).getDocumentCatalog().getPages().get(0);
+	    		
+	    		doc.addPage(page);
+	    		
+	 		    contentStream.close();
+	    		
+	    		contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
+	    		contentStream.setFont(font, 8);
+	    		
+	    		x=65; y=765;
+		    }
+		    x=40; y+=0;
+		    contentStream.moveTo(x, y);
+		    
+		    x=562; y+=0;
+		    contentStream.lineTo(x, y);
+		    contentStream.setLineWidth((float) 0.3);   
+		    contentStream.setStrokingColor(new Color(255, 140, 0));
+	        contentStream.stroke();   
+		    
+		    contentStream.beginText();
+		    
+		    x=65; y+= -40;
+		    
+		    contentStream.newLineAtOffset(400, 10);
+		    contentStream.showText("Imponibile:   € " + totaleIvaEsclusa); //stampa totale senza iva
+		    
+		    contentStream.newLineAtOffset(0, -10);
+		    contentStream.showText("di cui IVA:    € " +  String.format("%.2f",(totaleIvaInclusa - totaleIvaEsclusa))); //stampa importo dovuto all'iva
+		    
+		    contentStream.newLineAtOffset(0, -10);
+		    contentStream.showText("Totale dovuto:  € " +  String.format("%.2f", totaleIvaInclusa)); //stampa totale
+		    
+		    contentStream.endText();
+		    contentStream.close();
+		    
+		    page = (PDPage)doc.getDocumentCatalog().getPages().get(0);
+		    contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
+		    
+		    contentStream.beginText();
+		    contentStream.setFont(font, 8);
+		    
+		    contentStream.newLineAtOffset(335, 590);
+		    contentStream.showText( String.format("%.2f", totaleIvaInclusa)+"€"); //stampa totale
+		    
+		    contentStream.endText();
+		    contentStream.close();
+		    
+		    doc.save(path + "/fattura.pdf");  
+
+		    doc.close();
+		  }
+		  catch (IOException e) 
+		  {
+		    e.printStackTrace();
+		  }
+		  
+		  System.out.println(path);
+		 }
+	}

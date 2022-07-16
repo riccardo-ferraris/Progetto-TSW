@@ -41,6 +41,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				
 				return bean;
 			} else
@@ -86,6 +87,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -130,6 +132,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -174,6 +177,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -210,7 +214,7 @@ public class ModelliniModel extends ArticoloModel{
 			preparedStatement.setDouble(6, modellino.getDimensioni());
 			preparedStatement.setInt(7, modellino.getQuantità());
 			preparedStatement.setString(8, modellino.getCategoria());
-			System.out.println(modellino.getCategoria());
+			preparedStatement.setDouble(9, modellino.getIva());
 			result = preparedStatement.executeUpdate();
 				
 				return result;
@@ -268,6 +272,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setFranchise(rs.getString("franchise"));
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

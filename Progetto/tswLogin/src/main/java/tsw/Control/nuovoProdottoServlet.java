@@ -64,7 +64,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 					Integer.parseInt(request.getParameter("numPagine")), 
 					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
-					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti", 0);	
+					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti", 0, Double.parseDouble(request.getParameter("IVA")));	
 			
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
@@ -81,7 +81,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 			model = new GraficheModel();
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
 				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-				request.getParameter("descrizione"), request.getParameter("sottoCategoria"), "Grafiche", 0);
+				request.getParameter("descrizione"), request.getParameter("sottoCategoria"), "Grafiche", 0, Double.parseDouble(request.getParameter("IVA")));
 			try {
 				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
 			} catch (SQLException e) {
@@ -96,7 +96,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 			articolo = new ModelliniBean(Long.parseLong(request.getParameter("seriale")), request.getParameter("nome"),
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
 					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
-					Double.parseDouble(request.getParameter("dimensioni")), "Modellini", 0);
+					Double.parseDouble(request.getParameter("dimensioni")), "Modellini", 0, Double.parseDouble(request.getParameter("IVA")));
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
 				} catch (SQLException e) {

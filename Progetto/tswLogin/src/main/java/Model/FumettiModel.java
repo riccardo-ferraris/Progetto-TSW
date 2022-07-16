@@ -42,6 +42,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				
 				return bean;
 			} else
@@ -88,6 +89,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -133,6 +135,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -178,6 +181,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -203,7 +207,7 @@ public class FumettiModel extends ArticoloModel{
 
 			String sql = "insert into " + FumettiModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
 					+ ", descrizione, scrittore, numPagine, disegnatore, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, fumetto.getSeriale());
@@ -215,6 +219,7 @@ public class FumettiModel extends ArticoloModel{
 			preparedStatement.setInt(7, fumetto.getNumPagine());
 			preparedStatement.setString(8, fumetto.getDisegnatore());
 			preparedStatement.setString(9, fumetto.getCategoria());
+			preparedStatement.setDouble(10, fumetto.getIva());
 			
 			result = preparedStatement.executeUpdate();
 			//System.out.println(fumetto.getCategoria());
@@ -283,6 +288,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setDisegnatore(rs.getString("disegnatore"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

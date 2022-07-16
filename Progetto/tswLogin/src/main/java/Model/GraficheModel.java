@@ -39,6 +39,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				
 				return bean;
 			} else
@@ -82,6 +83,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -124,6 +126,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -166,6 +169,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 
@@ -200,6 +204,7 @@ public class GraficheModel extends ArticoloModel{
 			preparedStatement.setInt(4, grafica.getQuantità());
 			preparedStatement.setString(5, grafica.getDescrizione());
 			preparedStatement.setString(6, grafica.getCategoria());
+			preparedStatement.setDouble(7, grafica.getIva());
 			
 			result = preparedStatement.executeUpdate();
 			
@@ -254,6 +259,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

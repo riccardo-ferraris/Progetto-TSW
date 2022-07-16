@@ -49,6 +49,7 @@
             </h4>
             <ul class="list-group mb-3 sticky-top" style="position:sticky; top:20%">
                 <%
+                double iva = 0;
 			for(ProdottoInCarrello prod : array){ //scorriamo il carrello passato al checkout
 			
 				 String nomeImmagine = prod.getProdotto().getNome().replace(":", "").replace("/", ""); //questa funzione elimina i caratteri proibiti per il salvataggio di un file
@@ -66,6 +67,8 @@
 				 case "Modellini": catProd = ((ModelliniBean) prod.getProdotto()).getCategoria(); //se il prodotto appartiene alla macrocategoria Fumetti, ne prendiamo la sottocategoria e la inseriamo in catProd
 				 break;
 				 }
+				 
+				 iva += prod.getProdotto().getPrezzo()*prod.getProdotto().getIva();
 				%>
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div style="display:flex">
@@ -81,10 +84,18 @@
                 </li>			
 			<%}%>
     
+                
+
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Subtotale (EUR)</span>
+                    <span>IVA (EUR)</span>
+                    <strong><%out.println(String.format("%.2f&euro;", iva)); %></strong>
+                </li>
+                
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Subtotale IVA inclusa (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale())); %></strong>
                 </li>
+                
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Spedizione (EUR)</span>
                     <strong><%out.println("5&euro;"); %></strong>

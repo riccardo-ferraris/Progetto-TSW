@@ -297,9 +297,9 @@ header {
 .form-popup {
   	display: none;
   	position: fixed;
-  	top: 25%;
+  	top: 15%;
   	right: 25%;
-  	z-index: 1030;
+  	z-index: 1061;
   	width: 50%;
   	-webkit-box-shadow: 2px 2px 8px 2px #000000; 
   	box-shadow: 2px 2px 8px 2px #000000;
@@ -1382,9 +1382,7 @@ header {
 		width:85%;
 	}
 	
-	.open-button{
-		width:200%;
-	}
+
 }
 
 @media (max-width:453px){
@@ -1424,6 +1422,6 @@ header {
 	}
 	
 	.open-button{
-		width:240%;
+		width:110%;
 	}
 }

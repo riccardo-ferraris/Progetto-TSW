@@ -1,12 +1,12 @@
 package Model;
 
-import java.awt.Color;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.awt.*;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -196,14 +196,17 @@ public class Ordine {
 		return result;
 	}
 	
-	public void creaFattura(String path) throws ClassNotFoundException, SQLException {
+	public String creaFattura(String path) throws ClassNotFoundException, SQLException {
 		UserModel userModel = new UserModel();
 		UserBean utente = userModel.doRetrieveByKey(this.utente); 
 		
-		 PDDocument doc = null;
-		  
-		  try
-		  {
+		 PDDocument doc = new PDDocument();
+		//Create Blank Page
+		 PDPage newpage = new PDPage();
+			    //Add the blank page
+		doc.addPage(newpage);
+
+		 
 			int n = 0;
 			int limit = 11;
 			Integer q;
@@ -211,153 +214,231 @@ public class Ordine {
 			double totaleIvaInclusa = this.getTotale();
 			double totaleIvaEsclusa = 0;
 			
-			
-			File f = new File(path + "/struttura_fattura.pdf");
-		    doc = PDDocument.load(f);
-		    PDPage page = (PDPage)doc.getDocumentCatalog().getPages().get(0);
-		    PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
+		    PDPage page = (PDPage)doc.getPage(0);
+		    
+		    
 		    
 		    PDFont font = PDType1Font.HELVETICA;
 		    
-		    contentStream.beginText();
-		    contentStream.setFont(font, 8);
-		    
-		    x+=65; y+=595;
-		    contentStream.newLineAtOffset(65, 595);
-		    contentStream.showText(utente.getNome() + " " + utente.getCognome()); //stampa nome e cognome
-		    
-		    x+=0; y+=-20;
-		    contentStream.newLineAtOffset(0, -15);
-		    contentStream.showText(this.getIndirizzoF());
-		    contentStream.newLineAtOffset(0, -10);
-		    contentStream.showText(this.getCapF() + " " + this.getCityF() + " (" + this.getStatoF() + ")"); //stampa indirizzo
-		    
-		    x+=372; y+=20;
-		    contentStream.newLineAtOffset(372, 20);
-		    contentStream.showText(this.getData().toLocalDate().toString()); //stampa data fattura
-		    
-		    x+=110; y+=0;
-		    contentStream.newLineAtOffset(110, 0);
-		    contentStream.showText(this.getCodice()); //stampa numero fattura (alias id ordine)
-		    
-		    x+=-478; y+=-100;
-		    contentStream.newLineAtOffset(-478, -100);
-		    
-		    
-		    for(ProdottoInCarrello prod : this.articoliOrdine)
-		    {
-		    	q = prod.getQuantità();
-		    	
-		    	contentStream.showText("(" + prod.getProdotto().getSeriale() +") "+ prod.getProdotto().getNome()); // stampa codice e nome del prodotto
-		    
-		    	double prezzoIvaEsclusa = prod.getPrezzo() - (prod.getPrezzo() * prod.getProdotto().getIva());
-		    	totaleIvaEsclusa+= prezzoIvaEsclusa;
-		    	
-		    	x+=173; y+=0;
-		    	contentStream.newLineAtOffset(173, 0);
-		    	contentStream.showText((prod.getPrezzo()+"€")); //stampa prezzo con iva
-		    
-		    	x+=85; y+=0;
-		    	contentStream.newLineAtOffset(85, 0);
-		    	contentStream.showText(q.toString()+" pz"); //stampa quantita
-		    
-		    	x+=85; y+=0;
-		    	contentStream.newLineAtOffset(85, 0);
-		    	contentStream.showText(prezzoIvaEsclusa + "€"); //stampa prezzo senza iva
-		    
-		    	x+=80; y+=0;
-		    	contentStream.newLineAtOffset(80, 0);
-		    	contentStream.showText((prod.getProdotto().getIva()) + "%"); // stampa iva
-		    	
-		    	x+=-423; y+=-35;
-		    	contentStream.newLineAtOffset(-423, -35);
-		    	
-		    	if(n == limit)
-		    	{
-		    		limit += 20;// nuovo numero
-		    		
-		    		f = new File(path + "/fattura_nextPage.pdf");
-		    		
-		    		page = (PDPage)PDDocument.load(f).getDocumentCatalog().getPages().get(0);
-		    		
-		    		doc.addPage(page);
-		    		
-		    		contentStream.endText();
-		 		    contentStream.close();
-		    		
-		    		contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
-		    		
-		    		contentStream.beginText();
-		    		contentStream.setFont(font, 8);
-		    		
-		    		x=65; y=765;
-		    		contentStream.newLineAtOffset(x, y);
-		    	}
-		    }
-		    
-		    contentStream.endText();
-		    
-		    if(limit-n <=3)
-		    {
-		    	f = new File(path + "/fattura_nextPage.pdf");
-	    		
-	    		page = (PDPage)PDDocument.load(f).getDocumentCatalog().getPages().get(0);
-	    		
-	    		doc.addPage(page);
-	    		
-	 		    contentStream.close();
-	    		
-	    		contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
-	    		contentStream.setFont(font, 8);
-	    		
-	    		x=65; y=765;
-		    }
-		    x=40; y+=0;
-		    contentStream.moveTo(x, y);
-		    
-		    x=562; y+=0;
-		    contentStream.lineTo(x, y);
-		    contentStream.setLineWidth((float) 0.3);   
-		    contentStream.setStrokingColor(new Color(255, 140, 0));
-	        contentStream.stroke();   
-		    
-		    contentStream.beginText();
-		    
-		    x=65; y+= -40;
-		    
-		    contentStream.newLineAtOffset(400, 10);
-		    contentStream.showText("Imponibile:   € " + totaleIvaEsclusa); //stampa totale senza iva
-		    
-		    contentStream.newLineAtOffset(0, -10);
-		    contentStream.showText("di cui IVA:    € " +  String.format("%.2f",(totaleIvaInclusa - totaleIvaEsclusa))); //stampa importo dovuto all'iva
-		    
-		    contentStream.newLineAtOffset(0, -10);
-		    contentStream.showText("Totale dovuto:  € " +  String.format("%.2f", totaleIvaInclusa)); //stampa totale
-		    
-		    contentStream.endText();
-		    contentStream.close();
-		    
-		    page = (PDPage)doc.getDocumentCatalog().getPages().get(0);
-		    contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true);
-		    
-		    contentStream.beginText();
-		    contentStream.setFont(font, 8);
-		    
-		    contentStream.newLineAtOffset(335, 590);
-		    contentStream.showText( String.format("%.2f", totaleIvaInclusa)+"€"); //stampa totale
-		    
-		    contentStream.endText();
-		    contentStream.close();
-		    
-		    doc.save(path + "/fattura.pdf");  
+		    try {
+		        //Prepare Content Stream
+		        PDPageContentStream cs = new PDPageContentStream(doc, page);
+		        
+		        //Writing Single Line text
+		        //Writing the Invoice title
+		        cs.beginText();
+		        cs.setFont(font, 20);
+		        cs.newLineAtOffset(250, 750);
+		        cs.showText("Perspective Art");
+		        cs.endText();
 
-		    doc.close();
-		  }
-		  catch (IOException e) 
-		  {
-		    e.printStackTrace();
-		  }
-		  
-		  System.out.println(path);
-		 }
+		        //Writing Multiple Lines
+		        //writing the customer details
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(60, 610);
+		        cs.showText("Cliente: ");
+		        cs.newLine();
+		        cs.showText("Indirizzo: ");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(110, 610);
+		        cs.showText(this.nomeF + " " + this.getCognomeF());
+     
+		   		cs.newLine();
+		        cs.showText(this.indirizzoF + ", ");
+		        cs.showText(this.capF + ", " + this.cityF + " (" + this.statoF + ")");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.newLineAtOffset(440, 610);
+		        cs.showText("Data ordine: ");
+		        cs.newLine();
+		        cs.showText("Codice ordine: ");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(510, 610);
+		        cs.showText(this.getData().toString());
+		        cs.newLine();
+		        cs.showText(this.getCodice());
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(60, 540);
+		        cs.showText("Prodotto");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(300, 540);
+		        cs.showText("Prezzo unitario");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(300, 530);
+		        cs.showText("(IVA eclusa)");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(370, 540);
+		        cs.showText("IVA %");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(410, 540);
+		        cs.showText("Prezzo unitario");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(410, 530);
+		        cs.showText("(IVA inclusa)");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(480, 540);
+		        cs.showText("Quantità");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(530, 540);
+		        cs.showText("Prezzo totale");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 10);
+		        cs.newLineAtOffset(530, 530);
+		        cs.showText("(IVA inclusa)");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(60, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		        	n++;
+		          cs.showText(prod.getProdotto().getNome());
+		          cs.setFont(font, 6);
+		          cs.setLeading(10f);
+		          cs.newLine();
+		          cs.showText("Codice articolo: " + prod.getProdotto().getSeriale());
+		          cs.setLeading(20f);
+		          cs.setFont(font, 8);
+		          cs.newLine();
+		          
+		          
+		        }
+		        cs.endText();
+	        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(30f);
+		        cs.newLineAtOffset(338, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		        	double prezzoIvaEsclusa = (prod.getPrezzo() / (100 + prod.getProdotto().getIva()) * 100);
+		        	totaleIvaEsclusa += (prezzoIvaEsclusa * prod.getQuantity()) ;
+		          cs.showText(new DecimalFormat("0.00").format(prezzoIvaEsclusa) + "€");
+		          cs.newLine();
+		        }
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(30f);
+		        cs.newLineAtOffset(375, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		          cs.showText(prod.getProdotto().getIva() + "%");
+		          cs.newLine();
+		        }
+		        cs.endText();
+		        
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(30f);
+		        cs.newLineAtOffset(448, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		        	double prezzoIvaInclusa = prod.getPrezzo();
+		          cs.showText(new DecimalFormat("0.00").format(prezzoIvaInclusa) + "€");
+		          cs.newLine();
+		        }
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(30f);
+		        cs.newLineAtOffset(500, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		          cs.showText(prod.getQuantity() + "pz");
+		          cs.newLine();
+		        }
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(30f);
+		        cs.newLineAtOffset(560, 510);
+		        for(ProdottoInCarrello prod : this.articoliOrdine) {
+		        	cs.showText(new DecimalFormat("0.00").format(prod.getPrezzo() * prod.getQuantity()) + "€");
+		        	cs.newLine();
+		        }
+		        cs.endText();
+		        
+		        int k = 500-(25*n);
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(300, k);
+		        cs.showText("Spedizione: ");
+		        cs.setLeading(25f);
+		        cs.newLine();
+		        cs.setFont(font, 10);
+		        cs.showText("Totale fattura: ");
+		        cs.setLeading(20f);
+		        cs.newLine();
+		        cs.setFont(font, 8);
+		        cs.showText("Totale IVA esclusa: ");
+		        cs.endText();
+		        
+		        cs.beginText();
+		        cs.setFont(font, 8);
+		        cs.setLeading(20f);
+		        cs.newLineAtOffset(560, k);
+		        cs.showText(new DecimalFormat("0.00").format(5) + "€");
+		        cs.setFont(font, 10);
+		        cs.setLeading(25f);
+		        cs.newLine();
+		        cs.showText(new DecimalFormat("0.00").format(this.getTotale()) + "€");
+		        cs.setFont(font, 8);
+		        cs.setLeading(20f);
+		        cs.newLine();
+		        cs.showText(new DecimalFormat("0.00").format(totaleIvaEsclusa) + "€");
+		        cs.endText();
+		        
+		        //Close the content stream
+		        cs.close();
+		        //Save the PDF
+		        doc.save(path + "/fattura" + this.getCodice() + ".pdf");
+		        doc.close();
+
+		      } catch (IOException e) {
+		        e.printStackTrace();
+		      }
+		    
+		    return (path + "/fattura" + this.getCodice() + ".pdf");
+		  }    
 	}

@@ -16,7 +16,7 @@ public class Carrello {
 	      if (x.getProdotto().getSeriale() == prodotto.getSeriale()) {
 	        // ce l'ho già
 	        // aggiorno la quantità
-	        x.setQuantità(x.getQuantità() + quantità);
+	        x.setQuantity(x.getQuantity() + quantità);
 	        return;
 	      }
 	    }
@@ -25,7 +25,9 @@ public class Carrello {
 	    // e inserisco nell'array
 	    ProdottoInCarrello prod = new ProdottoInCarrello();
 	    prod.setProdotto(prodotto);
-	    prod.setQuantità(quantità);
+	    prod.setQuantity(quantità);
+	    prod.setPrezzo(prodotto.getPrezzo());
+	    prod.setIva(prodotto.getIva());
 	    prodotti.add(prod);
 	  }
 

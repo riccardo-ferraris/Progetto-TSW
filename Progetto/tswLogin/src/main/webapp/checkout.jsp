@@ -68,7 +68,7 @@
 				 break;
 				 }
 				 
-				 iva += prod.getProdotto().getPrezzo()*prod.getProdotto().getIva();
+				 iva += prod.getProdotto().getPrezzo() - ((prod.getProdotto().getPrezzo() / (100 + prod.getProdotto().getIva()) ) * 100);
 				%>
 				<li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div style="display:flex">
@@ -76,7 +76,7 @@
                     		<img src="./gallery/<%=prod.getProdotto().getMacroCategoria()%>/<%=nomeImmagine%>.jpg" style=width:60%>
                         </div>
                         <div>	
-                        	<h6 class="my-0"><%=prod.getQuantità() + "x " + prod.getProdotto().getNome()%></h6>
+                        	<h6 class="my-0"><%=prod.getQuantity() + "x " + prod.getProdotto().getNome()%></h6>
                         	<small class="text-muted"><%=catProd%></small>
                     	</div>
                     </div>
@@ -103,6 +103,7 @@
                 <li class="list-group-item d-flex justify-content-between" style="background-color:#e3f7fa">
                     <span>Totale (EUR)</span>
                     <strong><%out.println(String.format("%.2f&euro;", checkoutOrdine.getTotale() + costoSpedizione)); %></strong>
+                    <%checkoutOrdine.setTotale(checkoutOrdine.getTotale() + costoSpedizione); %>
                 </li>
                 <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#2d3b55; width:50%; margin-top:5%; font-size:1.2em">Acquista ora</button>
             </ul>

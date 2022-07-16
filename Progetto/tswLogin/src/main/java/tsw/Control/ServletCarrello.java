@@ -114,7 +114,7 @@ public class ServletCarrello extends HttpServlet {
 	    		for (ProdottoInCarrello x : carrello.getProdotti()) { //Scorriamo tutti i prodotti in carrello per cercare quello che ci interessa
 	    			if (x.getProdotto().getSeriale() == Long.parseLong(request.getParameter("seriale"))) { //Confrontiamo il seriale del prodotto nel ciclo con il seriale del prodotto di cui vogliamo modificare la quantità
 	    				if(q<=x.getProdotto().getQuantità()) {
-	    					x.setQuantità(q); //Settiamo a q la quantità del prodotto tramite il metodo setQuantità()
+	    					x.setQuantity(q); //Settiamo a q la quantità del prodotto tramite il metodo setQuantità()
 	    				}
 		    	  		response.sendRedirect("carrello.jsp"); //Torniamo al carrello
 		    	  		return;

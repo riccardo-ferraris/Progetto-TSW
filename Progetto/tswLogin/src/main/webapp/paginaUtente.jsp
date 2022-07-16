@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import="Model.UserBean" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,6 +82,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<jsp:include page="footer.jsp"/>
 		<script>
 			var modal = document.getElementById("passwordModal");
@@ -247,6 +247,9 @@
 	           		priceArea = $(document.createElement('div')),
 	           		prezzo = $(document.createElement('p')),
 	           		
+	           		quantDiv = $(document.createElement('div')),
+	           		quant = $(document.createElement('p')),
+	           		
 	           		secondLine = $(document.createElement('div')),
 	           		
 	           		checkArea = $(document.createElement('div'));
@@ -267,6 +270,7 @@
 	           		firstLine.attr('class', 'firstLine');
 	           		nameArea.attr('class', 'nameArea');
 	           		priceArea.attr('class', 'priceArea');
+	           		quantDiv.attr('class', 'quantDiv');
 	           		secondLine.attr('class', 'secondLine');
 	           		dateArea.attr('class', 'dateArea');
 	           		checkArea.attr('class', 'checkArea');
@@ -281,8 +285,7 @@
 	           		codice.attr('class', 'codice');
 	           		fatturaArea.attr('class', 'fatturaArea');
 	           		fattura.attr('class', 'fattura');
-	           		
-	           		
+	           		fattura.attr('type', 'button');
 	           		
 	           		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
 	           		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
@@ -302,12 +305,11 @@
 	           		codiceOrdine.appendTo(header);
 	           		
 	           		fattura.text("Scarica fattura").appendTo(fatturaArea);
+	           		fattura.attr('id', jsonData[i].codice);
 	           		fatturaArea.appendTo(header);
 	           		
 	           		ordine.append(header);
-	           		
-		
-	   				
+	           			
 	           		imgArea.appendTo(productArea);
 	           		img.appendTo(imgArea);
 	           		infoArea.appendTo(productArea);
@@ -317,9 +319,9 @@
 	           		priceArea.appendTo(firstLine);
 	           		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
 	           		prezzo.html(prezzo.text() + '&euro;');
+	           		quantDiv.appendTo(firstLine);
+	           		quant.text("Quantità: "+jsonData[i].articoliOrdine[j].quantity || "").appendTo(quantDiv);
 	           		secondLine.appendTo(infoArea);
-	           		
-	           		
 	           		
 	           		bodyOrdine.append(productArea);
 	           		ordine.append(bodyOrdine);
@@ -328,5 +330,34 @@
         	}
         }
    </script>
+   
+   <script>
+   $(document).ready ( function () {
+	   $(document).on('click', '.fattura' , function(e){
+		   event.stopPropagation();
+		    event.stopImmediatePropagation();
+		   var codiceOrdine = this.id;
+		   
+		   $.ajax({
+		       url: "GeneraFattura",
+		       type: "POST",
+		       data: jQuery.param({codiceOrdine: codiceOrdine}),
+		       success: function(data){	
+				   console.log(data);
+				   window.open(data, '_blank');
+		       },
+		       
+		       cache: false,
+		       async: true,
+		       processData:false,
+		       
+		       error: function(){
+		           alert("error");
+		       }           
+		   });
+		});
+   });
+   </script>
+
 </body>
 </html>

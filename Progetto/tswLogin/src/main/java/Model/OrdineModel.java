@@ -44,37 +44,39 @@ public class OrdineModel {
 				ArticoloModel model;
 				Articolo articolo;
 				
-				if (rs.next()) {
-					for(int i = 3; i <= 5; i++) {
-						if(rs.getString(i) != null) {
-							
-							cat = rsmd.getColumnName(i).replace("seriale", "");
-							switch (cat) {
-							case "Fumetti": 
-								model = new FumettiModel();
-								articolo = new FumettiBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-								break;
-							case "Grafiche":
-								model = new GraficheModel();
-								articolo = new GraficheBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-								break;
-							case "Modellini":
-								model = new ModelliniModel();
-								articolo = new ModelliniBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-								break;
+				//if (rs.next()) {
+					while(rs.next()) {
+						for(int i = 3; i <= 5; i++) {
+							if(rs.getString(i) != null) {
 								
-							default:
-								throw new IllegalArgumentException("Unexpected value: " );
+								cat = rsmd.getColumnName(i).replace("seriale", "");
+								switch (cat) {
+								case "Fumetti": 
+									model = new FumettiModel();
+									articolo = new FumettiBean();
+									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+									break;
+								case "Grafiche":
+									model = new GraficheModel();
+									articolo = new GraficheBean();
+									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+									break;
+								case "Modellini":
+									model = new ModelliniModel();
+									articolo = new ModelliniBean();
+									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+									break;
+									
+								default:
+									throw new IllegalArgumentException("Unexpected value: " );
+								}
+								
+								ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"), rs.getDouble("prezzo"), rs.getDouble("iva"));
+								
+								arrayProdotti.add(prodCarrello);
 							}
-							
-							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"), rs.getDouble("prezzo"));
-							arrayProdotti.add(prodCarrello);
 						}
 					}
-					
 					bean.setArticoliOrdine(arrayProdotti);
 					
 					sql = "select * from indirizzospedizione where ordine = ?;";
@@ -109,9 +111,9 @@ public class OrdineModel {
 						rs = preparedStatement.executeQuery();	
 					}
 					
-				}else {
-					bean = null;
-				}
+				//}else {
+				//	bean = null;
+				//}
 				return bean;
 			}else
 				return null;
@@ -187,7 +189,7 @@ public class OrdineModel {
 							}	
 						}
 					}
-					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
+					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"), rsTemp.getDouble("iva"));
 					arrayProdotti.add(prodCarrello);
 				}
 				
@@ -240,7 +242,7 @@ public class OrdineModel {
 		return arrayOrdini;
 	}
 	
-	public synchronized Collection<Ordine> doRetrieveAll(String order) throws SQLException, NumberFormatException, ClassNotFoundException { //è da implementare
+	public synchronized Collection<Ordine> doRetrieveAll(String order) throws SQLException, NumberFormatException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -308,7 +310,7 @@ public class OrdineModel {
 							}	
 						}
 					}
-					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"));
+					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"), rsTemp.getDouble("iva"));
 					arrayProdotti.add(prodCarrello);
 				}
 				
@@ -393,13 +395,14 @@ public class OrdineModel {
 			String catProd = new String();
 			for (ProdottoInCarrello prod : prodottiOrdine) {
 				catProd = prod.getProdotto().getMacroCategoria();
-				sql = "insert into prodottiordine (codiceordine, seriale" + catProd + ", quantità, prezzo) values(?, ?, ?, ?);";
+				sql = "insert into prodottiordine (codiceordine, seriale" + catProd + ", quantità, prezzo, iva) values(?, ?, ?, ?, ?);";
 				preparedStatement = connection.prepareStatement(sql);
 				
 				preparedStatement.setString(1, codice);
 				preparedStatement.setLong(2, prod.getProdotto().getSeriale());
-				preparedStatement.setInt(3, prod.getQuantità());
+				preparedStatement.setInt(3, prod.getQuantity());
 				preparedStatement.setDouble(4, prod.getPrezzo());
+				preparedStatement.setDouble(5, prod.getIva());
 				
 				result = preparedStatement.executeUpdate();
 			}

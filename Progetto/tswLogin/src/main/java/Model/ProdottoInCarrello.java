@@ -2,14 +2,15 @@ package Model;
 
 public class ProdottoInCarrello {
 	private Articolo prodotto;
-	private int quantità;
-	private double prezzo;
+	private int quantity;
+	private double prezzo, iva;
 	
-	public ProdottoInCarrello(Articolo prodotto, int quantità, double prezzo) {
+	public ProdottoInCarrello(Articolo prodotto, int quantity, double prezzo, double iva) {
 		super();
 		this.prodotto = prodotto;
-		this.quantità = quantità;
+		this.quantity = quantity;
 		this.prezzo = prezzo;
+		this.iva = iva;
 	}
 	
 	public ProdottoInCarrello() {
@@ -23,12 +24,12 @@ public class ProdottoInCarrello {
 		this.prodotto = prodotto;
 	}
 	
-	public int getQuantità() {
-		return quantità;
+	public int getQuantity() {
+		return quantity;
 	}
 	
-	public void setQuantità(int quantità) {
-		this.quantità = quantità;
+	public void setQuantity(int quantità) {
+		this.quantity = quantità;
 	}
 	
 	public double getPrezzo() {
@@ -39,9 +40,17 @@ public class ProdottoInCarrello {
 		this.prezzo = prezzo;
 	}
 	
+	public double getIva() {
+		return iva;
+	}
+
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
+
 	@Override
 	public String toString() {
-		return "ProdottoInCarrello [prodotto=" + prodotto + ", quantità=" + quantità + "]";
+		return "ProdottoInCarrello [prodotto=" + prodotto + ", quantità=" + quantity + "]";
 	}
 	
 	

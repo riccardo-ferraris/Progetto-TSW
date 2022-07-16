@@ -1,6 +1,6 @@
 <%@page import="java.io.Console"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <% %>
     <%@page import="Util.Carrello"%>
     <%@page import="Model.Articolo"%>
@@ -60,7 +60,7 @@
 					</form>
 				</div>
 				<%
-				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantit‡, il valore del prodotto venga aggiornato
+				double totale = 0; //fare in modo che se si incrementa o decrementa il selettore delle quantit√†, il valore del prodotto venga aggiornato
 				for(ProdottoInCarrello prodotto : arrayArticoli){
 					Articolo prodottoCarrello = prodotto.getProdotto();
 					String nomeImmagine = prodottoCarrello.getNome().replace(":", "").replace("/", "");
@@ -77,12 +77,12 @@
 							<p class="prodPrezzo">Prezzo: <%out.println(String.format("%.2f&euro;", prodottoCarrello.getPrezzo()));%></p>
 						</div>
 						<div>	
-							<label class="prodLabel" for="quantit‡">Quantit‡:</label>
+							<label class="prodLabel" for="quantit√†">Quantit√†:</label>
 							<form action="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=modificaQuantitativo" method="post">
-								<input type="number" name="numModifica" id="quantit‡" min="1" max="<%=prodottoCarrello.getQuantit‡()%>" value=<%=prodotto.getQuantit‡()%> onchange="this.form.submit()"></input>
+								<input type="number" name="numModifica" id="quantit√†" min="1" max="<%=prodottoCarrello.getQuantit√†()%>" value=<%=prodotto.getQuantity()%> onchange="this.form.submit()"></input>
 							</form>
 							
-							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantit‡(); %>
+							<% totale+= prodottoCarrello.getPrezzo()*prodotto.getQuantity(); %>
 						</div> 
 						<form id="rimuoviProd" action="./ServletCarrello?page=carrello.jsp&seriale=<%=prodottoCarrello.getSeriale()%>&action=rimuoviBySeriale" method="POST">
 							<div>

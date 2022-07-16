@@ -162,6 +162,9 @@ function generaOrdini(jsonData){
        		priceArea = $(document.createElement('div')),
        		prezzo = $(document.createElement('p')),
        		
+       		quantDiv = $(document.createElement('div')),
+       		quant = $(document.createElement('p')),
+       		
        		secondLine = $(document.createElement('div')),
        		
        		checkArea = $(document.createElement('div'));
@@ -177,6 +180,7 @@ function generaOrdini(jsonData){
        		firstLine.attr('class', 'firstLine');
        		nameArea.attr('class', 'nameArea');
        		priceArea.attr('class', 'priceArea');
+       		quantDiv.attr('class', 'quantDiv');
        		secondLine.attr('class', 'secondLine');
        		dateArea.attr('class', 'dateArea');
        		checkArea.attr('class', 'checkArea');
@@ -191,6 +195,7 @@ function generaOrdini(jsonData){
        		codice.attr('class', 'codice');
        		fatturaArea.attr('class', 'fatturaArea');
        		fattura.attr('class', 'fattura');
+       		fattura.attr('id', jsonData[i].codice);
        		
        		labelData.text("Ordine effettuato il: ").appendTo(dateArea);
        		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
@@ -221,6 +226,8 @@ function generaOrdini(jsonData){
        		nomeProdotto.text(jsonData[i].articoliOrdine[j].prodotto.nome|| "").appendTo(nameArea);
        		priceArea.appendTo(firstLine);
        		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
+       		quantDiv.appendTo(firstLine);
+       		quant.text("Quantità: "+jsonData[i].articoliOrdine[j].quantity || "").appendTo(quantDiv);
        		secondLine.appendTo(infoArea);
 
        		
@@ -233,6 +240,34 @@ function generaOrdini(jsonData){
 	}
 }
 </script>
+
+<script>
+   $(document).ready ( function () {
+	   $(document).on('click', '.fattura' , function(e){
+		   event.stopPropagation();
+		    event.stopImmediatePropagation();
+		   var codiceOrdine = this.id;
+		   
+		   $.ajax({
+		       url: "GeneraFattura",
+		       type: "POST",
+		       data: jQuery.param({codiceOrdine: codiceOrdine}),
+		       success: function(data){	
+				   console.log(data);
+				   window.open(data, '_blank');
+		       },
+		       
+		       cache: false,
+		       async: true,
+		       processData:false,
+		       
+		       error: function(){
+		           alert("error");
+		       }           
+		   });
+		});
+   });
+   </script>
 	
 </body>
 </html>

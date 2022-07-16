@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -86,6 +87,8 @@ public class FiltraOrdini extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        Collections.reverse(filteredOrdini);
 		response.setContentType("application/json");
 		new Gson().toJson(filteredOrdini, response.getWriter());
 		return;

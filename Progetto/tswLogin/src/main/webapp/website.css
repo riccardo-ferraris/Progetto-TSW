@@ -297,7 +297,8 @@ header {
 .form-popup {
   	display: none;
   	position: fixed;
-  	top: 10%;
+  	/*top: 10%;*/
+  	bottom:2vh;
   	right: 25%;
   	z-index: 1061;
   	width: 50%;

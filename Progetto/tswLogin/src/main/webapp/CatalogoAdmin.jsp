@@ -191,12 +191,17 @@
     			</div>
 			
     			<div class="prezzoQuantita" style="display:flex">	
-    				<div class="divPrezzo" style="margin-right:10%; width:45%">
+    				<div class="divPrezzo" style="margin-right:10%; width:26%">
     					<label for="prezzo"><b>Prezzo</b></label>
 						<input type="text" placeholder="Prezzo" name="prezzo" required>
     				</div>
+    				
+    				<div class="divIVA" style="margin-right:10%; width:26%">
+    					<label for="IVA"><b>IVA</b></label>
+						<input type="text" placeholder="IVA" name="IVA" required>
+    				</div>
     			
-    				<div class="divQuantita" style="width:45%">
+    				<div class="divQuantita" style="width:28%">
     					<label for="quantita"><b>Quantità</b></label>
     					<input type="number" placeholder="Quantità" name="quantità" min="1" required>
     				</div>

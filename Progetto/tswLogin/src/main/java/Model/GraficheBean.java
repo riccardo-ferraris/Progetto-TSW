@@ -8,15 +8,11 @@ public class GraficheBean extends Articolo{
 	}
 	
 	public GraficheBean(String nome, long seriale, double prezzo, int quantità, String descrizione,
-			 String categoria, String macroCategoria, int numVendite) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite);
+			 String categoria, String macroCategoria, int numVendite, double iva) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva);
 		this.categoria = categoria;
 		this.macroCategoria = "Grafiche";
 	}
-
-	/*public GraficheBean(Articolo art) {
-		this();
-	}*/
 	
 	public long getSeriale() {
 		return seriale;

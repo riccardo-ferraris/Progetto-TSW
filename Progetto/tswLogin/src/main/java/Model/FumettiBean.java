@@ -13,8 +13,8 @@ public class FumettiBean extends Articolo{
 	}
 
 	public FumettiBean(String nome, String scrittore, int numPagine, String disegnatore, String categoria,
-			long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite);
+			long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva);
 		this.macroCategoria = "Fumetti";
 		this.scrittore = scrittore;
 		this.numPagine = numPagine;
@@ -97,6 +97,8 @@ public class FumettiBean extends Articolo{
 	public String getMacroCategoria() {
 		return macroCategoria;
 	}
+	
+	
 
 	@Override
 	public String toString() {

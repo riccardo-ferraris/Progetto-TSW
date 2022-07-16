@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.Comparator;
-
 public class Articolo {
 	protected String nome;
 	protected long seriale;
@@ -10,11 +8,12 @@ public class Articolo {
 	protected String descrizione;
 	protected String macroCategoria;
 	protected int numVendite;
+	protected double iva;
 	
 	public Articolo() {
 	}
 
-	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite) {
+	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva) {
 		this.nome = nome;
 		this.seriale = seriale;
 		this.prezzo = prezzo;
@@ -22,6 +21,7 @@ public class Articolo {
 		this.descrizione = descrizione;
 		this.macroCategoria = macroCategoria;
 		this.numVendite = numVendite;
+		this.iva = iva;
 	}
 
 	public long getSeriale() {
@@ -69,6 +69,14 @@ public class Articolo {
 
 	public void setNumVendite(int numVendite) {
 		this.numVendite = numVendite;
+	}
+
+	public double getIva() {
+		return iva;
+	}
+
+	public void setIva(double iva) {
+		this.iva = iva;
 	}
 
 	@Override

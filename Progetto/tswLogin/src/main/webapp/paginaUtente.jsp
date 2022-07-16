@@ -251,13 +251,17 @@
 	           		
 	           		checkArea = $(document.createElement('div'));
 	          		
+	        		
+	        		let folder = jsonData[i].articoliOrdine[j].prodotto.macroCategoria;
+	        		console.log(folder);
+	        		let pathImmagine = "./gallery/"+folder+"/"+(jsonData[i].articoliOrdine[j].prodotto.nome).replace(':', '').replace('/', '')+".jpg";
 	     			   
 	          		ordine.attr('class', 'orderArea');
 	          		header.attr('class', 'headerOrdine');
 	          		bodyOrdine.attr('class', 'bodyOrdine');
 	          		productArea.attr('class', 'productArea');
 	           		imgArea.attr('class', 'imgArea');
-	           		img.attr('src', 'beep beep.png');
+	           		img.attr('src', pathImmagine);
 	           		img.attr('style', 'width:100%');
 	           		infoArea.attr('class', 'infoArea');
 	           		firstLine.attr('class', 'firstLine');
@@ -285,8 +289,9 @@
 	           		dateArea.appendTo(header);
 	           		
 	           		labelTotale.text("Totale: ").appendTo(totaleArea);
-	           		totale.text(jsonData[i].totale || "").appendTo(totaleArea);
+	           		totale.text(jsonData[i].totale.toFixed(2) || "").appendTo(totaleArea);
 	           		totaleArea.appendTo(header);
+	           		totale.html(totale.text() + '&euro;');
 	           		
 	           		labelIndirizzo.text("Indirizzo: ").appendTo(indirizzoArea);
 	           		indirizzo.text(jsonData[i].indirizzoS || "").appendTo(indirizzoArea);
@@ -311,6 +316,7 @@
 	           		nomeProdotto.text(jsonData[i].articoliOrdine[j].prodotto.nome|| "").appendTo(nameArea);
 	           		priceArea.appendTo(firstLine);
 	           		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
+	           		prezzo.html(prezzo.text() + '&euro;');
 	           		secondLine.appendTo(infoArea);
 	           		
 	           		

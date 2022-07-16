@@ -11,8 +11,8 @@ public class ModelliniBean extends Articolo{
 	
 
 	public ModelliniBean(long seriale, String nome, double prezzo, int quantità, String descrizione,
-			 String categoria, String franchise, double dimensioni, String macroCategoria, int numVendite) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite);
+			 String categoria, String franchise, double dimensioni, String macroCategoria, int numVendite, double iva) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva);
 		this.categoria = categoria;
 		this.franchise = franchise;
 		this.dimensioni = dimensioni;

@@ -1149,8 +1149,17 @@ header {
 }
 
 .formFilter input{
-	width:20%;
+	width:100%;
 	padding:5px;
+}
+
+.bothCol{
+	display:flex;
+}
+
+.leftCol, .rightCol{
+	width:48%;
+	margin:0 1%;
 }
 
 @media (max-width:1000px){
@@ -1316,9 +1325,20 @@ header {
 	#quantità{
 		width:65%;
 	}
+	
 	.form-popup{
 		width:90%;
 		right:5%;
+	}
+	
+	.bothCol{
+		display:flex;
+		flex-wrap:wrap;
+	}
+
+	.leftCol, .rightCol{
+		width:98%;
+		margin:0 1%;
 	}
 }
 

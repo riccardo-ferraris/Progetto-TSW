@@ -252,24 +252,26 @@ switch(firstDigit){
 			let tempTextPrezzo = prezzoProdotto.textContent
 			let tempTextDescrizione = descrizioneProdotto.textContent
 			
-			const textarea = Object.assign(document.createElement('textarea'));
+			const textareaNome = Object.assign(document.createElement('textarea'));
+			//const textareaImg = Object.assign(document.createElement('textarea'));
+			const textareaCat = Object.assign(document.createElement('textarea'));
+			const textareaPrezzo = Object.assign(document.createElement('textarea'));
+			const textareaDescrizione = Object.assign(document.createElement('textarea'));
 			
+			nomeProdotto.replaceWith(textareaNome);
+			textareaNome.textContent = tempTextNome;
 			
-			var els = document.querySelectorAll('.starPUtente'),
-			  		n;
+			catProdotto.replaceWith(textareaCat);
+			textareaCat.textContent = tempTextCat;
 			
-			for (n = 0; n < els.length; n++) {
-				var stella = Object.assign(document.createElement('button'), {
-					  className: 'star',
-					  type: 'button',
-					  innerHTML: '&#9734;'
-					})
-			    els[n].replaceWith(stella);
-			    console.log(els[n]);
-			}
+			prezzoProdotto.replaceWith(textareaPrezzo);
+			textareaPrezzo.textContent = tempTextPrezzo;
 			
-			testoRecensioneUtente.replaceWith(textarea);
-			textarea.textContent = tempText;
+			descrizioneProdotto.replaceWith(textareaDescrizione);
+			textareaDescrizione.textContent = tempTextDescrizione;
+			
+			//imgProdotto.replaceWith(textareaNome);
+			
 			textarea.setAttribute('cols', '85%');
 			textarea.setAttribute('class', 'textareaModify');
 			textarea.setAttribute('minlength', '50');

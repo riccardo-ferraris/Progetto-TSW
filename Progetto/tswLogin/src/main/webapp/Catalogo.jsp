@@ -287,34 +287,34 @@
 		
 		<jsp:include page="footer.jsp"/>
 		<script>
-	$('.quickAggCarrello').on('submit', function (e) {
-		e.preventDefault();
-	    var id = this.id;
-	    console.log(id);
-   
-	    const parametersArray = id.split("_");
-	    console.log(parametersArray);
-          $.ajax({
-        	  type: "GET",
-              url:"ServletCarrello?page=Catalogo.jsp&seriale="+parametersArray[1]+"&macroCategoria="+parametersArray[2]+"&action=aggiungi&numAggiungi=1",
-              cache: false,
-              success: function (data) {
-            	  console.log("added product with no errors");
- 
-            	  $("#aggProdMex").css('display','block').removeClass('hidden');
-            	  setTimeout(function (){
-            		  
-            		  $("#aggProdMex").addClass('hidden')
-            		            
-            		}, 1000);
-                  
-                  
-              },
-              error: function(){
-                 alert("error");
-              } 
-         });
-     });
+			$('.quickAggCarrello').on('submit', function (e) {
+				e.preventDefault();
+			    var id = this.id;
+			    console.log(id);
+		   
+			    const parametersArray = id.split("_");
+			    console.log(parametersArray);
+		          $.ajax({
+		        	  type: "GET",
+		              url:"ServletCarrello?page=Catalogo.jsp&seriale="+parametersArray[1]+"&macroCategoria="+parametersArray[2]+"&action=aggiungi&numAggiungi=1",
+		              cache: false,
+		              success: function (data) {
+		            	  console.log("added product with no errors");
+		 
+		            	  $("#aggProdMex").css('display','block').removeClass('hidden');
+		            	  setTimeout(function (){
+		            		  
+		            		  $("#aggProdMex").addClass('hidden')
+		            		            
+		            		}, 1000);
+		                  
+		                  
+		              },
+		              error: function(){
+		                 alert("error");
+		              } 
+		         });
+		     });
    </script>
 </body>
 </html>

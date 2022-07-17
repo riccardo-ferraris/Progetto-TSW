@@ -229,10 +229,7 @@ function generaOrdini(jsonData){
        		quantDiv.appendTo(firstLine);
        		quant.text("Quantità: "+jsonData[i].articoliOrdine[j].quantity || "").appendTo(quantDiv);
        		secondLine.appendTo(infoArea);
-
-       		
-       		
-       		
+  		
        		bodyOrdine.append(productArea);
        		ordine.append(bodyOrdine);
        		container.append(ordine);

@@ -25,10 +25,10 @@
     	{
     		response.sendRedirect("login.jsp");	
     		return;
-    	}else if(utente.getRuolo().equals("admin")){
-    		response.sendRedirect("paginaPersonaleAdmin.jsp");
+    	}else if(!utente.getRuolo().equals("admin")){
+    		response.sendRedirect("paginaUtente.jsp");
     		return;
-		} %>
+		}%>
 		<jsp:include page="navbarLogged.jsp"/>
 		
 		<div class="areaUtente" id="prova">

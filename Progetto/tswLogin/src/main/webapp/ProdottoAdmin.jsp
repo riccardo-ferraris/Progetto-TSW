@@ -67,35 +67,35 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-		
-		<div style="display:flex; width:100%; align-items:center">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
-			
-			<div class="imgProdotto">
-				<img id="imgProdotto" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
-			</div>
-			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
-					<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
-					<div>
-						<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+		<form id="formModifiche">
+			<div id="containerDiv">
+				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
+				
+				<div class="imgProdotto" id="imgProdotto">
+					<img id="imgProdottoSrc" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
+				</div>
+				<div class="caratteristicheProd">
+					<div style="font-weight:bold; font-size:2em">
+						<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
+						<div>
+							<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+						</div>
 					</div>
-				</div>
-				<div style="font-size:1.5em">
-					<p id="catProdotto"> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
-					
-				</div>
-				<div style="font-size:1.5em">
-					<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-					
-				</div>
-				<div style="font-size:1em">
-					<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
-					
-				</div>
+					<div style="font-size:1.5em">
+						<p id="catProdotto"> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
+						
+					</div>
+					<div style="font-size:1.5em">
+						<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
+						
+					</div>
+					<div style="font-size:1em">
+						<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
+						
+					</div>
+				</div>	
 			</div>	
-		</div>	
-			
+		</form>	
 		<%
 		break;
 		
@@ -113,27 +113,31 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-		
-		<div style="display:flex">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-			<div class="imgProdotto">
-				<img id="imgProdotto" src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+		<form id="formModifiche">
+			<div id="containerDiv">
+				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+				<div class="imgProdotto" id="imgProdotto">
+					<img id="imgProdottoSrc" src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				</div>
+				<div class="caratteristicheProd">
+					<div style="font-weight:bold; font-size:2em">
+						<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
+					</div>
+						<div>
+							<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+						</div>
+					<div style="font-size:1.5em">
+						<p id="catProdotto"> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
+					</div>
+					<div style="font-size:1.5em">
+						<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
+					</div>
+					<div style="font-size:1em">
+						<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
+					</div>
+				</div>
 			</div>
-			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
-					<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
-				</div>
-				<div style="font-size:1.5em">
-					<p id="catProdotto"> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
-				</div>
-				<div style="font-size:1.5em">
-					<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-				</div>
-				<div style="font-size:1em">
-					<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
-				</div>
-			</div>
-		</div>
+		</form>
 		<%
 		break;
 	
@@ -152,28 +156,31 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-    	
-    	<div style="display:flex">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-			<div class="imgProdotto">
-				<img id="imgProdotto" src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+    	<form id="formModifiche">
+	    	<div id="containerDiv">
+				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
+				<div class="imgProdotto" id="imgProdotto">
+					<img id="imgProdottoSrc" src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
+				</div>
+				<div class="caratteristicheProd">
+					<div style="font-weight:bold; font-size:2em">
+						<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
+					</div>
+						<div>
+							<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+						</div>
+					<div style="font-size:1.5em">
+						<p id="catProdotto"> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
+					</div>
+					<div style="font-size:1.5em">
+						<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
+					</div>
+					<div style="font-size:1em">
+						<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
+					</div>
+				</div>
 			</div>
-			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
-					<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
-				</div>
-				<div style="font-size:1.5em">
-					<p id="catProdotto"> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
-				</div>
-				<div style="font-size:1.5em">
-					<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-				</div>
-				<div style="font-size:1em">
-					<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
-				</div>
-			</div>
-		</div>
-
+		</form>
 		<%
 		break;
 		
@@ -181,22 +188,8 @@ switch(firstDigit){
 		break;	
 }
 
-		if(articolo.getQuantità()>0)
-        {
          %>
-         <div class="aggiungiCarrello">
-         	<label for="quantità"> Quantità: </label>
-         	<form id="formAggiungiCarrello_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>" class="formAggiungiCarrello" method="get">
-         		<input type="number" value="1" min="1" max="<%=articolo.getQuantità()%>" name="numAggiungi" id="quantità"/>
-         		<button type="submit" class="cartButton">
-                	Aggiungi al carrello
-                </button>
-            </form>
-         </div>
-       <% }else{%>
-    	<p>Prodotto non disponibile</p>   
-       <%}%>
-       <br>
+         
         <jsp:include page="footer.jsp"/>
         
         <script>
@@ -228,10 +221,7 @@ switch(firstDigit){
          });
      });
 			
-			function strcmp(a, b)
-			{   
-			    return (a<b?-1:(a>b?1:0));  
-			}
+			
    </script>
    
    <script>
@@ -247,14 +237,16 @@ switch(firstDigit){
 		    var descrizioneProdotto = document.getElementById('descrizioneProdotto');
 		    
 			let tempTextNome = nomeProdotto.textContent;
-			let tempImg = nomeProdotto.src;
-			let tempTextCat = catProdotto.textContent
-			let tempTextPrezzo = prezzoProdotto.textContent
-			let tempTextDescrizione = descrizioneProdotto.textContent
+			let tempImg = imgProdottoSrc.src;
+			let tempTextCat = catProdotto.textContent;
+			let tempTextPrezzo = prezzoProdotto.innerHTML.replace('\u20AC', '');
+			let tempTextDescrizione = descrizioneProdotto.textContent;
 			
 			const textareaNome = Object.assign(document.createElement('textarea'));
 			//const textareaImg = Object.assign(document.createElement('textarea'));
-			const textareaCat = Object.assign(document.createElement('textarea'));
+			const textareaCat = Object.assign(document.createElement('select'));
+			const option1 = document.createElement("option");
+			const option2 = document.createElement("option");
 			const textareaPrezzo = Object.assign(document.createElement('textarea'));
 			const textareaDescrizione = Object.assign(document.createElement('textarea'));
 			
@@ -272,33 +264,79 @@ switch(firstDigit){
 			
 			//imgProdotto.replaceWith(textareaNome);
 			
-			textarea.setAttribute('cols', '85%');
-			textarea.setAttribute('class', 'textareaModify');
-			textarea.setAttribute('minlength', '50');
-			textarea.setAttribute('maxlength', '5000');
+			
+			
+			textareaNome.setAttribute('cols', '85%');
+			textareaNome.setAttribute('class', 'textareaModify');
+			textareaNome.setAttribute('minlength', '5');
+			textareaNome.setAttribute('maxlength', '100');
+			
+			textareaCat.setAttribute('width', '50%');
+			
+			if(strcmp('<%=articolo.getMacroCategoria()%>', 'Fumetti') == 0){
+				option1.value = 'Manga';
+				option2.value = 'Manhwa';
+			}else if(strcmp('<%=articolo.getMacroCategoria()%>', 'Grafiche') == 0){
+				option1.value = 'Moderna';
+				option2.value = 'Opera';
+			}else if(strcmp('<%=articolo.getMacroCategoria()%>', 'Modellini') == 0){
+				option1.value = 'Funko Pop!';
+				option2.value = 'Action Figure';
+			}
+			console.log(option1);
+			//textareaCat.add(option1);
+			//textareaCat.add(option2);
+			
+			textareaCat.options.add(new Option(option1.value));
+			textareaCat.options.add(new Option(option2.value));
+			
+			textareaPrezzo.setAttribute('cols', '85%');
+			textareaPrezzo.setAttribute('class', 'textareaModify');
+			textareaPrezzo.setAttribute('minlength', '1');
+			textareaPrezzo.setAttribute('maxlength', '12');
+			
+			textareaDescrizione.setAttribute('cols', '85%');
+			textareaDescrizione.setAttribute('class', 'textareaModify');
+			textareaDescrizione.setAttribute('minlength', '10');
+			textareaDescrizione.setAttribute('maxlength', '2000');
+			
+			const cambiaImgProdotto = Object.assign(document.createElement('input'));
+			cambiaImgProdotto.setAttribute('type', 'file');
+			cambiaImgProdotto.setAttribute('id', 'caricaImgProdotto');
+			cambiaImgProdotto.setAttribute('class', 'caricaImgProdottoBtn');
+			cambiaImgProdotto.innerHTML = "Cambia immagine";
+			
+			const divImg = document.getElementById('imgProdotto');
+			
+			//cambiaImgProdotto.appendTo(document.getElementById('imgProdotto'));
+			
+			const formModifiche = document.getElementById('formModifiche');
+			formModifiche.setAttribute('method', 'post');
+			formModifiche.setAttribute('enctype', 'multipart/form-data');
+			document.getElementById('modificheProd').append(cambiaImgProdotto);
+			
+			//formImg.setAttribute('class', 'caricaImgProdottoBtn');
 			
 			const inviaButton = Object.assign(document.createElement('button'));
 			inviaButton.setAttribute('type', 'button');
-			inviaButton.setAttribute('id', 'inviaRecensioneAggiornata');
+			inviaButton.setAttribute('id', 'inviaProdottoAggiornato');
 			inviaButton.innerHTML = "Invia";
 			
-			document.getElementById('recensioneUtenteContainer').append(inviaButton)
-			
-			var modificaRecensione = {
-					testo: textarea.textContent,
-					punteggio: clickStars()
-			};
-			
-			$('#inviaRecensioneAggiornata').on('click', function(e){
-				console.log(textarea.value);
+			document.getElementById('modificheProd').append(inviaButton);
+			console.log(textareaPrezzo.value.replace(',', '.'));
+			$('#formModifiche').on('submit', function(e){
+
 		      $.ajax({
 		    	  type: "POST",
-		          url:"ModificaRecensione",
-		          data: {punti: clickStars(), testoRecensione: textarea.value, username: utente.username, seriale: '<%=seriale%>', categoria: '<%=articolo.getMacroCategoria()%>'},
+		          url:"ModificaProdotto",
+		          enctype: 'multipart/form-data', //must, tell jQuery not to process the data
+		          //contentType: false,
+		          //processData: false,
+		          data: $('#formModifiche').serialize(),
 		          cache: false,
 		          success: function (data) {
 		             if(data == 'True'){
-		            	 console.log('Recensione updated');
+		            	 console.log('Prodotto updated');
 		            	 location.reload();
 		             }else{ 
 		                 console.log('Errore!');
@@ -307,9 +345,17 @@ switch(firstDigit){
 	         });
 	   		});
 		    
+   		});
    });
    </script>
    
+   
+   <script>
+   function strcmp(a, b)
+	{   
+	    return (a<b?-1:(a>b?1:0));  
+	}
+   </script>
 </body>
 </html>
 </body>

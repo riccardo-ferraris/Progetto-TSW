@@ -412,7 +412,7 @@ switch(firstDigit){
 			    return (a<b?-1:(a>b?1:0));  
 			}
    </script>
-   
+
    <script>
 	   $('#modificaRecensioneBtn').on('click', function(e){
 			var testoRecensioneUtente = document.getElementById('testoRecensione');

@@ -1445,4 +1445,11 @@ header {
 	.open-button{
 		width:110%;
 	}
+	
+}
+
+#containerDiv{
+	display: flex;
+	width: 100%;
+	align-items: center;
 }

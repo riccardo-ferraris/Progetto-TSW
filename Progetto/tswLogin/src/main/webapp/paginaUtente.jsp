@@ -335,31 +335,31 @@
    </script>
    
    <script>
-	   $(document).ready ( function () {
-		   $(document).on('click', '.fattura' , function(e){
-			   event.stopPropagation();
-			    event.stopImmediatePropagation();
-			   var codiceOrdine = this.id;
-			   
-			   $.ajax({
-			       url: "GeneraFattura",
-			       type: "POST",
-			       data: jQuery.param({codiceOrdine: codiceOrdine}),
-			       success: function(data){	
-					   console.log(data);
-					   window.open(data, '_blank');
-			       },
-			       
-			       cache: false,
-			       async: true,
-			       processData:false,
-			       
-			       error: function(){
-			           alert("error");
-			       }           
-			   });
-			});
-	   });
+   $(document).ready ( function () {
+	   $(document).on('click', '.fattura' , function(e){
+		   event.stopPropagation();
+		    event.stopImmediatePropagation();
+		   var codiceOrdine = this.id;
+		   
+		   $.ajax({
+		       url: "GeneraFattura",
+		       type: "POST",
+		       data: jQuery.param({codiceOrdine: codiceOrdine}),
+		       success: function(data){	
+				   console.log(data);
+				   window.open(data, '_blank');
+		       },
+		       
+		       cache: false,
+		       async: true,
+		       processData:false,
+		       
+		       error: function(){
+		           alert("error");
+		       }           
+		   });
+		});
+   });
    </script>
 
 </body>

@@ -19,4 +19,6 @@ public class ArticoloModel {
 		Collection<? extends Articolo> coll = new LinkedList<Articolo>();
 		return coll;
 	}
+	
+	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {}
 }

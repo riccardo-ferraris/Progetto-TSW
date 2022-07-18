@@ -16,7 +16,6 @@ public class RecensioneBean {
 		this.seriale = seriale;
 		this.punteggio = punteggio;
 	}
-
 	
 	public String getUsername() {
 		return username;
@@ -59,8 +58,5 @@ public class RecensioneBean {
 	@Override
 	public boolean equals(Object obj) {
 		return ((RecensioneBean)obj).username.equals(username) && ((RecensioneBean)obj).seriale == seriale;
-	}
-	
-	
-	
+	}	
 }

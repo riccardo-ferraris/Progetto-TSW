@@ -286,4 +286,36 @@ public class ModelliniModel extends ArticoloModel{
 		}
 		return products;
 	}
+
+	@Override
+	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`" + categoria +"` set `nome` = ?, `prezzo` = ?, `descrizione` = ?, `categoria` = ? where (`seriale` = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, nomeProdotto);
+			preparedStatement.setDouble(2, prezzoProdotto);
+			preparedStatement.setString(3, descrizioneProdotto);
+			preparedStatement.setString(4, sottoCatProdotto);
+			preparedStatement.setLong(5, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
 }

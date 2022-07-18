@@ -15,18 +15,35 @@
     <%@page import="tsw.Control.nuovoProdottoServlet" %>
 <!DOCTYPE html>
 <html>
-<%UserBean utente = (UserBean) request.getSession().getAttribute("utente");;
+<%UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 	if(utente == null){
 		request.getSession().setAttribute("ruolo", "guest");
 		response.sendRedirect("Catalogo.jsp");
 		return;
 	}
-	if(!utente.getRuolo().equals("admin"))
-	{
-		//out.println(utente);
+	if(!utente.getRuolo().equals("admin")){
 		response.sendRedirect("Catalogo.jsp");
 		return;
-	} %>
+	}
+	
+	@SuppressWarnings("unchecked")
+	ArrayList<FumettiBean> arrayManga = (ArrayList<FumettiBean>) request.getAttribute("arrayManga");
+	@SuppressWarnings("unchecked")
+	ArrayList<FumettiBean> arrayManhua = (ArrayList<FumettiBean>) request.getAttribute("arrayManhua");
+	@SuppressWarnings("unchecked")
+	ArrayList<GraficheBean> arrayOpera = (ArrayList<GraficheBean>) request.getAttribute("arrayOpera");
+	@SuppressWarnings("unchecked")
+	ArrayList<GraficheBean> arrayModerne = (ArrayList<GraficheBean>) request.getAttribute("arrayModerne");
+	@SuppressWarnings("unchecked")
+	ArrayList<ModelliniBean> arrayFunko = (ArrayList<ModelliniBean>) request.getAttribute("arrayFunko");
+	@SuppressWarnings("unchecked")
+	ArrayList<ModelliniBean> arrayFigures = (ArrayList<ModelliniBean>) request.getAttribute("arrayFigures");
+
+	if(arrayManga == null){
+		response.sendRedirect("./RedirectServlet?page=catalogo");
+		return;
+}
+%>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,9 +90,10 @@
 			<button class="open-button" onclick="openForm()"
 			title='Pop Up'>Aggiungi un nuovo articolo</button>
 			
-			<a href="./Catalogo.jsp">
-			<button class="open-button">Vai al catalogo utenti</button>
-			</a>
+			<form method="get" action="./RedirectServlet">
+				<input type="hidden" name="page" value="viewUtenti" /> 
+				<button class="open-button">Vai al catalogo utenti</button>
+			</form>
 		</div>
 		
 	</div>
@@ -228,9 +246,7 @@
 			}
 		</script>
 	<%
-	FumettiModel fmodel = new FumettiModel();
 	
-	ArrayList<FumettiBean> arrayManga = new ArrayList<FumettiBean>(fmodel.doRetrieveAllManga(null));
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>
 	<div class = "listProd">
@@ -264,7 +280,6 @@
 	
 	<h3 class="sottointestazione">Manhua</h3>
 	<%
-	ArrayList<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(fmodel.doRetrieveAllManhua(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 	%>
 	
@@ -297,10 +312,6 @@
 	<h3 class="sottointestazione">D'Opera</h3>
 	
 	<%
-	GraficheModel gmodel = new GraficheModel();
-	//String path = .getContextRoot();
-	//out.println(path);
-	ArrayList<GraficheBean> arrayOpera = new ArrayList<GraficheBean>(gmodel.doRetrieveAllOpera(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>
 	<div class = "listProd">
@@ -332,7 +343,6 @@
 	
 	<h3 class="sottointestazione">Moderne</h3>
 	<%
-	ArrayList<GraficheBean> arrayModerne = new ArrayList<GraficheBean>(gmodel.doRetrieveAllModerna(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 	%>
 	
@@ -366,10 +376,6 @@
 	<h3 class="sottointestazione">Funko POP!</h3>
 	
 	<%
-	ModelliniModel mmodel = new ModelliniModel();
-	//String path = .getContextRoot();
-	//out.println(path);
-	ArrayList<ModelliniBean> arrayFunko = new ArrayList<ModelliniBean>(mmodel.doRetrieveAllFunko(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>
 	<div class = "listProd">
@@ -401,7 +407,6 @@
 	
 	<h3 class="sottointestazione">Action Figures</h3>
 	<%
-	ArrayList<ModelliniBean> arrayFigures = new ArrayList<ModelliniBean>(mmodel.doRetrieveAllFigures(null));
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 	%>
 	

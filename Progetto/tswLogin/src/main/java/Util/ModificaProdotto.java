@@ -54,6 +54,8 @@ public class ModificaProdotto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("nomeProdotto"));
 		String nomeProdotto = request.getParameter("nomeProdotto").trim();
 		String sottoCatProdotto = request.getParameter("sottoCatProdotto").trim();
 		double prezzoProdotto = Double.parseDouble(request.getParameter("prezzoProdotto").replace(",", ".").trim());

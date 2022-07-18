@@ -67,7 +67,7 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-		<form id="formModifiche">
+		<form id="formModifiche" method="post" enctype="multipart/form-data;charset=UTF-8">
 			<div id="containerDiv">
 				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
 				
@@ -78,7 +78,7 @@ switch(firstDigit){
 					<div style="font-weight:bold; font-size:2em">
 						<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
 						<div>
-							<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
+							<button type="button" ]id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
 						</div>
 					</div>
 					<div style="font-size:1.5em">
@@ -95,6 +95,8 @@ switch(firstDigit){
 					</div>
 				</div>	
 			</div>	
+			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
+			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
 		</form>	
 		<%
 		break;
@@ -113,7 +115,7 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-		<form id="formModifiche">
+		<form id="formModifiche" method="post" enctype="multipart/form-data;charset=UTF-8">
 			<div id="containerDiv">
 				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 				<div class="imgProdotto" id="imgProdotto">
@@ -137,6 +139,8 @@ switch(firstDigit){
 					</div>
 				</div>
 			</div>
+			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
+			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
 		</form>
 		<%
 		break;
@@ -156,7 +160,7 @@ switch(firstDigit){
 			<%}else{ %>
 				<jsp:include page="navbarLogged.jsp"/>
 			<% } %>
-    	<form id="formModifiche">
+    	<form id="formModifiche" method="post" enctype="multipart/form-data;charset=UTF-8">
 	    	<div id="containerDiv">
 				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
 				<div class="imgProdotto" id="imgProdotto">
@@ -180,6 +184,8 @@ switch(firstDigit){
 					</div>
 				</div>
 			</div>
+			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
+			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
 		</form>
 		<%
 		break;
@@ -229,6 +235,7 @@ switch(firstDigit){
 	   $(document).on('click', '#modificaProdotto' , function(e){
 		   event.stopPropagation();
 		    event.stopImmediatePropagation();
+		    e.preventDefault();
 		   
 		    var nomeProdotto = document.getElementById('nomeProdotto');
 		    var imgProdotto = document.getElementById('imgProdotto');
@@ -237,12 +244,13 @@ switch(firstDigit){
 		    var descrizioneProdotto = document.getElementById('descrizioneProdotto');
 		    
 			let tempTextNome = nomeProdotto.textContent;
+			console.log(tempTextNome);
 			let tempImg = imgProdottoSrc.src;
 			let tempTextCat = catProdotto.textContent;
 			let tempTextPrezzo = prezzoProdotto.innerHTML.replace('\u20AC', '');
 			let tempTextDescrizione = descrizioneProdotto.textContent;
 			
-			const textareaNome = Object.assign(document.createElement('textarea'));
+			const textareaNome = Object.assign(document.createElement('input'));
 			//const textareaImg = Object.assign(document.createElement('textarea'));
 			const textareaCat = Object.assign(document.createElement('select'));
 			const option1 = document.createElement("option");
@@ -251,7 +259,7 @@ switch(firstDigit){
 			const textareaDescrizione = Object.assign(document.createElement('textarea'));
 			
 			nomeProdotto.replaceWith(textareaNome);
-			textareaNome.textContent = tempTextNome;
+			textareaNome.setAttribute('value', tempTextNome);
 			
 			catProdotto.replaceWith(textareaCat);
 			textareaCat.textContent = tempTextCat;
@@ -266,10 +274,12 @@ switch(firstDigit){
 			
 			
 			
-			textareaNome.setAttribute('cols', '85%');
+			
 			textareaNome.setAttribute('class', 'textareaModify');
 			textareaNome.setAttribute('minlength', '5');
 			textareaNome.setAttribute('maxlength', '100');
+			textareaNome.setAttribute('name', 'nomeProdotto');
+			textareaNome.setAttribute('type', 'text');
 			
 			textareaCat.setAttribute('width', '50%');
 			
@@ -294,45 +304,51 @@ switch(firstDigit){
 			textareaPrezzo.setAttribute('class', 'textareaModify');
 			textareaPrezzo.setAttribute('minlength', '1');
 			textareaPrezzo.setAttribute('maxlength', '12');
+			textareaPrezzo.setAttribute('name', 'prezzoProdotto');
 			
 			textareaDescrizione.setAttribute('cols', '85%');
 			textareaDescrizione.setAttribute('class', 'textareaModify');
 			textareaDescrizione.setAttribute('minlength', '10');
 			textareaDescrizione.setAttribute('maxlength', '2000');
+			textareaDescrizione.setAttribute('name', 'descrizioneProdotto');
 			
 			const cambiaImgProdotto = Object.assign(document.createElement('input'));
 			cambiaImgProdotto.setAttribute('type', 'file');
 			cambiaImgProdotto.setAttribute('id', 'caricaImgProdotto');
 			cambiaImgProdotto.setAttribute('class', 'caricaImgProdottoBtn');
 			cambiaImgProdotto.innerHTML = "Cambia immagine";
+			cambiaImgProdotto.setAttribute('name', 'img');
+			
+			textareaCat.setAttribute('name', 'sottoCatProdotto');
 			
 			const divImg = document.getElementById('imgProdotto');
 			
 			//cambiaImgProdotto.appendTo(document.getElementById('imgProdotto'));
 			
 			const formModifiche = document.getElementById('formModifiche');
-			formModifiche.setAttribute('method', 'post');
-			formModifiche.setAttribute('enctype', 'multipart/form-data');
-			document.getElementById('modificheProd').append(cambiaImgProdotto);
+			document.getElementById('containerDiv').append(cambiaImgProdotto);
 			
 			//formImg.setAttribute('class', 'caricaImgProdottoBtn');
 			
 			const inviaButton = Object.assign(document.createElement('button'));
-			inviaButton.setAttribute('type', 'button');
 			inviaButton.setAttribute('id', 'inviaProdottoAggiornato');
 			inviaButton.innerHTML = "Invia";
 			
-			document.getElementById('modificheProd').append(inviaButton);
+			document.getElementById('containerDiv').append(inviaButton);
 			console.log(textareaPrezzo.value.replace(',', '.'));
 			$('#formModifiche').on('submit', function(e){
-
+				e.preventDefault();
+				
+				
+				var formData = new FormData($(this)[0]);
+				console.log(formData);
 		      $.ajax({
 		    	  type: "POST",
 		          url:"ModificaProdotto",
-		          enctype: 'multipart/form-data', //must, tell jQuery not to process the data
-		          //contentType: false,
-		          //processData: false,
-		          data: $('#formModifiche').serialize(),
+		          enctype: 'multipart/form-data;charset=UTF-8', //must, tell jQuery not to process the data
+		          contentType: false,
+		          processData: false,
+		          data: formData,
 		          cache: false,
 		          success: function (data) {
 		             if(data == 'True'){

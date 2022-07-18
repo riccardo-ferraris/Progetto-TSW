@@ -60,9 +60,10 @@ public class LoginServlet extends HttpServlet {
 				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().write("True");
 				String page = request.getParameter("pageLogin");
+				System.out.println(page);
 				if(page != null) {
 					response.getWriter().write(page);
-				}else {
+				}else if(page == null || page.equals("")){
 					response.getWriter().write("./RedirectServlet?page=catalogo");
 				}
 			}

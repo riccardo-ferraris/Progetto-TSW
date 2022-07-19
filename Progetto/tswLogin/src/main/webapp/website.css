@@ -297,7 +297,6 @@ header {
 .form-popup {
   	display: none;
   	position: fixed;
-  	/*top: 10%;*/
   	bottom:2vh;
   	right: 25%;
   	z-index: 1061;
@@ -542,6 +541,54 @@ header {
   width: 20%;
 }
 
+.firstLine {
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+.firstLine p{
+	margin:0;
+}
+
+.quantDiv{
+	padding:2% 5%;
+}
+
+.buttonOrdini{
+	width: 25%;
+    padding: 0.5em;
+    background-color: #2d3b55;
+    color: white;
+    font-weight:400;
+}
+
+.buttonOrdini a{
+	margin:0 auto;
+}
+
+.buttonOrdini:hover{
+	text-decoration:none;
+	color: white;
+}
+
+#modificaProdotto{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:40px;
+	height:40px;
+	background-color:#2d3b55;
+	color:white;
+}
+
+#modificaProdotto:hover{
+	background-color:#3c4d6d;
+}
+
+#nomeProdotto{
+	margin:0;
+}
+
 .prodottoCarrello input[type=number]
 {
 	padding: 5%;	
@@ -605,11 +652,32 @@ header {
 .caratteristicheProd div {
 	margin:1%;
 	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.prodottoAdmin{
+	background-color: #2d3b55;
+	color:white;
+	font-size:0.6em;
+	padding:2% 5%;
+	border:1px solid black;
+	font-weight:400;
+}
+
+.prodottoAdmin:hover{
+	text-decoration:none;
+	color:white;
+	background-color: #3a4e70;
 }
 
 .caratTitolo{
 	font-weight:bold; 
 	font-size:2em;
+}
+
+.caratTitolo p{
+	margin-bottom:0;
 }
 
 .caratCateg, .caratPrezzo {
@@ -907,11 +975,17 @@ header {
 	margin:0 10%;
 }
 
+.nameArea{
+	width:100%;
+	font-weight:bold;
+	padding:2% 5%;
+}
+
 .datiPersonali p {
 	font-size: 1em;
 }
 
-.deleteProd {
+.deleteProd, .showProd{
 	background-color:unset;
 	border:1px solid #2d3b55;
 	border-radius:50%;
@@ -919,7 +993,7 @@ header {
 	height:25px;
 }
 
-.deleteProd:hover {
+.deleteProd:hover, .showProd:hover {
 	color:white;
 	background-color:#2d3b55;
 	transition:0.3s;
@@ -940,6 +1014,8 @@ header {
 
 .productArea{
 	display:flex;
+	align-items:center;
+	justify-content:center;
 	padding:2%;
 }
 
@@ -951,7 +1027,7 @@ header {
 	width:75%;
 }
 
-.nameArea, .headerOrdine {
+.headerOrdine {
 	width:100%;
 	padding:2%;
 }
@@ -979,9 +1055,14 @@ header {
 	text-decoration:underline;
 }
 
-.priceArea, .checkArea {
+.checkArea {
 	width:30%;
 	padding:2%;
+}
+
+.priceArea{
+	width:100%;
+	padding:2% 5%;
 }
 
 
@@ -1268,6 +1349,7 @@ header {
 	.caratTitolo{
 		font-weight:bold; 
 		font-size:1.5em;
+		justify-content:space-between;
 	}
 
 	.caratCateg, .caratPrezzo {
@@ -1446,10 +1528,6 @@ header {
 		width:110%;
 	}
 	
-}
-
-.showProd{
-	border-radius: 1px;
 }
 
 #containerDiv{

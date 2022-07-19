@@ -76,6 +76,7 @@ switch(firstDigit){
 			<div class="caratteristicheProd">
 				<div class="caratTitolo">
 					<p> <%out.println(articolo.getNome());%> </p>
+					<a href="./ProdottoAdmin.jsp" class="prodottoAdmin">Prodotto Admin</a>
 				</div>
 				<div class="caratCateg">
 					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>

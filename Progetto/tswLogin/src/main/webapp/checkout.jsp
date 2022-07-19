@@ -212,7 +212,7 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <label for="cc-expiration">Data di scadenza</label>
-                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                        <input type="date" class="form-control" id="cc-expiration" placeholder="" required="">
                         <div class="invalid-feedback"> Data di scadenza obbligatoria</div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -326,7 +326,16 @@
 	}
 </script>
 	
-   
+  <script>
+  $(document).ready ( function () {
+  //var tomorrow = new Date(),
+  var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+  // minimum date the user can choose, in this case now and in the future
+  minDate = tomorrow.toISOString().substring(0,10);
+
+	$('#cc-expiration').prop('min', minDate);
+  });
+  </script>
 	
 </body>
 </html>

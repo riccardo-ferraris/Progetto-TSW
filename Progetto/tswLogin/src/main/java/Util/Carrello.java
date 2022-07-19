@@ -53,6 +53,7 @@ public class Carrello {
 	  
 	  public void clearAll() {
 	    prodotti.clear();
+	    return;
 	  }
 
 	  public ArrayList<ProdottoInCarrello> getProdotti() {

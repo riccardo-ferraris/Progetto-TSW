@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.Articolo;
 import Model.ArticoloModel;
 import Model.FumettiBean;
 import Model.FumettiModel;
@@ -20,16 +20,16 @@ import Model.ModelliniBean;
 import Model.ModelliniModel;
 
 /**
- * Servlet implementation class SearchServlet
+ * Servlet implementation class RetrieveProdotti
  */
-@WebServlet("/SearchServlet")
-public class SearchServlet extends HttpServlet {
+@WebServlet("/RetrieveProdotti")
+public class RetrieveProdotti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchServlet() {
+    public RetrieveProdotti() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,33 +39,41 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		FumettiModel fModel = new FumettiModel();
-		GraficheModel gModel = new GraficheModel();
-		ModelliniModel mModel = new ModelliniModel();
-		String keyWord = request.getParameter("keyWord");
+		ArticoloModel model;
+		ArrayList<FumettiBean> arrayFumetti = new ArrayList<FumettiBean>();
+		ArrayList<GraficheBean> arrayGrafiche = new ArrayList<GraficheBean>(); 
+		ArrayList<ModelliniBean> arrayModellini = new ArrayList<ModelliniBean>();
 		
-		request.getSession().setAttribute("keyWord", keyWord);
-		
-		ArrayList<Articolo> ricercaProdotti = new ArrayList<Articolo>();
-		ArrayList<FumettiBean> ricercaFumetti = new ArrayList<FumettiBean>();
-		ArrayList<GraficheBean> ricercaGrafiche = new ArrayList<GraficheBean>();
-		ArrayList<ModelliniBean> ricercaModellini = new ArrayList<ModelliniBean>();
-		
-		try {	
-			ricercaFumetti = new ArrayList<FumettiBean>(fModel.doRetrieveAllByKeyWord(null, keyWord));
-			ricercaGrafiche = new ArrayList<GraficheBean>(gModel.doRetrieveAllByKeyWord(null, keyWord));
-			ricercaModellini = new ArrayList<ModelliniBean>(mModel.doRetrieveAllByKeyWord(null, keyWord));
+		model = new FumettiModel();
+		try {
+			arrayFumetti = new ArrayList<FumettiBean>(((FumettiModel)model).doRetrieveAll(null));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		ricercaProdotti.addAll(ricercaFumetti);
-		ricercaProdotti.addAll(ricercaGrafiche);
-		ricercaProdotti.addAll(ricercaModellini);
+		model = new GraficheModel();
+		try {
+			arrayGrafiche = new ArrayList<GraficheBean>(((GraficheModel)model).doRetrieveAll(null));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		request.getSession().setAttribute("searchedItems", ricercaProdotti);
-		response.sendRedirect("ricerca.jsp");
+		model = new ModelliniModel();
+		try {
+			arrayModellini = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAll(null));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("arrayFumetti", arrayFumetti);
+		request.setAttribute("arrayGrafiche", arrayGrafiche);
+		request.setAttribute("arrayModellini", arrayModellini);
+		
+		RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+		view.forward(request, response);
 		return;
 	}
 

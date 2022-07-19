@@ -8,8 +8,8 @@ public class GraficheBean extends Articolo{
 	}
 	
 	public GraficheBean(String nome, long seriale, double prezzo, int quantità, String descrizione,
-			 String categoria, String macroCategoria, int numVendite, double iva) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva);
+			 String categoria, String macroCategoria, int numVendite, double iva, boolean visible) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva, visible);
 		this.categoria = categoria;
 		this.macroCategoria = "Grafiche";
 	}

@@ -1,4 +1,4 @@
-package tsw.Control;
+package Control;
 
 import java.io.IOException;
 import java.sql.SQLException;

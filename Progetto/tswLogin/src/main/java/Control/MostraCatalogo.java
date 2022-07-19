@@ -1,4 +1,4 @@
-package tsw.Control;
+package Control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -70,13 +70,13 @@ public class MostraCatalogo extends HttpServlet {
 		
 		model = new ModelliniModel();
 		try {
-			arrayFunko = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAll(null));
-			arrayFigures = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAllFunko(null));
+			arrayFunko = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAllFunko(null));
+			arrayFigures = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAllFigures(null));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("arrayManga", arrayManga);
 		request.setAttribute("arrayManhua", arrayManhua);
 		request.setAttribute("arrayOpera", arrayOpera);
@@ -93,6 +93,7 @@ public class MostraCatalogo extends HttpServlet {
 		view.forward(request, response);
 		return;
 		}
+		
         
 		return;
 	}

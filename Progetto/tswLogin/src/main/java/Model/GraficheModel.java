@@ -40,6 +40,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				
 				return bean;
 			} else
@@ -84,6 +85,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -127,6 +129,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -170,6 +173,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -195,7 +199,7 @@ public class GraficheModel extends ArticoloModel{
 
 			String sql = "insert into " + GraficheModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
 					+ ", descrizione, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?);";
+					+ " values(?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, grafica.getSeriale());
@@ -205,6 +209,7 @@ public class GraficheModel extends ArticoloModel{
 			preparedStatement.setString(5, grafica.getDescrizione());
 			preparedStatement.setString(6, grafica.getCategoria());
 			preparedStatement.setDouble(7, grafica.getIva());
+			preparedStatement.setBoolean(8, grafica.isVisible());
 			
 			result = preparedStatement.executeUpdate();
 			
@@ -260,6 +265,7 @@ public class GraficheModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -274,4 +280,64 @@ public class GraficheModel extends ArticoloModel{
 		return products;
 	}
 	
+	@Override
+	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`" + categoria +"` set `titolo` = ?, `prezzo` = ?, `descrizione` = ?, `categoria` = ? where (`seriale` = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, nomeProdotto);
+			preparedStatement.setDouble(2, prezzoProdotto);
+			preparedStatement.setString(3, descrizioneProdotto);
+			preparedStatement.setString(4, sottoCatProdotto);
+			preparedStatement.setLong(5, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
+	
+	@Override
+	public synchronized void toggleVisibility(long seriale, boolean value) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`grafica` set `visible` = ? where (`seriale` = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setBoolean(1, value);
+			preparedStatement.setLong(2, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
 }

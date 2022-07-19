@@ -17,7 +17,19 @@
 
 <!DOCTYPE html>
 <html lang="it">
+<%
+@SuppressWarnings("unchecked")
+	ArrayList<FumettiBean> arrayFumetti = (ArrayList<FumettiBean>) request.getAttribute("arrayFumetti");
+@SuppressWarnings("unchecked")
+	ArrayList<GraficheBean> arrayGrafiche = (ArrayList<GraficheBean>) request.getAttribute("arrayGrafiche");
+@SuppressWarnings("unchecked")
+	ArrayList<ModelliniBean> arrayModellini = (ArrayList<ModelliniBean>) request.getAttribute("arrayModellini");
 
+if(arrayModellini == null){
+	response.sendRedirect("./RetrieveProdotti");
+	return;
+}
+%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,9 +75,7 @@
             <h3>Funko Pop! più venduti</h3>
             <div class="mainProduct" >
             	<%
-            		ArticoloModel model = new ModelliniModel();
-            		
-            		ArrayList<Articolo> topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+                    ArrayList<Articolo> topProducts = new ArrayList<Articolo>(arrayModellini);
             		Collections.sort(topProducts, new venditeComparator());
             		Collections.reverse(topProducts);
             		topProducts.subList(5, topProducts.size()).clear();
@@ -106,8 +116,7 @@
             <h3>Manga e manhwa più venduti</h3>
             <div class="mainProduct">
             	<%
-            		model = new FumettiModel();
-            		topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+            		topProducts = new ArrayList<Articolo>(arrayFumetti);
             		Collections.sort(topProducts, new venditeComparator());
             		Collections.reverse(topProducts);
             		topProducts.subList(5, topProducts.size()).clear();
@@ -146,8 +155,7 @@
             <h3>Grafiche e poster più venduti</h3>
             <div class="mainProduct" >
             	<%
-					model = new GraficheModel();
-            		topProducts = new ArrayList<Articolo>(model.doRetrieveAll(null));
+            		topProducts = new ArrayList<Articolo>(arrayGrafiche);
             		Collections.sort(topProducts, new venditeComparator());
             		Collections.reverse(topProducts);
             		topProducts.subList(5, topProducts.size()).clear();

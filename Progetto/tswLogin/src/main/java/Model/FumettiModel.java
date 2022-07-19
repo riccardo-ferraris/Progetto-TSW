@@ -43,6 +43,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				
 				return bean;
 			} else
@@ -90,6 +91,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -136,6 +138,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -182,6 +185,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -207,7 +211,7 @@ public class FumettiModel extends ArticoloModel{
 
 			String sql = "insert into " + FumettiModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
 					+ ", descrizione, scrittore, numPagine, disegnatore, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, fumetto.getSeriale());
@@ -220,6 +224,7 @@ public class FumettiModel extends ArticoloModel{
 			preparedStatement.setString(8, fumetto.getDisegnatore());
 			preparedStatement.setString(9, fumetto.getCategoria());
 			preparedStatement.setDouble(10, fumetto.getIva());
+			preparedStatement.setBoolean(11, fumetto.isVisible());
 			
 			result = preparedStatement.executeUpdate();
 			//System.out.println(fumetto.getCategoria());
@@ -239,11 +244,6 @@ public class FumettiModel extends ArticoloModel{
 		}
 	}
 	
-	
-	/**
-	 *  idea:  la jsp della mainNav chiama la servlet passando il form con la parola chiave, la servlet passa la stringa a questo metodo, una query userà la stringa
-	 *  per cercare i prodotti che rientrano nella ricerca tramite un metodo che cerca una substring
-	 */
 	@Override
 	public synchronized Collection<FumettiBean> doRetrieveAllByKeyWord(String order, String keyWord) throws SQLException {
 		Connection connection = null;
@@ -289,6 +289,7 @@ public class FumettiModel extends ArticoloModel{
 				bean.setCategoria(rs.getString("categoria"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -302,7 +303,68 @@ public class FumettiModel extends ArticoloModel{
 		}
 		return products;
 	}
+	
+	@Override
+	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`" + categoria +"` set `titolo` = ?, `prezzo` = ?, `descrizione` = ?, `categoria` = ? where (`seriale` = ?);";
 
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, nomeProdotto);
+			preparedStatement.setDouble(2, prezzoProdotto);
+			preparedStatement.setString(3, descrizioneProdotto);
+			preparedStatement.setString(4, sottoCatProdotto);
+			preparedStatement.setLong(5, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
+	
+	@Override
+	public synchronized void toggleVisibility(long seriale, boolean value) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`fumetti` set `visible` = ? where (`seriale` = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setBoolean(1, value);
+			preparedStatement.setLong(2, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
+	
 }
 
 

@@ -13,7 +13,7 @@
     <%@page import="java.text.DecimalFormat" %>
     <%@page import="Model.UserBean" %>
     <%@page import="Util.venditeComparator" %>
-    <%@page import="tsw.Control.nuovoProdottoServlet" %>
+    <%@page import="Control.nuovoProdottoServlet" %>
     <%@page import="java.util.Collections" %>
 <!DOCTYPE html>
 <html>
@@ -116,7 +116,8 @@ if(arrayManga == null){
 		<ul style="list-style-type:none;">
 		<% 
 		
-		for(FumettiBean fumetto : arrayManga){ 
+		for(FumettiBean fumetto : arrayManga){
+			if(fumetto.isVisible()){
 			String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", "");
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>">
@@ -138,7 +139,8 @@ if(arrayManga == null){
 			</div>
 		</form>
 			</div>
-			<% } %>
+			<%} 
+			} %>
 		</ul>
 	</div>
 	
@@ -151,7 +153,8 @@ if(arrayManga == null){
 	<div class = "listProd">
 		
 		<ul style="list-style-type:none;">
-		<% for(FumettiBean fumetto : arrayManhua){ 
+		<% for(FumettiBean fumetto : arrayManhua){
+			if(fumetto.isVisible()){
 			 String nomeImmagine = fumetto.getTitolo().replace(":", "").replace("/", ""); 
 			long seriale = fumetto.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
@@ -170,7 +173,8 @@ if(arrayManga == null){
 			</div>
 		</form>
 			</div>
-			<% } %>
+			<%} 
+			} %>
 		</ul>
 		</div>
 		<h2 class="intestazione" id="grafiche" >Grafiche</h2>
@@ -183,7 +187,8 @@ if(arrayManga == null){
 		%>
 	<div class = "listProd">
 		<ul style="list-style-type:none;">
-		<% for(GraficheBean grafica : arrayOpera){ 
+		<% for(GraficheBean grafica : arrayOpera){
+			if(grafica.isVisible()){
 			String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
@@ -202,7 +207,8 @@ if(arrayManga == null){
 			</div>
 		</form>
 			</div>
-			<% } %>
+			<%}
+			} %>
 		</ul>
 	</div>
 	
@@ -213,7 +219,8 @@ if(arrayManga == null){
 	
 	<div class = "listProd">
 		<ul style="list-style-type:none;">
-		<% for(GraficheBean grafica : arrayModerne){ 
+		<% for(GraficheBean grafica : arrayModerne){
+			if(grafica.isVisible()){
 			 String nomeImmagine = grafica.getTitolo().replace(":", "").replace("/", "");
 			long seriale = grafica.getSeriale();%>
 			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
@@ -232,7 +239,8 @@ if(arrayManga == null){
 			</div>
 		</form>
 			</div>
-			<% } %>
+			<%}
+			} %>
 		</ul>
 		</div>
 		
@@ -248,25 +256,27 @@ if(arrayManga == null){
 			
 		<ul style="list-style-type:none;">
 		<% for(ModelliniBean modellino : arrayFunko){
-			String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
-			long seriale = modellino.getSeriale();%>
-			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<br>
-			<p class="productName"><%=modellino.getNome()%></p>
-			
-			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
-			<br>
-			</li>
-			</a>
-		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
-			<div class="aggiungiCarrelloProd">
-				<button class="piu" style="color:white">Aggiungi al carrello</button>
-			</div>
-		</form>
-			</div>
-			<% } %>
+			if(modellino.isVisible()){
+				String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
+				long seriale = modellino.getSeriale();%>
+				<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+				<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
+				<br>
+				<br>
+				<p class="productName"><%=modellino.getNome()%></p>
+				
+				<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
+				<br>
+				</li>
+				</a>
+			<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
+				<div class="aggiungiCarrelloProd">
+					<button class="piu" style="color:white">Aggiungi al carrello</button>
+				</div>
+			</form>
+				</div>
+			<%}
+			} %>
 		</ul>
 	</div>
 	
@@ -278,24 +288,26 @@ if(arrayManga == null){
 	<div class = "listProd">
 		<ul style="list-style-type:none;">
 		<% for(ModelliniBean modellino : arrayFigures){
-			 String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
-			long seriale = modellino.getSeriale();%>
-			<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
-			<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
-			<br>
-			<br>
-			<p class="productName"><%=modellino.getNome()%></p>
-			<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
-			<br>
-			</li>
-			</a>
-		<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
-			<div class="aggiungiCarrelloProd">
-				<button class="piu" style="color:white">Aggiungi al carrello</button>
-			</div>
-		</form>
-			</div>
-			<% } %>
+			if(modellino.isVisible()){
+				 String nomeImmagine = modellino.getNome().replace(":", "").replace("/", "");
+				long seriale = modellino.getSeriale();%>
+				<a href="Prodotto.jsp?id=<%=seriale%>"><div class="prodotto">
+				<li style="float:none"><img src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style=width:70%>
+				<br>
+				<br>
+				<p class="productName"><%=modellino.getNome()%></p>
+				<%out.println(String.format("%.2f&euro;", modellino.getPrezzo()));%><br>
+				<br>
+				</li>
+				</a>
+			<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=modellino.getSeriale()+"_"+modellino.getMacroCategoria()%>">
+				<div class="aggiungiCarrelloProd">
+					<button class="piu" style="color:white">Aggiungi al carrello</button>
+				</div>
+			</form>
+				</div>
+			<%}
+			} %>
 		</ul>
 		</div>
 		

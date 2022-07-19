@@ -55,7 +55,6 @@ public class ModificaProdotto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		System.out.println(request.getParameter("nomeProdotto"));
 		String nomeProdotto = request.getParameter("nomeProdotto").trim();
 		String sottoCatProdotto = request.getParameter("sottoCatProdotto").trim();
 		double prezzoProdotto = Double.parseDouble(request.getParameter("prezzoProdotto").replace(",", ".").trim());
@@ -117,8 +116,12 @@ public class ModificaProdotto extends HttpServlet {
 			
 			break;
 		}
-		saveFile(request.getPart("img"), request.getServletContext().getRealPath(""), categoria, nomeProdotto);
-		System.out.println("Ok servlet");
+		Part part = request.getPart("img");
+		
+        if(part.getSize() > 0){
+			saveFile(request.getPart("img"), request.getServletContext().getRealPath(""), categoria, nomeProdotto);
+        }    
+		
 		return;
 	}
 	
@@ -126,7 +129,6 @@ public class ModificaProdotto extends HttpServlet {
 	    final String fileName = titolo + ".jpg";
 
 		String savePath = appPath + SAVE_DIR + folder;
-		System.out.println(savePath);
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 

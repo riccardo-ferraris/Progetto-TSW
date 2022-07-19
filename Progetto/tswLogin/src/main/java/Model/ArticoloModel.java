@@ -21,4 +21,6 @@ public class ArticoloModel {
 	}
 	
 	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {}
+	
+	public synchronized void toggleVisibility(long seriale, boolean value) throws SQLException {}
 }

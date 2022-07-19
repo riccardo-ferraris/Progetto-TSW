@@ -42,6 +42,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				
 				return bean;
 			} else
@@ -88,6 +89,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -133,6 +135,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -178,6 +181,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -203,7 +207,7 @@ public class ModelliniModel extends ArticoloModel{
 
 			String sql = "insert into " + ModelliniModel.TABLE_NAME + " (seriale, nome, prezzo, franchise,"
 					+ "descrizione, dimensioni, quantità, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, modellino.getSeriale());
@@ -215,6 +219,7 @@ public class ModelliniModel extends ArticoloModel{
 			preparedStatement.setInt(7, modellino.getQuantità());
 			preparedStatement.setString(8, modellino.getCategoria());
 			preparedStatement.setDouble(9, modellino.getIva());
+			preparedStatement.setBoolean(10, modellino.isVisible());
 			result = preparedStatement.executeUpdate();
 				
 				return result;
@@ -273,6 +278,7 @@ public class ModelliniModel extends ArticoloModel{
 				bean.setDimensioni(rs.getDouble("dimensioni"));
 				bean.setNumVendite(rs.getInt("numVendite"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setVisible(rs.getBoolean("visible"));
 				products.add(bean);
 			}
 
@@ -304,6 +310,35 @@ public class ModelliniModel extends ArticoloModel{
 			preparedStatement.setString(3, descrizioneProdotto);
 			preparedStatement.setString(4, sottoCatProdotto);
 			preparedStatement.setLong(5, seriale);
+
+			result = preparedStatement.executeUpdate();
+			
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				connection.close();
+			}
+		}
+		
+		return;
+	}
+
+	@Override
+	public synchronized void toggleVisibility(long seriale, boolean value) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result = 9999;
+		try {			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "update `perspectiveart`.`modellino` set `visible` = ? where (`seriale` = ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setBoolean(1, value);
+			preparedStatement.setLong(2, seriale);
 
 			result = preparedStatement.executeUpdate();
 			

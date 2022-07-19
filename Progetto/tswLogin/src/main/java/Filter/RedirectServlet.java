@@ -1,28 +1,23 @@
-package tsw.Control;
+package Filter;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.UserBean;
-import Model.UserModel;
-
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class RedirectServlet
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/RedirectServlet")
+public class RedirectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterServlet() {
+    public RedirectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +26,24 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		String page = request.getParameter("page");
+		String ruoloUtente = (String) request.getSession().getAttribute("ruolo");
+		//System.out.println(ruoloUtente);
+		if(page.trim().equals("catalogo") || page.trim().equals("viewUtenti") ){
+			if(ruoloUtente == null || !ruoloUtente.equals("admin") || (ruoloUtente.equals("admin") && page.trim().equals("viewUtenti")) ){
+				//System.out.println("flag"); 
+				response.sendRedirect("./MostraCatalogo?page=" + page);
+				return;
+			}else if(ruoloUtente.equals("admin")){
+				//System.out.println("err");
+				response.sendRedirect("./MostraCatalogo");
+				return;
+			}
+			
+			return;
+		}
+		return;
 	}
 
 	/**
@@ -39,25 +51,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-				
-		UserBean bean = new UserBean(username, password, nome, cognome, "user", email);
-		UserModel model = new UserModel();
-				
-		try {
-			model.databaseInsert(bean);
-			response.sendRedirect("./Catalogo.jsp");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
-				
-		return;
+		doGet(request, response);
 	}
 
 }

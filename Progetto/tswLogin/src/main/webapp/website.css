@@ -1448,6 +1448,10 @@ header {
 	
 }
 
+.showProd{
+	border-radius: 1px;
+}
+
 #containerDiv{
 	display: flex;
 	width: 100%;

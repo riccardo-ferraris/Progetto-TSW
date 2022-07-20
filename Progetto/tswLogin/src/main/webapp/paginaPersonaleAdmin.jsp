@@ -35,7 +35,10 @@
 			<div class="datiPersonali">
 				<div style="display:flex; justify-content:space-between; text-align:center; align-items:center">
 					<h1><strong>Dati Personali</strong></h1>
-					<a href="./Ordini.jsp" class="buttonOrdini">Pagina Ordini</a>
+					<div style="display:flex; flex-direction:column">
+						<a href="./Ordini.jsp" class="buttonOrdini">Pagina Ordini</a>
+						<a href="./ElencoUtenti.jsp" class="buttonUtenti">Pagina Utenti</a>
+					</div>
 				</div>
 				<hr>
 				<div class="nicknameArea">	

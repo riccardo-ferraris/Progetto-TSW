@@ -554,20 +554,21 @@ header {
 	padding:2% 5%;
 }
 
-.buttonOrdini{
-	width: 25%;
+.buttonOrdini, .buttonUtenti{
+	width: 100%;
     padding: 0.5em;
     background-color: #2d3b55;
     border:2px solid black;
     color: white;
     font-weight:400;
+    margin:1%;
 }
 
-.buttonOrdini a{
+.buttonOrdini a, .buttonUtenti a{
 	margin:0 auto;
 }
 
-.buttonOrdini:hover{
+.buttonOrdini:hover, .buttonUtenti:hover{
 	text-decoration:none;
 	color: white;
 }
@@ -584,6 +585,17 @@ header {
 
 #modificaProdotto:hover{
 	background-color:#3c4d6d;
+}
+
+#inviaProdottoAggiornato{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:40px;
+	height:40px;
+	background-color:#2d3b55;
+	color:white;
+	padding:0 2em;
 }
 
 #nomeProdotto{
@@ -646,10 +658,22 @@ header {
 	margin:auto;
 }
 
+#pisello{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+
 .caratteristicheProd {
 	display:block;
-	width:70%;
+	width:90%;
 	margin:5%;
+}
+
+.caratteristicheProd div:nth-child(3) textarea{
+	width:30%;
+	overflow:hidden;
+	resize:none;
 }
 
 .caratteristicheProd div {
@@ -1425,6 +1449,10 @@ header {
 	.leftCol, .rightCol{
 		width:98%;
 		margin:0 1%;
+	}
+	
+	#containerDiv{
+		flex-direction:column;
 	}
 }
 

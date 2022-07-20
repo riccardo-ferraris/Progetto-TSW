@@ -70,6 +70,7 @@ switch(firstDigit){
 				<div class="imgProdotto" id="imgProdotto">
 					<img id="imgProdottoSrc" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
 				</div>
+				<div id="pisello">
 				<div class="caratteristicheProd">
 					<div style="font-weight:bold; font-size:2em; display:flex; justify-content:space-between; align-items:center">
 						<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
@@ -89,6 +90,7 @@ switch(firstDigit){
 						<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
 						
 					</div>
+				</div>
 				</div>	
 			</div>	
 			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
@@ -289,12 +291,14 @@ switch(firstDigit){
 			textareaCat.options.add(new Option(option1.value));
 			textareaCat.options.add(new Option(option2.value));
 			
+			textareaPrezzo.setAttribute('rows', '1');
 			textareaPrezzo.setAttribute('cols', '85%');
 			textareaPrezzo.setAttribute('class', 'textareaModify');
 			textareaPrezzo.setAttribute('minlength', '1');
 			textareaPrezzo.setAttribute('maxlength', '12');
 			textareaPrezzo.setAttribute('name', 'prezzoProdotto');
 			
+			textareaDescrizione.setAttribute('rows', '5');			
 			textareaDescrizione.setAttribute('cols', '85%');
 			textareaDescrizione.setAttribute('class', 'textareaModify');
 			textareaDescrizione.setAttribute('minlength', '10');
@@ -322,7 +326,7 @@ switch(firstDigit){
 			inviaButton.setAttribute('id', 'inviaProdottoAggiornato');
 			inviaButton.innerHTML = "Invia";
 			
-			document.getElementById('containerDiv').append(inviaButton);
+			document.getElementById('pisello').append(inviaButton);
 			console.log(textareaPrezzo.value.replace(',', '.'));
 			$('#formModifiche').on('submit', function(e){
 				e.preventDefault();

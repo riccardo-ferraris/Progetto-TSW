@@ -32,21 +32,39 @@
 <title>Elenco utenti</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"/>
+	<jsp:include page="navbarLogged.jsp"/>
 	
+	<table style="border: 3px solid black; border-collapse: collapse; margin:5% auto; width:75%; text-align:center">
+	<tr style="border: 3px solid black; border-collapse: collapse;">
+  		<th>Username</th>
+  		<th>Email</th>
+  		<th>Nome</th>
+  		<th>Cognome</th>
+  		<th>Ruolo</th>
+	</tr>
 	<%
 		for(UserBean user : listUtenti){
 	%>
-	
-		<ul style="list-style-type:none; ">
-			<li><p><%=user.getUsername()%></p></li>
-			<li><p><%=user.getEmail()%></p></li>
-			<li><p><%=user.getNome()%></p></li>
-			<li><p><%=user.getCognome()%></p></li>
-			<li><p><%=user.getRuolo()%></p></li>
-		</ul>
+
+	<tr>
+		<td><%=user.getUsername()%></td>
+		<td><%=user.getEmail()%></td>
+		<td><%=user.getNome()%></td>
+		<td><%=user.getCognome()%></td>
+		<td><%=user.getRuolo()%></td>
+	</tr>
 	<%		
 		}
 	%>
+	</table>
+	<jsp:include page="footer.jsp"/>
 	
+	<style>
+		table, tr, td{
+			border:1px solid black;
+			border-collapse: collapse;
+		}
+	</style>
 </body>
 </html>

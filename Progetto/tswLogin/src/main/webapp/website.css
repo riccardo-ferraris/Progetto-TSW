@@ -1070,11 +1070,11 @@ header {
 	align-items:center;
 }
 
-.dateArea p:first-child, .totaleArea p:first-child, .indirizzoArea p:first-child, .codiceOrdine p:first-child, .fatturaArea p:first-child{
+.dateArea p:first-child, .totaleArea p:first-child, .indirizzoArea p:first-child, .codiceOrdine p:first-child, .fatturaArea p:first-child, .userArea p:first-child{
 	font-weight:bold;
 }
 
-.dateArea p, .totaleArea p, .indirizzoArea p, .codiceOrdine p, .fatturaArea p{
+.dateArea p, .totaleArea p, .indirizzoArea p, .codiceOrdine p, .fatturaArea p, .userArea p{
 	margin-bottom:0;
 }
 

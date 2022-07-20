@@ -139,8 +139,12 @@ function generaOrdini(jsonData){
     		 dateArea = $(document.createElement('div')),
     		 labelData = $(document.createElement('p')),
        		 dataOrdine = $(document.createElement('p')),
+       		 
+       		 userArea = $(document.createElement('div')),
+    		 labelUser = $(document.createElement('p')),
+       		 userOrdine = $(document.createElement('p')),
        		
-       		 totaleArea = $(document.createElement('div')),
+       		totaleArea = $(document.createElement('div')),
    		 	labelTotale = $(document.createElement('p')),
    		 	totale = $(document.createElement('p')),
    		 	indirizzoArea = $(document.createElement('div')),
@@ -192,6 +196,7 @@ function generaOrdini(jsonData){
        		quantDiv.attr('class', 'quantDiv');
        		secondLine.attr('class', 'secondLine');
        		dateArea.attr('class', 'dateArea');
+       		userArea.attr('class', 'userArea');
        		checkArea.attr('class', 'checkArea');
        		totaleArea.attr('class', 'totaleArea');
        		labelTotale.attr('class', 'labelTotale');
@@ -210,8 +215,14 @@ function generaOrdini(jsonData){
        		dataOrdine.text(jsonData[i].data || "").appendTo(dateArea);
        		dateArea.appendTo(header);
        		
+	       	
+			labelUser.text("Utente:").appendTo(userArea);
+	   		userOrdine.text(jsonData[i].utente || "").appendTo(userArea);
+	   		userArea.appendTo(header);
+	   		
        		labelTotale.text("Totale: ").appendTo(totaleArea);
-       		totale.text(jsonData[i].totale || "").appendTo(totaleArea);
+       		totale.text(jsonData[i].totale.toFixed(2) || "").appendTo(totaleArea);
+       		totale.html(totale.text() + '&euro;');
        		totaleArea.appendTo(header);
        		
        		labelIndirizzo.text("Indirizzo: ").appendTo(indirizzoArea);
@@ -235,6 +246,7 @@ function generaOrdini(jsonData){
        		nomeProdotto.text(jsonData[i].articoliOrdine[j].prodotto.nome|| "").appendTo(nameArea);
        		priceArea.appendTo(firstLine);
        		prezzo.text(jsonData[i].articoliOrdine[j].prezzo.toFixed(2) || "").appendTo(priceArea);
+       		prezzo.html(prezzo.text() + '&euro;');
        		quantDiv.appendTo(firstLine);
        		quant.text("Quantità: "+jsonData[i].articoliOrdine[j].quantity || "").appendTo(quantDiv);
        		secondLine.appendTo(infoArea);

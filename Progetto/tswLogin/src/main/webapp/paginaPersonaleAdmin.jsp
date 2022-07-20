@@ -58,9 +58,9 @@
 					    <span class="close">&times;</span>
 					    <p style="text-align:center"><strong>Modifica password</strong></p>
 					    <form id="modificaPasswordForm" method="post">
-					    	<input type="text" placeholder="Vecchia password" id="oldPasswordModal" name="oldPasswordModal">
-					    	<input type="text" placeholder="Nuova password" id="newPasswordModal" name="newPasswordModal">
-					    	<input type="text" placeholder="Ripeti nuova password" id="repeatNewPasswordModal" name="repeatNewPasswordModal">
+					    	<input type="password" placeholder="Vecchia password" id="oldPasswordModal" name="oldPasswordModal">
+					    	<input type="password" placeholder="Nuova password" id="newPasswordModal" name="newPasswordModal">
+					    	<input type="password" placeholder="Ripeti nuova password" id="repeatNewPasswordModal" name="repeatNewPasswordModal">
 					    	<p style="color:red; text-align:center" id="passErr"></p>
 					    	<button class="savePw">Salva</button>
 					    </form>

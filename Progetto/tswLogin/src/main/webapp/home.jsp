@@ -1,19 +1,19 @@
 <%@page import="Util.venditeComparator"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="java.util.ArrayList" %>
-    <%@page import="javax.servlet.*" %>
-    <%@page import="javax.servlet.http.*" %>
-    <%@page import="Model.FumettiBean" %>
-    <%@page import="Model.FumettiModel" %> 
-    <%@page import="Model.GraficheBean" %>
-    <%@page import="Model.GraficheModel" %>
-    <%@page import="Model.ModelliniBean" %>
-    <%@page import="Model.ModelliniModel" %>
-    <%@page import="Model.OrdineModel" %>
-    <%@page import="Model.ArticoloModel" %>
-    <%@page import="Model.Articolo" %>
-    <%@page import="java.util.Collections" %>
-    <%@page import="Model.UserBean" %>
+<%@page import="javax.servlet.*" %>
+<%@page import="javax.servlet.http.*" %>
+<%@page import="Model.FumettiBean" %>
+<%@page import="Model.FumettiModel" %> 
+<%@page import="Model.GraficheBean" %>
+<%@page import="Model.GraficheModel" %>
+<%@page import="Model.ModelliniBean" %>
+<%@page import="Model.ModelliniModel" %>
+<%@page import="Model.OrdineModel" %>
+<%@page import="Model.ArticoloModel" %>
+<%@page import="Model.Articolo" %>
+<%@page import="java.util.Collections" %>
+<%@page import="Model.UserBean" %>
 
 <!DOCTYPE html>
 <html lang="it">

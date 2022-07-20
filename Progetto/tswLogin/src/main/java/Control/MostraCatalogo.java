@@ -42,6 +42,7 @@ public class MostraCatalogo extends HttpServlet {
 		// TODO Auto-generated method stub
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		String page = request.getParameter("page");
+		String parag = request.getParameter("parag");
 		ArticoloModel model;
 		ArrayList<FumettiBean> arrayManga = new ArrayList<FumettiBean>();
 		ArrayList<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(); 
@@ -83,10 +84,16 @@ public class MostraCatalogo extends HttpServlet {
 		request.setAttribute("arrayModerne", arrayModerne);
 		request.setAttribute("arrayFunko", arrayFunko);
 		request.setAttribute("arrayFigures", arrayFigures);
-		
+		System.out.println(page);
 		if(utente == null || utente.getRuolo().equals("user") || (page != null && page.equals("viewUtenti"))){
-			RequestDispatcher view = request.getRequestDispatcher("Catalogo.jsp");
-			view.forward(request, response);
+			if(parag == null || parag.equals("")) {
+				RequestDispatcher view = request.getRequestDispatcher("Catalogo.jsp");
+				view.forward(request, response);
+			}else {
+				RequestDispatcher view = request.getRequestDispatcher("Catalogo.jsp" + parag);
+				view.forward(request, response);
+			}
+			
 			return;
 		}else if(utente.getRuolo().equals("admin")){
 		RequestDispatcher view = request.getRequestDispatcher("CatalogoAdmin.jsp");

@@ -25,9 +25,9 @@
 	                  </svg></button>
                 </form>
                     <ul class="sub-menu">
-                        <li><a href="#fumetti">FUMETTI</a></li>
-                        <li><a href="#grafiche">GRAFICHE</a></li>
-						<li><a href="#modellini">MODELLINI</a></li>
+                        <li><a href="./MostraCatalogo?page=catalogo&parag=#fumetti">FUMETTI</a></li>
+                        <li><a href="./MostraCatalogo?page=catalogo&parag=#grafiche">GRAFICHE</a></li>
+						<li><a href="./MostraCatalogo?page=catalogo&parag=#modellini">MODELLINI</a></li>
                     </ul>
                 </li>
             </ul>

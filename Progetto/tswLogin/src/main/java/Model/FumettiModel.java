@@ -210,7 +210,7 @@ public class FumettiModel extends ArticoloModel{
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "insert into " + FumettiModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
-					+ ", descrizione, scrittore, numPagine, disegnatore, categoria)"
+					+ ", descrizione, scrittore, numPagine, disegnatore, categoria, iva, visible)"
 					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			

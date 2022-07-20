@@ -206,8 +206,8 @@ public class ModelliniModel extends ArticoloModel{
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "insert into " + ModelliniModel.TABLE_NAME + " (seriale, nome, prezzo, franchise,"
-					+ "descrizione, dimensioni, quantità, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ "descrizione, dimensioni, quantità, categoria, iva, visible)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, modellino.getSeriale());

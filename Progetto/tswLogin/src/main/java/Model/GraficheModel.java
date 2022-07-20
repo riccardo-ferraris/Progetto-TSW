@@ -198,8 +198,8 @@ public class GraficheModel extends ArticoloModel{
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "insert into " + GraficheModel.TABLE_NAME + " (seriale, titolo, prezzo, quantità"
-					+ ", descrizione, categoria)"
-					+ " values(?, ?, ?, ?, ?, ?, ?);";
+					+ ", descrizione, categoria, iva, visible)"
+					+ " values(?, ?, ?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setLong(1, grafica.getSeriale());

@@ -256,7 +256,6 @@
 	          		
 	        		
 	        		let folder = jsonData[i].articoliOrdine[j].prodotto.macroCategoria;
-	        		console.log(folder);
 	        		let pathImmagine = "./gallery/"+folder+"/"+(jsonData[i].articoliOrdine[j].prodotto.nome).replace(':', '').replace('/', '')+".jpg";
 	     			   
 	          		ordine.attr('class', 'orderArea');

@@ -15,11 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import Model.Articolo;
 import Model.ArticoloModel;
-import Model.FumettiBean;
 import Model.FumettiModel;
-import Model.GraficheBean;
 import Model.GraficheModel;
 import Model.ModelliniModel;
 
@@ -132,32 +129,28 @@ public class ModificaProdotto extends HttpServlet {
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 
-	    try 
-	    {
+	    try{
 	        out = new FileOutputStream(new File(savePath + File.separator + fileName));
 	        filecontent = filePart.getInputStream();
 
 	        int read = 0;
 	        final byte[] bytes = new byte[1024];
 
-	        while ((read = filecontent.read(bytes)) != -1) 
-	        {
+	        while ((read = filecontent.read(bytes)) != -1){
 	            out.write(bytes, 0, read);
 	        }	      
 	    } 
-	    catch (Exception e) 
-	    {
+	    catch (Exception e){
 	    	System.out.println("Error:" + e.getMessage());
 	    	return;
 	    } 
-	    finally 
-	    {
-	        if (out != null)
-	        {
+	    
+	    finally{
+	        if (out != null){
 	            out.close();
 	        }
-	        if (filecontent != null) 
-	        {
+	        
+	        if (filecontent != null){
 	            filecontent.close();
 	        }
 	    }

@@ -172,13 +172,16 @@ function generaOrdini(jsonData){
        		secondLine = $(document.createElement('div')),
        		
        		checkArea = $(document.createElement('div'));
+    		
+    		let folder = jsonData[i].articoliOrdine[j].prodotto.macroCategoria;
+    		let pathImmagine = "./gallery/"+folder+"/"+(jsonData[i].articoliOrdine[j].prodotto.nome).replace(':', '').replace('/', '')+".jpg";
  			   
       		ordine.attr('class', 'orderArea');
       		header.attr('class', 'headerOrdine');
       		bodyOrdine.attr('class', 'bodyOrdine');
       		productArea.attr('class', 'productArea');
        		imgArea.attr('class', 'imgArea');
-       		img.attr('src', 'beep beep.png');
+       		img.attr('src', pathImmagine);
        		img.attr('style', 'width:100%');
        		infoArea.attr('class', 'infoArea');
        		firstLine.attr('class', 'firstLine');

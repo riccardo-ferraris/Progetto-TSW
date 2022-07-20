@@ -1,7 +1,5 @@
 package Model;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -208,7 +206,6 @@ public class Ordine {
 
 		 
 			int n = 0;
-			int limit = 11;
 			Integer q;
 			int x = 0, y = 0;
 			double totaleIvaInclusa = this.getTotale();

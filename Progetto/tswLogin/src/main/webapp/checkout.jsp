@@ -328,9 +328,9 @@
 	
   <script>
   $(document).ready ( function () {
-  //var tomorrow = new Date(),
+
   var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-  // minimum date the user can choose, in this case now and in the future
+
   minDate = tomorrow.toISOString().substring(0,10);
 
 	$('#cc-expiration').prop('min', minDate);

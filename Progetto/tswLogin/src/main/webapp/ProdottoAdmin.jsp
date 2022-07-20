@@ -266,11 +266,6 @@ switch(firstDigit){
 			descrizioneProdotto.replaceWith(textareaDescrizione);
 			textareaDescrizione.textContent = tempTextDescrizione;
 			
-			//imgProdotto.replaceWith(textareaNome);
-			
-			
-			
-			
 			textareaNome.setAttribute('class', 'textareaModify');
 			textareaNome.setAttribute('minlength', '5');
 			textareaNome.setAttribute('maxlength', '100');
@@ -290,8 +285,6 @@ switch(firstDigit){
 				option2.value = 'Action Figure';
 			}
 			console.log(option1);
-			//textareaCat.add(option1);
-			//textareaCat.add(option2);
 			
 			textareaCat.options.add(new Option(option1.value));
 			textareaCat.options.add(new Option(option2.value));
@@ -308,21 +301,20 @@ switch(firstDigit){
 			textareaDescrizione.setAttribute('maxlength', '2000');
 			textareaDescrizione.setAttribute('name', 'descrizioneProdotto');
 			
-			const cambiaImgProdotto = Object.assign(document.createElement('input'));
-			cambiaImgProdotto.setAttribute('type', 'file');
-			cambiaImgProdotto.setAttribute('id', 'caricaImgProdotto');
-			cambiaImgProdotto.setAttribute('class', 'caricaImgProdottoBtn');
-			cambiaImgProdotto.innerHTML = "Cambia immagine";
-			cambiaImgProdotto.setAttribute('name', 'img');
+			const cambiaImgProdotto = $(document.createElement('input'));
+			cambiaImgProdotto.attr('type', 'file');
+			cambiaImgProdotto.attr('id', 'caricaImgProdotto');
+			cambiaImgProdotto.attr('class', 'caricaImgProdottoBtn');
+			cambiaImgProdotto.html("Cambia immagine");
+			cambiaImgProdotto.attr('name', 'img');
+			
+			
+			const divImg = $("#imgProdotto");
+			$('#imgProdotto').append(cambiaImgProdotto);
 			
 			textareaCat.setAttribute('name', 'sottoCatProdotto');
 			
-			const divImg = document.getElementById('imgProdotto');
-			
-			//cambiaImgProdotto.appendTo(document.getElementById('imgProdotto'));
-			
 			const formModifiche = document.getElementById('formModifiche');
-			document.getElementById('containerDiv').append(cambiaImgProdotto);
 			
 			//formImg.setAttribute('class', 'caricaImgProdottoBtn');
 			

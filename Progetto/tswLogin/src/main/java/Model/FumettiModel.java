@@ -308,7 +308,6 @@ public class FumettiModel extends ArticoloModel{
 	public synchronized void updateProdotto(String nomeProdotto, String sottoCatProdotto, double prezzoProdotto, String descrizioneProdotto, String categoria, long seriale) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		int result = 9999;
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 			
@@ -322,7 +321,7 @@ public class FumettiModel extends ArticoloModel{
 			preparedStatement.setString(4, sottoCatProdotto);
 			preparedStatement.setLong(5, seriale);
 
-			result = preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 			
 		} finally {
 			try {
@@ -340,7 +339,6 @@ public class FumettiModel extends ArticoloModel{
 	public synchronized void toggleVisibility(long seriale, boolean value) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		int result = 9999;
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
 			
@@ -351,7 +349,7 @@ public class FumettiModel extends ArticoloModel{
 			preparedStatement.setBoolean(1, value);
 			preparedStatement.setLong(2, seriale);
 
-			result = preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 			
 		} finally {
 			try {

@@ -100,8 +100,6 @@ public class RecensioneModel {
 	}
 	
 	public synchronized RecensioneBean doRetrieveByUsernameAndSeriale(String username, long seriale, String categoria) throws SQLException, ClassNotFoundException{
-		RecensioneBean recensione = new RecensioneBean();
-		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;

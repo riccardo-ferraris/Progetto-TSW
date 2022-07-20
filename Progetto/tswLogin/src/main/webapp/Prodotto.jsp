@@ -76,7 +76,11 @@ switch(firstDigit){
 			<div class="caratteristicheProd">
 				<div class="caratTitolo">
 					<p> <%out.println(articolo.getNome());%> </p>
-					<a href="./ProdottoAdmin.jsp" class="prodottoAdmin">Prodotto Admin</a>
+					<%
+						if((request.getSession().getAttribute("ruolo")).equals("admin")){
+					%>
+					<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
+					<%}%>
 				</div>
 				<div class="caratCateg">
 					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
@@ -117,6 +121,11 @@ switch(firstDigit){
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
 					<p> <%out.println(articolo.getNome());%> </p>
+					<%
+						if((request.getSession().getAttribute("ruolo")).equals("admin")){
+					%>
+						<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
+					<%}%>
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
@@ -158,6 +167,11 @@ switch(firstDigit){
 			<div class="caratteristicheProd">
 				<div style="font-weight:bold; font-size:2em">
 					<p> <%out.println(articolo.getNome());%> </p>
+					<%
+						if((request.getSession().getAttribute("ruolo")).equals("admin")){
+					%>
+						<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
+					<%}%>
 				</div>
 				<div style="font-size:1.5em">
 					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				

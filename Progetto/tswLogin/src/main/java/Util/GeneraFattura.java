@@ -34,23 +34,26 @@ public class GeneraFattura extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String codiceOrdine = request.getParameter("codiceOrdine");
-		String path = getServletContext().getRealPath("/" + "files" + File.separator);
+		String codiceOrdine = request.getParameter("codiceOrdine"); //Prendiamo il codice dell'ordine dalla request
+		String path = getServletContext().getRealPath("/" + "files" + File.separator); //Creiamo il path del file dove sarà salvata la fattura
+		
 		OrdineModel model = new OrdineModel();
 		Ordine ordine = new Ordine();
 		String result = new String();
 		try {
-			ordine = model.doRetrieveAllByKey(codiceOrdine);
-			result = ordine.creaFattura(path);
+			ordine = model.doRetrieveAllByKey(codiceOrdine); //Creiamo il bean dell'ordine chiamando il model
+			result = ordine.creaFattura(path); //Generiamo la fattura con il path e salviamo il risultato in result, ovvero il path finale della fattura
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			response.setContentType("text/html;charset=UTF-8");
-			response.getWriter().write("Error");
+			response.setContentType("text/html;charset=UTF-8"); //Settiamo la risposta a testo
+			response.getWriter().write("Error"); //In caso di fallimento la risposta sarà Error e si esce
 			e.printStackTrace();
 		}
-		result = result.replace("D:\\EclipseE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\tswLogin\\", "./");
+		
+		String[] pathSubString = result.split("tswLogin"); //Splittiamo il path della fattura in modo da ottenere il path relativo al server
+		result = "." + pathSubString[1]; //Aggiungiamo il punto prima del path per permettere al server di trovare il path relativo
 		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().write(result);
+		response.getWriter().write(result); //Mandiamo ad ajax il path della fattura come risultato per aprirla in una pagina internet
 		
 		return;
 	}

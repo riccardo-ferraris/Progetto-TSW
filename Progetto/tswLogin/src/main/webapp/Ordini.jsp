@@ -6,7 +6,7 @@
     <%@page import="Model.ProdottoInCarrello" %>
     <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-
+<%@ page errorPage="ErrorPage.jsp" %> 
 	<%
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");;
 		if(utente == null){

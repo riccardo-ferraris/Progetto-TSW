@@ -1,4 +1,5 @@
 <%@page import="Model.UserBean" %>
+<%@ page errorPage="ErrorPage.jsp" %> 
 <!DOCTYPE html>
 <html lang="it">
 

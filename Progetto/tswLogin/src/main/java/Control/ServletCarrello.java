@@ -51,7 +51,7 @@ public class ServletCarrello extends HttpServlet {
 	    long codice = 00000;
 	    
 	    ArticoloModel model = null;
-  	  	Articolo prodotto = null;
+  	  	Articolo prodotto = null;  	  	
 	    
   	  	try {
 	    	if(codProd != null) { //Controlla che il codice sia effettivamente passato come parametro e che non sia nullo prima di fare un parse, che altrimenti genererebbe errore

@@ -84,7 +84,7 @@ public class MostraCatalogo extends HttpServlet {
 		request.setAttribute("arrayModerne", arrayModerne);
 		request.setAttribute("arrayFunko", arrayFunko);
 		request.setAttribute("arrayFigures", arrayFigures);
-		System.out.println(page);
+
 		if(utente == null || utente.getRuolo().equals("user") || (page != null && page.equals("viewUtenti"))){
 			if(parag == null || parag.equals("")) {
 				RequestDispatcher view = request.getRequestDispatcher("Catalogo.jsp");

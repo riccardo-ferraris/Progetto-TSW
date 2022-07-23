@@ -30,6 +30,9 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String page = (request.getParameter("pageLogout")).replace("/", "");
+		if(page.equals("ricerca.jsp")) {
+			page = "home.jsp";
+		}
         session.invalidate();
         response.sendRedirect(page);
         return;

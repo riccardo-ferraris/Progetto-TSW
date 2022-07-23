@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="Model.UserBean" %>
+    <%@ page errorPage="ErrorPage.jsp" %> 
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="UTF-8">

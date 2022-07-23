@@ -17,6 +17,7 @@
     <%@page import="java.util.Collections" %>
 <!DOCTYPE html>
 <html>
+<%@ page errorPage="ErrorPage.jsp" %> 
 <%  
 @SuppressWarnings("unchecked")
 	ArrayList<FumettiBean> arrayManga = (ArrayList<FumettiBean>) request.getAttribute("arrayManga");
@@ -332,9 +333,7 @@ if(arrayManga == null){
 		            		  
 		            		  $("#aggProdMex").addClass('hidden')
 		            		            
-		            		}, 1000);
-		                  
-		                  
+		            		}, 1000);   
 		              },
 		              error: function(){
 		                 alert("error");

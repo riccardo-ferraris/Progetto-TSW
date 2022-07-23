@@ -23,6 +23,7 @@ public class Carrello {
 	    // altrimenti instanzio un prodottoincarrello
 	    // con questo prodotto e quantità = 1
 	    // e inserisco nell'array
+	    
 	    ProdottoInCarrello prod = new ProdottoInCarrello();
 	    prod.setProdotto(prodotto);
 	    prod.setQuantity(quantità);
@@ -65,5 +66,5 @@ public class Carrello {
 		return "Carrello [prodotti=" + prodotti + "]";
 	}
 	  
-	}
+}
 

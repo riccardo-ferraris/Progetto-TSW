@@ -4,6 +4,7 @@
     <%@page import="Model.ArticoloModel" %>
     <%@page import="Model.Articolo" %>
     <%@page import="Model.UserBean" %>
+    <%@ page errorPage="ErrorPage.jsp" %>  
 <!DOCTYPE html>
 <html>
 <head>

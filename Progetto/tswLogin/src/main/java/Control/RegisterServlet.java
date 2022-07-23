@@ -50,7 +50,7 @@ public class RegisterServlet extends HttpServlet {
 				
 		try {
 			model.databaseInsert(bean);
-			response.sendRedirect("./Catalogo.jsp");
+			response.sendRedirect("./login.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

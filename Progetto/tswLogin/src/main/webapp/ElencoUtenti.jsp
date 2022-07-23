@@ -2,8 +2,10 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.ArrayList" %>
     <%@page import="Model.UserBean" %>
+    <%@ page errorPage="ErrorPage.jsp" %> 
 <!DOCTYPE html>
 <html>
+
 <%
 
 	UserBean utente = (UserBean) request.getSession().getAttribute("utente");;

@@ -16,9 +16,11 @@
     <%@page import="java.util.ArrayList" %>
     <%@page import="org.json.JSONObject" %>
     <%@page import="com.google.gson.JsonElement"%>
+    <%@ page errorPage="ErrorPage.jsp" %>  
     
 <!DOCTYPE html>
 <html>
+
 
 <head>
 	<meta charset="UTF-8">

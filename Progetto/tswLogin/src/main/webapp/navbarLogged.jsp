@@ -52,7 +52,7 @@
                         </svg></a>
                 </li>
                 <li class="nav-item">
-                    <form method="get" action="./SearchServlet?pageLogout=">
+                    <form method="get" action="./SearchServlet?pageLogout=home.jsp">
                         <input type="text" placeholder="Cerca" id="search" name="keyWord" style="border-radius: 20px;">
                     </form>
                 </li>

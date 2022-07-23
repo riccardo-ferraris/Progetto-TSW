@@ -120,7 +120,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 	    final String fileName = titolo + ".jpg";
 
 		String savePath = appPath + SAVE_DIR + folder;
-		System.out.println(savePath);
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 

@@ -14,9 +14,10 @@
 <%@page import="Model.Articolo" %>
 <%@page import="java.util.Collections" %>
 <%@page import="Model.UserBean" %>
-
+<%@ page errorPage="ErrorPage.jsp" %> 
 <!DOCTYPE html>
 <html lang="it">
+
 <%
 @SuppressWarnings("unchecked")
 	ArrayList<FumettiBean> arrayFumetti = (ArrayList<FumettiBean>) request.getAttribute("arrayFumetti");
@@ -90,20 +91,20 @@ if(arrayModellini == null){
 								%>
 								<div class="listProdHome">
 	
-								<ul style="list-style-type:none; ">
-								<a href="Prodotto.jsp?id=<%=seriale%>">
-								<div class="prodottoHome">
-								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-								<br><br>
-								<p class="productName"><%=articolo.getNome()%></p>
-								
-								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-								</a>
-								<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
-									<div class="aggiungiCarrelloProd">
-										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
-									</div>
-								</form>
+									<ul style="list-style-type:none; ">
+									<a href="Prodotto.jsp?id=<%=seriale%>">
+									<div class="prodottoHome">
+									<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+									<br><br>
+									<p class="productName"><%=articolo.getNome()%></p>
+									
+									<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+									</a>
+									<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
+										<div class="aggiungiCarrelloProd">
+											<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
+										</div>
+									</form>
 								</div>
 								</ul>
 								</div>
@@ -177,9 +178,9 @@ if(arrayModellini == null){
 										<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
 									</a>
 									<form class="quickAggCarrello" method="post" id="quickAggiungiForm_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>">
-									<div class="aggiungiCarrelloProd">
-										<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
-									</div>
+										<div class="aggiungiCarrelloProd">
+											<button class="quickAggiungi" style="color:white">Aggiungi al carrello</button>
+										</div>
 									</form>
 									</div>
 									</ul>

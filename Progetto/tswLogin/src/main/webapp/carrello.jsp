@@ -18,6 +18,7 @@
    %>
 <!DOCTYPE html>
 <html>
+<%@ page errorPage="ErrorPage.jsp" %>
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="website.css">

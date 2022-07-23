@@ -7,6 +7,7 @@
     <%@page import="Model.ModelliniBean" %>
     <%@page import="Model.ProdottoInCarrello" %>
     <%@page import="java.util.ArrayList"%>
+    <%@ page errorPage="ErrorPage.jsp" %>
     <%
     UserBean utente = (UserBean) request.getSession().getAttribute("utente");
     
@@ -23,6 +24,7 @@
     
 <!DOCTYPE html>
 <html>
+ 
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="website.css">

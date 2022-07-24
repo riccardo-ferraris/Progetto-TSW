@@ -341,7 +341,7 @@ switch(firstDigit){
 		      $.ajax({
 		    	  type: "POST",
 		          url:"ModificaProdotto",
-		          enctype: 'multipart/form-data;charset=UTF-8', //must, tell jQuery not to process the data
+		          enctype: 'multipart/form-data;charset=UTF-8',
 		          contentType: false,
 		          processData: false,
 		          data: formData,

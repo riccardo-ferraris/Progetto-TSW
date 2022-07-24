@@ -41,7 +41,6 @@
             
         </div>
         <p id="loginErr" class="loginError"></p>
-        <a href="" class="link">Hai dimenticato la password?</a>
         <br><br>
         <div class="action">
             <a href="register.jsp">Registrati</a>
@@ -69,9 +68,9 @@
                      el.innerHTML = "Errore! Utente o password non corretti! Riprovare!"
                  }
               }
-             });
-          return;
-           });
+          });
+         return;
+       });
    </script>
 	
 </body>

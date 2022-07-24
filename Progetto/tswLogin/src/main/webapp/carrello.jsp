@@ -97,17 +97,17 @@
 				<% } %>
 				</ul>
 			</div>
-			<div class = "controlliCarrello"">				
+			<div class = "controlliCarrello">				
 				<p style="font-size:1.3em; text-align:center">Totale: <%out.println(String.format("%.2f&euro;", totale));%> </p>
 		 		<%
 		 		if(!carrello.getProdotti().isEmpty()){ 
 		 		%>
 		 		  <%
-		 		  request.getSession().setAttribute("carrello", carrello); 
-		 		  request.getSession().setAttribute("totale", totale);	 			
+			 		  request.getSession().setAttribute("carrello", carrello); 
+			 		  request.getSession().setAttribute("totale", totale);	 			
 		 		  %>
 		 			<form action="./CheckoutServlet" method="post">
-            		<button type="submit" class="btnCheckout" name="prodCarrello">Procedi all'acquisto</button>
+            			<button type="submit" class="btnCheckout" name="prodCarrello">Procedi all'acquisto</button>
             		</form>
 		 	<% } %>
 		 		

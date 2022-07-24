@@ -58,7 +58,6 @@ public class ServletCarrello extends HttpServlet {
 	    		codice = Long.parseLong(codProd);
 	    		
 	    		if(macroCategoriaProdotto != null) {
-	    			
 		    		switch(macroCategoriaProdotto) { //Creiamo un bean del prodotto di cui abbiamo prodotto
 		    		  case "Fumetti": model = new FumettiModel();
 		      			prodotto = model.doRetrieveByKey(codice);

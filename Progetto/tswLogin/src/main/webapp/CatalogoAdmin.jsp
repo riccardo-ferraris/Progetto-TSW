@@ -508,8 +508,6 @@
 		            		  $("#aggProdMex").addClass('hidden')
 		            		            
 		            		}, 1000);
-		                  
-		                  
 		              },
 		              error: function(){
 		                 alert("error");

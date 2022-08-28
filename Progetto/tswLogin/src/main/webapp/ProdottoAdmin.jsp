@@ -26,6 +26,7 @@
 <%
 UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 String seriale = request.getParameter("id");
+
 if(utente == null){
 	request.getSession().setAttribute("ruolo", "guest");
 	response.sendRedirect("Prodotto.jsp?id="+seriale);
@@ -38,9 +39,6 @@ if(!utente.getRuolo().equals("admin"))
 	return;
 }
 
-
-
-
 char firstChar = seriale.charAt(0);
 int firstDigit = Integer.parseInt("" + firstChar);
 ArticoloModel articoloModel = null;
@@ -50,8 +48,24 @@ String nomeImmagine = new String();
 switch(firstDigit){
 	case 1: articoloModel = new FumettiModel();
 	articolo = new FumettiBean();
-	articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
+	
+	break;
+	
+	case 2: articoloModel = new GraficheModel();
+		articolo = new GraficheBean();
+		break;
 		
+	case 3: articoloModel = new ModelliniModel();
+		articolo = new ModelliniBean();
+		break;
+	
+	default: out.println("404 Error");
+		break;	
+}
+
+articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
+%>
+         
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
@@ -96,107 +110,6 @@ switch(firstDigit){
 			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
 			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
 		</form>	
-		<%
-		break;
-		
-	case 2: articoloModel = new GraficheModel();
-		articolo = new GraficheBean();
-		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
-		
-		<title><%=articolo.getNome()%></title>
-		</head>
-		<body>
-		<jsp:include page="header.jsp"/>
-		<% 
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-		<form id="formModifiche" method="post" enctype="multipart/form-data;charset=UTF-8">
-			<div id="containerDiv">
-				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-				<div class="imgProdotto" id="imgProdotto">
-					<img id="imgProdottoSrc" src="./gallery/Grafiche/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
-				</div>
-				<div id="pisello">
-					<div class="caratteristicheProd">
-						<div style="font-weight:bold; font-size:2em; display:flex; justify-content:space-between; align-items:center">
-							<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
-							<div>
-								<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
-							</div>
-						</div>						
-						<div style="font-size:1.5em">
-							<p id="catProdotto"> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
-						</div>
-						<div style="font-size:1.5em">
-							<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-						</div>
-						<div style="font-size:1em">
-							<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
-			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
-		</form>
-		<%
-		break;
-	
-	case 3: articoloModel = new ModelliniModel();
-		articolo = new ModelliniBean();
-		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
-		%>
-		
-		<title><%=articolo.getNome()%></title>
-		</head>
-		<body>
-		<jsp:include page="header.jsp"/>
-		<% 
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-    	<form id="formModifiche" method="post" enctype="multipart/form-data;charset=UTF-8">
-	    	<div id="containerDiv">
-				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-				<div class="imgProdotto" id="imgProdotto">
-					<img id="imgProdottoSrc" src="./gallery/Modellini/<%=nomeImmagine%>.jpg" style="width:60%; margin:10%">
-				</div>
-				<div id="pisello">
-					<div class="caratteristicheProd">
-						<div style="font-weight:bold; font-size:2em; display:flex; justify-content:space-between; align-items:center">
-							<p id="nomeProdotto"> <%out.println(articolo.getNome());%> </p>
-							<div>
-								<button id="modificaProdotto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>
-							</div>
-						</div>						
-						<div style="font-size:1.5em">
-							<p id="catProdotto"> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
-						</div>
-						<div style="font-size:1.5em">
-							<p id="prezzoProdotto"> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-						</div>
-						<div style="font-size:1em">
-							<p id="descrizioneProdotto"> <%out.println(articolo.getDescrizione());%> </p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<input type="hidden" id="serialeProd" name="seriale" value="<%=articolo.getSeriale()%>">
-			<input type="hidden" id="catProd" name="categoria" value="<%=articolo.getMacroCategoria()%>">
-		</form>
-		<%
-		break;
-		
-	default: out.println("404 Error");
-		break;	
-}
-
-         %>
          
         <jsp:include page="footer.jsp"/>
         

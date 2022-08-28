@@ -109,7 +109,6 @@ if(arrayModellini == null){
 								</ul>
 								</div>
 								<% } %>
-		
             </div>
         </div>
 

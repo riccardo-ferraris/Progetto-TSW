@@ -3,6 +3,7 @@ package Util;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Articolo;
-import Model.ArticoloModel;
 import Model.FumettiBean;
 import Model.FumettiModel;
 import Model.GraficheBean;
@@ -46,10 +46,10 @@ public class SearchServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("keyWord", keyWord);
 		
-		ArrayList<Articolo> ricercaProdotti = new ArrayList<Articolo>();
-		ArrayList<FumettiBean> ricercaFumetti = new ArrayList<FumettiBean>();
-		ArrayList<GraficheBean> ricercaGrafiche = new ArrayList<GraficheBean>();
-		ArrayList<ModelliniBean> ricercaModellini = new ArrayList<ModelliniBean>();
+		List<Articolo> ricercaProdotti = new ArrayList<Articolo>();
+		List<FumettiBean> ricercaFumetti = new ArrayList<FumettiBean>();
+		List<GraficheBean> ricercaGrafiche = new ArrayList<GraficheBean>();
+		List<ModelliniBean> ricercaModellini = new ArrayList<ModelliniBean>();
 		
 		try {	
 			ricercaFumetti = new ArrayList<FumettiBean>(fModel.doRetrieveAllByKeyWord(null, keyWord));
@@ -76,5 +76,4 @@ public class SearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

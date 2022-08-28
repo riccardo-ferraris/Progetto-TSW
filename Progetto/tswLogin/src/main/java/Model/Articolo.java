@@ -11,8 +11,7 @@ public class Articolo {
 	protected double iva;
 	protected boolean visible;
 	
-	public Articolo() {
-	}
+	public Articolo() {}
 
 	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva, boolean visible) {
 		this.nome = nome;
@@ -45,18 +44,23 @@ public class Articolo {
 	public double getPrezzo() {
 		return prezzo;
 	}
+	
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
+	
 	public int getQuantità() {
 		return quantità;
 	}
+	
 	public void setQuantità(int quantità) {
 		this.quantità = quantità;
 	}
+	
 	public String getDescrizione() {
 		return descrizione;
 	}
+	
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}

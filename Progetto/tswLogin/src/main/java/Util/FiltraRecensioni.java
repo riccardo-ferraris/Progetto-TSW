@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import org.json.HTTP;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,7 +76,7 @@ public class FiltraRecensioni extends HttpServlet {
 		}
         
         RecensioneModel model = new RecensioneModel();
-		ArrayList<RecensioneBean> filteredRecensioni = null;
+		List<RecensioneBean> filteredRecensioni = null;
 		
 		try {
 			if(punti != 9) {

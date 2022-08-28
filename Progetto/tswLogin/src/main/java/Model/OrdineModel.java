@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import Util.DriverManagerConnectionPool;
 
@@ -40,80 +41,73 @@ public class OrdineModel {
 				ResultSetMetaData rsmd = rs.getMetaData();
 				String cat = new String();
 				
-				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+				List<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
 				ArticoloModel model;
 				Articolo articolo;
 				
-				//if (rs.next()) {
-					while(rs.next()) {
-						for(int i = 3; i <= 5; i++) {
-							if(rs.getString(i) != null) {
+				while(rs.next()) {
+					for(int i = 3; i <= 5; i++) {
+						if(rs.getString(i) != null) {
+							cat = rsmd.getColumnName(i).replace("seriale", "");
+							switch (cat) {
+							case "Fumetti": 
+								model = new FumettiModel();
+								articolo = new FumettiBean();
+								break;
+							case "Grafiche":
+								model = new GraficheModel();
+								articolo = new GraficheBean();
+								break;
+							case "Modellini":
+								model = new ModelliniModel();
+								articolo = new ModelliniBean();
+								break;
 								
-								cat = rsmd.getColumnName(i).replace("seriale", "");
-								switch (cat) {
-								case "Fumetti": 
-									model = new FumettiModel();
-									articolo = new FumettiBean();
-									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-									break;
-								case "Grafiche":
-									model = new GraficheModel();
-									articolo = new GraficheBean();
-									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-									break;
-								case "Modellini":
-									model = new ModelliniModel();
-									articolo = new ModelliniBean();
-									articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
-									break;
-									
-								default:
-									throw new IllegalArgumentException("Unexpected value: " );
-								}
-								
-								ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"), rs.getDouble("prezzo"), rs.getDouble("iva"));
-								
-								arrayProdotti.add(prodCarrello);
+							default:
+								throw new IllegalArgumentException("Unexpected value: " );
 							}
+							
+							articolo = model.doRetrieveByKey(Long.parseLong(rs.getString(i)));
+							
+							ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rs.getInt("quantità"), rs.getDouble("prezzo"), rs.getDouble("iva"));
+							arrayProdotti.add(prodCarrello);
 						}
 					}
-					bean.setArticoliOrdine(arrayProdotti);
-					
-					sql = "select * from indirizzospedizione where ordine = ?;";
-					preparedStatement = connection.prepareStatement(sql);
-					preparedStatement.setString(1, codice);
-					rs = preparedStatement.executeQuery();
+				}
+				bean.setArticoliOrdine(arrayProdotti);
+				
+				sql = "select * from indirizzospedizione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, codice);
+				rs = preparedStatement.executeQuery();
 
-					if (rs.next()) {
-						bean.setIndirizzoS(rs.getString("indirizzo"));
-						bean.setStatoS(rs.getString("stato"));
-						bean.setCityS(rs.getString("città"));
-						bean.setCapS(rs.getLong("CAP"));
-						bean.setNomeS(rs.getString("nome"));
-						bean.setCognomeS(rs.getString("cognome"));
-						
-						rs = preparedStatement.executeQuery();	
-					}
+				if (rs.next()) {
+					bean.setIndirizzoS(rs.getString("indirizzo"));
+					bean.setStatoS(rs.getString("stato"));
+					bean.setCityS(rs.getString("città"));
+					bean.setCapS(rs.getLong("CAP"));
+					bean.setNomeS(rs.getString("nome"));
+					bean.setCognomeS(rs.getString("cognome"));
 					
-					sql = "select * from indirizzofatturazione where ordine = ?;";
-					preparedStatement = connection.prepareStatement(sql);
-					preparedStatement.setString(1, codice);
-					rs = preparedStatement.executeQuery();
+					rs = preparedStatement.executeQuery();	
+				}
+				
+				sql = "select * from indirizzofatturazione where ordine = ?;";
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, codice);
+				rs = preparedStatement.executeQuery();
 
-					if (rs.next()) {
-						bean.setIndirizzoF(rs.getString("indirizzo"));
-						bean.setStatoF(rs.getString("stato"));
-						bean.setCityF(rs.getString("città"));
-						bean.setCapF(rs.getLong("CAP"));
-						bean.setNomeF(rs.getString("nome"));
-						bean.setCognomeF(rs.getString("cognome"));
-						
-						rs = preparedStatement.executeQuery();	
-					}
+				if (rs.next()) {
+					bean.setIndirizzoF(rs.getString("indirizzo"));
+					bean.setStatoF(rs.getString("stato"));
+					bean.setCityF(rs.getString("città"));
+					bean.setCapF(rs.getLong("CAP"));
+					bean.setNomeF(rs.getString("nome"));
+					bean.setCognomeF(rs.getString("cognome"));
 					
-				//}else {
-				//	bean = null;
-				//}
+					rs = preparedStatement.executeQuery();	
+				}
+
 				return bean;
 			}else
 				return null;
@@ -128,12 +122,12 @@ public class OrdineModel {
 		}
 	}
 	
-	public synchronized ArrayList<Ordine> doRetrieveAllByUsername(String username) throws SQLException, ClassNotFoundException {
+	public synchronized List<Ordine> doRetrieveAllByUsername(String username) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 		
-		ArrayList<Ordine> arrayOrdini = new ArrayList<Ordine>();
+		List<Ordine> arrayOrdini = new ArrayList<Ordine>();
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
@@ -141,10 +135,10 @@ public class OrdineModel {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
 			rs = preparedStatement.executeQuery();
+			
 			while(rs.next()) {
-				//System.out.println(rs.getString("codice"));
 				Ordine bean = new Ordine();
-				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+				List<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
 				bean.setCodice(rs.getString("codice"));
 				bean.setUtente(rs.getString("utente"));
 				bean.setTotale(rs.getDouble("totale"));
@@ -158,35 +152,32 @@ public class OrdineModel {
 				ResultSetMetaData rsmd = rsTemp.getMetaData();
 				String cat = new String();
 				
-				
 				ArticoloModel model;
 				Articolo articolo = null;
 				
 				while(rsTemp.next()) {
 					for(int i = 3; i <= 5; i++) {
 						if(rsTemp.getString(i) != null) {
-							
 							cat = rsmd.getColumnName(i).replace("seriale", "");
+							
 							switch (cat) {
-							case "Fumetti": 
-								model = new FumettiModel();
-								articolo = new FumettiBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-							case "Grafiche":
-								model = new GraficheModel();
-								articolo = new GraficheBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-							case "Modellini":
-								model = new ModelliniModel();
-								articolo = new ModelliniBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-								
-							default:
-								throw new IllegalArgumentException("Unexpected value: " );
-							}	
+								case "Fumetti": 
+									model = new FumettiModel();
+									articolo = new FumettiBean();
+									break;
+								case "Grafiche":
+									model = new GraficheModel();
+									articolo = new GraficheBean();
+									break;
+								case "Modellini":
+									model = new ModelliniModel();
+									articolo = new ModelliniBean();
+									break;
+									
+								default: throw new IllegalArgumentException("Unexpected value: " );
+							}
+							
+							articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
 						}
 					}
 					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"), rsTemp.getDouble("iva"));
@@ -263,9 +254,8 @@ public class OrdineModel {
 			ResultSetMetaData rsmd = rs.getMetaData();		
 
 			while(rs.next()) {
-				//System.out.println(rs.getString("codice"));
 				Ordine bean = new Ordine();
-				ArrayList<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
+				List<ProdottoInCarrello> arrayProdotti = new ArrayList<ProdottoInCarrello>();
 				bean.setCodice(rs.getString("codice"));
 				bean.setUtente(rs.getString("utente"));
 				bean.setTotale(rs.getDouble("totale"));
@@ -286,30 +276,28 @@ public class OrdineModel {
 				while(rsTemp.next()) {
 					for(int i = 3; i <= 5; i++) {
 						if(rsTemp.getString(i) != null) {
-							
 							cat = rsmd.getColumnName(i).replace("seriale", "");
+							
 							switch (cat) {
-							case "Fumetti": 
-								model = new FumettiModel();
-								articolo = new FumettiBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-							case "Grafiche":
-								model = new GraficheModel();
-								articolo = new GraficheBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-							case "Modellini":
-								model = new ModelliniModel();
-								articolo = new ModelliniBean();
-								articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
-								break;
-								
-							default:
-								throw new IllegalArgumentException("Unexpected value: " );
+								case "Fumetti": 
+									model = new FumettiModel();
+									articolo = new FumettiBean();
+									break;
+								case "Grafiche":
+									model = new GraficheModel();
+									articolo = new GraficheBean();
+									break;
+								case "Modellini":
+									model = new ModelliniModel();
+									articolo = new ModelliniBean();
+									break;
+									
+								default: throw new IllegalArgumentException("Unexpected value: " );
 							}	
+							articolo = model.doRetrieveByKey(Long.parseLong(rsTemp.getString(i)));
 						}
 					}
+					
 					ProdottoInCarrello prodCarrello = new ProdottoInCarrello(articolo, rsTemp.getInt("quantità"), rsTemp.getDouble("prezzo"), rsTemp.getDouble("iva"));
 					arrayProdotti.add(prodCarrello);
 				}
@@ -391,7 +379,7 @@ public class OrdineModel {
 			preparedStatement.setDate(4, ordine.getData());
 			result = preparedStatement.executeUpdate();
 			
-			ArrayList<ProdottoInCarrello> prodottiOrdine = ordine.getArticoliOrdine();
+			List<ProdottoInCarrello> prodottiOrdine = ordine.getArticoliOrdine();
 			String catProd = new String();
 			for (ProdottoInCarrello prod : prodottiOrdine) {
 				catProd = prod.getProdotto().getMacroCategoria();

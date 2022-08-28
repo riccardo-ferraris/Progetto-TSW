@@ -20,7 +20,6 @@ import Model.FumettiModel;
 import Model.GraficheModel;
 import Model.ModelliniModel;
 
-
 /**
  * Servlet implementation class ModificaProdotto
  */
@@ -59,60 +58,36 @@ public class ModificaProdotto extends HttpServlet {
 		
 		long seriale = Long.parseLong(request.getParameter("seriale"));
 		String categoria = request.getParameter("categoria");
-		ArticoloModel model;
+		ArticoloModel model = new ArticoloModel();
 		String tempCategoria = new String();
 		
 		switch(categoria) {
 		case "Fumetti":
 			model = new FumettiModel();
 			tempCategoria = "fumetti";
-			
-			try {
-				model.updateProdotto(nomeProdotto, sottoCatProdotto, prezzoProdotto, descrizioneProdotto, tempCategoria, seriale);
-				response.setContentType("text/html;charset=UTF-8");
-				response.getWriter().write("True");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				response.getWriter().write("Error");
-				e.printStackTrace();		
-			}
-			
 			break;
 			
 		case "Grafiche":
 			model = new GraficheModel();
 			tempCategoria = "grafica";
-			
-			try {
-				model.updateProdotto(nomeProdotto, sottoCatProdotto, prezzoProdotto, descrizioneProdotto, tempCategoria, seriale);
-				response.setContentType("text/html;charset=UTF-8");
-				response.getWriter().write("True");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				response.getWriter().write("Error");
-				e.printStackTrace();
-				
-			}
-			
 			break;
 			
 		case "Modellini":
 			model = new ModelliniModel();
 			tempCategoria = "modellino";
-			
-			try {
-				model.updateProdotto(nomeProdotto, sottoCatProdotto, prezzoProdotto, descrizioneProdotto, tempCategoria, seriale);
-				response.setContentType("text/html;charset=UTF-8");
-				response.getWriter().write("True");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				response.getWriter().write("Error");
-				e.printStackTrace();
-				
-			}
-			
 			break;
 		}
+		
+		try {
+			model.updateProdotto(nomeProdotto, sottoCatProdotto, prezzoProdotto, descrizioneProdotto, tempCategoria, seriale);
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write("True");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			response.getWriter().write("Error");
+			e.printStackTrace();		
+		}
+		
 		Part part = request.getPart("img");
 		
         if(part.getSize() > 0){

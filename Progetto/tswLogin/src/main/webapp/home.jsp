@@ -1,5 +1,6 @@
 <%@page import="Util.venditeComparator"%>
 <%@page import="java.util.Comparator"%>
+<%@page import="java.util.List" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="javax.servlet.*" %>
 <%@page import="javax.servlet.http.*" %>
@@ -20,11 +21,11 @@
 
 <%
 @SuppressWarnings("unchecked")
-	ArrayList<FumettiBean> arrayFumetti = (ArrayList<FumettiBean>) request.getAttribute("arrayFumetti");
+	List<FumettiBean> arrayFumetti = (ArrayList<FumettiBean>) request.getAttribute("arrayFumetti");
 @SuppressWarnings("unchecked")
-	ArrayList<GraficheBean> arrayGrafiche = (ArrayList<GraficheBean>) request.getAttribute("arrayGrafiche");
+	List<GraficheBean> arrayGrafiche = (ArrayList<GraficheBean>) request.getAttribute("arrayGrafiche");
 @SuppressWarnings("unchecked")
-	ArrayList<ModelliniBean> arrayModellini = (ArrayList<ModelliniBean>) request.getAttribute("arrayModellini");
+	List<ModelliniBean> arrayModellini = (ArrayList<ModelliniBean>) request.getAttribute("arrayModellini");
 
 if(arrayModellini == null){
 	response.sendRedirect("./RetrieveProdotti");
@@ -76,7 +77,7 @@ if(arrayModellini == null){
             <h3>Funko Pop! più venduti</h3>
             <div class="mainProduct" >
             	<%
-                    ArrayList<Articolo> topProducts = new ArrayList<Articolo>(arrayModellini);
+                    List<Articolo> topProducts = new ArrayList<Articolo>(arrayModellini);
             		Collections.sort(topProducts, new venditeComparator());
             		Collections.reverse(topProducts);
             		topProducts.subList(5, topProducts.size()).clear();

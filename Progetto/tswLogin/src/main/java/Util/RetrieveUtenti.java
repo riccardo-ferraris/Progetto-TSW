@@ -3,6 +3,7 @@ package Util;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class RetrieveUtenti extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UserModel model = new UserModel();
-		ArrayList<UserBean> listUtenti = new ArrayList<UserBean>();
+		List<UserBean> listUtenti = new ArrayList<UserBean>();
 		
 		try {
 			listUtenti = new ArrayList<UserBean>(model.doRetrieveAll(null));

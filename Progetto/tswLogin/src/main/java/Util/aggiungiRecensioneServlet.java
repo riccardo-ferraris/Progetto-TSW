@@ -33,7 +33,6 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	/**
@@ -64,5 +63,4 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 		response.sendRedirect("Prodotto.jsp?id="+serialeProdotto);
 		return;
 	}
-
 }

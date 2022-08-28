@@ -5,9 +5,7 @@ public class RecensioneBean {
 	long seriale;
 	int punteggio;
 	
-	public RecensioneBean() {
-		
-	}
+	public RecensioneBean(){}
 	
 	public RecensioneBean(String username, String testo, long seriale, int punteggio) {
 		super();

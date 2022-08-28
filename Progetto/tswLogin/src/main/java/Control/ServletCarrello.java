@@ -57,23 +57,22 @@ public class ServletCarrello extends HttpServlet {
 	    	if(codProd != null) { //Controlla che il codice sia effettivamente passato come parametro e che non sia nullo prima di fare un parse, che altrimenti genererebbe errore
 	    		codice = Long.parseLong(codProd);
 	    		
-	    		if(macroCategoriaProdotto != null) {
-		    		switch(macroCategoriaProdotto) { //Creiamo un bean del prodotto di cui abbiamo prodotto
+	    		if(macroCategoriaProdotto != null){
+		    		switch(macroCategoriaProdotto){ //Creiamo un bean del prodotto di cui abbiamo prodotto
 		    		  case "Fumetti": model = new FumettiModel();
-		      			prodotto = model.doRetrieveByKey(codice);
 		      			break;
 		    	  
 		    		  case "Grafiche": model = new GraficheModel();
-	      	  			prodotto = model.doRetrieveByKey(codice);
 	      	  			break;
 		      
 		    		  case "Modellini": model = new ModelliniModel();
-	      	  			prodotto = model.doRetrieveByKey(codice);
 	      	  			break;
 	      	  			
 	      	  		  default: 
 	      	  			  break;
 		    		}
+		    		
+		    		prodotto = model.doRetrieveByKey(codice);
 		    	}	
 	    	}   	  
 	     }

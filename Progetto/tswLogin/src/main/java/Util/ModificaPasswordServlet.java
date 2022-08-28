@@ -46,7 +46,6 @@ public class ModificaPasswordServlet extends HttpServlet {
 		UserModel model = new UserModel();
 		UserBean utente = ((UserBean)request.getSession().getAttribute("utente"));
 		
-		
 		if (!utente.getPassword().equals(oldPasswordModal) ) {             
 			response.setContentType("text/html;charset=UTF-8");
 		    response.getWriter().write("Incorrect");

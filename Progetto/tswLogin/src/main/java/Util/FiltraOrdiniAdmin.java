@@ -1,6 +1,5 @@
 package Util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -14,9 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.google.gson.Gson;
 

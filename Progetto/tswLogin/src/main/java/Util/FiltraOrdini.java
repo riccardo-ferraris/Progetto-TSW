@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +20,6 @@ import com.google.gson.Gson;
 
 import Model.Ordine;
 import Model.OrdineModel;
-import Model.RecensioneBean;
-import Model.RecensioneModel;
-
 /**
  * Servlet implementation class FiltraOrdini
  */
@@ -75,7 +73,7 @@ public class FiltraOrdini extends HttpServlet {
 			e.printStackTrace();
 		}
         OrdineModel model = new OrdineModel();
-		ArrayList<Ordine> filteredOrdini = null;
+		List<Ordine> filteredOrdini = null;
         try {
 
 		filteredOrdini = new ArrayList<Ordine>(model.doRetrieveAllByUsername(username));

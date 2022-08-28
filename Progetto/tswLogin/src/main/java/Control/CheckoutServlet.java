@@ -1,14 +1,9 @@
 package Control;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Ordine;
-import Model.OrdineModel;
-import Model.ProdottoInCarrello;
 import Model.UserBean;
 import Util.Carrello;
-import Util.DriverManagerConnectionPool;
-
 /**
  * Servlet implementation class CheckoutServlet
  */
@@ -66,7 +57,6 @@ public class CheckoutServlet extends HttpServlet {
 		
 		Carrello prodOrdine = (Carrello) request.getSession().getAttribute("carrello");
 		Ordine ordine = new Ordine("", utente.getUsername(), "", "", "", "", "", 0, "", "", "", "", "", 0, totale, dataFinal, prodOrdine.getProdotti());
-		
 		
 		request.getSession().setAttribute("checkoutOrdine", ordine);
 		response.sendRedirect("checkout.jsp");

@@ -79,7 +79,6 @@ public class FinalizzaAcquistoServlet extends HttpServlet {
 	    checkoutOrdine.setNomeF(nomeF);
 	    checkoutOrdine.setCognomeF(cognomeF);
 	    
-		
 		try {
 			model.databaseInsert(checkoutOrdine);
 			Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");

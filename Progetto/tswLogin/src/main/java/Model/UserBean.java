@@ -87,5 +87,4 @@ public class UserBean {
 		jsonObj.getAsJsonObject().remove("password");
 		return jsonObj;
 	}
-	
 }

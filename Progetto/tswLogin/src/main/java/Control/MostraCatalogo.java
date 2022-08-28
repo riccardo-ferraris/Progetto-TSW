@@ -3,6 +3,7 @@ package Control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,12 +45,12 @@ public class MostraCatalogo extends HttpServlet {
 		String page = request.getParameter("page");
 		String parag = request.getParameter("parag");
 		ArticoloModel model;
-		ArrayList<FumettiBean> arrayManga = new ArrayList<FumettiBean>();
-		ArrayList<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(); 
-		ArrayList<GraficheBean> arrayOpera = new ArrayList<GraficheBean>();
-		ArrayList<GraficheBean> arrayModerne = new ArrayList<GraficheBean>();
-		ArrayList<ModelliniBean> arrayFunko = new ArrayList<ModelliniBean>();
-		ArrayList<ModelliniBean> arrayFigures = new ArrayList<ModelliniBean>();
+		List<FumettiBean> arrayManga = new ArrayList<FumettiBean>();
+		List<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(); 
+		List<GraficheBean> arrayOpera = new ArrayList<GraficheBean>();
+		List<GraficheBean> arrayModerne = new ArrayList<GraficheBean>();
+		List<ModelliniBean> arrayFunko = new ArrayList<ModelliniBean>();
+		List<ModelliniBean> arrayFigures = new ArrayList<ModelliniBean>();
 		
 		model = new FumettiModel();
 		try {
@@ -96,8 +97,8 @@ public class MostraCatalogo extends HttpServlet {
 			
 			return;
 		}else if(utente.getRuolo().equals("admin")){
-		RequestDispatcher view = request.getRequestDispatcher("CatalogoAdmin.jsp");
-		view.forward(request, response);
+			RequestDispatcher view = request.getRequestDispatcher("CatalogoAdmin.jsp");
+			view.forward(request, response);
 		return;
 		}
 		

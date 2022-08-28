@@ -52,7 +52,4 @@ public class ProdottoInCarrello {
 	public String toString() {
 		return "ProdottoInCarrello [prodotto=" + prodotto + ", quantità=" + quantity + "]";
 	}
-	
-	
-	
 }

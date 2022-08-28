@@ -45,38 +45,27 @@ public class NascondiProdotto extends HttpServlet {
 		String catProd = request.getParameter("categoria");
 		long serialeProd = Long.parseLong(request.getParameter("seriale"));
 		boolean value = Boolean.valueOf(request.getParameter("nascondi"));
-		ArticoloModel model;
+		ArticoloModel model = new ArticoloModel();
 		
 		switch(catProd) {
 		case "Fumetti":
 			model = new FumettiModel();
-			try {
-				model.toggleVisibility(serialeProd, value);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			break;
 			
 		case "Grafiche":
 			model = new GraficheModel();
-			try {
-				model.toggleVisibility(serialeProd, value);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			break;
 			
 		case "Modellini":
 			model = new ModelliniModel();
-			try {
-				model.toggleVisibility(serialeProd, value);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			break;
+		}
+		
+		try {
+			model.toggleVisibility(serialeProd, value);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		response.sendRedirect("CatalogoAdmin.jsp");
 		return;

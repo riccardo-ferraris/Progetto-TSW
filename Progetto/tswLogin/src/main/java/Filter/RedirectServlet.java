@@ -29,14 +29,11 @@ public class RedirectServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String page = request.getParameter("page");
 		String ruoloUtente = (String) request.getSession().getAttribute("ruolo");
-		//System.out.println(ruoloUtente);
 		if(page.trim().equals("catalogo") || page.trim().equals("viewUtenti") ){
 			if(ruoloUtente == null || !ruoloUtente.equals("admin") || (ruoloUtente.equals("admin") && page.trim().equals("viewUtenti")) ){
-				//System.out.println("flag"); 
 				response.sendRedirect("./MostraCatalogo?page=" + page);
 				return;
 			}else if(ruoloUtente.equals("admin")){
-				//System.out.println("err");
 				response.sendRedirect("./MostraCatalogo");
 				return;
 			}

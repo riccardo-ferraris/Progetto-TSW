@@ -17,13 +17,9 @@ public class UserModel {
 
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from utente where username = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setString(1, username);
-
 			rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
@@ -55,7 +51,6 @@ public class UserModel {
 
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "insert into utente (username, password, nome, cognome, ruolo, email) values(?, ?, ?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			
@@ -82,7 +77,7 @@ public class UserModel {
 		}
 	}
 	
-	// metodo per la connessione al database per cambiare la password
+	//Metodo per la connessione al database per cambiare la password
 	public void changePassword(String username, String password) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

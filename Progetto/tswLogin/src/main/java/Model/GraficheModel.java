@@ -9,7 +9,6 @@ import java.util.LinkedList;
 
 import Util.DriverManagerConnectionPool;
 
-
 public class GraficheModel extends ArticoloModel{
 	private static final String TABLE_NAME = "grafica";
 	
@@ -25,9 +24,7 @@ public class GraficheModel extends ArticoloModel{
 			String sql = "select * from grafica where seriale = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setLong(1, seriale);
-
 			rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {

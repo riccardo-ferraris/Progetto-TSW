@@ -20,13 +20,9 @@ public class RecensioneModel {
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from recensione where usernameUtente = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setString(1, username);
-
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
@@ -56,7 +52,6 @@ public class RecensioneModel {
 	}
 	
 	public synchronized Collection<RecensioneBean> doRetrieveAllBySeriale(long seriale, String categoria) throws SQLException, ClassNotFoundException {
-		
 		Collection<RecensioneBean> recensioni = new LinkedList<RecensioneBean>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -64,13 +59,9 @@ public class RecensioneModel {
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from recensione where seriale" + categoria + " = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setLong(1, seriale);
-
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
@@ -106,14 +97,10 @@ public class RecensioneModel {
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from recensione where usernameUtente = ? AND seriale" + categoria + " = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setString(1, username);
 			preparedStatement.setLong(2, seriale);
-
 			rs = preparedStatement.executeQuery();
 			RecensioneBean bean = new RecensioneBean();
 			
@@ -150,14 +137,10 @@ public class RecensioneModel {
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "select * from recensione where punteggio = ? AND seriale" + categoria + " = ?;";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setInt(1, punteggio);
 			preparedStatement.setLong(2, seriale);
-
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
@@ -194,15 +177,12 @@ public class RecensioneModel {
 
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "insert into recensione (punteggio, testo, seriale"+ categoriaProdotto +", usernameUtente) values(?, ?, ?, ?);";
 			preparedStatement = connection.prepareStatement(sql);
-			
 			preparedStatement.setInt(1, recensione.getPunteggio());
 			preparedStatement.setString(2, recensione.getTesto());
 			preparedStatement.setLong(3, recensione.getSeriale());
 			preparedStatement.setString(4, recensione.getUsername());
-			
 			result = preparedStatement.executeUpdate();
 			
 			return result;
@@ -225,11 +205,8 @@ public class RecensioneModel {
 		
 		try {			
 			connection = DriverManagerConnectionPool.getConnection();
-
 			String sql = "update `perspectiveart`.`recensione` set `testo` = ?, `punteggio` = ? where (`usernameUtente` = ?) AND (seriale" + categoria + " = ?);";
-
 			preparedStatement = connection.prepareStatement(sql);
-
 			preparedStatement.setString(1, recensione.getTesto());
 			preparedStatement.setInt(2, recensione.getPunteggio());
 			preparedStatement.setString(3, recensione.getUsername());

@@ -54,9 +54,7 @@ public class ModificaRecensione extends HttpServlet {
 			// TODO Auto-generated catch block
 			response.getWriter().write("Error");
 			e.printStackTrace();
-			
 		}
 		return;
 	}
-
 }

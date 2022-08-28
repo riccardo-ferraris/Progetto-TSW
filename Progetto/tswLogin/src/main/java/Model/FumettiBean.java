@@ -97,8 +97,6 @@ public class FumettiBean extends Articolo{
 	public String getMacroCategoria() {
 		return macroCategoria;
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -106,9 +104,6 @@ public class FumettiBean extends Articolo{
 				+ ", categoria=" + categoria + ", nome=" + nome + ", seriale=" + seriale + ", prezzo=" + prezzo
 				+ ", quantità=" + quantità + ", descrizione=" + descrizione + "]";
 	}
-	
-	
-	
 }
 
 

@@ -3,6 +3,7 @@ package Util;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,9 +41,9 @@ public class RetrieveProdotti extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ArticoloModel model;
-		ArrayList<FumettiBean> arrayFumetti = new ArrayList<FumettiBean>();
-		ArrayList<GraficheBean> arrayGrafiche = new ArrayList<GraficheBean>(); 
-		ArrayList<ModelliniBean> arrayModellini = new ArrayList<ModelliniBean>();
+		List<FumettiBean> arrayFumetti = new ArrayList<FumettiBean>();
+		List<GraficheBean> arrayGrafiche = new ArrayList<GraficheBean>(); 
+		List<ModelliniBean> arrayModellini = new ArrayList<ModelliniBean>();
 		
 		model = new FumettiModel();
 		try {
@@ -84,5 +85,4 @@ public class RetrieveProdotti extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

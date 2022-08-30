@@ -10,10 +10,11 @@ public class Articolo {
 	protected int numVendite;
 	protected double iva;
 	protected boolean visible;
+	protected String categoria;
 	
 	public Articolo() {}
 
-	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva, boolean visible) {
+	public Articolo(String nome, long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva, boolean visible, String categoria) {
 		this.nome = nome;
 		this.seriale = seriale;
 		this.prezzo = prezzo;
@@ -23,6 +24,7 @@ public class Articolo {
 		this.numVendite = numVendite;
 		this.iva = iva;
 		this.visible = visible;
+		this.categoria = categoria;
 	}
 
 	public long getSeriale() {
@@ -91,6 +93,14 @@ public class Articolo {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override

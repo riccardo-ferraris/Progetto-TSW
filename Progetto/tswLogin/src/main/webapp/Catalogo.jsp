@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
+    <%@page import="java.util.List" %>
     <%@page import="javax.servlet.*" %>
     <%@page import="javax.servlet.http.*" %>
     <%@page import="Model.FumettiBean" %>
@@ -20,17 +21,17 @@
 <%@ page errorPage="ErrorPage.jsp" %> 
 <%  
 @SuppressWarnings("unchecked")
-	ArrayList<FumettiBean> arrayManga = (ArrayList<FumettiBean>) request.getAttribute("arrayManga");
+	List<FumettiBean> arrayManga = (ArrayList<FumettiBean>) request.getAttribute("arrayManga");
 @SuppressWarnings("unchecked")
-	ArrayList<FumettiBean> arrayManhua = (ArrayList<FumettiBean>) request.getAttribute("arrayManhua");
+	List<FumettiBean> arrayManhua = (ArrayList<FumettiBean>) request.getAttribute("arrayManhua");
 @SuppressWarnings("unchecked")
-	ArrayList<GraficheBean> arrayOpera = (ArrayList<GraficheBean>) request.getAttribute("arrayOpera");
+	List<GraficheBean> arrayOpera = (ArrayList<GraficheBean>) request.getAttribute("arrayOpera");
 @SuppressWarnings("unchecked")
-	ArrayList<GraficheBean> arrayModerne = (ArrayList<GraficheBean>) request.getAttribute("arrayModerne");
+	List<GraficheBean> arrayModerne = (ArrayList<GraficheBean>) request.getAttribute("arrayModerne");
 @SuppressWarnings("unchecked")
-	ArrayList<ModelliniBean> arrayFunko = (ArrayList<ModelliniBean>) request.getAttribute("arrayFunko");
+	List<ModelliniBean> arrayFunko = (ArrayList<ModelliniBean>) request.getAttribute("arrayFunko");
 @SuppressWarnings("unchecked")
-	ArrayList<ModelliniBean> arrayFigures = (ArrayList<ModelliniBean>) request.getAttribute("arrayFigures");
+	List<ModelliniBean> arrayFigures = (ArrayList<ModelliniBean>) request.getAttribute("arrayFigures");
 
 if(arrayManga == null){
 	response.sendRedirect("./RedirectServlet?page=catalogo");
@@ -65,7 +66,6 @@ if(arrayManga == null){
 <body>
 		<jsp:include page="header.jsp"/>
 		<%
-		
 			try {
 			    response.setHeader("Cache-Control","no-cache");
 			    response.setHeader("Cache-Control","no-store");
@@ -182,8 +182,6 @@ if(arrayManga == null){
 	<h3 class="sottointestazione">D'Opera</h3>
 	
 	<%
-	//String path = .getContextRoot();
-	//out.println(path);
 	basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 		%>
 	<div class = "listProd">

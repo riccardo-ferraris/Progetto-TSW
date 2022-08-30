@@ -7,6 +7,7 @@
     <%@page import="Model.ModelliniBean" %>
     <%@page import="Model.ProdottoInCarrello" %>
     <%@page import="java.util.ArrayList"%>
+    <%@page import="java.util.List"%>
     <%@ page errorPage="ErrorPage.jsp" %>
     <%
     UserBean utente = (UserBean) request.getSession().getAttribute("utente");
@@ -18,7 +19,7 @@
     }
     
     Ordine checkoutOrdine = ((Ordine) request.getSession().getAttribute("checkoutOrdine"));
-    ArrayList<ProdottoInCarrello> array = checkoutOrdine.getArticoliOrdine();
+    List<ProdottoInCarrello> array = checkoutOrdine.getArticoliOrdine();
     Double costoSpedizione = 5.00;
     %>
     
@@ -85,8 +86,6 @@
                     <span class="text-muted"><%out.println(String.format("%.2f&euro;", prod.getProdotto().getPrezzo()));%></span>
                 </li>			
 			<%}%>
-    
-                
 
                 <li class="list-group-item d-flex justify-content-between">
                     <span>IVA (EUR)</span>

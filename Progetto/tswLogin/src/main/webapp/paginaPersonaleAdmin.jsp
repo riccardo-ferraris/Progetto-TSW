@@ -23,8 +23,7 @@
 	    <%
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
     
-    	if(utente == null || utente.getRuolo() == null)
-    	{
+    	if(utente == null || utente.getRuolo() == null){
     		response.sendRedirect("login.jsp");	
     		return;
     	}else if(!utente.getRuolo().equals("admin")){

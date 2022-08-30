@@ -5,21 +5,18 @@ public class FumettiBean extends Articolo{
 	private String scrittore;
 	private int numPagine;
 	private String disegnatore;
-	private String categoria;
-	
 	
 	public FumettiBean() {
 		this.macroCategoria = "Fumetti";
 	}
 
-	public FumettiBean(String nome, String scrittore, int numPagine, String disegnatore, String categoria,
-			long seriale, double prezzo, int quantità, String descrizione, String macroCategoria, int numVendite, double iva, boolean visible) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva, visible);
+	public FumettiBean(String nome, String scrittore, int numPagine, String disegnatore, long seriale, double prezzo,
+			int quantità, String descrizione, String macroCategoria, int numVendite, double iva, boolean visible, String categoria) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva, visible, categoria);
 		this.macroCategoria = "Fumetti";
 		this.scrittore = scrittore;
 		this.numPagine = numPagine;
 		this.disegnatore = disegnatore;
-		this.categoria = categoria;
 	}
 
 	public long getSeriale() {
@@ -85,6 +82,7 @@ public class FumettiBean extends Articolo{
 	public void setDisegnatore(String disegnatore) {
 		this.disegnatore = disegnatore;
 	}
+	
 	
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;

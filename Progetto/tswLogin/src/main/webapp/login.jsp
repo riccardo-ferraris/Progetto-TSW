@@ -24,55 +24,53 @@
 		response.sendRedirect("home.jsp");
 		return;
 	} %>
-<body>
-    <jsp:include page="header.jsp"/>
-	<jsp:include page="navbarUnlogged.jsp"/>
-    
-	<%String pageRedirect = request.getParameter("pageLogin");%>
-    <form id="loginForm" class="loginForm" method="post">
-        <h1 id="accedi">Accedi</h1>
-        <div class="content">
-            <div class="input-field">
-                <input type="text" placeholder="Username" id="username" name="username">
-            </div>
-            <div class="input-field">
-                <input type="password" placeholder="Password" id="password" name="password">
-            </div>
-            
-        </div>
-        <p id="loginErr" class="loginError"></p>
-        <br><br>
-        <div class="action">
-            <a href="register.jsp">Registrati</a>
-            <button id="loginButton">Login</button>
-        </div>
-    </form>
+	<body>
+	    <jsp:include page="header.jsp"/>
+		<jsp:include page="navbarUnlogged.jsp"/>
+	    
+		<%String pageRedirect = request.getParameter("pageLogin");%>
+	    <form id="loginForm" class="loginForm" method="post">
+	        <h1 id="accedi">Accedi</h1>
+	        <div class="content">
+	            <div class="input-field">
+	                <input type="text" placeholder="Username" id="username" name="username">
+	            </div>
+	            <div class="input-field">
+	                <input type="password" placeholder="Password" id="password" name="password">
+	            </div>
+	            
+	        </div>
+	        <p id="loginErr" class="loginError"></p>
+	        <br><br>
+	        <div class="action">
+	            <a href="register.jsp">Registrati</a>
+	            <button id="loginButton">Login</button>
+	        </div>
+	    </form>
 
-    <jsp:include page="footer.jsp"/>
+    	<jsp:include page="footer.jsp"/>
 	
-	<script>
-       $('#loginForm').on('submit', function(e){
-    	   e.preventDefault();
-
-          $.ajax({
-        	  type: "POST",
-              url:"LoginServlet",
-              data: $("#loginForm").serialize(),
-              cache: false,
-              success: function (data) {
-                 if(data.substring(0, 4)=='True'){
-                   let redirectPage = data.replace('True', '');
-                   $(location).attr('href', redirectPage);
-                 }else{
-                     var el = document.getElementById("loginErr");
-                     el.innerHTML = "Errore! Utente o password non corretti! Riprovare!"
-                 }
-              }
-          });
-         return;
-       });
-   </script>
+		<script>
+	       $('#loginForm').on('submit', function(e){
+	    	   e.preventDefault();
 	
-</body>
-
+	          $.ajax({
+	        	  type: "POST",
+	              url:"LoginServlet",
+	              data: $("#loginForm").serialize(),
+	              cache: false,
+	              success: function (data) {
+	                 if(data.substring(0, 4)=='True'){
+	                   let redirectPage = data.replace('True', '');
+	                   $(location).attr('href', redirectPage);
+	                 }else{
+	                     var el = document.getElementById("loginErr");
+	                     el.innerHTML = "Errore! Utente o password non corretti! Riprovare!"
+	                 }
+	              }
+	          });
+	         return;
+	       });
+	   </script>
+	</body>
 </html>

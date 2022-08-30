@@ -93,7 +93,7 @@ articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
 						</div>
 					</div>
 					<div style="font-size:1.5em">
-						<p id="catProdotto"> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
+						<p id="catProdotto"> <%out.println(articolo.getCategoria());%> </p>
 						
 					</div>
 					<div style="font-size:1.5em">

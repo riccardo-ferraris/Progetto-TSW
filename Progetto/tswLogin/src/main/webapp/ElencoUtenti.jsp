@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List" %>
     <%@page import="java.util.ArrayList" %>
     <%@page import="Model.UserBean" %>
     <%@ page errorPage="ErrorPage.jsp" %> 
@@ -7,7 +8,6 @@
 <html>
 
 <%
-
 	UserBean utente = (UserBean) request.getSession().getAttribute("utente");;
 	if(utente == null){
 		request.getSession().setAttribute("ruolo", "guest");
@@ -22,7 +22,7 @@
 	} 
 	
 	@SuppressWarnings("unchecked")
-	ArrayList<UserBean> listUtenti = (ArrayList<UserBean>) request.getAttribute("listUtenti");
+	List<UserBean> listUtenti = (ArrayList<UserBean>) request.getAttribute("listUtenti");
 	
 	if(listUtenti == null){
 		response.sendRedirect("./RetrieveUtenti");

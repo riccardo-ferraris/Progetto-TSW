@@ -1,10 +1,10 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% %>
     <%@page import="Util.Carrello"%>
     <%@page import="Model.Articolo"%>
     <%@page import="Model.ArticoloModel"%>
+    <%@page import="java.util.List"%>
     <%@page import="java.util.ArrayList"%>
      <%@page import="Model.ProdottoInCarrello"%>
      <%@page import="Model.FumettiBean"%>
@@ -14,7 +14,7 @@
    if(carrello == null){
 	   carrello = new Carrello();
    }
-   ArrayList<ProdottoInCarrello> arrayArticoli = carrello.getProdotti();
+   List<ProdottoInCarrello> arrayArticoli = carrello.getProdotti();
    %>
 <!DOCTYPE html>
 <html>

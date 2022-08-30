@@ -14,9 +14,7 @@
 			response.sendRedirect("home.jsp");
 			return;
 		}
-		if(!utente.getRuolo().equals("admin"))
-		{
-			//out.println(utente);
+		if(!utente.getRuolo().equals("admin")){
 			response.sendRedirect("home.jsp");
 			return;
 		} %>

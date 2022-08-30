@@ -32,171 +32,88 @@
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <%
-UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-if(utente == null){
-	request.getSession().setAttribute("ruolo", "guest");
+	UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+	if(utente == null){
+		request.getSession().setAttribute("ruolo", "guest");
 	}
-
-JsonElement utenteJson = null;
-if(utente != null){
-	utenteJson = utente.toJson();
-}
-
-
-String seriale = request.getParameter("id");
-char firstChar = seriale.charAt(0);
-int firstDigit = Integer.parseInt("" + firstChar);
-ArticoloModel articoloModel = null;
-Articolo articolo = null;
-String nomeImmagine = new String();
-
-switch(firstDigit){
-	case 1: articoloModel = new FumettiModel();
-	articolo = new FumettiBean();
-	articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
-		
-		<title><%=articolo.getNome()%></title>
-		</head>
-		<body>
-			<jsp:include page="header.jsp"/>
-			<jsp:include page="PopupAcquisto.html"/>
-			
-		<% 
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-		
-		
-		<div class="divProdIntero">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
-			
-			<div class="imgProdotto">
-				<img class="immagineProd" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg">
-			</div>
-			<div class="caratteristicheProd">
-				<div class="caratTitolo">
-					<p> <%out.println(articolo.getNome());%> </p>
-					<%
-						if((request.getSession().getAttribute("ruolo")).equals("admin")){
-					%>
-					<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
-					<%}%>
-				</div>
-				<div class="caratCateg">
-					<p> <%out.println(((FumettiBean)articolo).getCategoria());%> </p>
-				</div>
-				<div class="caratPrezzo">
-					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-				</div>
-				<div class="caratDesc">
-					<p> <%out.println(articolo.getDescrizione());%> </p>
-				</div>
-			</div>	
-		</div>	
-			
-		<%
+	
+	JsonElement utenteJson = null;
+	if(utente != null){
+		utenteJson = utente.toJson();
+	}
+	
+	
+	String seriale = request.getParameter("id");
+	char firstChar = seriale.charAt(0);
+	int firstDigit = Integer.parseInt("" + firstChar);
+	ArticoloModel articoloModel = null;
+	Articolo articolo = new Articolo();
+	String nomeImmagine = new String();
+	
+	switch(firstDigit){
+		case 1: articoloModel = new FumettiModel();
+		articolo = new FumettiBean();
 		break;
 		
 	case 2: articoloModel = new GraficheModel();
 		articolo = new GraficheBean();
-		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
-		
-		<title><%=articolo.getNome()%></title>
-		</head>
-		<body>
-		<jsp:include page="header.jsp"/>
-		<jsp:include page="PopupAcquisto.html"/>
-		<% 
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-		
-		<div class="divProdIntero">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-			<div class="imgProdotto">
-				<img class="immagineProd" src="./gallery/Grafiche/<%=nomeImmagine%>.jpg">
-			</div>
-			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
-					<p> <%out.println(articolo.getNome());%> </p>
-					<%
-						if((request.getSession().getAttribute("ruolo")).equals("admin")){
-					%>
-						<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
-					<%}%>
-				</div>
-				<div style="font-size:1.5em">
-					<p> <%out.println(((GraficheBean)articolo).getCategoria());%> </p>		
-				</div>
-				<div style="font-size:1.5em">
-					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-				</div>
-				<div style="font-size:1em">
-					<p> <%out.println(articolo.getDescrizione());%> </p>
-				</div>
-			</div>
-		</div>
-		<%
 		break;
 	
 	case 3: articoloModel = new ModelliniModel();
 		articolo = new ModelliniBean();
-		articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
-		%>
-		
-		<title><%=articolo.getNome()%></title>
-		</head>
-		<body>
-		<jsp:include page="header.jsp"/>
-		<jsp:include page="PopupAcquisto.html"/>
-		
-		<% 
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-    	
-    	<div class="divProdIntero">
-			<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", ""); %>
-			<div class="imgProdotto">
-				<img class="immagineProd" src="./gallery/Modellini/<%=nomeImmagine%>.jpg">
-			</div>
-			<div class="caratteristicheProd">
-				<div style="font-weight:bold; font-size:2em">
-					<p> <%out.println(articolo.getNome());%> </p>
-					<%
-						if((request.getSession().getAttribute("ruolo")).equals("admin")){
-					%>
-						<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
-					<%}%>
-				</div>
-				<div style="font-size:1.5em">
-					<p> <%out.println(((ModelliniBean)articolo).getCategoria());%> </p>				
-				</div>
-				<div style="font-size:1.5em">
-					<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
-				</div>
-				<div style="font-size:1em">
-					<p> <%out.println(articolo.getDescrizione());%> </p>
-				</div>
-			</div>
-		</div>
-
-		<%
 		break;
 		
 	default: out.println("404 Error");
 		break;	
 }
-
+	
+	articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));%>
+	
+	<title><%=articolo.getNome()%></title>
+	</head>
+	<body>
+		<jsp:include page="header.jsp"/>
+		<jsp:include page="PopupAcquisto.html"/>
+		
+	<% 
+		if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+			<jsp:include page="navbarUnlogged.jsp"/>
+		<%}else{ %>
+			<jsp:include page="navbarLogged.jsp"/>
+		<% } %>
+	
+	
+	<div class="divProdIntero">
+		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
+		
+		<div class="imgProdotto">
+			<img class="immagineProd" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg">
+		</div>
+		<div class="caratteristicheProd">
+			<div class="caratTitolo">
+				<p> <%out.println(articolo.getNome());%> </p>
+				<%
+					if((request.getSession().getAttribute("ruolo")).equals("admin")){
+				%>
+				<a href="./ProdottoAdmin.jsp?id=<%=articolo.getSeriale()%>" class="prodottoAdmin">Prodotto Admin</a>
+				<%}%>
+			</div>
+			<div class="caratCateg">
+				<p> <%out.println(articolo.getCategoria());%> </p>
+			</div>
+			<div class="caratPrezzo">
+				<p> <%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%> </p>
+			</div>
+			<div class="caratDesc">
+				<p> <%out.println(articolo.getDescrizione());%> </p>
+			</div>
+		</div>	
+	</div>	
+		
+	<%
 		if(articolo.getQuantità()>0)
         {
-         %>
+    %>
          <div class="aggiungiCarrello">
          	<label for="quantità"> Quantità: </label>
          	<form id="formAggiungiCarrello_<%=articolo.getSeriale()+"_"+articolo.getMacroCategoria()%>" class="formAggiungiCarrello" method="get">

@@ -44,19 +44,22 @@ int firstDigit = Integer.parseInt("" + firstChar);
 ArticoloModel articoloModel = null;
 Articolo articolo = null;
 String nomeImmagine = new String();
+String folder = new String();
 
 switch(firstDigit){
 	case 1: articoloModel = new FumettiModel();
-	articolo = new FumettiBean();
-	
-	break;
+		articolo = new FumettiBean();
+		folder = "Fumetti";
+		break;
 	
 	case 2: articoloModel = new GraficheModel();
 		articolo = new GraficheBean();
+		folder = "Grafiche";
 		break;
 		
 	case 3: articoloModel = new ModelliniModel();
 		articolo = new ModelliniBean();
+		folder = "Modellini";		
 		break;
 	
 	default: out.println("404 Error");
@@ -65,7 +68,6 @@ switch(firstDigit){
 
 articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
 %>
-         
 		<title><%=articolo.getNome()%></title>
 		</head>
 		<body>
@@ -82,7 +84,7 @@ articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
 				<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
 				
 				<div class="imgProdotto" id="imgProdotto">
-					<img id="imgProdottoSrc" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
+					<img id="imgProdottoSrc" src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style="width:50%; margin:10% 25%">
 				</div>
 				<div id="pisello">
 				<div class="caratteristicheProd">
@@ -141,7 +143,6 @@ articolo = articoloModel.doRetrieveByKey(Long.parseLong(seriale));
               } 
          });
      });
-			
 			
    </script>
    

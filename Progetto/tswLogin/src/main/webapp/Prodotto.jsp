@@ -49,18 +49,22 @@
 	ArticoloModel articoloModel = null;
 	Articolo articolo = new Articolo();
 	String nomeImmagine = new String();
+	String folder = new String();
 	
 	switch(firstDigit){
 		case 1: articoloModel = new FumettiModel();
 		articolo = new FumettiBean();
+		folder = "Fumetti";
 		break;
 		
 	case 2: articoloModel = new GraficheModel();
 		articolo = new GraficheBean();
+		folder = "Grafiche";
 		break;
 	
 	case 3: articoloModel = new ModelliniModel();
 		articolo = new ModelliniBean();
+		folder = "Modellini";
 		break;
 		
 	default: out.println("404 Error");
@@ -87,7 +91,7 @@
 		<% nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");%>
 		
 		<div class="imgProdotto">
-			<img class="immagineProd" src="./gallery/Fumetti/<%=nomeImmagine%>.jpg">
+			<img class="immagineProd" src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg">
 		</div>
 		<div class="caratteristicheProd">
 			<div class="caratTitolo">

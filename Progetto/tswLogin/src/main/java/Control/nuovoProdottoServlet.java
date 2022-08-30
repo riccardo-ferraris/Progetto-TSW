@@ -61,9 +61,9 @@ public class nuovoProdottoServlet extends HttpServlet {
 			model = new FumettiModel();
 			articolo = new FumettiBean(request.getParameter("nome"), request.getParameter("scrittore"),
 					Integer.parseInt(request.getParameter("numPagine")), 
-					request.getParameter("disegnatore"), request.getParameter("sottoCategoria"),
+					request.getParameter("disegnatore"),
 					Long.parseLong(request.getParameter("seriale")), Double.parseDouble(request.getParameter("prezzo")),
-					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti", 0, Double.parseDouble(request.getParameter("IVA")), true);	
+					Integer.parseInt(request.getParameter("quantità")), request.getParameter("descrizione"), "Fumetti", 0, Double.parseDouble(request.getParameter("IVA")), true,  request.getParameter("sottoCategoria"));	
 			
 			try {
 				((FumettiModel)model).databaseInsert(((FumettiBean)articolo));
@@ -80,7 +80,7 @@ public class nuovoProdottoServlet extends HttpServlet {
 			model = new GraficheModel();
 			articolo = new GraficheBean(request.getParameter("nome"), Long.parseLong(request.getParameter("seriale")),
 				Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-				request.getParameter("descrizione"), request.getParameter("sottoCategoria"), "Grafiche", 0, Double.parseDouble(request.getParameter("IVA")), true);
+				request.getParameter("descrizione"), "Grafiche", 0, Double.parseDouble(request.getParameter("IVA")), true, request.getParameter("sottoCategoria"));
 			try {
 				((GraficheModel)model).databaseInsert(((GraficheBean)articolo));
 			} catch (SQLException e) {
@@ -94,8 +94,8 @@ public class nuovoProdottoServlet extends HttpServlet {
 			model = new ModelliniModel();
 			articolo = new ModelliniBean(Long.parseLong(request.getParameter("seriale")), request.getParameter("nome"),
 					Double.parseDouble(request.getParameter("prezzo")), Integer.parseInt(request.getParameter("quantità")),
-					request.getParameter("descrizione"), request.getParameter("sottoCategoria"), request.getParameter("franchise"),
-					Double.parseDouble(request.getParameter("dimensioni")), "Modellini", 0, Double.parseDouble(request.getParameter("IVA")), true);
+					request.getParameter("descrizione"), request.getParameter("franchise"),
+					Double.parseDouble(request.getParameter("dimensioni")), "Modellini", 0, Double.parseDouble(request.getParameter("IVA")), true, request.getParameter("sottoCategoria"));
 				try {
 					((ModelliniModel)model).databaseInsert(((ModelliniBean)articolo));
 				} catch (SQLException e) {
@@ -104,7 +104,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 				}
 		break;
 	     
-		
 		default: System.out.println("Errore!");
 		return;
 		}
@@ -115,7 +114,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 
 	}
 	
-	
 	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException{
 	    final String fileName = titolo + ".jpg";
 
@@ -123,37 +121,33 @@ public class nuovoProdottoServlet extends HttpServlet {
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 
-	    try 
-	    {
-	        out = new FileOutputStream(new File(savePath + File.separator + fileName));
+	    try{
+	    	out = new FileOutputStream(new File(savePath + File.separator + fileName));
 	        filecontent = filePart.getInputStream();
 
 	        int read = 0;
 	        final byte[] bytes = new byte[1024];
 
-	        while ((read = filecontent.read(bytes)) != -1) 
-	        {
+	        while ((read = filecontent.read(bytes)) != -1){
 	            out.write(bytes, 0, read);
 	        }	      
 	    } 
-	    catch (Exception e) 
-	    {
+	    
+	    catch (Exception e){
 	    	System.out.println("Error:" + e.getMessage());
 	    	return;
-	    } 
-	    finally 
-	    {
-	        if (out != null)
-	        {
+	    }
+	    
+	    finally{
+	        if(out != null){
 	            out.close();
 	        }
-	        if (filecontent != null) 
-	        {
+	        
+	        if(filecontent != null){
 	            filecontent.close();
 	        }
 	    }
 	    
 	    return;
 	}
-	
 }

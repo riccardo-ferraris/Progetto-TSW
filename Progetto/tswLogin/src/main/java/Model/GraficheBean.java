@@ -1,16 +1,15 @@
 package Model;
 
 public class GraficheBean extends Articolo{
-	private String categoria;
+
 	
 	public GraficheBean() {
 		this.macroCategoria = "Grafiche";
 	}
 	
 	public GraficheBean(String nome, long seriale, double prezzo, int quantità, String descrizione,
-			 String categoria, String macroCategoria, int numVendite, double iva, boolean visible) {
-		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva, visible);
-		this.categoria = categoria;
+			 String macroCategoria, int numVendite, double iva, boolean visible, String categoria) {
+		super(nome, seriale, prezzo, quantità, descrizione, macroCategoria, numVendite, iva, visible, categoria);
 		this.macroCategoria = "Grafiche";
 	}
 	

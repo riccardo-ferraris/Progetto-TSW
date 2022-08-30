@@ -50,6 +50,7 @@ public class FiltraOrdini extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		StringBuffer jb = new StringBuffer();
         String line = null;
+        
         try {
           BufferedReader reader = request.getReader();
           while ((line = reader.readLine()) != null)
@@ -72,6 +73,7 @@ public class FiltraOrdini extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
         OrdineModel model = new OrdineModel();
 		List<Ordine> filteredOrdini = null;
         try {
@@ -91,7 +93,4 @@ public class FiltraOrdini extends HttpServlet {
 		new Gson().toJson(filteredOrdini, response.getWriter());
 		return;
 	}
-
-	
-
 }

@@ -111,7 +111,6 @@ public class nuovoProdottoServlet extends HttpServlet {
 		saveFile(request.getPart("imgProdotto"), request.getServletContext().getRealPath(""), articolo.getMacroCategoria(), articolo.getNome());
 		response.sendRedirect("CatalogoAdmin.jsp");
 		return;
-
 	}
 	
 	private void saveFile(Part filePart, String appPath, String folder, String titolo) throws IOException{

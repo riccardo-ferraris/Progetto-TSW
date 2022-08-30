@@ -45,7 +45,6 @@ if(arrayModellini == null){
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Home</title>
 </head>
-
 <body>
 
     <jsp:include page="header.jsp"/>

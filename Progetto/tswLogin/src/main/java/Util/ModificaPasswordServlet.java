@@ -62,6 +62,7 @@ public class ModificaPasswordServlet extends HttpServlet {
 			e.printStackTrace();
 			response.getWriter().write("Error");
 		}
+		
 		return;
 	}
 }

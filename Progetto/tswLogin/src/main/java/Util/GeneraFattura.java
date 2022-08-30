@@ -39,6 +39,7 @@ public class GeneraFattura extends HttpServlet {
 		OrdineModel model = new OrdineModel();
 		Ordine ordine = new Ordine();
 		String result = new String();
+		
 		try {
 			ordine = model.doRetrieveAllByKey(codiceOrdine); //Creiamo il bean dell'ordine chiamando il model
 			result = ordine.creaFattura(path); //Generiamo la fattura con il path e salviamo il risultato in result, ovvero il path finale della fattura

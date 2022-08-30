@@ -43,6 +43,7 @@ public class FinalizzaAcquistoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 	    OrdineModel model = new OrdineModel();
+	    
 	    if(utente == null || utente.getRuolo() == null)
 	    {
 	    	response.sendRedirect("login.jsp");	
@@ -91,7 +92,5 @@ public class FinalizzaAcquistoServlet extends HttpServlet {
 		  e.printStackTrace();
 		  return;
 	  	}
-	
 	}
-
 }

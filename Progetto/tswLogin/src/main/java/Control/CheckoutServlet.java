@@ -47,19 +47,20 @@ public class CheckoutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+		
 		if(utente == null) {
 			response.sendRedirect("login.jsp?pageLogin=carrello.jsp");
 		}else {
-		double totale = (double) request.getSession().getAttribute("totale");
-		LocalDateTime dataTemp = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Date dataFinal = Date.valueOf(dataTemp.format(formatter));
-		
-		Carrello prodOrdine = (Carrello) request.getSession().getAttribute("carrello");
-		Ordine ordine = new Ordine("", utente.getUsername(), "", "", "", "", "", 0, "", "", "", "", "", 0, totale, dataFinal, prodOrdine.getProdotti());
-		
-		request.getSession().setAttribute("checkoutOrdine", ordine);
-		response.sendRedirect("checkout.jsp");
+			double totale = (double) request.getSession().getAttribute("totale");
+			LocalDateTime dataTemp = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			Date dataFinal = Date.valueOf(dataTemp.format(formatter));
+			
+			Carrello prodOrdine = (Carrello) request.getSession().getAttribute("carrello");
+			Ordine ordine = new Ordine("", utente.getUsername(), "", "", "", "", "", 0, "", "", "", "", "", 0, totale, dataFinal, prodOrdine.getProdotti());
+			
+			request.getSession().setAttribute("checkoutOrdine", ordine);
+			response.sendRedirect("checkout.jsp");
 		}
 		
 		return;

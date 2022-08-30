@@ -111,21 +111,21 @@ public class ModificaProdotto extends HttpServlet {
 	        int read = 0;
 	        final byte[] bytes = new byte[1024];
 
-	        while ((read = filecontent.read(bytes)) != -1){
+	        while((read = filecontent.read(bytes)) != -1){
 	            out.write(bytes, 0, read);
 	        }	      
 	    } 
-	    catch (Exception e){
+	    catch(Exception e){
 	    	System.out.println("Error:" + e.getMessage());
 	    	return;
 	    } 
 	    
 	    finally{
-	        if (out != null){
+	        if(out != null){
 	            out.close();
 	        }
 	        
-	        if (filecontent != null){
+	        if(filecontent != null){
 	            filecontent.close();
 	        }
 	    }

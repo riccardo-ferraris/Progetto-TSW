@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Articolo;
+import Model.ArticoloModel;
 import Model.FumettiBean;
 import Model.FumettiModel;
 import Model.GraficheBean;
@@ -39,11 +40,8 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		FumettiModel fModel = new FumettiModel();
-		GraficheModel gModel = new GraficheModel();
-		ModelliniModel mModel = new ModelliniModel();
+		ArticoloModel model;
 		String keyWord = request.getParameter("keyWord");
-		
 		request.getSession().setAttribute("keyWord", keyWord);
 		
 		List<Articolo> ricercaProdotti = new ArrayList<Articolo>();
@@ -51,10 +49,25 @@ public class SearchServlet extends HttpServlet {
 		List<GraficheBean> ricercaGrafiche = new ArrayList<GraficheBean>();
 		List<ModelliniBean> ricercaModellini = new ArrayList<ModelliniBean>();
 		
+		model = new FumettiModel();
 		try {	
-			ricercaFumetti = new ArrayList<FumettiBean>(fModel.doRetrieveAllByKeyWord(null, keyWord));
-			ricercaGrafiche = new ArrayList<GraficheBean>(gModel.doRetrieveAllByKeyWord(null, keyWord));
-			ricercaModellini = new ArrayList<ModelliniBean>(mModel.doRetrieveAllByKeyWord(null, keyWord));
+			ricercaFumetti = new ArrayList<FumettiBean>(((FumettiModel)model).doRetrieveAllByKeyWord(null, keyWord));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model = new GraficheModel();
+		try {	
+			ricercaGrafiche = new ArrayList<GraficheBean>(((GraficheModel)model).doRetrieveAllByKeyWord(null, keyWord));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model = new ModelliniModel();
+		try {	
+			ricercaModellini = new ArrayList<ModelliniBean>(((ModelliniModel)model).doRetrieveAllByKeyWord(null, keyWord));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

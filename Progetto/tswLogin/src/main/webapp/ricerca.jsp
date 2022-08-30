@@ -16,70 +16,66 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <title>Ricerca prodotto</title>
 </head>
-<body>
-	<%
-		@SuppressWarnings("unchecked")
-	 	ArrayList<Articolo> risultatiRicerca = ((ArrayList<Articolo>) request.getSession().getAttribute("searchedItems"));
-		//out.println(risultatiRicerca.toString()); 
-		String keyWord = String.valueOf(request.getSession().getAttribute("keyWord"));
-	%>
-    <jsp:include page="header.jsp"/>
-    	<%
-			try {
-			    response.setHeader("Cache-Control","no-cache");
-			    response.setHeader("Cache-Control","no-store");
-			    response.setHeader("Pragma","no-cache");
-			    response.setDateHeader ("Expires", 0);
-			}
-			catch(Exception ex) {
-			    out.println(ex);
-			}
-			%>
-		<% 
-			UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-			if(utente == null){
-			request.getSession().setAttribute("ruolo", "guest");
-			}
-			if(request.getSession().getAttribute("ruolo").equals("guest")){%>
-				<jsp:include page="navbarUnlogged.jsp"/>
-			<%}else{ %>
-				<jsp:include page="navbarLogged.jsp"/>
-			<% } %>
-    
-            <h3 style="margin:3% 0 0 3%">Risultati ricerca: "<%=keyWord%>"</h3>
-            <div class="listProd" style="display:flex; flex-wrap:wrap">
-            	<%
-            		String folder = new String();
-            		String nomeImmagine = new String();
-            		long seriale;
-            		for(Articolo articolo : risultatiRicerca){
-            			//articolo = model.doRetrieveByKeyWord(keyWord);
-						nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
-						seriale = articolo.getSeriale();
-						folder = articolo.getMacroCategoria();	
-						%>
-            			<div class = "listProdHome">
-							<ul style="list-style-type:none;">
-							
-							<a href="Prodotto.jsp?id=<%=seriale%>">
-							<div class="prodottoHome">
-							<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
-							<br><br>
-							<p><%=articolo.getNome()%></p>
-							
-							<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
-							</a>
-							<div class="aggiungiCarrelloProd">
-								<button class="piu" style="color:white">Aggiungi al carrello</button>
+	<body>
+		<%
+			@SuppressWarnings("unchecked")
+		 	ArrayList<Articolo> risultatiRicerca = ((ArrayList<Articolo>) request.getSession().getAttribute("searchedItems"));
+			String keyWord = String.valueOf(request.getSession().getAttribute("keyWord"));
+		%>
+	    <jsp:include page="header.jsp"/>
+	    	<%
+				try {
+				    response.setHeader("Cache-Control","no-cache");
+				    response.setHeader("Cache-Control","no-store");
+				    response.setHeader("Pragma","no-cache");
+				    response.setDateHeader ("Expires", 0);
+				}
+				catch(Exception ex) {
+				    out.println(ex);
+				}
+				%>
+			<% 
+				UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+				if(utente == null){
+				request.getSession().setAttribute("ruolo", "guest");
+				}
+				if(request.getSession().getAttribute("ruolo").equals("guest")){%>
+					<jsp:include page="navbarUnlogged.jsp"/>
+				<%}else{ %>
+					<jsp:include page="navbarLogged.jsp"/>
+				<% } %>
+	    
+	            <h3 style="margin:3% 0 0 3%">Risultati ricerca: "<%=keyWord%>"</h3>
+	            <div class="listProd" style="display:flex; flex-wrap:wrap">
+	            	<%
+	            		String folder = new String();
+	            		String nomeImmagine = new String();
+	            		long seriale;
+	            		for(Articolo articolo : risultatiRicerca){
+	            			//articolo = model.doRetrieveByKeyWord(keyWord);
+							nomeImmagine = articolo.getNome().replace(":", "").replace("/", "");
+							seriale = articolo.getSeriale();
+							folder = articolo.getMacroCategoria();	
+							%>
+	            			<div class = "listProdHome">
+								<ul style="list-style-type:none;">
+								
+								<a href="Prodotto.jsp?id=<%=seriale%>">
+								<div class="prodottoHome">
+								<li><img src="./gallery/<%=folder%>/<%=nomeImmagine%>.jpg" style=width:70%>
+								<br><br>
+								<p><%=articolo.getNome()%></p>
+								
+								<%out.println(String.format("%.2f&euro;", articolo.getPrezzo()));%><br></li>
+								</a>
+								<div class="aggiungiCarrelloProd">
+									<button class="piu" style="color:white">Aggiungi al carrello</button>
+								</div>
+								</div>					
+								</ul>
 							</div>
-							</div>					
-							</ul>
-							
-						</div>
-            		<% } %>    
-         </div>
-    	<jsp:include page="footer.jsp"/>
-
-
-</body>
+	            		<% } %>    
+	         </div>
+	    	<jsp:include page="footer.jsp"/>
+	</body>
 </html>

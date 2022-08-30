@@ -7,12 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import Model.Articolo;
 import Model.ArticoloModel;
 import Model.FumettiModel;
 import Model.GraficheModel;
 import Model.ModelliniModel;
 import Model.ProdottoInCarrello;
+
 import Util.Carrello;
 
 /**
@@ -44,7 +46,6 @@ public class ServletCarrello extends HttpServlet {
             carrello = new Carrello();
             request.getSession().setAttribute("carrello", carrello);
         }
-		
 	    
 	    String codProd = request.getParameter("seriale");
 	    String macroCategoriaProdotto = request.getParameter("macroCategoria"); //Prendiamo la macroCategoria per capire che tipo di articolo avremo
@@ -95,9 +96,8 @@ public class ServletCarrello extends HttpServlet {
     			
     			if(page.equals("Prodotto.jsp") || page.equals("ProdottoAdmin.jsp")) {
     				response.sendRedirect(page+"?id="+codice); //Torna alla pagina del prodotto
-    			}else {
-    				//response.sendRedirect(page); //Torna alla pagina dalla quale viene invocata la servlet
     			}
+    			
     			return;
     			  
 	    	case "rimuoviBySeriale":
@@ -130,14 +130,12 @@ public class ServletCarrello extends HttpServlet {
 	    		if(page.equals("Prodotto.jsp")) { //In caso di errore, se la servlet è stata invocata dalla pagina del prodotto
 	    			response.sendRedirect(page+ "?id=" +codProd); //L'utente viene reindirizzato alla pagina del prodotto da cui ha invocato la servlet
 	    		}
-	    		System.out.println(page);
+	    		
 	    		response.sendRedirect(page); //In caso di errore torniamo alla pagina da cui abbiamo invocato la servlet
     			return;
 	    }  	  
 	}
 	      
-		
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -145,5 +143,4 @@ public class ServletCarrello extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

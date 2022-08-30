@@ -47,6 +47,7 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 			response.sendRedirect("login.jsp?pageLogin=" + pageRedirect);
 			return;
 		}
+		
 		int punteggio = Integer.parseInt(request.getParameter("punteggioFormRecensione"));
 		String testoRecensione = request.getParameter("testoRecensione");
 		long serialeProdotto = Long.parseLong(request.getParameter("id"));

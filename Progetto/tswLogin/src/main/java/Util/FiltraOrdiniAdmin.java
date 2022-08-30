@@ -52,7 +52,8 @@ public class FiltraOrdiniAdmin extends HttpServlet {
 		long seriale = (request.getParameter("seriale") !=  "") ? seriale = Long.parseLong(request.getParameter("seriale")) : 0;
 		
 		OrdineModel model = new OrdineModel();
-		ArrayList<Ordine> listaOrdini = new ArrayList<Ordine>();
+		List<Ordine> listaOrdini = new ArrayList<Ordine>();
+		
         try {
 			listaOrdini = new ArrayList<Ordine>(model.doRetrieveAll(null));
 		} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
@@ -80,5 +81,4 @@ public class FiltraOrdiniAdmin extends HttpServlet {
 		new Gson().toJson(filteredList, response.getWriter());
 		return;
 	}
-
 }

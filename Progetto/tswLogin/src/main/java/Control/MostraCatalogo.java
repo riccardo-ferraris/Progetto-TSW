@@ -45,6 +45,7 @@ public class MostraCatalogo extends HttpServlet {
 		String page = request.getParameter("page");
 		String parag = request.getParameter("parag");
 		ArticoloModel model;
+		
 		List<FumettiBean> arrayManga = new ArrayList<FumettiBean>();
 		List<FumettiBean> arrayManhua = new ArrayList<FumettiBean>(); 
 		List<GraficheBean> arrayOpera = new ArrayList<GraficheBean>();
@@ -96,6 +97,7 @@ public class MostraCatalogo extends HttpServlet {
 			}
 			
 			return;
+			
 		}else if(utente.getRuolo().equals("admin")){
 			RequestDispatcher view = request.getRequestDispatcher("CatalogoAdmin.jsp");
 			view.forward(request, response);

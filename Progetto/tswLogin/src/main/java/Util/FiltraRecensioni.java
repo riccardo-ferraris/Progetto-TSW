@@ -97,5 +97,4 @@ public class FiltraRecensioni extends HttpServlet {
 		new Gson().toJson(filteredRecensioni, response.getWriter());
 		return;
 	}
-
 }

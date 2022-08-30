@@ -101,10 +101,9 @@ public class MostraCatalogo extends HttpServlet {
 		}else if(utente.getRuolo().equals("admin")){
 			RequestDispatcher view = request.getRequestDispatcher("CatalogoAdmin.jsp");
 			view.forward(request, response);
-		return;
+			return;
 		}
 		
-        
 		return;
 	}
 
@@ -115,5 +114,4 @@ public class MostraCatalogo extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

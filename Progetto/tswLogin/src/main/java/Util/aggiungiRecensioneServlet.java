@@ -61,6 +61,7 @@ public class aggiungiRecensioneServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		response.sendRedirect("Prodotto.jsp?id="+serialeProdotto);
 		return;
 	}

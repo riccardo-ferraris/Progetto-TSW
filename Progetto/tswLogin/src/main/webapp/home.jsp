@@ -55,6 +55,7 @@ if(arrayModellini == null){
 			    response.setHeader("Pragma","no-cache");
 			    response.setDateHeader ("Expires", 0);
 			}
+    
 			catch(Exception ex) {
 			    out.println(ex);
 			}
@@ -108,9 +109,9 @@ if(arrayModellini == null){
 								</div>
 								</ul>
 								</div>
-								<% } %>
-            </div>
-        </div>
+						  <%}%>
+    	</div>
+	</div>
 
         <div class="categoria">
             <h3>Manga e manhwa più venduti</h3>
@@ -184,7 +185,7 @@ if(arrayModellini == null){
 									</div>
 									</ul>
 								</div>
-								<% } %>
+						   <%}%>
             </div>   
         </div>
     </div>
@@ -218,5 +219,4 @@ if(arrayModellini == null){
      });
    </script>
 </body>
-
 </html>
